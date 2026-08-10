@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "source_commit": "c91b6006ca4ffc15aa5421704cc8569669065fb2",
+  "source_ref": "main",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/31410678422",
+  "generated_at_utc": "2026-08-10T16:46:39+00:00",
+  "qa_status": "passed",
+  "as_of": "2026-08-10",
+  "published_units": [],
+  "content_digest": "362c57395bd3805c11817e75c637bf9c582da637eb72d546edd712edf587c46e",
+  "file_count": 15,
+  "html_count": 4,
+  "contact": "analisisdatosutnfrc@gmail.com"
+}
