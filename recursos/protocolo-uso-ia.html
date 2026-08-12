@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Protocolo de uso de inteligencia artificial y trazabilidad para Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Protocolo de uso de IA y trazabilidad · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260812c">
+  <script src="../assets/app.js" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">Protocolo de IA</a>
+      <a href="#desarrollo">Contenido</a>
+      <a href="../unidades/u01-decisiones-datos-ia.html">Unidad 1</a>
+      <a href="../index.html#recursos">Recursos</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero resource-reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recursos"><span aria-hidden="true">←</span> Volver a los recursos</a>
+        <div class="eyebrow"><span>RECURSO TRANSVERSAL</span></div>
+        <h1 id="reading-title">Protocolo de uso de IA y trazabilidad</h1>
+        <p class="hero-lede">Una intervención asistida conserva su intención, su ejecución, sus controles y la persona que responde por el resultado.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué evidencia permite explicar cómo se produjo y verificó una respuesta asistida por IA?</p>
+      </div>
+      <div class="reading-hero-map" aria-label="Secuencia de uso verificable de inteligencia artificial">
+        <span>intención</span><i>→</i><span>ejecución</span><i>→</i><span>control</span><i>→</i><span>registro</span>
+      </div>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del protocolo">
+        <span>EN ESTE RECURSO</span>
+        <nav><a href="#regla-central">Regla central</a><a href="#usos-admitidos">Usos admitidos</a><a href="#usos-no-admitidos">Usos no admitidos</a><a href="#ciclo-de-verificacion">Ciclo de verificación</a><a href="#registro-minimo">Registro mínimo</a><a href="#auditoria-de-una-respuesta">Auditoría de una respuesta</a><a href="#mcp">MCP</a></nav>
+        <a class="button button-primary" href="../downloads/Protocolo de uso de IA y trazabilidad.md" download>Descargar Markdown <span aria-hidden="true">↓</span></a>
+      </aside>
+      <article class="theory-copy">
+        <div class="theory-intro"><span>GUÍA DE TRABAJO</span><p>Aplicá este protocolo cuando una salida de IA intervenga en una consulta, un cálculo, una interpretación o una entrega del proyecto.</p></div>
+        <h2 id="regla-central">Regla central</h2>
+<p>La IA acelera tareas bajo una condición: cada equipo conserva la obligación de comprender el grano, ejecutar la consulta, reconciliar resultados y responder por la conclusión.</p>
+<h2 id="usos-admitidos">Usos admitidos</h2>
+<ul class="theory-list"><li>reformular una pregunta de negocio;</li><li>pedir una explicación de SQL o Python;</li><li>producir un primer borrador de consulta;</li><li>generar casos de prueba;</li><li>detectar ambigüedades en una métrica;</li><li>criticar un gráfico o una narrativa;</li><li>mejorar claridad de documentación;</li><li>proponer alternativas y trade-offs.</li></ul>
+<h2 id="usos-no-admitidos">Usos no admitidos</h2>
+<ul class="theory-list"><li>presentar una salida no ejecutada como evidencia;</li><li>copiar una explicación que el equipo no puede defender;</li><li>cargar datos reales, personales, confidenciales o cubiertos por NDA sin autorización;</li><li>inventar fuentes, valores o resultados;</li><li>ocultar una intervención sustantiva de IA;</li><li>delegar a la IA la calificación de personas o decisiones sensibles;</li><li>usar credenciales o herramientas con permiso de escritura durante una demostración no controlada.</li></ul>
+<h2 id="ciclo-de-verificacion">Ciclo de verificación</h2>
+<ol class="theory-list"><li><strong>Intención:</strong> registrar qué se pidió y para qué.</li><li><strong>Entrada:</strong> revisar que no haya información sensible.</li><li><strong>Ejecución:</strong> probar la consulta o el código sobre el release correcto.</li><li><strong>Reconciliación:</strong> contrastar filas, totales, casos límite y definiciones.</li><li><strong>Interpretación:</strong> separar resultado, hipótesis, limitación y decisión.</li></ol>
+<h2 id="registro-minimo">Registro mínimo</h2>
+<p>Para una intervención relevante:</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Campo</th>
+<th>Ejemplo</th>
+</tr></thead><tbody>
+<tr><td>Tarea</td><td>Proponer SQL para OTIF por región</td></tr>
+<tr><td>Herramienta</td><td>asistente generativo</td></tr>
+<tr><td>Aporte</td><td>borrador de consulta y explicación</td></tr>
+<tr><td>Verificación</td><td>conteos, denominador y comparación manual</td></tr>
+<tr><td>Corrección</td><td>se cambió el grano de despacho a pedido</td></tr>
+<tr><td>Responsable</td><td>integrante que revisó</td></tr>
+</tbody></table></div>
+<p>El registro excluye correcciones ortográficas menores.</p>
+<h2 id="auditoria-de-una-respuesta">Auditoría de una respuesta</h2>
+<p>Preguntas obligatorias:</p>
+<ul class="theory-list"><li>¿Qué tabla y qué fila representa el resultado?</li><li>¿La consulta usa el denominador correcto?</li><li>¿Un join puede duplicar importes?</li><li>¿Qué sucede con <code>NULL</code>?</li><li>¿La fecha es de pedido, despacho o entrega?</li><li>¿El resultado demuestra causalidad o solo asociación?</li><li>¿Qué dato faltante podría cambiar la conclusión?</li><li>¿Puede otra persona reproducirlo?</li></ul>
+<h2 id="mcp">MCP</h2>
+<p>MCP se presenta como un protocolo cliente–servidor mediante el cual una aplicación de IA descubre herramientas, recursos y prompts. En la materia se reconoce su función y se demuestra en modo de solo lectura; no se construye un servidor. Referencia: <a href="https://modelcontextprotocol.io/docs/learn/architecture" target="_blank" rel="noopener noreferrer">https://modelcontextprotocol.io/docs/learn/architecture</a>.</p>
+      </article>
+    </div>
+
+    <section class="class-close section-dark" aria-labelledby="close-title">
+      <div class="section-kicker">Acción de trabajo</div>
+      <h2 id="close-title">Registrá el aporte que modificó <span>la evidencia.</span></h2>
+      <p>Conservá la tarea, la herramienta, el control ejecutado, la corrección realizada y la persona responsable.</p>
+      <div class="next-class"><span>CONTINUAR</span><b><a href="../unidades/u01-decisiones-datos-ia.html">Unidad 1 · Decisiones, datos e IA →</a></b></div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

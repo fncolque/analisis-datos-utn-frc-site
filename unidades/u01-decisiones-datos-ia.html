@@ -25,7 +25,7 @@
       <a class="is-current" href="#clase">Unidad 1</a>
       <a href="#recorrido">Índice</a>
       <a href="#desarrollo-teorico">Teoría</a>
-      <a href="#faro-sur-lab">Práctica</a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked">Laboratorio</a>
       <a href="#ampliar">Para ampliar</a>
     </nav>
   </header>
@@ -38,8 +38,8 @@
         <h1 id="class-title">Decisiones,<br><em>datos e IA.</em></h1>
         <p class="hero-lede">¿Qué tiene que ocurrir para que un dato cambie una decisión?</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="../downloads/Unidad 1 - Decisiones, datos e IA - v0.2.pptx" download>Descargar presentación <span aria-hidden="true">↓</span></a>
-          <a class="button button-ghost" href="#faro-sur-lab">Ir a la práctica</a>
+          <a class="button button-primary" href="../downloads/Unidad 1 - Decisiones, datos e IA - v0.6.pptx" download>Descargar presentación <span aria-hidden="true">↓</span></a>
+          <a class="button button-ghost is-release-locked" href="../proximamente.html" aria-label="Contenido disponible próximamente">Abrir laboratorio</a>
         </div>
       </div>
       <div class="class-hero-panel">
@@ -47,10 +47,10 @@
         <ol>
           <li><span>01</span>Distinguir dato, evidencia, decisión y acción.</li>
           <li><span>02</span>Formular audiencia, alternativa y KPI.</li>
-          <li><span>03</span>Reconocer dónde la IA ayuda y dónde exige control.</li>
-          <li><span>04</span>Explicar qué representa una fila de Faro Sur.</li>
+          <li><span>03</span>Reconocer tareas de IA y asociarles un control observable.</li>
+          <li><span>04</span>Anticipar por qué el grano condiciona una métrica.</li>
         </ol>
-        <div class="panel-footer"><span>Navegador + Colab</span><span>Trabajo en equipo</span></div>
+        <div class="panel-footer"><span>Lectura de referencia</span><span>Discusión de decisiones</span></div>
       </div>
     </section>
 
@@ -93,8 +93,8 @@
         <li><span>03</span><div><b>Del dato a la decisión</b><p>Vocabulario común y modelo de evidencia.</p></div></li>
         <li><span>04</span><div><b>IA dentro del análisis</b><p>Capacidades de asistencia y protocolo de verificación.</p></div></li>
         <li><span>05</span><div><b>Caso y grano</b><p>Negocio de Faro Sur y significado de una fila.</p></div></li>
-        <li><span>06</span><div><b>Métricas iniciales</b><p>Tabla de ventas, margen y cumplimiento.</p></div></li>
-        <li><span>07</span><div><b>Canvas del equipo</b><p>Audiencia, decisión, KPI, acción y límites.</p></div></li>
+        <li><span>06</span><div><b>Fronteras de la fuente</b><p>Preguntas válidas y datos que todavía faltan.</p></div></li>
+        <li><span>07</span><div><b>Preparación del laboratorio</b><p>Fuente, grano y controles que se ejecutarán.</p></div></li>
         <li><span>08</span><div><b>Transferencia al proyecto</b><p>Intereses, evidencia inicial y próximo módulo.</p></div></li>
       </ol>
     </section>
@@ -126,71 +126,96 @@
         <p>El capítulo desarrolla la cadena completa, la ventaja competitiva, los KPI y el uso verificable de inteligencia artificial.</p>
       </div>
       <div class="reading-shell reading-shell-embedded">
-        <aside class="reading-aside"><span>CONTENIDOS</span><nav><a href="#el-analisis-comienza-con-una-decision">El análisis comienza con una decisión</a><a href="#datos-como-ventaja-competitiva">Datos como ventaja competitiva</a><a href="#decision-audiencia-y-kpi">Decisión, audiencia y KPI</a><a href="#ia-integrada-al-proceso">IA integrada al proceso</a><a href="#responsabilidad-humana">Responsabilidad humana</a><a href="#faro-sur-como-sistema-de-decisiones">Faro Sur como sistema de decisiones</a><a href="#distinciones-que-deben-quedar-claras">Distinciones que deben quedar claras</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance">Alcance</a><a href="#referencias">Referencias</a></nav></aside>
+        <aside class="reading-aside"><span>CONTENIDOS</span><nav><a href="#el-analisis-comienza-con-una-decision">El análisis comienza con una decisión</a><a href="#que-es-un-pipeline-de-analisis-de-datos">Qué es un pipeline de análisis de datos</a><a href="#los-datos-como-ventaja-competitiva">Los datos como ventaja competitiva</a><a href="#la-anatomia-de-una-decision">La anatomía de una decisión</a><a href="#inteligencia-artificial-integrada-al-analisis">Inteligencia artificial integrada al análisis</a><a href="#responsabilidad-humana-y-limites-de-la-evidencia">Responsabilidad humana y límites de la evidencia</a><a href="#faro-sur-como-sistema-de-decisiones">Faro Sur como sistema de decisiones</a><a href="#distinciones-para-usar-durante-el-curso">Distinciones para usar durante el curso</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a><a href="#referencias">Referencias</a></nav></aside>
         <article class="theory-copy"><h2 id="el-analisis-comienza-con-una-decision">El análisis comienza con una decisión</h2>
-<p>Un dato es una representación registrada de un hecho, estado o evento. Por sí solo no indica qué hacer. En la materia se utilizará la siguiente cadena:</p>
+<p>El análisis de datos adquiere sentido cuando modifica una decisión concreta. Una empresa puede registrar miles de ventas, movimientos de inventario y reclamos. Ese volumen conserva hechos del negocio, pero todavía hace falta formular una pregunta, elegir evidencia pertinente e interpretar el resultado dentro del proceso que produjo los registros.</p>
+<p>En esta materia utilizaremos la siguiente cadena para ordenar el trabajo:</p>
 <pre><code class="language-text">registro → dato contextualizado → evidencia → interpretación → decisión → acción → aprendizaje</code></pre>
-<ul class="theory-list"><li><strong>Registro:</strong> valor capturado por un sistema, formulario, sensor o persona.</li><li><strong>Dato contextualizado:</strong> registro con definición, unidad, tiempo, origen y grano.</li><li><strong>Evidencia:</strong> conjunto de datos y controles relevantes para una pregunta.</li><li><strong>Interpretación:</strong> significado propuesto, condicionado por conocimiento del negocio.</li><li><strong>Decisión:</strong> elección entre alternativas bajo restricciones.</li><li><strong>Acción:</strong> intervención ejecutada.</li><li><strong>Aprendizaje:</strong> comparación entre resultado esperado y observado.</li></ul>
-<p>El pipeline analítico es el sistema que hace posible esa cadena. La tecnología reduce costo, tiempo o riesgo. La formulación de la decisión permanece a cargo de las personas responsables del proceso.</p>
-<h2 id="datos-como-ventaja-competitiva">Datos como ventaja competitiva</h2>
-<p>Los datos pueden crear ventaja cuando una organización logra un ciclo difícil de imitar:</p>
-<ol class="theory-list"><li>captura señales relevantes antes o con mayor calidad;</li><li>las combina con conocimiento del proceso;</li><li>decide con menor demora o incertidumbre;</li><li>incorpora la decisión a una operación;</li><li>observa el resultado y mejora.</li></ol>
-<p>El activo combina:</p>
-<ul class="theory-list"><li>datos confiables;</li><li>definiciones compartidas;</li><li>infraestructura proporcional;</li><li>capacidades humanas;</li><li>permisos y gobierno;</li><li>procesos capaces de actuar.</li></ul>
-<p>Los datos también tienen costos: captura, almacenamiento, integración, seguridad, errores, mantenimiento y exposición legal. Acumular información “por si acaso” puede crear deuda y riesgo.</p>
-<h3 id="ejemplo-industrial">Ejemplo industrial</h3>
-<p>Conocer el stock disponible no mejora el servicio si:</p>
-<ul class="theory-list"><li>se actualiza después de prometer la fecha;</li><li>las reservas no están incluidas;</li><li>cada depósito define “disponible” de forma distinta;</li><li>nadie tiene autoridad para reponer o reasignar.</li></ul>
-<p>La ventaja surge del circuito operativo que vuelve accionable el número.</p>
-<h2 id="decision-audiencia-y-kpi">Decisión, audiencia y KPI</h2>
-<p>Una decisión debe identificar:</p>
-<ul class="theory-list"><li><strong>responsable:</strong> quién puede actuar;</li><li><strong>objeto:</strong> sobre qué se decide;</li><li><strong>alternativas:</strong> qué opciones existen;</li><li><strong>horizonte:</strong> cuándo debe decidirse;</li><li><strong>restricciones:</strong> costo, capacidad, servicio, riesgo;</li><li><strong>criterio:</strong> cómo se compara una alternativa.</li></ul>
-<p>Un KPI es un indicador ligado a un objetivo. No todo número visible es un KPI.</p>
-<h3 id="definicion-completa">Definición completa</h3>
-<p>Para evitar ambigüedad se documentan:</p>
-<ul class="theory-list"><li>nombre;</li><li>propósito;</li><li>numerador y denominador;</li><li>unidad;</li><li>grano;</li><li>fecha utilizada;</li><li>filtros;</li><li>frecuencia;</li><li>dueño;</li><li>comportamiento esperado;</li><li>acciones posibles.</li></ul>
-<h3 id="incentivos-y-efectos-no-deseados">Incentivos y efectos no deseados</h3>
-<p>Optimizar un KPI aislado puede empeorar el sistema:</p>
-<ul class="theory-list"><li>maximizar ventas puede reducir margen;</li><li>minimizar inventario puede empeorar nivel de servicio;</li><li>maximizar entregas “a tiempo” puede incentivar promesas conservadoras;</li><li>reducir costo logístico puede aumentar demoras.</li></ul>
-<p>Por eso la materia usa métricas como lentes, no como objetivos automáticos.</p>
-<h2 id="ia-integrada-al-proceso">IA integrada al proceso</h2>
-<p>Se distinguen dos ideas:</p>
-<ul class="theory-list"><li><strong>IA analítica:</strong> modelos que clasifican, predicen, recomiendan o detectan patrones;</li><li><strong>IA generativa:</strong> sistemas que producen texto, código, imágenes u otras salidas a partir de instrucciones y contexto.</li></ul>
-<p>En 2026 la IA se incorpora transversalmente:</p>
+<p>Un <strong>registro</strong> es un valor capturado por un sistema, un formulario, un sensor o una persona. El número <code>1250</code>, por ejemplo, carece de significado operativo hasta que sabemos si representa pesos, unidades vendidas, kilómetros o segundos. El registro se convierte en <strong>dato contextualizado</strong> cuando incorpora una definición, una unidad, un período, un origen y un grano. El grano indica qué representa cada fila: una venta, una línea de pedido, un movimiento de inventario o una medición tomada en un instante.</p>
+<p>La <strong>evidencia</strong> reúne los datos y controles adecuados para responder una pregunta. Si la gerencia de Faro Sur quiere decidir qué familias de productos requieren una revisión comercial, una tabla de ventas por línea de pedido puede aportar cantidades, precios, descuentos y costos. Esa misma tabla brinda evidencia limitada para explicar entregas tardías, porque la demora también depende de disponibilidad, preparación, transporte y promesas realizadas al cliente.</p>
+<p>La <strong>interpretación</strong> vincula el resultado cuantitativo con el conocimiento del negocio. Una caída del margen puede responder a descuentos, cambios en la mezcla de productos, aumentos de costos o errores de registro. La <strong>decisión</strong> elige una alternativa bajo restricciones. Después llega la <strong>acción</strong>, como revisar una política de descuentos o reasignar inventario. El <strong>aprendizaje</strong> compara el resultado esperado con el observado y permite ajustar el proceso.</p>
+<p>Este recorrido evita que una cifra aislada se convierta en una conclusión apresurada. También permite localizar fallas. Un error puede originarse en la captura, en una definición ambigua, en una consulta incorrecta o en una interpretación que excede la evidencia disponible.</p>
+<h2 id="que-es-un-pipeline-de-analisis-de-datos">Qué es un pipeline de análisis de datos</h2>
+<p>Un <strong>pipeline</strong> es una secuencia organizada de etapas que lleva los datos desde sus fuentes hasta un uso analítico. La palabra proviene de la idea de una tubería: cada tramo recibe una entrada, aplica una operación y entrega una salida al tramo siguiente. En un caso empresarial, el pipeline puede comenzar en un sistema de ventas, continuar con una copia de los datos, aplicar controles y transformaciones, calcular indicadores y terminar en un reporte utilizado por una persona responsable.</p>
+<pre><code class="language-text">fuentes → captura → almacenamiento → transformación → modelo analítico → análisis → comunicación → decisión</code></pre>
+<p>Cada etapa responde una pregunta distinta. La captura define cómo ingresan los datos. El almacenamiento establece dónde se conservan y durante cuánto tiempo. La transformación corrige tipos, unifica nombres y aplica reglas. El modelo analítico organiza la información para consultas. El análisis calcula resultados e investiga variaciones. La comunicación presenta la evidencia de acuerdo con la audiencia.</p>
+<p>SQL, Python, Power BI, servicios cloud y asistentes de inteligencia artificial aparecen dentro de este sistema. Cada herramienta resuelve una parte del recorrido. SQL permite consultar y transformar tablas. Python facilita automatizaciones, análisis y conexión con distintas fuentes. Power BI organiza modelos y visualizaciones. La nube aporta almacenamiento o cómputo bajo demanda. La IA ayuda a formular hipótesis, producir borradores y revisar trabajo. La selección tecnológica depende de la pregunta, del volumen, de la frecuencia y de los controles requeridos.</p>
+<h2 id="los-datos-como-ventaja-competitiva">Los datos como ventaja competitiva</h2>
+<p>Una organización obtiene ventaja cuando convierte señales del negocio en decisiones oportunas y aprende del resultado. La ventaja suele surgir de un ciclo difícil de imitar: la empresa captura información relevante, la combina con conocimiento del proceso, actúa con menor demora y observa el efecto de la intervención.</p>
+<p>Faro Sur puede conocer el inventario registrado en cada depósito. Ese conocimiento mejora el servicio únicamente si las reservas están contempladas, las actualizaciones llegan antes de prometer una fecha y existe autoridad para reponer o reasignar unidades. El número forma parte de un circuito operativo. Definiciones compartidas, responsabilidades claras y capacidad de actuar convierten el dato en un recurso valioso.</p>
+<p>El activo analítico incluye la información conservada y las condiciones que permiten usarla. Una definición común de “venta neta” evita discusiones repetidas. Un historial reproducible permite comparar períodos. Un equipo que entiende el proceso detecta resultados improbables. Los permisos protegen información sensible y delimitan usos autorizados.</p>
+<p>Los datos también generan costos. Capturarlos exige diseño y mantenimiento. Almacenarlos consume recursos. Integrar fuentes requiere reglas. Los errores pueden inducir decisiones costosas y la exposición de información crea riesgo legal o reputacional. Una política de acumulación indiscriminada aumenta deuda técnica: aparecen copias sin dueño, campos cuyo significado se perdió y archivos que nadie puede reconciliar.</p>
+<p>La pregunta de gestión pasa a ser concreta: ¿qué información reduce una incertidumbre relevante y qué circuito permite actuar con ella? Esa pregunta ayuda a decidir qué datos conservar, con qué frecuencia actualizarlos y qué controles financiar.</p>
+<h2 id="la-anatomia-de-una-decision">La anatomía de una decisión</h2>
+<p>Una decisión analítica bien formulada identifica a la persona responsable, el objeto de la elección y el horizonte temporal. También explicita las alternativas disponibles, las restricciones y el criterio utilizado para compararlas.</p>
+<p>Supongamos que la responsable comercial de Faro Sur evalúa descuentos para el mes siguiente. El objeto son las condiciones comerciales por familia de producto. Las alternativas pueden ser conservar, reducir o focalizar los descuentos. El horizonte exige una respuesta antes de publicar la lista. Las restricciones incluyen margen mínimo, compromisos con clientes y capacidad de abastecimiento. El criterio combina rentabilidad esperada y efecto sobre la demanda.</p>
+<p>La audiencia modifica la forma de presentar la evidencia. Una gerencia necesita ver impacto y opciones. Una persona analista necesita definiciones, filtros y controles. El equipo operativo requiere reglas accionables. El mismo cálculo puede alimentar estas tres conversaciones con diferentes niveles de detalle.</p>
+<h3 id="del-objetivo-al-kpi">Del objetivo al KPI</h3>
+<p>Un <strong>KPI</strong>, sigla de *Key Performance Indicator*, es un indicador conectado con un objetivo y con una decisión. Una cifra visible en un tablero adquiere carácter de KPI cuando existe una razón para observarla, una definición estable y una respuesta posible ante su variación.</p>
+<p>Una ficha completa del indicador contiene los siguientes elementos:</p>
 <div class="theory-table" tabindex="0"><table><thead><tr>
-<th>Acción</th>
-<th>Aporte posible</th>
-<th>Verificación</th>
+<th>Elemento</th>
+<th>Pregunta que resuelve</th>
+<th>Ejemplo</th>
 </tr></thead><tbody>
-<tr><td>explorar</td><td>proponer preguntas y segmentos</td><td>contrastar con el caso</td></tr>
-<tr><td>consultar</td><td>producir borradores de SQL</td><td>ejecutar y reconciliar</td></tr>
-<tr><td>programar</td><td>explicar o adaptar Python</td><td>leer, probar y controlar</td></tr>
-<tr><td>comunicar</td><td>resumir y criticar una narrativa</td><td>verificar evidencia y audiencia</td></tr>
-<tr><td>documentar</td><td>convertir decisiones en fichas</td><td>revisar completitud y exactitud</td></tr>
+<tr><td>Propósito</td><td>¿Para qué se observa?</td><td>Detectar deterioro de rentabilidad comercial</td></tr>
+<tr><td>Fórmula</td><td>¿Cómo se calcula?</td><td>margen / venta neta</td></tr>
+<tr><td>Unidad</td><td>¿Cómo se expresa?</td><td>porcentaje</td></tr>
+<tr><td>Grano</td><td>¿Sobre qué unidad se agrega?</td><td>líneas de pedido</td></tr>
+<tr><td>Fecha</td><td>¿Qué momento asigna el período?</td><td>fecha del pedido</td></tr>
+<tr><td>Filtros</td><td>¿Qué registros participan?</td><td>pedidos válidos y venta positiva</td></tr>
+<tr><td>Frecuencia</td><td>¿Cuándo se actualiza?</td><td>semanal</td></tr>
+<tr><td>Responsable</td><td>¿Quién responde por la definición?</td><td>gerencia comercial</td></tr>
+<tr><td>Umbral o referencia</td><td>¿Qué cambio merece atención?</td><td>caída de 2 puntos porcentuales</td></tr>
+<tr><td>Acción</td><td>¿Qué puede hacerse?</td><td>revisar descuentos y mezcla</td></tr>
 </tbody></table></div>
-<p>La evidencia requiere fuentes y controles. Una respuesta puede sonar convincente y contener errores por:</p>
-<ul class="theory-list"><li>datos de entrenamiento incompletos;</li><li>contexto insuficiente;</li><li>ambigüedad;</li><li>cálculo no ejecutado;</li><li>fuente inventada;</li><li>mezcla de granos;</li><li>sesgo de confirmación del usuario.</li></ul>
-<h2 id="responsabilidad-humana">Responsabilidad humana</h2>
-<p>El profesional sigue siendo responsable de:</p>
-<ul class="theory-list"><li>definir qué se intenta decidir;</li><li>autorizar datos y permisos;</li><li>comprobar fuentes;</li><li>ejecutar cálculos;</li><li>evaluar materialidad;</li><li>declarar límites;</li><li>decidir cuándo no automatizar;</li><li>explicar consecuencias.</li></ul>
-<p>La trazabilidad del uso de IA permite saber qué fue propuesto, qué se verificó y qué se corrigió.</p>
+<p>La fórmula por sí sola deja preguntas abiertas. Dos equipos pueden calcular “margen” con costos distintos. Un área puede usar fecha de pedido y otra fecha de entrega. Una ficha explícita vuelve comparables los resultados y permite auditar una consulta.</p>
+<h3 id="incentivos-y-efectos-sobre-el-sistema">Incentivos y efectos sobre el sistema</h3>
+<p>Los indicadores influyen en el comportamiento. Maximizar ventas puede reducir margen cuando los descuentos crecen. Minimizar inventario puede deteriorar el nivel de servicio. Premiar únicamente entregas “a tiempo” puede incentivar promesas conservadoras. Reducir costo logístico puede trasladar demoras al cliente.</p>
+<p>Por eso conviene trabajar con una métrica principal y controles complementarios. La venta neta puede leerse junto con margen porcentual. El inventario puede evaluarse junto con quiebres de stock. El cumplimiento de fecha requiere revisar también la promesa realizada. El objetivo consiste en representar el sistema con la cantidad de señales que la decisión necesita.</p>
+<h2 id="inteligencia-artificial-integrada-al-analisis">Inteligencia artificial integrada al análisis</h2>
+<p>La inteligencia artificial abarca métodos capaces de realizar tareas asociadas con percepción, predicción, clasificación, generación o recomendación. Dentro de la materia distinguiremos dos familias para ordenar los usos.</p>
+<p>La <strong>IA analítica</strong> aprende patrones a partir de datos y los utiliza para estimar una categoría, una probabilidad o un valor. Un modelo puede estimar demanda, detectar operaciones atípicas o priorizar clientes con riesgo de abandono. La <strong>IA generativa</strong> produce contenido a partir de instrucciones y contexto. Puede redactar texto, explicar código, proponer una consulta SQL o sugerir maneras de visualizar un resultado.</p>
+<p>Ambas familias pueden aparecer en distintas etapas del pipeline. Su aporte se evalúa por la calidad del trabajo producido y por la posibilidad de verificarlo.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Actividad</th>
+<th>Aporte posible de IA</th>
+<th>Control requerido</th>
+</tr></thead><tbody>
+<tr><td>Formular preguntas</td><td>sugerir segmentos o hipótesis</td><td>contrastar con la decisión y el proceso</td></tr>
+<tr><td>Consultar datos</td><td>producir un borrador de SQL</td><td>ejecutar, revisar el grano y reconciliar totales</td></tr>
+<tr><td>Programar</td><td>explicar o adaptar Python</td><td>leer, probar con casos conocidos y controlar salidas</td></tr>
+<tr><td>Analizar</td><td>señalar patrones o anomalías</td><td>confirmar con cálculos reproducibles</td></tr>
+<tr><td>Comunicar</td><td>resumir resultados o criticar una narrativa</td><td>verificar cifras, alcance y audiencia</td></tr>
+<tr><td>Documentar</td><td>completar una ficha de métrica</td><td>revisar definiciones y responsables</td></tr>
+</tbody></table></div>
+<p>Una respuesta generada puede ser gramaticalmente convincente y contener un error. El sistema puede recibir contexto insuficiente, inventar una fuente, mezclar niveles de agregación o describir un cálculo que nunca ejecutó. También puede reforzar la hipótesis inicial del usuario si la instrucción busca confirmación en lugar de contraste.</p>
+<h3 id="protocolo-de-verificacion">Protocolo de verificación</h3>
+<p>El uso profesional de IA deja una traza. Primero se conserva la pregunta o instrucción enviada. Luego se identifica qué parte de la salida se incorporó al trabajo. Los cálculos se ejecutan sobre una fuente conocida. Los totales se comparan con valores de control y las correcciones se documentan.</p>
+<p>Un ejemplo breve ayuda a ver la diferencia. Si un asistente propone una consulta para calcular margen por familia, la persona analista debe revisar la fórmula, ejecutar el SQL y verificar que las ventas agregadas coincidan con el total de la tabla. Después interpreta el resultado. La respuesta del asistente funciona como borrador; la evidencia surge de la consulta ejecutada y de sus controles.</p>
+<p>La privacidad forma parte del mismo protocolo. Datos personales, secretos comerciales o información contractual requieren autorización antes de ser enviados a una herramienta externa. La conveniencia de una función nunca reemplaza las reglas de acceso de la organización.</p>
+<h2 id="responsabilidad-humana-y-limites-de-la-evidencia">Responsabilidad humana y límites de la evidencia</h2>
+<p>La responsabilidad permanece en las personas que diseñan, aprueban y usan el análisis. El equipo define la decisión, autoriza las fuentes, comprueba cálculos y evalúa la materialidad de un error. También declara límites y explica consecuencias previsibles.</p>
+<p>La precisión numérica cubre una parte de la calidad. Un resultado puede estar calculado correctamente y responder otra pregunta. La venta agrupada por fecha de pedido describe demanda registrada; agrupada por fecha de entrega describe actividad logística. Ambas cifras pueden ser válidas y conducir a conversaciones diferentes.</p>
+<p>La correlación merece el mismo cuidado. Una asociación entre descuentos y menor margen describe un patrón. La explicación causal requiere controlar mezcla de productos, condiciones comerciales y cambios de costos. El análisis exploratorio orienta preguntas; una recomendación debe respetar el alcance de la evidencia.</p>
+<p>La trazabilidad del uso de IA agrega una capa de responsabilidad. Permite reconstruir qué propuso el sistema, qué verificó el equipo y qué correcciones realizó. Esta práctica facilita el aprendizaje y vuelve defendible el resultado ante otra persona.</p>
 <h2 id="faro-sur-como-sistema-de-decisiones">Faro Sur como sistema de decisiones</h2>
-<p>Faro Sur presenta tres tensiones:</p>
-<ol class="theory-list"><li>ventas crecientes con margen rezagado;</li><li>pedidos tardíos o incompletos;</li><li>faltantes y acumulación de inventario.</li></ol>
-<p>Una tabla de líneas de pedido permite analizar ventas y margen. Otras fuentes resultan necesarias para explicar:</p>
-<ul class="theory-list"><li>disponibilidad al prometer;</li><li>entregas parciales;</li><li>capacidad productiva;</li><li>demoras de transporte;</li><li>cobranza;</li><li>causas de un faltante.</li></ul>
-<p>El primer aprendizaje es reconocer qué pregunta permite una fuente y cuál no.</p>
-<h2 id="distinciones-que-deben-quedar-claras">Distinciones que deben quedar claras</h2>
-<ul class="theory-list"><li>el dato representa un hecho y la decisión selecciona una acción;</li><li>la correlación describe asociación y la causalidad exige evidencia adicional;</li><li>el promedio resume el centro y la distribución muestra dispersión y extremos;</li><li>una métrica ilumina una parte del objetivo;</li><li>un dashboard organiza señales y el insight agrega interpretación relevante;</li><li>la IA genera o evalúa propuestas y la base de datos conserva registros consultables;</li><li>la validez depende de definiciones, fuentes y controles además de la precisión numérica;</li><li>una buena definición orienta el uso del volumen disponible.</li></ul>
+<p>Faro Sur es una empresa ficticia utilizada durante el semestre. Sus datos permiten estudiar una tensión comercial: las ventas crecen mientras el margen queda rezagado. También aparecen pedidos tardíos o incompletos y una combinación de faltantes con inventario acumulado.</p>
+<p>La primera fuente contiene líneas de pedido. Cada fila representa un producto dentro de un pedido y puede incluir cantidad, precio, descuento y costo. Ese grano permite calcular venta neta y margen por producto, cliente, zona o período. También permite contar pedidos mediante su identificador.</p>
+<p>La misma fuente tiene límites. Para explicar disponibilidad al momento de prometer una fecha hacen falta movimientos o snapshots de inventario. Para estudiar entregas parciales se necesitan eventos logísticos. La capacidad productiva, las demoras de transporte y la cobranza pertenecen a otras fuentes. Reconocer estas fronteras evita fabricar una explicación con columnas que nunca observaron el fenómeno.</p>
+<h3 id="tres-tensiones-para-investigar">Tres tensiones para investigar</h3>
+<p>La tensión entre crecimiento y margen invita a separar precio, volumen, descuento, costo y mezcla. La tensión de servicio requiere comparar fechas prometidas y reales, además de identificar pedidos completos. La tensión de inventario necesita distinguir stock físico, reservas y demanda pendiente.</p>
+<p>Estas preguntas crecerán a medida que el caso incorpore tablas. En cada etapa se mantendrá una regla: la conclusión debe corresponder con el grano y el alcance de la fuente utilizada.</p>
+<h2 id="distinciones-para-usar-durante-el-curso">Distinciones para usar durante el curso</h2>
+<p>El <strong>dato</strong> representa un hecho registrado; la <strong>decisión</strong> selecciona una acción. La <strong>métrica</strong> resume un aspecto del proceso; el <strong>KPI</strong> la vincula con un objetivo y una respuesta. Un <strong>dashboard</strong> organiza señales; un <strong>insight</strong> agrega una interpretación relevante y defendible.</p>
+<p>El promedio resume un centro. La distribución muestra dispersión y extremos. La correlación describe una asociación observada. La causalidad exige evidencia adicional y un diseño capaz de descartar explicaciones alternativas.</p>
+<p>Una base de datos conserva registros consultables. Un sistema de IA genera, clasifica o evalúa propuestas según su diseño. Ambos pueden integrarse en un pipeline, con funciones y riesgos diferentes.</p>
 <h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
-<ol class="theory-list"><li>¿Qué representa una fila de <code>ventas_inicial.csv</code>?</li><li>¿Qué fecha usaría para medir demanda y cuál para medir servicio?</li><li>¿Puede una mayor venta neta producir menor margen porcentual?</li><li>¿Qué acción concreta cambiaría al conocer OTIF?</li><li>¿Cómo verificaría una consulta propuesta por IA?</li><li>¿Qué dato no debería cargarse en una herramienta externa?</li></ol>
-<h2 id="alcance">Alcance</h2>
-<h3 id="nucleo-de-la-explicacion">Núcleo de la explicación</h3>
-<ul class="theory-list"><li>cadena dato–decisión–acción;</li><li>KPI con definición;</li><li>IA como copiloto verificable;</li><li>grano y límites de una fuente;</li><li>responsabilidad humana.</li></ul>
-<h3 id="lectura-o-mencion">Lectura o mención</h3>
-<ul class="theory-list"><li>impactos macroeconómicos de IA;</li><li>categorías detalladas de modelos;</li><li>regulación comparada;</li><li>historia de la disciplina.</li></ul>
+<ol class="theory-list"><li>¿Qué representa una fila de <code>ventas_inicial.csv</code>?</li><li>¿Qué fecha utilizaría para medir demanda y cuál para medir servicio?</li><li>¿Cómo puede aumentar la venta neta mientras cae el margen porcentual?</li><li>¿Qué acción concreta cambiaría al conocer el nivel de cumplimiento de entrega?</li><li>¿Cómo verificaría una consulta propuesta por un asistente de IA?</li><li>¿Qué información requiere autorización antes de enviarse a una herramienta externa?</li></ol>
+<h2 id="alcance-de-la-unidad">Alcance de la unidad</h2>
+<p>El núcleo de esta unidad comprende la cadena entre dato, evidencia y decisión; la definición completa de un KPI; el uso verificable de IA; el grano de una fuente y la responsabilidad profesional. Los impactos macroeconómicos de la IA, la historia de la disciplina y la regulación comparada quedan como lecturas de contexto.</p>
 <h2 id="referencias">Referencias</h2>
-<ul class="theory-list"><li>Programa académico 2026.</li><li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/economy" target="_blank" rel="noopener noreferrer">Stanford AI Index 2026</a>.</li><li><a href="https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html" target="_blank" rel="noopener noreferrer">OECD, AI and skills</a>.</li><li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer">World Economic Forum, Future of Jobs 2025</a>.</li><li>Protocolo de IA de la materia: <a href="../downloads/Protocolo de uso de IA y trazabilidad.md" download>documento</a></li></ul></article>
+<ul class="theory-list"><li>Programa académico 2026.</li><li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/economy" target="_blank" rel="noopener noreferrer">Stanford AI Index 2026</a>.</li><li><a href="https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html" target="_blank" rel="noopener noreferrer">OECD, AI and skills</a>.</li><li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer">World Economic Forum, Future of Jobs 2025</a>.</li><li>Protocolo de IA de la materia: <a href="../recursos/protocolo-uso-ia.html">página de lectura</a> y <a href="../downloads/Protocolo de uso de IA y trazabilidad.md" download>fuente descargable</a>.</li></ul></article>
       </div>
     </section>
     <!-- theory-reference:end -->
@@ -209,61 +234,13 @@
       <p>Regla: <mark>ejecutar + comparar con la fuente + documentar + explicar.</mark></p>
     </section>
 
-    <section class="faro-lab section-pad" id="faro-sur-lab" aria-labelledby="faro-title">
-      <div class="section-heading split-heading">
-        <div><div class="section-kicker">Laboratorio · Paquete A</div><h2 id="faro-title">Una fila define qué preguntas son válidas.</h2></div>
-        <p>El release inicial contiene 900 líneas de pedido entregadas y 15 campos. Dos filas pueden pertenecer al mismo pedido porque cada una representa un producto vendido.</p>
-      </div>
-
-      <div class="data-window" role="region" aria-label="Muestra de la tabla ventas inicial" tabindex="0">
-        <div class="data-window-bar"><span></span><span></span><span></span><b>ventas_inicial.csv · muestra</b><small>3 de 900 filas</small></div>
-        <table>
-          <thead><tr><th>pedido</th><th>producto</th><th>familia</th><th>cantidad</th><th>región</th><th>estado</th></tr></thead>
-          <tbody>
-            <tr><td>FS-2025-0328</td><td>Motor eléctrico 10 HP</td><td>Repuestos</td><td>18</td><td>Centro</td><td><span class="status-ok">A tiempo</span></td></tr>
-            <tr><td>FS-2025-0328</td><td>Rodamiento industrial 6208</td><td>Repuestos</td><td>21</td><td>Centro</td><td><span class="status-ok">A tiempo</span></td></tr>
-            <tr><td>FS-2025-0134</td><td>Bomba centrífuga FS-A120</td><td>Bombas</td><td>2</td><td>Patagonia</td><td><span class="status-late">Demorada</span></td></tr>
-          </tbody>
-        </table>
-        <p class="grain-answer"><span>Grano</span> Una fila representa un producto vendido dentro de un pedido.</p>
-      </div>
-
-      <div class="lab-grid">
-        <form class="decision-builder" data-decision-builder>
-          <div class="builder-heading"><span>ACTIVIDAD 01</span><h3>Canvas decisión–métrica–acción</h3><p>La actividad genera un borrador temporal dentro de esta página.</p></div>
-          <label for="tension">Tensión a explorar</label>
-          <select id="tension" name="tension">
-            <option value="margen">El margen se deteriora</option>
-            <option value="entregas">Crecen las entregas demoradas</option>
-            <option value="inventario">Faltantes y sobrestock conviven</option>
-          </select>
-          <label for="audience">¿Quién decide?</label>
-          <input id="audience" name="audience" type="text" maxlength="70" placeholder="Ej.: Dirección Comercial">
-          <label for="decision">¿Qué decisión concreta debe tomar?</label>
-          <textarea id="decision" name="decision" rows="3" maxlength="180" placeholder="Ej.: revisar la política de descuentos por familia"></textarea>
-          <label for="kpi">¿Qué KPI ayudaría?</label>
-          <input id="kpi" name="kpi" type="text" maxlength="80" placeholder="Ej.: margen porcentual por familia">
-          <div class="builder-actions"><button class="button button-primary" type="submit">Construir borrador</button><button class="text-button" type="reset">Limpiar</button></div>
-        </form>
-
-        <output class="decision-output" aria-live="polite" data-decision-output>
-          <span class="output-label">BORRADOR DEL EQUIPO</span>
-          <p class="output-empty">Completá el canvas para convertir una tensión en una decisión analizable.</p>
-          <div class="output-result" hidden>
-            <p class="output-tension" data-output-tension></p>
-            <dl>
-              <div><dt>Audiencia</dt><dd data-output-audience></dd></div>
-              <div><dt>Decisión</dt><dd data-output-decision></dd></div>
-              <div><dt>KPI propuesto</dt><dd data-output-kpi></dd></div>
-            </dl>
-            <p class="output-warning"><b>Control pendiente:</b> definir fórmula, grano, frecuencia, fuente y comportamiento que podría incentivar.</p>
-          </div>
-        </output>
-      </div>
-
-      <div class="download-strip">
-        <div><span aria-hidden="true">↓</span><p><b>Paquete A · estudiantes</b><small>Notebook, datos y diccionario para trabajar desde Google Colab.</small></p></div>
-        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_A_v1.0_estudiantes.zip" download>Descargar ZIP</a>
+    <section class="practice-reading section-pad" id="faro-sur-lab" aria-labelledby="faro-title">
+      <div class="practice-number" aria-hidden="true">1.L</div>
+      <div>
+        <div class="section-kicker">Laboratorio vinculado</div>
+        <h2 id="faro-title">El Paquete A convierte estos conceptos en una evidencia ejecutada.</h2>
+        <p>El capítulo de laboratorio recorre diccionario, archivo, grano, controles, métricas y canvas mediante un notebook guiado de Faro Sur.</p>
+        <a class="button button-dark is-release-locked" href="../proximamente.html" aria-label="Contenido disponible próximamente">Abrir el laboratorio <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -302,7 +279,7 @@
       <div class="section-kicker">Criterio de salida</div>
       <h2 id="close-title">La evidencia termina en <span>responsabilidad humana.</span></h2>
       <p>Podés avanzar cuando explicás la diferencia entre datos y evidencia. El canvas inicial de tu equipo debe conectar una decisión con su KPI.</p>
-      <div class="next-class"><span>PRÓXIMO MÓDULO SUGERIDO</span><b><a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked">Unidad 2 · Ecosistema, roles y arquitectura proporcional →</a></b></div>
+      <div class="next-class"><span>PRÓXIMO MÓDULO SUGERIDO</span><b><a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked">Unidad 1 · Laboratorio inicial de Faro Sur →</a></b></div>
     </section>
   </main>
 

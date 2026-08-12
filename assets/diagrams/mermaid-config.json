@@ -30,7 +30,7 @@
   },
   "flowchart": {
     "curve": "linear",
-    "htmlLabels": true,
+    "htmlLabels": false,
     "padding": 18,
     "nodeSpacing": 38,
     "rankSpacing": 48
