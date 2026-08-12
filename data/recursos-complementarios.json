@@ -1,5 +1,56 @@
 {
-  "actualizado": "2026-08-11",
+  "actualizado": "2026-08-12",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
-  "paginas": {}
+  "paginas": {
+    "u01-decisiones-datos-ia": {
+      "titulo": "Perspectivas para ampliar decisiones e inteligencia artificial",
+      "introduccion": "Esta selección aporta evidencia reciente sobre adopción, trabajo y riesgo. El curso introductorio permite ordenar el vocabulario antes de abordar aplicaciones empresariales.",
+      "diagrama": {
+        "archivo": "u01-decision-evidencia.svg",
+        "fuente": "u01-decision-evidencia.mmd",
+        "alt": "Ciclo que conecta decisión, pregunta, fuente, métrica, evidencia y acción, con asistencia de inteligencia artificial y control humano.",
+        "titulo": "El circuito de una decisión analítica",
+        "epigrafe": "La evidencia se construye mediante definiciones, fuentes y controles. La IA puede asistir en distintos puntos del circuito.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Informe y PDF",
+          "titulo": "AI Index Report 2026",
+          "institucion": "Stanford Institute for Human-Centered AI",
+          "url": "https://hai.stanford.edu/ai-index/2026-ai-index-report",
+          "idioma": "Inglés",
+          "dedicacion": "Lectura selectiva · 30–45 min",
+          "descripcion": "El capítulo Economy aporta cifras para discutir inversión, adopción, productividad y empleo con evidencia reciente."
+        },
+        {
+          "tipo": "Curso gratuito",
+          "titulo": "Elements of AI: Introduction to AI",
+          "institucion": "University of Helsinki",
+          "url": "https://www.helsinki.fi/en/admissions-and-education/open-university/open-online-courses-or-moocs",
+          "idioma": "Disponible en varios idiomas",
+          "dedicacion": "Autoguiado",
+          "descripcion": "Curso abierto para construir una base conceptual de IA mediante lecturas, ejercicios y ejemplos accesibles."
+        },
+        {
+          "tipo": "Marco y playbook",
+          "titulo": "AI Risk Management Framework Playbook",
+          "institucion": "NIST",
+          "url": "https://airc.nist.gov/airmf-resources/playbook/",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta por secciones",
+          "descripcion": "Acciones concretas para relacionar riesgo, responsables, medición y seguimiento durante el ciclo de vida de un sistema de IA."
+        },
+        {
+          "tipo": "Informe web",
+          "titulo": "AI and skills",
+          "institucion": "OECD",
+          "url": "https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html",
+          "idioma": "Inglés",
+          "dedicacion": "Lectura selectiva · 25 min",
+          "descripcion": "Analiza la relación entre adopción de IA, tareas y demanda de capacidades profesionales."
+        }
+      ]
+    }
+  }
 }

@@ -1,0 +1,15 @@
+flowchart LR
+    D["Decisión"] --> P["Pregunta"]
+    P --> F["Fuente y grano"]
+    F --> M["Métrica"]
+    M --> E["Evidencia"]
+    E --> A["Acción"]
+    A --> D
+    IA["IA<br/>propone y asiste"] -.-> P
+    IA -.-> M
+    H["Control humano"] -.-> F
+    H -.-> E
+    classDef accent fill:#FFFF33,color:#151616,stroke:#1F497D,stroke-width:2px;
+    classDef dark fill:#1F497D,color:#FFFFFF,stroke:#1F497D,stroke-width:2px;
+    class D,A accent;
+    class IA,H dark;

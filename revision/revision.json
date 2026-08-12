@@ -2,13 +2,15 @@
   "schema_version": 1,
   "source_commit": "a197334a61094560394b3062c9084c1f3e7f9d13",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/31541901499",
-  "generated_at_utc": "2026-08-11T22:19:41+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/31594529595",
+  "generated_at_utc": "2026-08-12T12:02:11+00:00",
   "qa_status": "passed",
-  "as_of": "2026-08-11",
-  "published_units": [],
-  "content_digest": "ed03ce99167840ef1ac1a33f4251105e60fb53f0cdcfe81bb140639ec6c2de29",
-  "file_count": 15,
-  "html_count": 4,
+  "as_of": "2026-08-12",
+  "published_units": [
+    "Unidad 1 · Decisiones, datos e IA"
+  ],
+  "content_digest": "4b19d91bdbcd8824e8389612a8615042230d4b8c9dc848ed6f64aa0b78f7964c",
+  "file_count": 21,
+  "html_count": 5,
   "contact": "analisisdatosutnfrc@gmail.com"
 }

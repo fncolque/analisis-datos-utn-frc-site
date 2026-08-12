@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Unidad 1: Decisiones, datos e inteligencia artificial. Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Unidad 1 · Decisiones, datos e IA</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <script src="../assets/app.js" defer></script>
+</head>
+<body data-page="class">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#clase">Unidad 1</a>
+      <a href="#recorrido">Índice</a>
+      <a href="#desarrollo-teorico">Teoría</a>
+      <a href="#faro-sur-lab">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="class-hero" id="clase" aria-labelledby="class-title">
+      <div class="class-hero-copy">
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al recorrido</a>
+        <div class="eyebrow"><span>UNIDAD 1</span></div>
+        <h1 id="class-title">Decisiones,<br><em>datos e IA.</em></h1>
+        <p class="hero-lede">¿Qué tiene que ocurrir para que un dato cambie una decisión?</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="../downloads/Unidad 1 - Decisiones, datos e IA - v0.2.pptx" download>Descargar presentación <span aria-hidden="true">↓</span></a>
+          <a class="button button-ghost" href="#faro-sur-lab">Ir a la práctica</a>
+        </div>
+      </div>
+      <div class="class-hero-panel">
+        <p class="panel-label">Al completar esta unidad</p>
+        <ol>
+          <li><span>01</span>Distinguir dato, evidencia, decisión y acción.</li>
+          <li><span>02</span>Formular audiencia, alternativa y KPI.</li>
+          <li><span>03</span>Reconocer dónde la IA ayuda y dónde exige control.</li>
+          <li><span>04</span>Explicar qué representa una fila de Faro Sur.</li>
+        </ol>
+        <div class="panel-footer"><span>Navegador + Colab</span><span>Trabajo en equipo</span></div>
+      </div>
+    </section>
+
+    <section class="opening-question section-dark" aria-labelledby="opening-title">
+      <div class="section-kicker">Disparador</div>
+      <h2 id="opening-title">Los datos toman valor cuando <span>orientan una decisión.</span></h2>
+      <div class="decision-scenario">
+        <p>Faro Sur aumentó sus ventas. El margen cayó y las entregas demoradas crecieron.</p>
+        <div><b>¿Qué decisión merece evidencia primero?</b><span>Margen</span><span>Servicio</span><span>Volumen</span></div>
+      </div>
+      <p class="opening-note">Registrá tu intuición inicial. Luego definí qué evidencia permitiría sostenerla o corregirla.</p>
+    </section>
+
+<!-- unit-visual:start -->
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u01-decisiones-datos-ia">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u01-decisiones-datos-ia">El circuito de una decisión analítica</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u01-decision-evidencia.svg" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u01-decision-evidencia.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame">
+        <a href="../assets/diagrams/u01-decision-evidencia.svg" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u01-decision-evidencia.svg" alt="Ciclo que conecta decisión, pregunta, fuente, métrica, evidencia y acción, con asistencia de inteligencia artificial y control humano." loading="lazy">
+        </a>
+        <figcaption><span>La evidencia se construye mediante definiciones, fuentes y controles. La IA puede asistir en distintos puntos del circuito.</span><small>Elaboración propia para la asignatura.</small></figcaption>
+      </figure>
+    </section>
+    <!-- unit-visual:end -->
+
+    <section class="unit-index section-pad" id="recorrido" aria-labelledby="path-title">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Índice de la unidad</div><h2 id="path-title">De la tensión al primer canvas.</h2></div>
+        <p>Avanzá en el orden propuesto y retomá cualquier bloque cuando lo necesites. Cada sección conserva su sentido como material de consulta.</p>
+      </div>
+      <ol class="learning-path">
+        <li><span>01</span><div><b>Orientación</b><p>Propósito de la materia y mapa de contenidos.</p></div></li>
+        <li><span>02</span><div><b>Tensión Faro Sur</b><p>Decisión inicial y supuestos del equipo.</p></div></li>
+        <li><span>03</span><div><b>Del dato a la decisión</b><p>Vocabulario común y modelo de evidencia.</p></div></li>
+        <li><span>04</span><div><b>IA dentro del análisis</b><p>Capacidades de asistencia y protocolo de verificación.</p></div></li>
+        <li><span>05</span><div><b>Caso y grano</b><p>Negocio de Faro Sur y significado de una fila.</p></div></li>
+        <li><span>06</span><div><b>Métricas iniciales</b><p>Tabla de ventas, margen y cumplimiento.</p></div></li>
+        <li><span>07</span><div><b>Canvas del equipo</b><p>Audiencia, decisión, KPI, acción y límites.</p></div></li>
+        <li><span>08</span><div><b>Transferencia al proyecto</b><p>Intereses, evidencia inicial y próximo módulo.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="concepts section-pad" id="conceptos" aria-labelledby="concepts-title">
+      <div class="section-heading">
+        <div class="section-kicker">Glosario para empezar</div>
+        <h2 id="concepts-title">Conceptos técnicos, en lenguaje de negocio.</h2>
+      </div>
+      <div class="concept-grid">
+        <article class="concept-main">
+          <span class="concept-index">01</span>
+          <h3>Pipeline</h3>
+          <p>Es la secuencia organizada de pasos que lleva un dato desde su origen hasta una respuesta utilizable. Permite reconstruir el origen de un resultado y los controles que atravesó.</p>
+          <div class="mini-pipeline" aria-label="Ejemplo de pipeline"><span>Registro</span><i>→</i><span>Tabla</span><i>→</i><span>Métrica</span><i>→</i><span>Decisión</span></div>
+        </article>
+        <article><span class="concept-index">02</span><h3>SQL</h3><p>Lenguaje para hacer preguntas estructuradas a una base de datos. Permite filtrar y agrupar información; también relaciona tablas. Su aplicación forma parte de la unidad 3.</p></article>
+        <article><span class="concept-index">03</span><h3>Python</h3><p>Lenguaje de programación de propósito general. En la materia aprenderemos a leer y adaptar notebooks preparados para explorar y controlar datos.</p></article>
+        <article><span class="concept-index">04</span><h3>Formatos de datos</h3><p>CSV organiza una tabla; JSON representa estructuras más flexibles; Parquet optimiza análisis a escala. Elegir formato también es una decisión técnica.</p></article>
+        <article><span class="concept-index">05</span><h3>KPI</h3><p>Indicador clave de desempeño. Su definición incluye fórmula, unidad, grano, frecuencia, dueño y decisión asociada.</p></article>
+        <article><span class="concept-index">06</span><h3>IA en análisis</h3><p>Puede explorar, explicar, generar código y comunicar. El equipo ejecuta el resultado, lo compara con la fuente, documenta los cambios y explica la salida.</p></article>
+      </div>
+    </section>
+
+<!-- theory-reference:start -->
+    <section class="reference-reading section-pad" id="desarrollo-teorico" aria-labelledby="reference-title">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Lectura de referencia</div><h2 id="reference-title">De registro a evidencia para decidir.</h2></div>
+        <p>El capítulo desarrolla la cadena completa, la ventaja competitiva, los KPI y el uso verificable de inteligencia artificial.</p>
+      </div>
+      <div class="reading-shell reading-shell-embedded">
+        <aside class="reading-aside"><span>CONTENIDOS</span><nav><a href="#el-analisis-comienza-con-una-decision">El análisis comienza con una decisión</a><a href="#datos-como-ventaja-competitiva">Datos como ventaja competitiva</a><a href="#decision-audiencia-y-kpi">Decisión, audiencia y KPI</a><a href="#ia-integrada-al-proceso">IA integrada al proceso</a><a href="#responsabilidad-humana">Responsabilidad humana</a><a href="#faro-sur-como-sistema-de-decisiones">Faro Sur como sistema de decisiones</a><a href="#distinciones-que-deben-quedar-claras">Distinciones que deben quedar claras</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance">Alcance</a><a href="#referencias">Referencias</a></nav></aside>
+        <article class="theory-copy"><h2 id="el-analisis-comienza-con-una-decision">El análisis comienza con una decisión</h2>
+<p>Un dato es una representación registrada de un hecho, estado o evento. Por sí solo no indica qué hacer. En la materia se utilizará la siguiente cadena:</p>
+<pre><code class="language-text">registro → dato contextualizado → evidencia → interpretación → decisión → acción → aprendizaje</code></pre>
+<ul class="theory-list"><li><strong>Registro:</strong> valor capturado por un sistema, formulario, sensor o persona.</li><li><strong>Dato contextualizado:</strong> registro con definición, unidad, tiempo, origen y grano.</li><li><strong>Evidencia:</strong> conjunto de datos y controles relevantes para una pregunta.</li><li><strong>Interpretación:</strong> significado propuesto, condicionado por conocimiento del negocio.</li><li><strong>Decisión:</strong> elección entre alternativas bajo restricciones.</li><li><strong>Acción:</strong> intervención ejecutada.</li><li><strong>Aprendizaje:</strong> comparación entre resultado esperado y observado.</li></ul>
+<p>El pipeline analítico es el sistema que hace posible esa cadena. La tecnología reduce costo, tiempo o riesgo. La formulación de la decisión permanece a cargo de las personas responsables del proceso.</p>
+<h2 id="datos-como-ventaja-competitiva">Datos como ventaja competitiva</h2>
+<p>Los datos pueden crear ventaja cuando una organización logra un ciclo difícil de imitar:</p>
+<ol class="theory-list"><li>captura señales relevantes antes o con mayor calidad;</li><li>las combina con conocimiento del proceso;</li><li>decide con menor demora o incertidumbre;</li><li>incorpora la decisión a una operación;</li><li>observa el resultado y mejora.</li></ol>
+<p>El activo combina:</p>
+<ul class="theory-list"><li>datos confiables;</li><li>definiciones compartidas;</li><li>infraestructura proporcional;</li><li>capacidades humanas;</li><li>permisos y gobierno;</li><li>procesos capaces de actuar.</li></ul>
+<p>Los datos también tienen costos: captura, almacenamiento, integración, seguridad, errores, mantenimiento y exposición legal. Acumular información “por si acaso” puede crear deuda y riesgo.</p>
+<h3 id="ejemplo-industrial">Ejemplo industrial</h3>
+<p>Conocer el stock disponible no mejora el servicio si:</p>
+<ul class="theory-list"><li>se actualiza después de prometer la fecha;</li><li>las reservas no están incluidas;</li><li>cada depósito define “disponible” de forma distinta;</li><li>nadie tiene autoridad para reponer o reasignar.</li></ul>
+<p>La ventaja surge del circuito operativo que vuelve accionable el número.</p>
+<h2 id="decision-audiencia-y-kpi">Decisión, audiencia y KPI</h2>
+<p>Una decisión debe identificar:</p>
+<ul class="theory-list"><li><strong>responsable:</strong> quién puede actuar;</li><li><strong>objeto:</strong> sobre qué se decide;</li><li><strong>alternativas:</strong> qué opciones existen;</li><li><strong>horizonte:</strong> cuándo debe decidirse;</li><li><strong>restricciones:</strong> costo, capacidad, servicio, riesgo;</li><li><strong>criterio:</strong> cómo se compara una alternativa.</li></ul>
+<p>Un KPI es un indicador ligado a un objetivo. No todo número visible es un KPI.</p>
+<h3 id="definicion-completa">Definición completa</h3>
+<p>Para evitar ambigüedad se documentan:</p>
+<ul class="theory-list"><li>nombre;</li><li>propósito;</li><li>numerador y denominador;</li><li>unidad;</li><li>grano;</li><li>fecha utilizada;</li><li>filtros;</li><li>frecuencia;</li><li>dueño;</li><li>comportamiento esperado;</li><li>acciones posibles.</li></ul>
+<h3 id="incentivos-y-efectos-no-deseados">Incentivos y efectos no deseados</h3>
+<p>Optimizar un KPI aislado puede empeorar el sistema:</p>
+<ul class="theory-list"><li>maximizar ventas puede reducir margen;</li><li>minimizar inventario puede empeorar nivel de servicio;</li><li>maximizar entregas “a tiempo” puede incentivar promesas conservadoras;</li><li>reducir costo logístico puede aumentar demoras.</li></ul>
+<p>Por eso la materia usa métricas como lentes, no como objetivos automáticos.</p>
+<h2 id="ia-integrada-al-proceso">IA integrada al proceso</h2>
+<p>Se distinguen dos ideas:</p>
+<ul class="theory-list"><li><strong>IA analítica:</strong> modelos que clasifican, predicen, recomiendan o detectan patrones;</li><li><strong>IA generativa:</strong> sistemas que producen texto, código, imágenes u otras salidas a partir de instrucciones y contexto.</li></ul>
+<p>En 2026 la IA se incorpora transversalmente:</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Acción</th>
+<th>Aporte posible</th>
+<th>Verificación</th>
+</tr></thead><tbody>
+<tr><td>explorar</td><td>proponer preguntas y segmentos</td><td>contrastar con el caso</td></tr>
+<tr><td>consultar</td><td>producir borradores de SQL</td><td>ejecutar y reconciliar</td></tr>
+<tr><td>programar</td><td>explicar o adaptar Python</td><td>leer, probar y controlar</td></tr>
+<tr><td>comunicar</td><td>resumir y criticar una narrativa</td><td>verificar evidencia y audiencia</td></tr>
+<tr><td>documentar</td><td>convertir decisiones en fichas</td><td>revisar completitud y exactitud</td></tr>
+</tbody></table></div>
+<p>La evidencia requiere fuentes y controles. Una respuesta puede sonar convincente y contener errores por:</p>
+<ul class="theory-list"><li>datos de entrenamiento incompletos;</li><li>contexto insuficiente;</li><li>ambigüedad;</li><li>cálculo no ejecutado;</li><li>fuente inventada;</li><li>mezcla de granos;</li><li>sesgo de confirmación del usuario.</li></ul>
+<h2 id="responsabilidad-humana">Responsabilidad humana</h2>
+<p>El profesional sigue siendo responsable de:</p>
+<ul class="theory-list"><li>definir qué se intenta decidir;</li><li>autorizar datos y permisos;</li><li>comprobar fuentes;</li><li>ejecutar cálculos;</li><li>evaluar materialidad;</li><li>declarar límites;</li><li>decidir cuándo no automatizar;</li><li>explicar consecuencias.</li></ul>
+<p>La trazabilidad del uso de IA permite saber qué fue propuesto, qué se verificó y qué se corrigió.</p>
+<h2 id="faro-sur-como-sistema-de-decisiones">Faro Sur como sistema de decisiones</h2>
+<p>Faro Sur presenta tres tensiones:</p>
+<ol class="theory-list"><li>ventas crecientes con margen rezagado;</li><li>pedidos tardíos o incompletos;</li><li>faltantes y acumulación de inventario.</li></ol>
+<p>Una tabla de líneas de pedido permite analizar ventas y margen. Otras fuentes resultan necesarias para explicar:</p>
+<ul class="theory-list"><li>disponibilidad al prometer;</li><li>entregas parciales;</li><li>capacidad productiva;</li><li>demoras de transporte;</li><li>cobranza;</li><li>causas de un faltante.</li></ul>
+<p>El primer aprendizaje es reconocer qué pregunta permite una fuente y cuál no.</p>
+<h2 id="distinciones-que-deben-quedar-claras">Distinciones que deben quedar claras</h2>
+<ul class="theory-list"><li>el dato representa un hecho y la decisión selecciona una acción;</li><li>la correlación describe asociación y la causalidad exige evidencia adicional;</li><li>el promedio resume el centro y la distribución muestra dispersión y extremos;</li><li>una métrica ilumina una parte del objetivo;</li><li>un dashboard organiza señales y el insight agrega interpretación relevante;</li><li>la IA genera o evalúa propuestas y la base de datos conserva registros consultables;</li><li>la validez depende de definiciones, fuentes y controles además de la precisión numérica;</li><li>una buena definición orienta el uso del volumen disponible.</li></ul>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Qué representa una fila de <code>ventas_inicial.csv</code>?</li><li>¿Qué fecha usaría para medir demanda y cuál para medir servicio?</li><li>¿Puede una mayor venta neta producir menor margen porcentual?</li><li>¿Qué acción concreta cambiaría al conocer OTIF?</li><li>¿Cómo verificaría una consulta propuesta por IA?</li><li>¿Qué dato no debería cargarse en una herramienta externa?</li></ol>
+<h2 id="alcance">Alcance</h2>
+<h3 id="nucleo-de-la-explicacion">Núcleo de la explicación</h3>
+<ul class="theory-list"><li>cadena dato–decisión–acción;</li><li>KPI con definición;</li><li>IA como copiloto verificable;</li><li>grano y límites de una fuente;</li><li>responsabilidad humana.</li></ul>
+<h3 id="lectura-o-mencion">Lectura o mención</h3>
+<ul class="theory-list"><li>impactos macroeconómicos de IA;</li><li>categorías detalladas de modelos;</li><li>regulación comparada;</li><li>historia de la disciplina.</li></ul>
+<h2 id="referencias">Referencias</h2>
+<ul class="theory-list"><li>Programa académico 2026.</li><li><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report/economy" target="_blank" rel="noopener noreferrer">Stanford AI Index 2026</a>.</li><li><a href="https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html" target="_blank" rel="noopener noreferrer">OECD, AI and skills</a>.</li><li><a href="https://www.weforum.org/publications/the-future-of-jobs-report-2025/" target="_blank" rel="noopener noreferrer">World Economic Forum, Future of Jobs 2025</a>.</li><li>Protocolo de IA de la materia: <a href="../downloads/Protocolo de uso de IA y trazabilidad.md" download>documento</a></li></ul></article>
+      </div>
+    </section>
+    <!-- theory-reference:end -->
+
+    <section class="verification section-dark" aria-labelledby="verification-title">
+      <div>
+        <div class="section-kicker">Protocolo mínimo de IA</div>
+        <h2 id="verification-title">Toda respuesta necesita <span>verificación.</span></h2>
+      </div>
+      <ol>
+        <li><b>Caso</b><span>¿La respuesta coincide con la pregunta?</span></li>
+        <li><b>Grano</b><span>¿Respeta qué representa cada fila?</span></li>
+        <li><b>Cálculo</b><span>¿Se ejecutó sobre la fuente correcta?</span></li>
+        <li><b>Control</b><span>¿Reconciliamos el resultado?</span></li>
+      </ol>
+      <p>Regla: <mark>ejecutar + comparar con la fuente + documentar + explicar.</mark></p>
+    </section>
+
+    <section class="faro-lab section-pad" id="faro-sur-lab" aria-labelledby="faro-title">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Laboratorio · Paquete A</div><h2 id="faro-title">Una fila define qué preguntas son válidas.</h2></div>
+        <p>El release inicial contiene 900 líneas de pedido entregadas y 15 campos. Dos filas pueden pertenecer al mismo pedido porque cada una representa un producto vendido.</p>
+      </div>
+
+      <div class="data-window" role="region" aria-label="Muestra de la tabla ventas inicial" tabindex="0">
+        <div class="data-window-bar"><span></span><span></span><span></span><b>ventas_inicial.csv · muestra</b><small>3 de 900 filas</small></div>
+        <table>
+          <thead><tr><th>pedido</th><th>producto</th><th>familia</th><th>cantidad</th><th>región</th><th>estado</th></tr></thead>
+          <tbody>
+            <tr><td>FS-2025-0328</td><td>Motor eléctrico 10 HP</td><td>Repuestos</td><td>18</td><td>Centro</td><td><span class="status-ok">A tiempo</span></td></tr>
+            <tr><td>FS-2025-0328</td><td>Rodamiento industrial 6208</td><td>Repuestos</td><td>21</td><td>Centro</td><td><span class="status-ok">A tiempo</span></td></tr>
+            <tr><td>FS-2025-0134</td><td>Bomba centrífuga FS-A120</td><td>Bombas</td><td>2</td><td>Patagonia</td><td><span class="status-late">Demorada</span></td></tr>
+          </tbody>
+        </table>
+        <p class="grain-answer"><span>Grano</span> Una fila representa un producto vendido dentro de un pedido.</p>
+      </div>
+
+      <div class="lab-grid">
+        <form class="decision-builder" data-decision-builder>
+          <div class="builder-heading"><span>ACTIVIDAD 01</span><h3>Canvas decisión–métrica–acción</h3><p>La actividad genera un borrador temporal dentro de esta página.</p></div>
+          <label for="tension">Tensión a explorar</label>
+          <select id="tension" name="tension">
+            <option value="margen">El margen se deteriora</option>
+            <option value="entregas">Crecen las entregas demoradas</option>
+            <option value="inventario">Faltantes y sobrestock conviven</option>
+          </select>
+          <label for="audience">¿Quién decide?</label>
+          <input id="audience" name="audience" type="text" maxlength="70" placeholder="Ej.: Dirección Comercial">
+          <label for="decision">¿Qué decisión concreta debe tomar?</label>
+          <textarea id="decision" name="decision" rows="3" maxlength="180" placeholder="Ej.: revisar la política de descuentos por familia"></textarea>
+          <label for="kpi">¿Qué KPI ayudaría?</label>
+          <input id="kpi" name="kpi" type="text" maxlength="80" placeholder="Ej.: margen porcentual por familia">
+          <div class="builder-actions"><button class="button button-primary" type="submit">Construir borrador</button><button class="text-button" type="reset">Limpiar</button></div>
+        </form>
+
+        <output class="decision-output" aria-live="polite" data-decision-output>
+          <span class="output-label">BORRADOR DEL EQUIPO</span>
+          <p class="output-empty">Completá el canvas para convertir una tensión en una decisión analizable.</p>
+          <div class="output-result" hidden>
+            <p class="output-tension" data-output-tension></p>
+            <dl>
+              <div><dt>Audiencia</dt><dd data-output-audience></dd></div>
+              <div><dt>Decisión</dt><dd data-output-decision></dd></div>
+              <div><dt>KPI propuesto</dt><dd data-output-kpi></dd></div>
+            </dl>
+            <p class="output-warning"><b>Control pendiente:</b> definir fórmula, grano, frecuencia, fuente y comportamiento que podría incentivar.</p>
+          </div>
+        </output>
+      </div>
+
+      <div class="download-strip">
+        <div><span aria-hidden="true">↓</span><p><b>Paquete A · estudiantes</b><small>Notebook, datos y diccionario para trabajar desde Google Colab.</small></p></div>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_A_v1.0_estudiantes.zip" download>Descargar ZIP</a>
+      </div>
+    </section>
+
+<!-- unit-resources:start -->
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u01-decisiones-datos-ia">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u01-decisiones-datos-ia">Perspectivas para ampliar decisiones e inteligencia artificial</h2></div>
+        <p>Esta selección aporta evidencia reciente sobre adopción, trabajo y riesgo. El curso introductorio permite ordenar el vocabulario antes de abordar aplicaciones empresariales.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Informe y PDF</span><small>Inglés</small></div>
+          <h3><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener noreferrer">AI Index Report 2026</a></h3>
+          <p>El capítulo Economy aporta cifras para discutir inversión, adopción, productividad y empleo con evidencia reciente.</p>
+          <footer><span>Stanford Institute for Human-Centered AI</span><small>Lectura selectiva · 30–45 min</small><a href="https://hai.stanford.edu/ai-index/2026-ai-index-report" target="_blank" rel="noopener noreferrer" aria-label="Abrir AI Index Report 2026">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Curso gratuito</span><small>Disponible en varios idiomas</small></div>
+          <h3><a href="https://www.helsinki.fi/en/admissions-and-education/open-university/open-online-courses-or-moocs" target="_blank" rel="noopener noreferrer">Elements of AI: Introduction to AI</a></h3>
+          <p>Curso abierto para construir una base conceptual de IA mediante lecturas, ejercicios y ejemplos accesibles.</p>
+          <footer><span>University of Helsinki</span><small>Autoguiado</small><a href="https://www.helsinki.fi/en/admissions-and-education/open-university/open-online-courses-or-moocs" target="_blank" rel="noopener noreferrer" aria-label="Abrir Elements of AI: Introduction to AI">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Marco y playbook</span><small>Inglés</small></div>
+          <h3><a href="https://airc.nist.gov/airmf-resources/playbook/" target="_blank" rel="noopener noreferrer">AI Risk Management Framework Playbook</a></h3>
+          <p>Acciones concretas para relacionar riesgo, responsables, medición y seguimiento durante el ciclo de vida de un sistema de IA.</p>
+          <footer><span>NIST</span><small>Consulta por secciones</small><a href="https://airc.nist.gov/airmf-resources/playbook/" target="_blank" rel="noopener noreferrer" aria-label="Abrir AI Risk Management Framework Playbook">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Informe web</span><small>Inglés</small></div>
+          <h3><a href="https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html" target="_blank" rel="noopener noreferrer">AI and skills</a></h3>
+          <p>Analiza la relación entre adopción de IA, tareas y demanda de capacidades profesionales.</p>
+          <footer><span>OECD</span><small>Lectura selectiva · 25 min</small><a href="https://www.oecd.org/en/publications/ai-and-skills_f843b352-en/full-report.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir AI and skills">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+    <!-- unit-resources:end -->
+
+    <section class="class-close section-dark" aria-labelledby="close-title">
+      <div class="section-kicker">Criterio de salida</div>
+      <h2 id="close-title">La evidencia termina en <span>responsabilidad humana.</span></h2>
+      <p>Podés avanzar cuando explicás la diferencia entre datos y evidencia. El canvas inicial de tu equipo debe conectar una decisión con su KPI.</p>
+      <div class="next-class"><span>PRÓXIMO MÓDULO SUGERIDO</span><b><a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked">Unidad 2 · Ecosistema, roles y arquitectura proporcional →</a></b></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>
