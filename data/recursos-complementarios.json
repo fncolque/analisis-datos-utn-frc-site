@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-08-12",
+  "actualizado": "2026-08-19",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -49,6 +49,47 @@
           "idioma": "Inglés",
           "dedicacion": "Lectura selectiva · 25 min",
           "descripcion": "Analiza la relación entre adopción de IA, tareas y demanda de capacidades profesionales."
+        }
+      ]
+    },
+    "u01-laboratorio-faro-sur": {
+      "titulo": "Recursos para trabajar con notebooks y tablas",
+      "introduccion": "Estos materiales permiten reconocer el entorno utilizado en el laboratorio y anticipan operaciones de Pandas que aparecerán más adelante. La actividad obligatoria permanece contenida en el Paquete A.",
+      "diagrama": {
+        "archivo": "u01-laboratorio-recorrido.svg",
+        "fuente": "u01-laboratorio-recorrido.mmd",
+        "alt": "Recorrido del laboratorio desde el diccionario y el archivo hasta el control, el resultado y el canvas de decisión.",
+        "titulo": "El recorrido del primer laboratorio",
+        "epigrafe": "Cada etapa deja una evidencia que permite reconstruir la fuente, el cálculo y la interpretación.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Sitio oficial",
+          "titulo": "Google Colab",
+          "institucion": "Google for Developers",
+          "url": "https://developers.google.com/colab",
+          "idioma": "Español e inglés",
+          "dedicacion": "Exploración · 10 min",
+          "descripcion": "Presenta el entorno alojado, los notebooks y las opciones de colaboración utilizadas durante el laboratorio."
+        },
+        {
+          "tipo": "Preguntas frecuentes",
+          "titulo": "Google Colab FAQ",
+          "institucion": "Google Research",
+          "url": "https://research.google.com/colaboratory/faq.html",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta puntual",
+          "descripcion": "Explica sesiones, archivos temporales, recursos y límites del servicio. Resulta útil para diagnosticar reinicios y cargas."
+        },
+        {
+          "tipo": "Tutorial oficial",
+          "titulo": "10 minutes to pandas",
+          "institucion": "pandas",
+          "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+          "idioma": "Inglés",
+          "dedicacion": "Lectura selectiva · 20 min",
+          "descripcion": "Introduce DataFrame, selección, resumen y operaciones tabulares. Conviene recorrer las primeras secciones después del laboratorio."
         }
       ]
     }

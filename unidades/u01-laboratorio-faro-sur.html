@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Primer laboratorio reproducible de Faro Sur. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Primer laboratorio reproducible de Faro Sur · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260812c">
+  <script src="../assets/app.js" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 1 · LABORATORIO</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 1 · LABORATORIO</span></div>
+        <h1 id="reading-title">Primer laboratorio reproducible de Faro Sur</h1>
+        <p class="hero-lede">El laboratorio conecta diccionario, archivo, grano, cálculo, control e interpretación mediante un notebook guiado.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué controles convierten una tabla en evidencia utilizable?</p>
+      </div>
+      <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+        <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u01-laboratorio-faro-sur">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u01-laboratorio-faro-sur">El recorrido del primer laboratorio</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u01-laboratorio-recorrido.svg" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u01-laboratorio-recorrido.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame">
+        <a href="../assets/diagrams/u01-laboratorio-recorrido.svg" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u01-laboratorio-recorrido.svg" alt="Recorrido del laboratorio desde el diccionario y el archivo hasta el control, el resultado y el canvas de decisión." loading="lazy">
+        </a>
+        <figcaption><span>Cada etapa deja una evidencia que permite reconstruir la fuente, el cálculo y la interpretación.</span><small>Elaboración propia para la asignatura.</small></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#del-concepto-a-una-experiencia-reproducible">Del concepto a una experiencia reproducible</a><a href="#notebook-codigo-y-salida">Notebook, código y salida</a><a href="#el-diccionario-precede-al-calculo">El diccionario precede al cálculo</a><a href="#grano-que-representa-una-fila">Grano: qué representa una fila</a><a href="#controles-de-entrada-y-de-proceso">Controles de entrada y de proceso</a><a href="#reproducir-una-metrica-preparada">Reproducir una métrica preparada</a><a href="#adaptar-una-dimension">Adaptar una dimensión</a><a href="#del-resultado-al-canvas">Del resultado al canvas</a><a href="#ia-como-objeto-de-verificacion">IA como objeto de verificación</a><a href="#recuperacion-tecnica-y-conceptual">Recuperación técnica y conceptual</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
+        <a class="button button-primary" href="../downloads/Unidad 1 - Laboratorio inicial de Faro Sur - v0.1.pptx" download>Descargar presentación <span aria-hidden="true">↓</span></a>
+      </aside>
+      <article class="theory-copy">
+        <div class="theory-intro"><span>LECTURA DE REFERENCIA</span><p>Este desarrollo amplía los conceptos de la presentación. Los ejemplos y controles permiten reutilizarlo durante la práctica y el proyecto.</p></div>
+        <h2 id="del-concepto-a-una-experiencia-reproducible">Del concepto a una experiencia reproducible</h2>
+<p>La primera unidad presentó una cadena que conecta registro, dato contextualizado, evidencia, interpretación, decisión y acción. El laboratorio permite recorrer esa cadena sobre una fuente concreta. El objetivo técnico consiste en ejecutar un notebook preparado; el trabajo de aprendizaje consiste en controlar qué archivo ingresa, qué representa cada fila y qué significado puede asignarse a la salida.</p>
+<p>La reproducibilidad comienza antes del cálculo. Dos personas pueden ejecutar el mismo código y obtener resultados diferentes cuando utilizan archivos, períodos o filtros distintos. Por eso el Paquete A identifica el release, conserva un diccionario y establece resultados de control. La versión 1.0 contiene 900 filas, 15 columnas, 426 pedidos, 72 clientes y 18 productos. Estos valores permiten comprobar que la carga terminó correctamente.</p>
+<p>Una práctica reproducible deja una traza mínima:</p>
+<pre><code class="language-text">pregunta → archivo y versión → grano → transformación → control → resultado → interpretación → límite</code></pre>
+<p>Cada componente responde una pregunta verificable. El archivo y la versión identifican la fuente. El grano fija la unidad observada. La transformación describe qué hizo el notebook. El control compara la salida con una referencia. La interpretación vincula el resultado con una decisión. El límite declara qué información falta.</p>
+<h2 id="notebook-codigo-y-salida">Notebook, código y salida</h2>
+<p>Un notebook combina texto explicativo, código ejecutable y resultados. En Google Colab, cada celda de código puede ejecutarse con el botón correspondiente. La sesión mantiene variables y archivos mientras permanece activa; una reconexión puede exigir volver a ejecutar desde el comienzo.</p>
+<p>El Paquete A contiene código preparado en Python. Python es un lenguaje de programación de propósito general. En esta instancia, el estudiante lee y ejecuta instrucciones existentes. El foco se ubica en entradas, salidas y controles. Las estructuras del lenguaje se desarrollarán más adelante cuando el curso trabaje con Pandas y análisis exploratorio.</p>
+<p>La celda de carga recibe <code>ventas_inicial.csv</code> y construye una tabla en memoria. La salida esperada informa <code>900 filas × 15 columnas</code>. Ese control detecta archivos incorrectos, cargas parciales o versiones diferentes. Avanzar con otra forma vuelve incomparable el resto de los resultados.</p>
+<h2 id="el-diccionario-precede-al-calculo">El diccionario precede al cálculo</h2>
+<p>Un diccionario de datos describe el significado, tipo y uso de cada campo. La tabla inicial incluye identificadores, dimensiones, fechas y medidas. Esta clasificación ayuda a anticipar qué operaciones tienen sentido.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Clase de campo</th>
+<th>Función</th>
+<th>Ejemplo del Paquete A</th>
+</tr></thead><tbody>
+<tr><td>Identificador</td><td>distingue una entidad o registro</td><td><code>pedido</code>, <code>cliente_id</code>, <code>producto_id</code></td></tr>
+<tr><td>Dimensión</td><td>permite segmentar o describir</td><td><code>familia</code>, <code>region</code>, <code>canal</code></td></tr>
+<tr><td>Fecha</td><td>ubica un hecho en el tiempo</td><td><code>fecha_pedido</code>, <code>fecha_entrega</code></td></tr>
+<tr><td>Medida</td><td>admite una operación cuantitativa</td><td><code>cantidad</code>, <code>precio_unitario</code>, <code>costo_unitario</code></td></tr>
+<tr><td>Estado</td><td>representa una condición del proceso</td><td><code>estado_entrega</code></td></tr>
+</tbody></table></div>
+<p>El tipo físico y el significado de negocio trabajan juntos. Una fecha almacenada como texto requiere conversión antes de ordenar períodos. Un identificador numérico conserva función nominal; calcular su promedio carece de sentido. Una dimensión permite agrupar, mientras que una medida permite sumar o calcular ratios según su definición.</p>
+<h2 id="grano-que-representa-una-fila">Grano: qué representa una fila</h2>
+<p>El grano del Paquete A es una línea de pedido. Cada fila representa un producto incluido en una orden. Un pedido puede contener varios productos y, por esa razón, su identificador aparece repetido.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>pedido</th>
+<th>producto</th>
+<th>cantidad</th>
+</tr></thead><tbody>
+<tr><td>FS-2025-0328</td><td>Motor eléctrico 10 HP</td><td>18</td></tr>
+<tr><td>FS-2025-0328</td><td>Rodamiento industrial 6208</td><td>21</td></tr>
+<tr><td>FS-2025-0134</td><td>Bomba centrífuga FS-A120</td><td>2</td></tr>
+</tbody></table></div>
+<p>Las dos primeras filas describen productos distintos de un mismo pedido. Contar filas responde cuántas líneas existen. Contar pedidos distintos responde cuántas órdenes aparecen. La diferencia entre 900 líneas y 426 pedidos muestra por qué cada métrica necesita declarar el grano.</p>
+<p>El grano también limita la evidencia. La tabla permite calcular ventas y margen por producto, familia o región. Una explicación sobre la causa de una demora necesita información sobre disponibilidad, depósito, transportista o capacidad. La ausencia de esas columnas debe aparecer en la interpretación.</p>
+<h2 id="controles-de-entrada-y-de-proceso">Controles de entrada y de proceso</h2>
+<p>Un control compara el estado observado con una expectativa. El primer control utiliza forma, campos y versión. Luego pueden revisarse nulos, duplicados y reglas básicas. El release inicial mantiene la dificultad técnica acotada y presenta datos limpios, pero el hábito de control comienza aquí.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Control</th>
+<th>Resultado esperado</th>
+<th>Riesgo que detecta</th>
+</tr></thead><tbody>
+<tr><td>cantidad de filas</td><td>900</td><td>archivo parcial o equivocado</td></tr>
+<tr><td>cantidad de columnas</td><td>15</td><td>cambio de esquema</td></tr>
+<tr><td>pedidos distintos</td><td>426</td><td>alteración de la fuente</td></tr>
+<tr><td>combinación pedido-producto repetida</td><td>0</td><td>duplicación de líneas</td></tr>
+<tr><td>campos requeridos ausentes</td><td>0</td><td>carga incompleta</td></tr>
+</tbody></table></div>
+<p>Una salida que coincide con estos valores queda habilitada para la práctica. El control demuestra consistencia con el release; la interpretación todavía requiere revisar fórmulas y significado.</p>
+<h2 id="reproducir-una-metrica-preparada">Reproducir una métrica preparada</h2>
+<p>El notebook calcula resultados a partir de columnas documentadas. La venta neta surge de cantidad, precio y descuento. El margen bruto compara esa venta con el costo asociado. La tasa de entrega a tiempo utiliza las fechas y reglas incluidas en el release.</p>
+<p>Una métrica agregada necesita declarar numerador, denominador y población. El margen porcentual total se calcula como margen bruto total dividido por venta neta total. El promedio simple de porcentajes por fila asignaría el mismo peso a operaciones de tamaños diferentes. La ficha del KPI evita esa ambigüedad.</p>
+<p>La demostración docente debe mostrar una ejecución completa antes de solicitar cambios. La secuencia visible incluye la carga, los controles, el resumen por familia y una visualización. Luego el equipo reproduce el recorrido sobre su copia.</p>
+<h2 id="adaptar-una-dimension">Adaptar una dimensión</h2>
+<p>La primera modificación cambia una sola variable:</p>
+<pre><code class="language-python">DIMENSION = &quot;region&quot;</code></pre>
+<p>El bloque de agregación permanece estable. El cambio permite observar cómo la misma métrica responde otra pregunta. El resumen por familia ayuda a estudiar mezcla de productos; el resumen por región permite comparar contextos comerciales y logísticos.</p>
+<p>La adaptación exige interpretar la salida. Patagonia presenta una tasa de entrega a tiempo menor dentro del extracto. La tabla permite describir la diferencia. La explicación causal requiere incorporar datos sobre transporte, depósito, promesa o disponibilidad. Esa frontera convierte el dato faltante en parte de la evidencia.</p>
+<h2 id="del-resultado-al-canvas">Del resultado al canvas</h2>
+<p>El canvas decisión–métrica–acción organiza la transferencia. El equipo selecciona una tensión, identifica a la persona que puede actuar y escribe una decisión con alternativas. Después propone un KPI y vincula la definición con una fuente.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Componente</th>
+<th>Ejemplo Faro Sur</th>
+</tr></thead><tbody>
+<tr><td>Tensión</td><td>Patagonia presenta menor cumplimiento de entrega</td></tr>
+<tr><td>Audiencia</td><td>Gerencia de Operaciones</td></tr>
+<tr><td>Decisión</td><td>revisar promesa o capacidad de despacho para la región</td></tr>
+<tr><td>KPI</td><td>pedidos entregados a tiempo / pedidos entregados</td></tr>
+<tr><td>Fuente disponible</td><td>líneas de pedido del Paquete A</td></tr>
+<tr><td>Dato faltante</td><td>depósito de origen y transportista</td></tr>
+<tr><td>Límite</td><td>el patrón observado carece de identificación causal</td></tr>
+</tbody></table></div>
+<p>La observación cita el resultado. La interpretación propone un significado compatible con el proceso. La decisión identifica una acción condicionada. El límite declara qué debería conocerse antes de comprometer una recomendación.</p>
+<h2 id="ia-como-objeto-de-verificacion">IA como objeto de verificación</h2>
+<p>Una asistencia de IA puede explicar código o proponer una lectura. El equipo conserva la instrucción, identifica la parte utilizada y la contrasta con el notebook. Una explicación sobre menor cumplimiento en Patagonia debe coincidir con la salida y respetar el grano. Una atribución directa a distancia o transporte excede la fuente disponible.</p>
+<p>El control puede registrarse con cuatro campos:</p>
+<ol class="theory-list"><li>propuesta recibida;</li><li>evidencia utilizada para comprobarla;</li><li>corrección realizada;</li><li>conclusión aceptada y su límite.</li></ol>
+<p>La privacidad se mantiene como regla operativa. El caso Faro Sur es sintético. Los trabajos con casos reales requieren autorización, anonimización y revisión de la información enviada a servicios externos.</p>
+<h2 id="recuperacion-tecnica-y-conceptual">Recuperación técnica y conceptual</h2>
+<p>El laboratorio reserva un tramo final para cerrar brechas. Un problema de acceso se diagnostica con el nombre del archivo, la celda y el mensaje de error. Una dificultad conceptual se trabaja con el diccionario, el grano y el resultado esperado. Esta separación evita que una falla de configuración se confunda con falta de comprensión.</p>
+<p>La preparación para la unidad siguiente se observa en cinco evidencias:</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Evidencia</th>
+<th>Pregunta de control</th>
+</tr></thead><tbody>
+<tr><td>archivo identificado</td><td>¿qué release se utilizó?</td></tr>
+<tr><td>grano explicado</td><td>¿qué representa una fila?</td></tr>
+<tr><td>métrica ejecutada</td><td>¿qué columnas y regla la producen?</td></tr>
+<tr><td>resultado reconciliado</td><td>¿con qué valor seguro se comparó?</td></tr>
+<tr><td>decisión condicionada</td><td>¿qué acción habilita y qué dato falta?</td></tr>
+</tbody></table></div>
+<p>El canvas corregido y la evidencia de salida quedan disponibles para trabajar arquitectura, roles y sistemas fuente. La siguiente unidad ampliará el recorrido hacia los componentes que producen y conservan esos datos.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Por qué 900 filas pueden corresponder a 426 pedidos?</li><li>¿Qué diferencia existe entre una dimensión y una medida?</li><li>¿Qué control permite detectar que se cargó otro archivo?</li><li>¿Qué cambia al reemplazar <code>familia</code> por <code>region</code>?</li><li>¿Qué resultado pertenece a la observación y qué afirmación requiere otra fuente?</li><li>¿Cómo se documenta una explicación asistida por IA?</li></ol>
+<h2 id="alcance-de-la-unidad">Alcance de la unidad</h2>
+<p>Esta instancia cubre navegación básica en Colab, lectura del diccionario, carga, grano, clasificación de campos, ejecución guiada, adaptación de una dimensión, control e interpretación. La escritura autónoma de Python, SQL, joins, infraestructura cloud y modelado relacional aparecen en unidades posteriores.</p>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Una fila conecta el pedido con una decisión</h2></div>
+      <div class="applied-prose"><p>El pedido FS-2025-0328 aparece en dos filas porque incluye dos productos. La diferencia entre 900 líneas y 426 pedidos obliga a declarar el grano antes de contar o agregar.</p><p>El resumen por familia permite estudiar mezcla comercial. El cambio a región muestra una tasa de cumplimiento menor en Patagonia y abre preguntas sobre depósito, transportista, promesa y disponibilidad. Esos datos faltantes delimitan la interpretación.</p></div>
+    </section>
+
+    
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">1.L</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Ejecutar el Paquete A y construir el primer canvas</h2>
+        <p>El equipo abre el notebook en Colab, carga <code>ventas_inicial.csv</code>, confirma <code>900 × 15</code>, explica el grano, reproduce las métricas y cambia la dimensión a región. La evidencia final registra observación, interpretación, decisión, dato faltante y control de IA.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_A_v1.0_estudiantes.zip" download>Descargar Paquete A <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u01-laboratorio-faro-sur">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u01-laboratorio-faro-sur">Recursos para trabajar con notebooks y tablas</h2></div>
+        <p>Estos materiales permiten reconocer el entorno utilizado en el laboratorio y anticipan operaciones de Pandas que aparecerán más adelante. La actividad obligatoria permanece contenida en el Paquete A.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Sitio oficial</span><small>Español e inglés</small></div>
+          <h3><a href="https://developers.google.com/colab" target="_blank" rel="noopener noreferrer">Google Colab</a></h3>
+          <p>Presenta el entorno alojado, los notebooks y las opciones de colaboración utilizadas durante el laboratorio.</p>
+          <footer><span>Google for Developers</span><small>Exploración · 10 min</small><a href="https://developers.google.com/colab" target="_blank" rel="noopener noreferrer" aria-label="Abrir Google Colab">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Preguntas frecuentes</span><small>Inglés</small></div>
+          <h3><a href="https://research.google.com/colaboratory/faq.html" target="_blank" rel="noopener noreferrer">Google Colab FAQ</a></h3>
+          <p>Explica sesiones, archivos temporales, recursos y límites del servicio. Resulta útil para diagnosticar reinicios y cargas.</p>
+          <footer><span>Google Research</span><small>Consulta puntual</small><a href="https://research.google.com/colaboratory/faq.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir Google Colab FAQ">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Tutorial oficial</span><small>Inglés</small></div>
+          <h3><a href="https://pandas.pydata.org/docs/user_guide/10min.html" target="_blank" rel="noopener noreferrer">10 minutes to pandas</a></h3>
+          <p>Introduce DataFrame, selección, resumen y operaciones tabulares. Conviene recorrer las primeras secciones después del laboratorio.</p>
+          <footer><span>pandas</span><small>Lectura selectiva · 20 min</small><a href="https://pandas.pydata.org/docs/user_guide/10min.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir 10 minutes to pandas">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+    
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u01-decisiones-datos-ia.html"><span>ANTERIOR</span><b>Unidad 1 · Decisiones, datos e IA</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 2 · Ecosistema y arquitectura</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

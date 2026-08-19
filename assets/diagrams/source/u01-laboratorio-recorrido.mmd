@@ -1,0 +1,14 @@
+flowchart LR
+    A["Diccionario: significado y tipo"] --> B["Archivo: release identificado"]
+    B --> C["Carga: 900 filas × 15 columnas"]
+    C --> D["Grano: producto dentro de un pedido"]
+    D --> E["Métrica: ejecución preparada"]
+    E --> F["Control: total y forma esperados"]
+    F --> G["Canvas: decisión y límite"]
+
+    classDef primary fill:#1F497D,color:#FFFFFF,stroke:#1F497D,stroke-width:2px;
+    classDef accent fill:#FFFF33,color:#111111,stroke:#1F497D,stroke-width:2px;
+    classDef pale fill:#DCE6F1,color:#111111,stroke:#4F81BD,stroke-width:1.5px;
+    class A,B,D,E pale;
+    class C,F primary;
+    class G accent;
