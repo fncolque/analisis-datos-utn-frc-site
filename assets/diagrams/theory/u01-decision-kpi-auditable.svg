@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+<title id="title">De una decisión a un KPI que puede auditarse</title>
+<desc id="desc">Seis etapas conectan una decisión sobre descuentos con responsable, alternativas, fórmula de margen, grano, período, población, fuentes, controles, umbral, acción y retorno de aprendizaje.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9aabb9" stroke-width="1" opacity=".32"/></pattern><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0,0 L12,6 L0,12 z" fill="#1f497d"/></marker></defs>
+<style>.atlas-step{outline:none;cursor:pointer}.atlas-step .card-bg{transition:stroke .16s ease,filter .16s ease}.atlas-step:hover .card-bg,.atlas-step:focus .card-bg{stroke:#ffff33;stroke-width:7px}</style>
+<rect x="0" y="0" width="1600" height="1000" fill="#f7f2e8"/>
+<image href="../../images/generated/u01-decision-chain.webp" x="0" y="0" width="1600" height="1000" opacity="0.055" preserveAspectRatio="xMidYMid slice"/>
+<rect x="0" y="0" width="1600" height="1000" fill="url(#grid)" opacity=".36"/>
+<rect x="52" y="38" width="250" height="42" rx="21" fill="#143254"/>
+<text x="177.0" y="66.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="850" text-anchor="middle" letter-spacing="1">ATLAS TEÓRICO · C01</text>
+<text x="52.0" y="118.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="850" text-anchor="start">¿Qué debe quedar definido para revisar descuentos por familia de productos?</text>
+<g class="atlas-step" data-step="1" tabindex="0" role="group" aria-label="Paso 1: Decisión y responsable">
+<rect class="card-bg" x="52.0" y="190.0" width="482.7" height="352.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="190.0" width="10" height="352.0" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="212.0" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">PROBLEMA</text>
+<circle cx="500.7" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="500.7" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">01</text>
+<text x="82.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Decisión y responsable</text>
+<text x="82.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Gerencia Comercial revisa descuentos</text>
+<text x="82.0" y="337.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">por familia.</text>
+<text x="82.0" y="366.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Alternativas: mantener, reducir o</text>
+<text x="82.0" y="391.3" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">segmentar.</text>
+</g>
+<path d="M538.7,366.0 L553.7,366.0" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="2" tabindex="0" role="group" aria-label="Paso 2: KPI y fórmula">
+<rect class="card-bg" x="558.7" y="190.0" width="482.7" height="352.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="558.7" y="190.0" width="10" height="352.0" rx="5" fill="#1f497d"/>
+<rect x="586.7" y="212.0" width="125.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="600.7" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">DEFINICIÓN</text>
+<circle cx="1007.3" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1007.3" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">02</text>
+<text x="588.7" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">KPI y fórmula</text>
+<text x="588.7" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Margen % = (ventas − costo) / ventas.</text>
+<text x="588.7" y="342.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Pregunta: ¿qué familia pierde margen?</text>
+<rect x="586.7" y="351.9" width="426.7" height="34" rx="5" fill="#143254"/>
+<text x="598.7" y="374.9" fill="#ffffff" font-family="Consolas, 'Courier New', monospace" font-size="18" font-weight="600" text-anchor="start">margen_pct = (ventas - costo) / ventas</text>
+</g>
+<path d="M1045.3,366.0 L1060.3,366.0" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="3" tabindex="0" role="group" aria-label="Paso 3: Grano, período y población">
+<rect class="card-bg" x="1065.3" y="190.0" width="482.7" height="352.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1065.3" y="190.0" width="10" height="352.0" rx="5" fill="#1f497d"/>
+<rect x="1093.3" y="212.0" width="95.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="1107.3" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">ALCANCE</text>
+<circle cx="1514.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">03</text>
+<text x="1095.3" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Grano, período y población</text>
+<text x="1095.3" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Una fila por familia y mes.</text>
+<text x="1095.3" y="342.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Pedidos completados del período</text>
+<text x="1095.3" y="366.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">analizado.</text>
+</g>
+<g class="atlas-step" data-step="4" tabindex="0" role="group" aria-label="Paso 4: Fuentes">
+<rect class="card-bg" x="52.0" y="566.0" width="482.7" height="352.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="566.0" width="10" height="352.0" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="588.0" width="175.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="612.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="800" text-anchor="start" letter-spacing="0.8">REGISTRO → DATO</text>
+<circle cx="500.7" cy="600.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="500.7" y="607.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">04</text>
+<text x="82.0" y="652.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Fuentes</text>
+<text x="82.0" y="689.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Líneas de pedido, productos y</text>
+<text x="82.0" y="713.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">descuentos.</text>
+<text x="82.0" y="742.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• La clave une cada línea con su</text>
+<text x="82.0" y="767.3" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">familia.</text>
+</g>
+<path d="M538.7,742.0 L553.7,742.0" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="5" tabindex="0" role="group" aria-label="Paso 5: Controles y umbral">
+<rect class="card-bg" x="558.7" y="566.0" width="482.7" height="352.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="558.7" y="566.0" width="10" height="352.0" rx="5" fill="#1f497d"/>
+<rect x="586.7" y="588.0" width="115.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="600.7" y="612.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">EVIDENCIA</text>
+<circle cx="1007.3" cy="600.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1007.3" y="607.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">05</text>
+<text x="588.7" y="652.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Controles y umbral</text>
+<text x="588.7" y="689.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Reconciliar ventas y costos;</text>
+<text x="588.7" y="713.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">comprobar claves.</text>
+<text x="588.7" y="742.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Umbral de trabajo: margen &lt; 20 %.</text>
+<rect x="586.7" y="845.0" width="90.0" height="32" rx="4" fill="#ffff33"/>
+<text x="598.7" y="867.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">filas</text>
+<rect x="686.7" y="845.0" width="90.0" height="32" rx="4" fill="#ffff33"/>
+<text x="698.7" y="867.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">claves</text>
+<rect x="786.7" y="845.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="798.7" y="867.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">totales</text>
+</g>
+<path d="M1045.3,742.0 L1060.3,742.0" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="6" tabindex="0" role="group" aria-label="Paso 6: Acción y aprendizaje">
+<rect class="card-bg" x="1065.3" y="566.0" width="482.7" height="352.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1065.3" y="566.0" width="10" height="352.0" rx="5" fill="#1f497d"/>
+<rect x="1093.3" y="588.0" width="275.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="1107.3" y="612.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="800" text-anchor="start" letter-spacing="0.8">DECISIÓN → NUEVA PREGUNTA</text>
+<circle cx="1514.0" cy="600.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="607.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">06</text>
+<text x="1095.3" y="652.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Acción y aprendizaje</text>
+<text x="1095.3" y="689.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Revisar la política de la familia</text>
+<text x="1095.3" y="713.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">señalada.</text>
+<text x="1095.3" y="742.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Medir el margen posterior y ajustar</text>
+<text x="1095.3" y="767.3" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">el umbral.</text>
+</g>
+<line x1="52" y1="952" x2="1548" y2="952" stroke="#9aabb9" stroke-width="2"/>
+<text x="52.0" y="982.0" fill="#1f497d" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="start">Análisis de Datos · UTN FRC · lectura guiada</text>
+<text x="1548.0" y="982.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" text-anchor="end">Abrir a tamaño completo para revisar rótulos y relaciones</text>
+</svg>

@@ -2,7 +2,7 @@
 
 ## Regla central
 
-La IA acelera tareas bajo una condición: cada equipo conserva la obligación de comprender el grano, ejecutar la consulta, reconciliar resultados y responder por la conclusión.
+La IA puede acelerar algunas tareas bajo una condición: cada estudiante, trabaje individualmente o en equipo, conserva la obligación de comprender el grano, ejecutar la consulta, reconciliar resultados y responder por la conclusión.
 
 ## Usos admitidos
 
@@ -18,7 +18,7 @@ La IA acelera tareas bajo una condición: cada equipo conserva la obligación de
 ## Usos no admitidos
 
 - presentar una salida no ejecutada como evidencia;
-- copiar una explicación que el equipo no puede defender;
+- copiar una explicación que la persona o el equipo no puede defender;
 - cargar datos reales, personales, confidenciales o cubiertos por NDA sin autorización;
 - inventar fuentes, valores o resultados;
 - ocultar una intervención sustantiva de IA;

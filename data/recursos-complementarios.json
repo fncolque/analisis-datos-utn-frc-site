@@ -1,10 +1,21 @@
 {
-  "actualizado": "2026-08-19",
+  "actualizado": "2026-08-25",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
       "titulo": "Perspectivas para ampliar decisiones e inteligencia artificial",
       "introduccion": "Esta selección aporta evidencia reciente sobre adopción, trabajo y riesgo. El curso introductorio permite ordenar el vocabulario antes de abordar aplicaciones empresariales.",
+      "imagen": {
+        "archivo": "generated/dato-a-decision.png",
+        "alt": "Secuencia de seis etapas desde un dato registrado hasta una decisión: el dato se resume como métrica, se vincula con un objetivo como KPI, se organiza en un dashboard, se interpreta como insight y conduce a una acción que genera nuevos datos.",
+        "epigrafe": "Dato, métrica, KPI, dashboard e insight cumplen funciones diferentes dentro del recorrido. La decisión cierra una vuelta y genera nuevos registros para la siguiente.",
+        "generada": true,
+        "credito": "",
+        "ancho": 1536,
+        "alto": 820,
+        "ampliable": true,
+        "after_paragraph_contains": "El **dato** representa un hecho registrado"
+      },
       "diagrama": {
         "archivo": "u01-decision-evidencia.svg",
         "fuente": "u01-decision-evidencia.mmd",
@@ -62,6 +73,15 @@
         "titulo": "El recorrido del primer laboratorio",
         "epigrafe": "Cada etapa deja una evidencia que permite reconstruir la fuente, el cálculo y la interpretación.",
         "base": "Elaboración propia para la asignatura."
+      },
+      "imagen": {
+        "archivo": "jupyter-notebook-interface.png",
+        "alt": "Captura de un notebook de Jupyter con celdas de código numeradas y resultados visibles debajo.",
+        "epigrafe": "Las marcas In y Out permiten reconocer qué celda se ejecutó y qué resultado produjo. Google Colab utiliza el mismo modelo de documento, aunque su interfaz visual es diferente.",
+        "autor": "Andrey Yakimchik",
+        "licencia": "CC BY 4.0",
+        "url": "https://commons.wikimedia.org/wiki/File:Jupyter_Notebook.png",
+        "after_heading": "primer-encuentro-con-un-notebook-colab-y-python"
       },
       "recursos": [
         {

@@ -37,6 +37,7 @@ Este espacio organiza el programa en cuatro bloques y seis unidades temáticas. 
 - archivos, bases y APIs;
 - contratos de fuente;
 - ETL/ELT y capas de datos;
+- archivos Excel recurrentes, Power Query y controles de reejecución;
 - calidad y trazabilidad;
 - privacidad y anonimización.
 
@@ -56,9 +57,16 @@ Este espacio organiza el programa en cuatro bloques y seis unidades temáticas. 
 - relaciones y medidas;
 - páginas orientadas a decisiones;
 - reconciliación punta a punta;
+- comparación entre Power Automate, Power Apps, Office Scripts y VBA;
 - defensa de trade-offs.
+
+### Ruta laboral complementaria
+
+El caso de archivos recurrentes aplica el mismo pipeline a libros Excel recibidos
+periódicamente. Power Query constituye la práctica ejecutable. Power Automate,
+Power Apps, Office Scripts y VBA se comparan como alternativas de captura,
+orquestación o automatización según el entorno disponible.
 
 ## Proyecto integrador
 
 Cada equipo selecciona un caso y describe su pipeline de análisis. La entrega conecta el problema de negocio con las fuentes, la arquitectura, los controles, la evidencia y la comunicación.
-

@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "source_commit": "da2fc3f9c046385a942555ea54fc2a13aa84372d",
+  "source_commit": "a7373f90f7110c1313c39792ce23fe87cd435f6d",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/32248996579",
-  "generated_at_utc": "2026-08-19T11:43:43+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/32862227428",
+  "generated_at_utc": "2026-08-25T14:52:43+00:00",
   "qa_status": "passed",
-  "as_of": "2026-08-19",
+  "as_of": "2026-08-25",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
     "Unidad 1 · Laboratorio inicial de Faro Sur"
   ],
-  "content_digest": "72b69bd487a1dd7086ba16afed82768d7f0672190981f9d437c1bf907b38927d",
-  "file_count": 28,
+  "content_digest": "23eb12b2481e663d26a1f67359c0c0541c104a4c79338c0a6848892ab76336ec",
+  "file_count": 35,
   "html_count": 7,
   "contact": "analisisdatosutnfrc@gmail.com"
 }

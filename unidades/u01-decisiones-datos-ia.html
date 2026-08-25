@@ -6,7 +6,7 @@
   <meta name="description" content="Unidad 1: Decisiones, datos e inteligencia artificial. Análisis de Datos 2026, UTN FRC.">
   <meta name="theme-color" content="#151616">
   <title>Unidad 1 · Decisiones, datos e IA</title>
-  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
   <script src="../assets/app.js" defer></script>
 </head>
 <body data-page="class">
@@ -25,7 +25,7 @@
       <a class="is-current" href="#clase">Unidad 1</a>
       <a href="#recorrido">Índice</a>
       <a href="#desarrollo-teorico">Teoría</a>
-      <a href="u01-laboratorio-faro-sur.html">Laboratorio</a>
+      <a href="../unidades/u01-laboratorio-faro-sur.html">Laboratorio</a>
       <a href="#ampliar">Para ampliar</a>
     </nav>
   </header>
@@ -35,11 +35,12 @@
       <div class="class-hero-copy">
         <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al recorrido</a>
         <div class="eyebrow"><span>UNIDAD 1</span></div>
-        <h1 id="class-title">Decisiones,<br><em>datos e IA.</em></h1>
-        <p class="hero-lede">¿Qué tiene que ocurrir para que un dato cambie una decisión?</p>
+        <h1 id="class-title">Decisiones, <em>datos e IA.</em></h1>
+        <p class="hero-lede">La unidad presenta el vocabulario que utilizaremos para pasar de un registro aislado a una decisión que pueda explicarse y revisarse. El recorrido distingue datos, evidencia, interpretación y acción; también muestra dónde puede intervenir la inteligencia artificial y qué controles necesita cada aporte.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué tiene que ocurrir para que un dato cambie una decisión?</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="../downloads/Unidad 1 - Decisiones, datos e IA - v0.6.pdf" download>Descargar presentación en PDF <span aria-hidden="true">↓</span></a>
-          <a class="button button-ghost" href="u01-laboratorio-faro-sur.html">Abrir laboratorio</a>
+          <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_A_v1.0_estudiantes.zip" download>Descargar Paquete A <span aria-hidden="true">↓</span></a>
+          <a class="button button-ghost" href="../unidades/u01-laboratorio-faro-sur.html">Abrir laboratorio</a>
         </div>
       </div>
       <div class="class-hero-panel">
@@ -56,9 +57,9 @@
 
     <section class="opening-question section-dark" aria-labelledby="opening-title">
       <div class="section-kicker">Disparador</div>
-      <h2 id="opening-title">Los datos toman valor cuando <span>orientan una decisión.</span></h2>
+      <h2 id="opening-title">Una cifra empieza a ser útil cuando sabemos qué decisión puede orientar</h2>
       <div class="decision-scenario">
-        <p>Faro Sur aumentó sus ventas. El margen cayó y las entregas demoradas crecieron.</p>
+        <p>Faro Sur aumentó sus ventas durante el período observado. Al mismo tiempo, el margen porcentual quedó rezagado y crecieron las entregas demoradas. Las tres señales describen aspectos distintos del negocio y podrían conducir a acciones incompatibles si se interpretaran de manera aislada.</p>
         <div><b>¿Qué decisión merece evidencia primero?</b><span>Margen</span><span>Servicio</span><span>Volumen</span></div>
       </div>
       <p class="opening-note">Registrá tu intuición inicial. Luego definí qué evidencia permitiría sostenerla o corregirla.</p>
@@ -69,23 +70,23 @@
       <div class="visual-explainer-heading">
         <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u01-decisiones-datos-ia">El circuito de una decisión analítica</h2></div>
         <div class="visual-actions">
-          <a href="../assets/diagrams/u01-decision-evidencia.svg" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/u01-decision-evidencia.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
           <a href="../assets/diagrams/source/u01-decision-evidencia.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <figure class="diagram-frame">
-        <a href="../assets/diagrams/u01-decision-evidencia.svg" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
-          <img src="../assets/diagrams/u01-decision-evidencia.svg" alt="Ciclo que conecta decisión, pregunta, fuente, métrica, evidencia y acción, con asistencia de inteligencia artificial y control humano." loading="lazy">
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u01-decision-evidencia.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u01-decision-evidencia.svg?v=20260825b" alt="Ciclo que conecta decisión, pregunta, fuente, métrica, evidencia y acción, con asistencia de inteligencia artificial y control humano." loading="lazy" decoding="async">
         </a>
-        <figcaption><span>La evidencia se construye mediante definiciones, fuentes y controles. La IA puede asistir en distintos puntos del circuito.</span><small>Elaboración propia para la asignatura.</small></figcaption>
+        <figcaption><span>La evidencia se construye mediante definiciones, fuentes y controles. La IA puede asistir en distintos puntos del circuito.</span></figcaption>
       </figure>
     </section>
     <!-- unit-visual:end -->
 
     <section class="unit-index section-pad" id="recorrido" aria-labelledby="path-title">
       <div class="section-heading split-heading">
-        <div><div class="section-kicker">Índice de la unidad</div><h2 id="path-title">De la tensión al primer canvas.</h2></div>
-        <p>Avanzá en el orden propuesto y retomá cualquier bloque cuando lo necesites. Cada sección conserva su sentido como material de consulta.</p>
+        <div><div class="section-kicker">Índice de la unidad</div><h2 id="path-title">Cómo se organiza la primera lectura</h2></div>
+        <p>El recorrido comienza con una tensión del negocio y construye, paso a paso, una forma común de hablar sobre decisiones y evidencia. Podés avanzar en el orden propuesto durante la primera lectura y regresar luego a cualquier bloque cuando necesites revisar una definición, preparar el laboratorio o justificar una elección del proyecto.</p>
       </div>
       <ol class="learning-path">
         <li><span>01</span><div><b>Orientación</b><p>Propósito de la materia y mapa de contenidos.</p></div></li>
@@ -148,10 +149,58 @@
 <p>La pregunta de gestión pasa a ser concreta: ¿qué información reduce una incertidumbre relevante y qué circuito permite actuar con ella? Esa pregunta ayuda a decidir qué datos conservar, con qué frecuencia actualizarlos y qué controles financiar.</p>
 <h2 id="la-anatomia-de-una-decision">La anatomía de una decisión</h2>
 <p>Una decisión analítica bien formulada identifica a la persona responsable, el objeto de la elección y el horizonte temporal. También explicita las alternativas disponibles, las restricciones y el criterio utilizado para compararlas.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u01-decision-kpi-auditable-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u01-decision-kpi-auditable-title">De una decisión a un KPI que puede auditarse</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué debe quedar definido para revisar descuentos por familia de productos?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u01-decision-chain.webp')">
+        <div class="atlas-board atlas-flow" style="--atlas-cols:3"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">problema</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Decisión y responsable</h5>
+      <div class="atlas-card-copy"><p>Gerencia Comercial revisa descuentos por familia.</p><p>Alternativas: mantener, reducir o segmentar.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">definición</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>KPI y fórmula</h5>
+      <div class="atlas-card-copy"><p>Margen % = (ventas − costo) / ventas.</p><p>Pregunta: ¿qué familia pierde margen?</p></div>
+      <div class="atlas-code-lines"><code>margen_pct = (ventas - costo) / ventas</code></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">alcance</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Grano, período y población</h5>
+      <div class="atlas-card-copy"><p>Una fila por familia y mes.</p><p>Pedidos completados del período analizado.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">registro → dato</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Fuentes</h5>
+      <div class="atlas-card-copy"><p>Líneas de pedido, productos y descuentos.</p><p>La clave une cada línea con su familia.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">evidencia</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Controles y umbral</h5>
+      <div class="atlas-card-copy"><p>Reconciliar ventas y costos; comprobar claves.</p><p>Umbral de trabajo: margen &lt; 20 %.</p></div>
+      <div class="atlas-stats"><span>filas</span><span>claves</span><span>totales</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">decisión → nueva pregunta</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>Acción y aprendizaje</h5>
+      <div class="atlas-card-copy"><p>Revisar la política de la familia señalada.</p><p>Medir el margen posterior y ajustar el umbral.</p></div>
+
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u01-decision-kpi-auditable.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Un KPI puede auditarse cuando otra persona reconstruye su población, fórmula y fuente, verifica los controles y comprende qué acción activa el resultado.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La decisión comienza con una persona responsable, alternativas y restricciones explícitas.</p></li><li><span>02</span><p>La fórmula del margen se interpreta junto con el grano, el período y la población.</p></li><li><span>03</span><p>Las fuentes y los controles convierten registros aislados en evidencia revisable.</p></li><li><span>04</span><p>El umbral conduce a una acción y su resultado abre una nueva pregunta.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
 <p>Supongamos que la responsable comercial de Faro Sur evalúa descuentos para el mes siguiente. El objeto son las condiciones comerciales por familia de producto. Las alternativas pueden ser conservar, reducir o focalizar los descuentos. El horizonte exige una respuesta antes de publicar la lista. Las restricciones incluyen margen mínimo, compromisos con clientes y capacidad de abastecimiento. El criterio combina rentabilidad esperada y efecto sobre la demanda.</p>
 <p>La audiencia modifica la forma de presentar la evidencia. Una gerencia necesita ver impacto y opciones. Una persona analista necesita definiciones, filtros y controles. El equipo operativo requiere reglas accionables. El mismo cálculo puede alimentar estas tres conversaciones con diferentes niveles de detalle.</p>
 <h3 id="del-objetivo-al-kpi">Del objetivo al KPI</h3>
-<p>Un <strong>KPI</strong>, sigla de *Key Performance Indicator*, es un indicador conectado con un objetivo y con una decisión. Una cifra visible en un tablero adquiere carácter de KPI cuando existe una razón para observarla, una definición estable y una respuesta posible ante su variación.</p>
+<p>Un <strong>KPI</strong>, sigla de <em>Key Performance Indicator</em>, es un indicador conectado con un objetivo y con una decisión. Una cifra visible en un tablero adquiere carácter de KPI cuando existe una razón para observarla, una definición estable y una respuesta posible ante su variación.</p>
 <p>Una ficha completa del indicador contiene los siguientes elementos:</p>
 <div class="theory-table" tabindex="0"><table><thead><tr>
 <th>Elemento</th>
@@ -175,6 +224,21 @@
 <p>Por eso conviene trabajar con una métrica principal y controles complementarios. La venta neta puede leerse junto con margen porcentual. El inventario puede evaluarse junto con quiebres de stock. El cumplimiento de fecha requiere revisar también la promesa realizada. El objetivo consiste en representar el sistema con la cantidad de señales que la decisión necesita.</p>
 <h2 id="inteligencia-artificial-integrada-al-analisis">Inteligencia artificial integrada al análisis</h2>
 <p>La inteligencia artificial abarca métodos capaces de realizar tareas asociadas con percepción, predicción, clasificación, generación o recomendación. Dentro de la materia distinguiremos dos familias para ordenar los usos.</p>
+<figure class="generated-diagram" aria-labelledby="generated-u01-ai-control-title">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u01-ai-control-title">Dónde interviene la revisión humana</h3>
+      </div>
+      <div class="generated-diagram-media">
+        <img src="../assets/images/generated/u01-ai-control.webp?v=20260825b" alt="Un asistente de inteligencia artificial propone varios caminos de análisis que atraviesan controles de fuente, cálculo e interpretación antes de recibir aprobación humana." width="1536" height="1024" loading="lazy" decoding="async">
+      </div>
+      <figcaption>
+        <p>La asistencia automática puede acelerar propuestas y exploraciones. La aprobación depende de una persona que comprueba la fuente, el cálculo y el sentido de la respuesta.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La IA genera alternativas que deben tratarse como propuestas.</p></li><li><span>02</span><p>Cada alternativa atraviesa controles observables.</p></li><li><span>03</span><p>Los errores regresan a una etapa de corrección.</p></li><li><span>04</span><p>La responsabilidad de aprobar y comunicar permanece en una persona.</p></li></ol>
+        <small>Ilustración generada con OpenAI Images.</small>
+      </figcaption>
+    </figure>
+
 <p>La <strong>IA analítica</strong> aprende patrones a partir de datos y los utiliza para estimar una categoría, una probabilidad o un valor. Un modelo puede estimar demanda, detectar operaciones atípicas o priorizar clientes con riesgo de abandono. La <strong>IA generativa</strong> produce contenido a partir de instrucciones y contexto. Puede redactar texto, explicar código, proponer una consulta SQL o sugerir maneras de visualizar un resultado.</p>
 <p>Ambas familias pueden aparecer en distintas etapas del pipeline. Su aporte se evalúa por la calidad del trabajo producido y por la posibilidad de verificarlo.</p>
 <div class="theory-table" tabindex="0"><table><thead><tr>
@@ -208,6 +272,15 @@
 <p>Estas preguntas crecerán a medida que el caso incorpore tablas. En cada etapa se mantendrá una regla: la conclusión debe corresponder con el grano y el alcance de la fuente utilizada.</p>
 <h2 id="distinciones-para-usar-durante-el-curso">Distinciones para usar durante el curso</h2>
 <p>El <strong>dato</strong> representa un hecho registrado; la <strong>decisión</strong> selecciona una acción. La <strong>métrica</strong> resume un aspecto del proceso; el <strong>KPI</strong> la vincula con un objetivo y una respuesta. Un <strong>dashboard</strong> organiza señales; un <strong>insight</strong> agrega una interpretación relevante y defendible.</p>
+<figure class="sourced-visual sourced-visual-inline sourced-visual-generated">
+      <a class="sourced-visual-link" href="../assets/images/generated/dato-a-decision.png" target="_blank" rel="noopener" aria-label="Abrir la ilustración en tamaño completo"><img src="../assets/images/generated/dato-a-decision.png" alt="Secuencia de seis etapas desde un dato registrado hasta una decisión: el dato se resume como métrica, se vincula con un objetivo como KPI, se organiza en un dashboard, se interpreta como insight y conduce a una acción que genera nuevos datos." width="1536" height="820" loading="lazy" decoding="async"></a>
+
+      <figcaption>
+        <span>Dato, métrica, KPI, dashboard e insight cumplen funciones diferentes dentro del recorrido. La decisión cierra una vuelta y genera nuevos registros para la siguiente.</span>
+
+      </figcaption>
+    </figure>
+
 <p>El promedio resume un centro. La distribución muestra dispersión y extremos. La correlación describe una asociación observada. La causalidad exige evidencia adicional y un diseño capaz de descartar explicaciones alternativas.</p>
 <p>Una base de datos conserva registros consultables. Un sistema de IA genera, clasifica o evalúa propuestas según su diseño. Ambos pueden integrarse en un pipeline, con funciones y riesgos diferentes.</p>
 <h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
@@ -238,9 +311,9 @@
       <div class="practice-number" aria-hidden="true">1.L</div>
       <div>
         <div class="section-kicker">Laboratorio vinculado</div>
-        <h2 id="faro-title">El Paquete A convierte estos conceptos en una evidencia ejecutada.</h2>
-        <p>El capítulo de laboratorio recorre diccionario, archivo, grano, controles, métricas y canvas mediante un notebook guiado de Faro Sur.</p>
-        <a class="button button-dark" href="u01-laboratorio-faro-sur.html">Abrir el laboratorio <span aria-hidden="true">→</span></a>
+        <h2 id="faro-title">Cómo llevar estas ideas al primer laboratorio de Faro Sur</h2>
+        <p>El laboratorio propone una primera lectura guiada de un notebook y de una tabla de ventas. El recorrido comienza con el diccionario y la identificación del archivo, continúa con el significado de cada fila y termina con métricas controladas que se traducen en un canvas de decisión.</p>
+        <a class="button button-dark" href="../unidades/u01-laboratorio-faro-sur.html">Abrir el laboratorio <span aria-hidden="true">→</span></a>
       </div>
     </section>
 
@@ -279,7 +352,7 @@
       <div class="section-kicker">Criterio de salida</div>
       <h2 id="close-title">La evidencia termina en <span>responsabilidad humana.</span></h2>
       <p>Podés avanzar cuando explicás la diferencia entre datos y evidencia. El canvas inicial de tu equipo debe conectar una decisión con su KPI.</p>
-      <div class="next-class"><span>PRÓXIMO MÓDULO SUGERIDO</span><b><a href="u01-laboratorio-faro-sur.html">Unidad 1 · Laboratorio inicial de Faro Sur →</a></b></div>
+      <div class="next-class"><span>PRÓXIMO MÓDULO SUGERIDO</span><b><a href="../unidades/u01-laboratorio-faro-sur.html">Unidad 1 · Laboratorio inicial de Faro Sur →</a></b></div>
     </section>
   </main>
 

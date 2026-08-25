@@ -1,0 +1,258 @@
+{
+  "schema_version": 2,
+  "actualizado": "2026-08-25",
+  "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
+  "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
+  "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
+  "estado_generacion": {
+    "svg_html": "completo",
+    "bases_openai_images_integradas": 1,
+    "bases_gpt_image_2": "pendiente: ejecutar y promover el lote preparado con OPENAI_API_KEY"
+  },
+  "paginas": {
+    "u01-decisiones-datos-ia": [
+      {
+        "page": "u01-decisiones-datos-ia",
+        "unit": "C01",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u01-decision-kpi-auditable.svg",
+        "base_generada": "theory/u01-decision-kpi-auditable-base.webp",
+        "base_provisoria": "u01-decision-chain.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "De una decisión a un KPI que puede auditarse",
+        "pregunta_lectura": "¿Qué debe quedar definido para revisar descuentos por familia de productos?",
+        "alt": "Seis etapas conectan una decisión sobre descuentos con responsable, alternativas, fórmula de margen, grano, período, población, fuentes, controles, umbral, acción y retorno de aprendizaje.",
+        "epigrafe": "Un KPI puede auditarse cuando otra persona reconstruye su población, fórmula y fuente, verifica los controles y comprende qué acción activa el resultado.",
+        "after_heading": "la-anatomia-de-una-decision",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La decisión comienza con una persona responsable, alternativas y restricciones explícitas.",
+          "La fórmula del margen se interpreta junto con el grano, el período y la población.",
+          "Las fuentes y los controles convierten registros aislados en evidencia revisable.",
+          "El umbral conduce a una acción y su resultado abre una nueva pregunta."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A circular decision-to-measure-to-action loop with a human owner, a formula card, source records, verification gates, a threshold marker and feedback returning to the opening question.",
+        "version_revision": "1.0",
+        "svg_height": 1000,
+        "estructura": {
+          "layout": "flow",
+          "columns": 3,
+          "cards": [
+            {
+              "title": "Decisión y responsable",
+              "body": [
+                "Gerencia Comercial revisa descuentos por familia.",
+                "Alternativas: mantener, reducir o segmentar."
+              ],
+              "accent": "blue",
+              "tag": "problema",
+              "step": 1
+            },
+            {
+              "title": "KPI y fórmula",
+              "body": [
+                "Margen % = (ventas − costo) / ventas.",
+                "Pregunta: ¿qué familia pierde margen?"
+              ],
+              "accent": "blue",
+              "tag": "definición",
+              "step": 2,
+              "code": [
+                "margen_pct = (ventas - costo) / ventas"
+              ]
+            },
+            {
+              "title": "Grano, período y población",
+              "body": [
+                "Una fila por familia y mes.",
+                "Pedidos completados del período analizado."
+              ],
+              "accent": "blue",
+              "tag": "alcance",
+              "step": 3
+            },
+            {
+              "title": "Fuentes",
+              "body": [
+                "Líneas de pedido, productos y descuentos.",
+                "La clave une cada línea con su familia."
+              ],
+              "accent": "blue",
+              "tag": "registro → dato",
+              "step": 4
+            },
+            {
+              "title": "Controles y umbral",
+              "body": [
+                "Reconciliar ventas y costos; comprobar claves.",
+                "Umbral de trabajo: margen < 20 %."
+              ],
+              "accent": "blue",
+              "tag": "evidencia",
+              "step": 5,
+              "stats": [
+                "filas",
+                "claves",
+                "totales"
+              ]
+            },
+            {
+              "title": "Acción y aprendizaje",
+              "body": [
+                "Revisar la política de la familia señalada.",
+                "Medir el margen posterior y ajustar el umbral."
+              ],
+              "accent": "blue",
+              "tag": "decisión → nueva pregunta",
+              "step": 6
+            }
+          ]
+        }
+      },
+      {
+        "archivo": "u01-ai-control.webp",
+        "titulo": "Dónde interviene la revisión humana",
+        "alt": "Un asistente de inteligencia artificial propone varios caminos de análisis que atraviesan controles de fuente, cálculo e interpretación antes de recibir aprobación humana.",
+        "epigrafe": "La asistencia automática puede acelerar propuestas y exploraciones. La aprobación depende de una persona que comprueba la fuente, el cálculo y el sentido de la respuesta.",
+        "after_heading": "inteligencia-artificial-integrada-al-analisis",
+        "lectura": [
+          "La IA genera alternativas que deben tratarse como propuestas.",
+          "Cada alternativa atraviesa controles observables.",
+          "Los errores regresan a una etapa de corrección.",
+          "La responsabilidad de aprobar y comunicar permanece en una persona."
+        ],
+        "tipo": "ilustracion-generada",
+        "version_revision": "conservada-2026-08-24"
+      }
+    ],
+    "u01-laboratorio-faro-sur": [
+      {
+        "page": "u01-laboratorio-faro-sur",
+        "unit": "C02",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u01-notebook-colab-runtime.svg",
+        "base_generada": "theory/u01-notebook-colab-runtime-base.webp",
+        "base_provisoria": "u01-lab-notebook.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Qué conserva el notebook y qué conserva la sesión de Colab",
+        "pregunta_lectura": "¿Qué permanece guardado y qué debe reconstruirse después de reiniciar la sesión?",
+        "alt": "Dos columnas comparan el archivo ipynb con el entorno temporal de Google Colab y siguen la ejecución desde una celda de texto e import pandas hasta una variable de ruta, read_csv, un DataFrame y su salida.",
+        "epigrafe": "El archivo organiza la explicación y las instrucciones. La sesión ejecuta esas instrucciones, mantiene variables en memoria y conserva archivos temporales hasta que el entorno se reinicia.",
+        "after_heading": "primer-encuentro-con-un-notebook-colab-y-python",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "El archivo .ipynb guarda celdas, orden, metadatos y las salidas que se hayan guardado.",
+          "La sesión importa la librería, crea la variable ruta y ejecuta el método read_csv.",
+          "pd.read_csv(ruta) usa pd como alias, read_csv como función de la librería y ruta como argumento.",
+          "Al reiniciar se pierden memoria y archivos temporales; el notebook permite repetir el recorrido."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A split composition contrasting a durable notebook document with a temporary cloud runtime: cells on one side, memory and temporary file tray on the other, joined by a clear execution path.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "compare",
+          "groups": [
+            {
+              "title": "ARCHIVO .IPYNB · PERSISTE CUANDO SE GUARDA",
+              "cards": [
+                {
+                  "title": "Celda de texto",
+                  "body": [
+                    "Explica la pregunta, la fuente y el control esperado."
+                  ],
+                  "accent": "blue",
+                  "tag": "documentación",
+                  "step": 1
+                },
+                {
+                  "title": "Celda de código",
+                  "body": [
+                    "Conserva instrucciones y su orden de lectura."
+                  ],
+                  "accent": "blue",
+                  "tag": "programa",
+                  "step": 2,
+                  "code": [
+                    "import pandas as pd",
+                    "ruta = 'ventas_inicial.csv'"
+                  ]
+                },
+                {
+                  "title": "Salida guardada",
+                  "body": [
+                    "Puede conservar una tabla o mensaje, aunque conviene volver a ejecutar."
+                  ],
+                  "accent": "blue",
+                  "tag": "evidencia visible",
+                  "step": 3
+                }
+              ]
+            },
+            {
+              "title": "SESIÓN DE COLAB · EXISTE MIENTRAS ESTÁ ACTIVA",
+              "cards": [
+                {
+                  "title": "Memoria",
+                  "body": [
+                    "pd y ruta son nombres disponibles después de ejecutar sus celdas."
+                  ],
+                  "accent": "blue",
+                  "tag": "variables",
+                  "step": 4
+                },
+                {
+                  "title": "Lectura del archivo",
+                  "body": [
+                    "La sesión busca el CSV temporal y crea un DataFrame."
+                  ],
+                  "accent": "blue",
+                  "tag": "función + argumento",
+                  "step": 5,
+                  "code": [
+                    "ventas = pd.read_csv(ruta)"
+                  ]
+                },
+                {
+                  "title": "Reinicio",
+                  "body": [
+                    "Se borran variables y /content; hay que cargar el archivo y ejecutar de nuevo."
+                  ],
+                  "accent": "blue",
+                  "tag": "recuperación",
+                  "step": 6,
+                  "stats": [
+                    "memoria: vacía",
+                    "archivos: recargar"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "archivo": "u01-lab-validation.webp",
+        "titulo": "Del archivo CSV a una métrica controlada",
+        "alt": "Un archivo tabular pasa por controles de forma, significado de columnas, valores faltantes y reconciliación antes de producir una métrica; los registros rechazados quedan separados para revisión.",
+        "epigrafe": "Cada control responde una pregunta distinta sobre el archivo. Los registros que no cumplen una regla permanecen visibles y se revisan antes de interpretar la métrica.",
+        "after_heading": "controles-de-entrada-y-de-proceso",
+        "lectura": [
+          "La forma del archivo confirma filas, columnas y encabezados.",
+          "El diccionario establece qué significa cada campo.",
+          "Los faltantes y valores imposibles reciben un tratamiento explícito.",
+          "La reconciliación compara la salida con un total conocido."
+        ],
+        "tipo": "ilustracion-generada",
+        "version_revision": "conservada-2026-08-24"
+      }
+    ]
+  }
+}

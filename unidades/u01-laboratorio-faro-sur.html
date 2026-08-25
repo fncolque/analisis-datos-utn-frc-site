@@ -6,8 +6,8 @@
   <meta name="description" content="Primer laboratorio reproducible de Faro Sur. Material teórico de Análisis de Datos 2026, UTN FRC.">
   <meta name="theme-color" content="#151616">
   <title>Primer laboratorio reproducible de Faro Sur · Análisis de Datos 2026</title>
-  <link rel="stylesheet" href="../assets/styles.css?v=20260812c">
-  <script src="../assets/app.js" defer></script>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
 </head>
 <body data-page="reading">
   <a class="skip-link" href="#contenido">Saltar al contenido</a>
@@ -34,11 +34,17 @@
         <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
         <div class="eyebrow"><span>UNIDAD 1 · LABORATORIO</span></div>
         <h1 id="reading-title">Primer laboratorio reproducible de Faro Sur</h1>
-        <p class="hero-lede">El laboratorio conecta diccionario, archivo, grano, cálculo, control e interpretación mediante un notebook guiado.</p>
+        <p class="hero-lede">El primer laboratorio acompaña a quienes abren un notebook y leen código por primera vez. El recorrido presenta Google Colab, las celdas, las variables, las funciones y las librerías con ejemplos sencillos; después utiliza ese vocabulario para cargar una tabla, comprobar su forma, explicar qué representa cada fila y convertir una salida en evidencia para una decisión.</p>
         <p class="reading-question"><span>Pregunta guía</span>¿Qué controles convierten una tabla en evidencia utilizable?</p>
       </div>
-      <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
-        <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_A_v1.0_estudiantes.zip" download>Descargar Paquete A <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
       </div>
     </section>
 
@@ -46,36 +52,161 @@
       <div class="visual-explainer-heading">
         <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u01-laboratorio-faro-sur">El recorrido del primer laboratorio</h2></div>
         <div class="visual-actions">
-          <a href="../assets/diagrams/u01-laboratorio-recorrido.svg" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/u01-laboratorio-recorrido.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
           <a href="../assets/diagrams/source/u01-laboratorio-recorrido.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
         </div>
       </div>
-      <figure class="diagram-frame">
-        <a href="../assets/diagrams/u01-laboratorio-recorrido.svg" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
-          <img src="../assets/diagrams/u01-laboratorio-recorrido.svg" alt="Recorrido del laboratorio desde el diccionario y el archivo hasta el control, el resultado y el canvas de decisión." loading="lazy">
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u01-laboratorio-recorrido.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u01-laboratorio-recorrido.svg?v=20260825b" alt="Recorrido del laboratorio desde el diccionario y el archivo hasta el control, el resultado y el canvas de decisión." loading="lazy" decoding="async">
         </a>
-        <figcaption><span>Cada etapa deja una evidencia que permite reconstruir la fuente, el cálculo y la interpretación.</span><small>Elaboración propia para la asignatura.</small></figcaption>
+        <figcaption><span>Cada etapa deja una evidencia que permite reconstruir la fuente, el cálculo y la interpretación.</span></figcaption>
       </figure>
     </section>
 
     <div class="reading-shell section-pad" id="desarrollo">
       <aside class="reading-aside" aria-label="Índice del capítulo">
         <span>EN ESTE CAPÍTULO</span>
-        <nav><a href="#del-concepto-a-una-experiencia-reproducible">Del concepto a una experiencia reproducible</a><a href="#notebook-codigo-y-salida">Notebook, código y salida</a><a href="#el-diccionario-precede-al-calculo">El diccionario precede al cálculo</a><a href="#grano-que-representa-una-fila">Grano: qué representa una fila</a><a href="#controles-de-entrada-y-de-proceso">Controles de entrada y de proceso</a><a href="#reproducir-una-metrica-preparada">Reproducir una métrica preparada</a><a href="#adaptar-una-dimension">Adaptar una dimensión</a><a href="#del-resultado-al-canvas">Del resultado al canvas</a><a href="#ia-como-objeto-de-verificacion">IA como objeto de verificación</a><a href="#recuperacion-tecnica-y-conceptual">Recuperación técnica y conceptual</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
-        <a class="button button-primary" href="../downloads/Unidad 1 - Laboratorio inicial de Faro Sur - v0.1.pptx" download>Descargar presentación <span aria-hidden="true">↓</span></a>
+        <nav><a href="#del-concepto-a-una-experiencia-reproducible">Del concepto a una experiencia reproducible</a><a href="#primer-encuentro-con-un-notebook-colab-y-python">Primer encuentro con un notebook, Colab y Python</a><a href="#el-diccionario-precede-al-calculo">El diccionario precede al cálculo</a><a href="#grano-que-representa-una-fila">Grano: qué representa una fila</a><a href="#controles-de-entrada-y-de-proceso">Controles de entrada y de proceso</a><a href="#reproducir-una-metrica-preparada">Reproducir una métrica preparada</a><a href="#adaptar-una-dimension">Adaptar una dimensión</a><a href="#del-resultado-al-canvas">Del resultado al canvas</a><a href="#ia-como-objeto-de-verificacion">IA como objeto de verificación</a><a href="#recuperacion-tecnica-y-conceptual">Recuperación técnica y conceptual</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
       </aside>
       <article class="theory-copy">
-        <div class="theory-intro"><span>LECTURA DE REFERENCIA</span><p>Este desarrollo amplía los conceptos de la presentación. Los ejemplos y controles permiten reutilizarlo durante la práctica y el proyecto.</p></div>
         <h2 id="del-concepto-a-una-experiencia-reproducible">Del concepto a una experiencia reproducible</h2>
 <p>La primera unidad presentó una cadena que conecta registro, dato contextualizado, evidencia, interpretación, decisión y acción. El laboratorio permite recorrer esa cadena sobre una fuente concreta. El objetivo técnico consiste en ejecutar un notebook preparado; el trabajo de aprendizaje consiste en controlar qué archivo ingresa, qué representa cada fila y qué significado puede asignarse a la salida.</p>
 <p>La reproducibilidad comienza antes del cálculo. Dos personas pueden ejecutar el mismo código y obtener resultados diferentes cuando utilizan archivos, períodos o filtros distintos. Por eso el Paquete A identifica el release, conserva un diccionario y establece resultados de control. La versión 1.0 contiene 900 filas, 15 columnas, 426 pedidos, 72 clientes y 18 productos. Estos valores permiten comprobar que la carga terminó correctamente.</p>
 <p>Una práctica reproducible deja una traza mínima:</p>
 <pre><code class="language-text">pregunta → archivo y versión → grano → transformación → control → resultado → interpretación → límite</code></pre>
 <p>Cada componente responde una pregunta verificable. El archivo y la versión identifican la fuente. El grano fija la unidad observada. La transformación describe qué hizo el notebook. El control compara la salida con una referencia. La interpretación vincula el resultado con una decisión. El límite declara qué información falta.</p>
-<h2 id="notebook-codigo-y-salida">Notebook, código y salida</h2>
-<p>Un notebook combina texto explicativo, código ejecutable y resultados. En Google Colab, cada celda de código puede ejecutarse con el botón correspondiente. La sesión mantiene variables y archivos mientras permanece activa; una reconexión puede exigir volver a ejecutar desde el comienzo.</p>
-<p>El Paquete A contiene código preparado en Python. Python es un lenguaje de programación de propósito general. En esta instancia, el estudiante lee y ejecuta instrucciones existentes. El foco se ubica en entradas, salidas y controles. Las estructuras del lenguaje se desarrollarán más adelante cuando el curso trabaje con Pandas y análisis exploratorio.</p>
-<p>La celda de carga recibe <code>ventas_inicial.csv</code> y construye una tabla en memoria. La salida esperada informa <code>900 filas × 15 columnas</code>. Ese control detecta archivos incorrectos, cargas parciales o versiones diferentes. Avanzar con otra forma vuelve incomparable el resto de los resultados.</p>
+<h2 id="primer-encuentro-con-un-notebook-colab-y-python">Primer encuentro con un notebook, Colab y Python</h2>
+<p>Un <strong>notebook de Jupyter</strong> es un documento que intercala explicaciones, instrucciones ejecutables y los resultados producidos por esas instrucciones. Su extensión habitual es <code>.ipynb</code>. A diferencia de un archivo de texto común, el notebook permite leer una idea y probarla en el mismo lugar: una celda describe qué se hará, la siguiente contiene el código y debajo aparece una tabla, un número, un gráfico o un mensaje de control.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u01-notebook-colab-runtime-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u01-notebook-colab-runtime-title">Qué conserva el notebook y qué conserva la sesión de Colab</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué permanece guardado y qué debe reconstruirse después de reiniciar la sesión?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u01-lab-notebook.webp')">
+        <div class="atlas-board atlas-compare" style="--atlas-cols:2"><section class="atlas-compare-group">
+              <header><h4>ARCHIVO .IPYNB · PERSISTE CUANDO SE GUARDA</h4></header>
+              <div><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">documentación</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Celda de texto</h5>
+      <div class="atlas-card-copy"><p>Explica la pregunta, la fuente y el control esperado.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">programa</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Celda de código</h5>
+      <div class="atlas-card-copy"><p>Conserva instrucciones y su orden de lectura.</p></div>
+      <div class="atlas-code-lines"><code>import pandas as pd</code><code>ruta = &#x27;ventas_inicial.csv&#x27;</code></div>
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">evidencia visible</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Salida guardada</h5>
+      <div class="atlas-card-copy"><p>Puede conservar una tabla o mensaje, aunque conviene volver a ejecutar.</p></div>
+
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>SESIÓN DE COLAB · EXISTE MIENTRAS ESTÁ ACTIVA</h4></header>
+              <div><article class="atlas-card is-blue" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">variables</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Memoria</h5>
+      <div class="atlas-card-copy"><p>pd y ruta son nombres disponibles después de ejecutar sus celdas.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">función + argumento</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Lectura del archivo</h5>
+      <div class="atlas-card-copy"><p>La sesión busca el CSV temporal y crea un DataFrame.</p></div>
+      <div class="atlas-code-lines"><code>ventas = pd.read_csv(ruta)</code></div>
+    </article><article class="atlas-card is-blue" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">recuperación</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>Reinicio</h5>
+      <div class="atlas-card-copy"><p>Se borran variables y /content; hay que cargar el archivo y ejecutar de nuevo.</p></div>
+      <div class="atlas-stats"><span>memoria: vacía</span><span>archivos: recargar</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u01-notebook-colab-runtime.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El archivo organiza la explicación y las instrucciones. La sesión ejecuta esas instrucciones, mantiene variables en memoria y conserva archivos temporales hasta que el entorno se reinicia.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>El archivo .ipynb guarda celdas, orden, metadatos y las salidas que se hayan guardado.</p></li><li><span>02</span><p>La sesión importa la librería, crea la variable ruta y ejecuta el método read_csv.</p></li><li><span>03</span><p>pd.read_csv(ruta) usa pd como alias, read_csv como función de la librería y ruta como argumento.</p></li><li><span>04</span><p>Al reiniciar se pierden memoria y archivos temporales; el notebook permite repetir el recorrido.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<figure class="sourced-visual sourced-visual-inline">
+      <img src="../assets/images/jupyter-notebook-interface.png" alt="Captura de un notebook de Jupyter con celdas de código numeradas y resultados visibles debajo." width="1536" height="1024" loading="lazy" decoding="async">
+
+      <figcaption>
+        <span>Las marcas In y Out permiten reconocer qué celda se ejecutó y qué resultado produjo. Google Colab utiliza el mismo modelo de documento, aunque su interfaz visual es diferente.</span>
+        <small>Fuente: <a href="https://commons.wikimedia.org/wiki/File:Jupyter_Notebook.png" target="_blank" rel="noopener noreferrer">Andrey Yakimchik</a> · CC BY 4.0</small>
+      </figcaption>
+    </figure>
+
+<p><strong>Google Colab</strong> ofrece una forma de abrir y ejecutar notebooks desde el navegador. Está basado en Jupyter y evita instalar Python o configurar un entorno local para esta primera experiencia. El Paquete A ya contiene el código necesario. El trabajo inicial consiste en reconocer las partes del documento, ejecutarlas en el orden indicado, observar qué salida produce cada paso y modificar únicamente los valores señalados.</p>
+<p>Esta aproximación permite concentrarse en el significado del análisis. Durante la práctica aparecerán instrucciones de Python, pero todavía no se espera que el estudiante escriba un programa desde cero. La unidad dedicada a Python y Pandas retomará la sintaxis con mayor profundidad. Aquí construiremos el vocabulario mínimo para leer el notebook sin tratar el código como una caja cerrada.</p>
+<h3 id="el-documento-y-la-sesion-de-ejecucion-son-cosas-distintas">El documento y la sesión de ejecución son cosas distintas</h3>
+<p>El <strong>notebook</strong> es el archivo que conserva las celdas de texto, el código escrito y, según la configuración, algunas salidas guardadas. La <strong>sesión de ejecución</strong> es la computadora virtual temporal que Colab conecta al documento para ejecutar el código. Esa sesión recuerda variables, funciones y archivos cargados mientras permanece activa.</p>
+<p>La diferencia se vuelve visible después de una desconexión. El notebook puede seguir mostrando una tabla generada anteriormente, aunque la nueva sesión todavía no haya cargado el archivo que la produjo. Para reconstruir un resultado confiable conviene ejecutar las celdas desde el comienzo. Los archivos temporales también pueden desaparecer al reiniciarse la sesión; por eso el ZIP original y una copia del notebook deben conservarse fuera de ese entorno temporal.</p>
+<h3 id="celdas-de-texto-celdas-de-codigo-y-salidas">Celdas de texto, celdas de código y salidas</h3>
+<p>Las <strong>celdas de texto</strong> presentan títulos, explicaciones, consignas y preguntas de control. Se leen como los párrafos de este sitio. Las <strong>celdas de código</strong> contienen instrucciones para Python. A la izquierda muestran un botón de ejecución. Cuando una celda de código termina, su salida aparece debajo y queda asociada visualmente con la instrucción que la generó.</p>
+<p>Una salida puede ser un número, un mensaje, una tabla o un gráfico. También puede no aparecer nada. Algunas celdas preparan herramientas para utilizar más adelante y terminan correctamente sin mostrar un resultado visible. El indicador de ejecución y la ausencia de un mensaje de error permiten distinguir esa situación de una falla.</p>
+<p>Para ejecutar una celda se puede utilizar el botón triangular, similar al ícono <strong>Play</strong> de un reproductor de música o video. La combinación <code>Shift + Enter</code> también ejecuta la celda seleccionada y avanza a la siguiente. La primera ejecución puede demorar mientras Colab conecta la sesión; volver a presionar el botón no acelera esa conexión, por lo que conviene observar el indicador y esperar a que termine.</p>
+<p>Cada nueva activación vuelve a ejecutar las instrucciones. Una operación es <strong>idempotente</strong> cuando repetirla deja el mismo estado, como asignar otra vez <code>DIMENSION = "familia"</code>. Otras operaciones acumulan efectos: <code>contador += 1</code> aumenta el valor en cada ejecución, agregar una fila puede duplicarla y enviar una solicitud puede registrar dos veces la misma acción. Antes de repetir una celda, conviene reconocer si reconstruye un resultado desde la misma fuente o modifica algo que ya existe.</p>
+<h3 id="el-orden-de-ejecucion-forma-parte-del-resultado">El orden de ejecución forma parte del resultado</h3>
+<p>Python recuerda lo que ya se ejecutó durante la sesión. Una celda puede utilizar un nombre definido varias celdas antes. El siguiente ejemplo prepara un valor:</p>
+<pre><code class="language-python">DIMENSION = &quot;familia&quot;</code></pre>
+<p>Otra celda puede utilizarlo después:</p>
+<pre><code class="language-python">print(&quot;El resumen se calculará por&quot;, DIMENSION)</code></pre>
+<p>La segunda celda funciona cuando la primera ya fue ejecutada. Si la sesión se reinició o las celdas se ejecutaron fuera de orden, Python puede informar que <code>DIMENSION</code> no existe. Cambiar el texto <code>"familia"</code> por <code>"region"</code> tampoco actualiza las salidas anteriores de manera automática. Después de editar una celda hay que volver a ejecutarla y repetir las celdas posteriores que dependen de ese valor.</p>
+<p>La regla de trabajo será simple: comenzar arriba, avanzar en orden y detenerse a observar cada control. Si aparece un resultado extraño, se revisa primero el último cambio y luego se reconstruye la ejecución desde una celda conocida.</p>
+<h3 id="variables-nombres-que-permiten-reutilizar-valores">Variables: nombres que permiten reutilizar valores</h3>
+<p>Una <strong>variable</strong> es un nombre asociado con un valor que Python podrá utilizar más adelante. En una asignación, el signo <code>=</code> puede leerse como “guardar el valor de la derecha con el nombre de la izquierda”.</p>
+<pre><code class="language-python">ARCHIVO = &quot;ventas_inicial.csv&quot;
+FILAS_ESPERADAS = 900
+DIMENSION = &quot;familia&quot;</code></pre>
+<p><code>ARCHIVO</code>, <code>FILAS_ESPERADAS</code> y <code>DIMENSION</code> son nombres elegidos para que el código pueda leerse. Los textos se escriben entre comillas; los números utilizados para calcular se escriben sin ellas. <code>"900"</code> representa texto, mientras que <code>900</code> representa un número entero. Durante esta práctica se modificarán valores como <code>"familia"</code>, pero se conservarán el nombre de la variable, el signo igual y las comillas.</p>
+<p>Una variable puede cambiar cuando se ejecuta una nueva asignación. Esa posibilidad permite adaptar el mismo bloque de análisis sin reescribirlo. También explica por qué el orden importa: el valor vigente es el último que la sesión recibió.</p>
+<h3 id="funciones-acciones-preparadas-para-volver-a-usarse">Funciones: acciones preparadas para volver a usarse</h3>
+<p>Una <strong>función</strong> reúne una tarea bajo un nombre. Se reconoce porque el nombre aparece seguido de paréntesis. Lo que se escribe entre esos paréntesis es la información que la función necesita para trabajar.</p>
+<pre><code class="language-python">print(&quot;Archivo cargado&quot;)
+round(15.678, 2)
+len(tabla)</code></pre>
+<p><code>print</code> muestra información, <code>round</code> redondea un número y <code>len</code> cuenta elementos. En <code>round(15.678, 2)</code>, la coma separa el número que será redondeado de la cantidad de decimales solicitada.</p>
+<p>El notebook también puede contener una celda que comienza con <code>def</code>. Esa palabra prepara una función propia para utilizarla después:</p>
+<pre><code class="language-python">def calcular_venta_neta(cantidad, precio, descuento):
+    return cantidad * precio * (1 - descuento)</code></pre>
+<p>Ejecutar esta definición deja la función disponible y puede no mostrar nada. Otra celda la utiliza al escribir <code>calcular_venta_neta(...)</code>. Las líneas desplazadas hacia la derecha pertenecen a la función; esos espacios forman parte de la sintaxis y deben conservarse. En este laboratorio alcanza con reconocer la definición, ejecutarla y comprender qué información recibe. La escritura autónoma de funciones se retomará más adelante.</p>
+<h3 id="librerias-colecciones-de-herramientas-ya-construidas">Librerías: colecciones de herramientas ya construidas</h3>
+<p>Python incluye funciones básicas y puede incorporar otras mediante <strong>librerías</strong>. Una librería reúne código preparado para un tipo de trabajo. La primera celda del notebook utiliza una instrucción frecuente:</p>
+<pre><code class="language-python">import pandas as pd</code></pre>
+<p><code>pandas</code> es la librería que utilizaremos para trabajar con tablas. La expresión <code>as pd</code> asigna una abreviatura convencional. Por eso las instrucciones posteriores comienzan con <code>pd.</code>, como en <code>pd.read_csv(...)</code>. La celda de importación debe ejecutarse antes de utilizar la librería y, en esta práctica, no necesita modificaciones.</p>
+<p>La siguiente instrucción lee el archivo CSV y guarda la tabla en una variable:</p>
+<pre><code class="language-python">ventas = pd.read_csv(&quot;ventas_inicial.csv&quot;)</code></pre>
+<p><code>read_csv</code> puede leerse como “leer un archivo CSV”. El punto indica que esa herramienta pertenece a Pandas. El resultado se guarda con el nombre <code>ventas</code>. Pandas representa la tabla mediante un objeto llamado <strong>DataFrame</strong>: una estructura con filas y columnas que permite seleccionar, ordenar, agrupar y calcular sin modificar el archivo original.</p>
+<h3 id="comentarios-y-simbolos-que-ayudan-a-leer">Comentarios y símbolos que ayudan a leer</h3>
+<p>El signo <code>#</code> inicia un comentario destinado a la persona que lee el código. Python ignora el resto de esa línea. En el Paquete A, los comentarios indican qué valor puede cambiarse y qué control debe observarse.</p>
+<pre><code class="language-python"># Cambiar solamente el texto entre comillas
+DIMENSION = &quot;familia&quot;</code></pre>
+<p>No hace falta memorizar toda la sintaxis. Alcanza con reconocer los signos que aparecen en las celdas y evitar borrarlos cuando la consigna solicita un cambio pequeño.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Elemento</th>
+<th>Lectura inicial</th>
+</tr></thead><tbody>
+<tr><td><code>=</code></td><td>guarda un valor con un nombre</td></tr>
+<tr><td><code>"texto"</code></td><td>representa un valor de texto</td></tr>
+<tr><td><code>( )</code></td><td>contiene la información entregada a una función</td></tr>
+<tr><td><code>,</code></td><td>separa valores dentro de una función</td></tr>
+<tr><td><code>.</code></td><td>accede a una herramienta de una librería u objeto</td></tr>
+<tr><td><code>[ ]</code></td><td>suele expresar una colección o una selección</td></tr>
+<tr><td><code>:</code></td><td>abre un bloque de código</td></tr>
+<tr><td>sangría</td><td>indica qué líneas pertenecen al bloque</td></tr>
+<tr><td><code>#</code></td><td>introduce un comentario para quien lee</td></tr>
+</tbody></table></div>
+<h3 id="los-errores-ofrecen-informacion-para-diagnosticar">Los errores ofrecen información para diagnosticar</h3>
+<p>Un mensaje de error indica que Python no pudo completar una instrucción. El notebook no queda destruido por esa situación. Para diagnosticarla conviene conservar el mensaje completo, identificar la celda y revisar el último cambio. Entre las causas iniciales más frecuentes aparecen una comilla o un paréntesis borrados, una celda anterior sin ejecutar, un nombre escrito de otra manera o un archivo que todavía no fue cargado.</p>
+<p>Si la causa no resulta visible, se vuelve a ejecutar el notebook desde el comienzo y se observa en qué celda aparece la primera diferencia. Pedir ayuda mostrando el mensaje completo permite ubicar el problema con mucha más precisión que decir únicamente que “no funciona”. Esta misma disciplina se utilizará después para investigar diferencias en SQL, transformaciones y reportes.</p>
+<h3 id="la-primera-carga-funciona-como-prueba-de-orientacion">La primera carga funciona como prueba de orientación</h3>
+<p>La celda de carga recibe <code>ventas_inicial.csv</code> y construye el DataFrame <code>ventas</code> en memoria. La salida esperada informa <code>900 filas × 15 columnas</code>. Ese valor confirma que el archivo, la versión y el separador coinciden con la práctica preparada. Una forma diferente puede indicar que se cargó otro archivo, que la lectura quedó incompleta o que el esquema cambió.</p>
+<p>El primer objetivo consiste en poder explicar cuatro cosas con palabras sencillas: qué celda carga el archivo, en qué variable queda la tabla, qué salida confirma la carga y qué debería revisarse si el control difiere. Esta lectura prepara el trabajo posterior con el diccionario, el grano y las métricas.</p>
 <h2 id="el-diccionario-precede-al-calculo">El diccionario precede al cálculo</h2>
 <p>Un diccionario de datos describe el significado, tipo y uso de cada campo. La tabla inicial incluye identificadores, dimensiones, fechas y medidas. Esta clasificación ayuda a anticipar qué operaciones tienen sentido.</p>
 <div class="theory-table" tabindex="0"><table><thead><tr>
@@ -105,6 +236,21 @@
 <p>El grano también limita la evidencia. La tabla permite calcular ventas y margen por producto, familia o región. Una explicación sobre la causa de una demora necesita información sobre disponibilidad, depósito, transportista o capacidad. La ausencia de esas columnas debe aparecer en la interpretación.</p>
 <h2 id="controles-de-entrada-y-de-proceso">Controles de entrada y de proceso</h2>
 <p>Un control compara el estado observado con una expectativa. El primer control utiliza forma, campos y versión. Luego pueden revisarse nulos, duplicados y reglas básicas. El release inicial mantiene la dificultad técnica acotada y presenta datos limpios, pero el hábito de control comienza aquí.</p>
+<figure class="generated-diagram" aria-labelledby="generated-u01-lab-validation-title">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u01-lab-validation-title">Del archivo CSV a una métrica controlada</h3>
+      </div>
+      <div class="generated-diagram-media">
+        <img src="../assets/images/generated/u01-lab-validation.webp?v=20260825b" alt="Un archivo tabular pasa por controles de forma, significado de columnas, valores faltantes y reconciliación antes de producir una métrica; los registros rechazados quedan separados para revisión." width="1536" height="1024" loading="lazy" decoding="async">
+      </div>
+      <figcaption>
+        <p>Cada control responde una pregunta distinta sobre el archivo. Los registros que no cumplen una regla permanecen visibles y se revisan antes de interpretar la métrica.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La forma del archivo confirma filas, columnas y encabezados.</p></li><li><span>02</span><p>El diccionario establece qué significa cada campo.</p></li><li><span>03</span><p>Los faltantes y valores imposibles reciben un tratamiento explícito.</p></li><li><span>04</span><p>La reconciliación compara la salida con un total conocido.</p></li></ol>
+        <small>Ilustración generada con OpenAI Images.</small>
+      </figcaption>
+    </figure>
+
 <div class="theory-table" tabindex="0"><table><thead><tr>
 <th>Control</th>
 <th>Resultado esperado</th>
@@ -120,14 +266,13 @@
 <h2 id="reproducir-una-metrica-preparada">Reproducir una métrica preparada</h2>
 <p>El notebook calcula resultados a partir de columnas documentadas. La venta neta surge de cantidad, precio y descuento. El margen bruto compara esa venta con el costo asociado. La tasa de entrega a tiempo utiliza las fechas y reglas incluidas en el release.</p>
 <p>Una métrica agregada necesita declarar numerador, denominador y población. El margen porcentual total se calcula como margen bruto total dividido por venta neta total. El promedio simple de porcentajes por fila asignaría el mismo peso a operaciones de tamaños diferentes. La ficha del KPI evita esa ambigüedad.</p>
-<p>La demostración docente debe mostrar una ejecución completa antes de solicitar cambios. La secuencia visible incluye la carga, los controles, el resumen por familia y una visualización. Luego el equipo reproduce el recorrido sobre su copia.</p>
 <h2 id="adaptar-una-dimension">Adaptar una dimensión</h2>
 <p>La primera modificación cambia una sola variable:</p>
 <pre><code class="language-python">DIMENSION = &quot;region&quot;</code></pre>
 <p>El bloque de agregación permanece estable. El cambio permite observar cómo la misma métrica responde otra pregunta. El resumen por familia ayuda a estudiar mezcla de productos; el resumen por región permite comparar contextos comerciales y logísticos.</p>
 <p>La adaptación exige interpretar la salida. Patagonia presenta una tasa de entrega a tiempo menor dentro del extracto. La tabla permite describir la diferencia. La explicación causal requiere incorporar datos sobre transporte, depósito, promesa o disponibilidad. Esa frontera convierte el dato faltante en parte de la evidencia.</p>
 <h2 id="del-resultado-al-canvas">Del resultado al canvas</h2>
-<p>El canvas decisión–métrica–acción organiza la transferencia. El equipo selecciona una tensión, identifica a la persona que puede actuar y escribe una decisión con alternativas. Después propone un KPI y vincula la definición con una fuente.</p>
+<p>El canvas decisión–métrica–acción organiza la transferencia. Quien realiza la práctica, de manera individual o en equipo, selecciona una tensión, identifica a la persona que puede actuar y escribe una decisión con alternativas. Después propone un KPI y vincula la definición con una fuente.</p>
 <div class="theory-table" tabindex="0"><table><thead><tr>
 <th>Componente</th>
 <th>Ejemplo Faro Sur</th>
@@ -142,7 +287,7 @@
 </tbody></table></div>
 <p>La observación cita el resultado. La interpretación propone un significado compatible con el proceso. La decisión identifica una acción condicionada. El límite declara qué debería conocerse antes de comprometer una recomendación.</p>
 <h2 id="ia-como-objeto-de-verificacion">IA como objeto de verificación</h2>
-<p>Una asistencia de IA puede explicar código o proponer una lectura. El equipo conserva la instrucción, identifica la parte utilizada y la contrasta con el notebook. Una explicación sobre menor cumplimiento en Patagonia debe coincidir con la salida y respetar el grano. Una atribución directa a distancia o transporte excede la fuente disponible.</p>
+<p>Una asistencia de IA puede explicar código o proponer una lectura. La persona o el equipo conserva la instrucción, identifica la parte utilizada y la contrasta con el notebook. Una explicación sobre menor cumplimiento en Patagonia debe coincidir con la salida y respetar el grano. Una atribución directa a distancia o transporte excede la fuente disponible.</p>
 <p>El control puede registrarse con cuatro campos:</p>
 <ol class="theory-list"><li>propuesta recibida;</li><li>evidencia utilizada para comprobarla;</li><li>corrección realizada;</li><li>conclusión aceptada y su límite.</li></ol>
 <p>La privacidad se mantiene como regla operativa. El caso Faro Sur es sintético. Los trabajos con casos reales requieren autorización, anonimización y revisión de la información enviada a servicios externos.</p>
@@ -168,18 +313,17 @@
     </div>
 
     <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
-      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Una fila conecta el pedido con una decisión</h2></div>
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Qué aprendemos al observar una fila de pedido</h2></div>
       <div class="applied-prose"><p>El pedido FS-2025-0328 aparece en dos filas porque incluye dos productos. La diferencia entre 900 líneas y 426 pedidos obliga a declarar el grano antes de contar o agregar.</p><p>El resumen por familia permite estudiar mezcla comercial. El cambio a región muestra una tasa de cumplimiento menor en Patagonia y abre preguntas sobre depósito, transportista, promesa y disponibilidad. Esos datos faltantes delimitan la interpretación.</p></div>
     </section>
-
-    
 
     <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
       <div class="practice-number" aria-hidden="true">1.L</div>
       <div>
         <div class="section-kicker">Práctica vinculada</div>
         <h2 id="practice-title">Ejecutar el Paquete A y construir el primer canvas</h2>
-        <p>El equipo abre el notebook en Colab, carga <code>ventas_inicial.csv</code>, confirma <code>900 × 15</code>, explica el grano, reproduce las métricas y cambia la dimensión a región. La evidencia final registra observación, interpretación, decisión, dato faltante y control de IA.</p>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>La actividad comienza al abrir una copia del notebook en Colab y cargar <code>ventas_inicial.csv</code>. Después de confirmar <code>900 × 15</code>, cada estudiante o equipo explica el grano, reproduce las métricas preparadas y cambia la dimensión a región. La evidencia final registra la observación, la interpretación, la decisión posible, el dato que todavía falta y el control aplicado a cualquier aporte de IA.</p>
         <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_A_v1.0_estudiantes.zip" download>Descargar Paquete A <span aria-hidden="true">↓</span></a>
       </div>
     </section>
@@ -208,7 +352,7 @@
       <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
     </section>
 
-    
+
 
     <nav class="module-nav" aria-label="Navegación entre capítulos">
       <a href="u01-decisiones-datos-ia.html"><span>ANTERIOR</span><b>Unidad 1 · Decisiones, datos e IA</b></a>
