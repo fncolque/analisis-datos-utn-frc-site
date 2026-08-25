@@ -1,10 +1,11 @@
 {
   "as_of": "2026-08-25",
-  "generated_at_utc": "2026-08-25T14:52:43+00:00",
+  "generated_at_utc": "2026-08-25T15:07:29+00:00",
   "timezone": "America/Argentina/Buenos_Aires",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
-    "Unidad 1 · Laboratorio inicial de Faro Sur"
+    "Unidad 1 · Laboratorio inicial de Faro Sur",
+    "Unidad 2 · Ecosistema, roles y arquitectura"
   ],
   "contact": "analisisdatosutnfrc@gmail.com"
 }

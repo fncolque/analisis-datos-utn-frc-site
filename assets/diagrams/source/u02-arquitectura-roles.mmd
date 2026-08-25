@@ -1,0 +1,20 @@
+flowchart TB
+    S["Sistemas fuente<br/>ERP · logística · APIs"] --> C["Captura<br/>e integración"]
+    C --> A["Almacenamiento"]
+    A --> T["Transformación<br/>y calidad"]
+    T --> M["Modelo<br/>analítico"]
+    M --> V["Visualización<br/>y decisión"]
+    DE["Data<br/>Engineer"] -.-> C
+    DE -.-> A
+    AE["Analytics<br/>Engineer"] -.-> T
+    AE -.-> M
+    DA["Data<br/>Analyst"] -.-> M
+    DA -.-> V
+    G["Permisos · costos<br/>trazabilidad"] --- C
+    G --- A
+    G --- T
+    G --- M
+    classDef accent fill:#FFFF33,color:#151616,stroke:#1F497D,stroke-width:2px;
+    classDef role fill:#1F497D,color:#FFFFFF,stroke:#1F497D,stroke-width:2px;
+    class V accent;
+    class DE,AE,DA role;

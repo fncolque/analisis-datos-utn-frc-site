@@ -253,6 +253,177 @@
         "tipo": "ilustracion-generada",
         "version_revision": "conservada-2026-08-24"
       }
+    ],
+    "u02-ecosistema-arquitectura": [
+      {
+        "page": "u02-ecosistema-arquitectura",
+        "unit": "C03",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u02-arquitecturas-por-escala.svg",
+        "base_generada": "theory/u02-arquitecturas-por-escala-base.webp",
+        "base_provisoria": "u02-cloud-elasticity.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Una necesidad analítica, tres escalas de arquitectura",
+        "pregunta_lectura": "¿Cuándo alcanza una solución de archivos y cuándo conviene sumar automatización o servicios administrados?",
+        "alt": "Tres carriles comparan una solución personal con OneDrive y Power Query, una solución colaborativa con Power Automate, Dataflow y Power Apps, y una plataforma de datos en GCP.",
+        "epigrafe": "La arquitectura cambia cuando aumentan volumen, frecuencia, latencia, colaboración, permisos y capacidad de operación. Power Apps ocupa la frontera de captura; Power Query transforma de manera reproducible en Excel y Power BI.",
+        "after_heading": "computo-y-almacenamiento-en-la-nube",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La primera ruta sirve para archivos controlados y actualización manual o periódica.",
+          "La segunda agrega captura validada, automatización y trabajo compartido dentro del ecosistema Microsoft.",
+          "La tercera separa ingestión, procesamiento, warehouse y consumo para operar a mayor escala.",
+          "La elección se revisa con volumen, frecuencia, latencia, permisos, costo y capacidad del equipo."
+        ],
+        "fuentes": [
+          {
+            "label": "Microsoft Learn · ¿Qué es Power Query?",
+            "url": "https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query"
+          },
+          {
+            "label": "Microsoft Learn · Power Apps",
+            "url": "https://learn.microsoft.com/en-us/power-apps/powerapps-overview"
+          }
+        ],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Three horizontal architecture lanes of increasing operational scale, from a shared file workflow through collaborative automation to a managed cloud data platform; restrained icons and clear responsibility boundaries.",
+        "version_revision": "1.0",
+        "svg_height": 1150,
+        "estructura": {
+          "layout": "lanes",
+          "lanes": [
+            {
+              "label": "ESCALA 1",
+              "title": "Archivo controlado",
+              "cards": [
+                {
+                  "title": "Fuente",
+                  "body": [
+                    "OneDrive o SharePoint"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Transformación",
+                  "body": [
+                    "Power Query"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Consumo",
+                  "body": [
+                    "Excel o Power BI"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Conviene cuando",
+                  "body": [
+                    "volumen y frecuencia son bajos"
+                  ],
+                  "accent": "blue",
+                  "stats": [
+                    "operación simple"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "ESCALA 2",
+              "title": "Flujo colaborativo",
+              "cards": [
+                {
+                  "title": "Captura",
+                  "body": [
+                    "Power Apps + Dataverse"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Movimiento",
+                  "body": [
+                    "Power Automate desde Outlook o SharePoint"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Preparación",
+                  "body": [
+                    "Power Query o Dataflow"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Consumo",
+                  "body": [
+                    "Power BI con permisos compartidos"
+                  ],
+                  "accent": "blue",
+                  "stats": [
+                    "automatización media"
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "ESCALA 3",
+              "title": "Plataforma administrada",
+              "cards": [
+                {
+                  "title": "Fuentes",
+                  "body": [
+                    "sistemas operacionales y eventos"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Servicios GCP",
+                  "body": [
+                    "ingestión y procesamiento administrados"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Warehouse",
+                  "body": [
+                    "capas raw, staging y marts"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "BI",
+                  "body": [
+                    "consumo gobernado"
+                  ],
+                  "accent": "blue",
+                  "stats": [
+                    "operación continua"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "archivo": "u02-role-handoffs.webp",
+        "titulo": "Cómo se reparten las responsabilidades del dato",
+        "alt": "Tres estaciones de trabajo conectan ingeniería de datos, transformación con controles y análisis orientado a decisiones, con artefactos y acuerdos visibles entre etapas.",
+        "epigrafe": "Los roles colaboran mediante entregas verificables. Cada traspaso incluye una fuente identificada, un contrato y controles que el siguiente rol puede revisar.",
+        "after_heading": "roles-del-ecosistema-de-datos",
+        "lectura": [
+          "Ingeniería conecta y estabiliza las fuentes.",
+          "La transformación organiza modelos y pruebas de calidad.",
+          "El análisis interpreta métricas para una audiencia concreta.",
+          "Gobierno, permisos y costo atraviesan todo el recorrido."
+        ],
+        "tipo": "ilustracion-generada",
+        "version_revision": "conservada-para-rollback-2026-08-24",
+        "publicar": false
+      }
     ]
   }
 }

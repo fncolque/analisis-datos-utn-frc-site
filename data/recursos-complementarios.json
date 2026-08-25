@@ -112,6 +112,65 @@
           "descripcion": "Introduce DataFrame, selección, resumen y operaciones tabulares. Conviene recorrer las primeras secciones después del laboratorio."
         }
       ]
+    },
+    "u02-ecosistema-arquitectura": {
+      "titulo": "Rutas para comprender cloud y arquitectura de datos",
+      "introduccion": "Los materiales parten de conceptos de nube y avanzan hacia arquitecturas de datos de mayor escala. La comparación con Faro Sur ayuda a reconocer qué componentes responden a una necesidad real.",
+      "diagrama": {
+        "archivo": "u02-arquitectura-roles.svg",
+        "fuente": "u02-arquitectura-roles.mmd",
+        "alt": "Arquitectura por capas desde sistemas fuente hasta decisiones, con las responsabilidades principales de ingeniería, análisis y analytics engineering.",
+        "titulo": "Capas, controles y responsabilidades",
+        "epigrafe": "Cada capa recibe datos, aplica una transformación observable y entrega un contrato al siguiente consumidor.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "imagen": {
+        "archivo": "generated/u02-cloud-contemporary.webp",
+        "alt": "Ilustración contemporánea de una nube organizada en tres capas: infraestructura, plataforma de datos y aplicaciones analíticas, conectadas con dispositivos y sistemas operacionales.",
+        "epigrafe": "La infraestructura aporta cómputo, redes y almacenamiento. La plataforma organiza servicios compartidos para procesar y gobernar datos. Las aplicaciones utilizan esas capacidades para responder preguntas concretas desde distintos dispositivos.",
+        "generada": true,
+        "credito": "Ilustración generada con ChatGPT · OpenAI Images.",
+        "prompt": "Nube contemporánea de tres capas con infraestructura, plataforma de datos, aplicaciones analíticas y dispositivos conectados; estilo editorial técnico marfil, azul UTN y amarillo; sin texto ni logotipos.",
+        "after_heading": "computo-y-almacenamiento-en-la-nube"
+      },
+      "recursos": [
+        {
+          "tipo": "Ruta gratuita",
+          "titulo": "Describe cloud concepts",
+          "institucion": "Microsoft Learn",
+          "url": "https://learn.microsoft.com/es-es/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/",
+          "idioma": "Español",
+          "dedicacion": "3 módulos · ≈ 1 h",
+          "descripcion": "Introduce modelos de servicio, responsabilidad compartida y criterios básicos de adopción de nube."
+        },
+        {
+          "tipo": "Curso abierto",
+          "titulo": "Data Engineering Zoomcamp",
+          "institucion": "DataTalks.Club",
+          "url": "https://github.com/DataTalksClub/data-engineering-zoomcamp",
+          "idioma": "Inglés",
+          "dedicacion": "Ruta extensa · autoguiada",
+          "descripcion": "Recorrido práctico por ingestión, almacenamiento, orquestación, warehouse y analytics engineering. Conviene elegir módulos según interés."
+        },
+        {
+          "tipo": "Guía de arquitectura",
+          "titulo": "Google Cloud Well-Architected Framework",
+          "institucion": "Google Cloud",
+          "url": "https://docs.cloud.google.com/architecture/framework?hl=en",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta por criterio",
+          "descripcion": "Pautas para evaluar seguridad, confiabilidad, costo y operación de una arquitectura cloud."
+        },
+        {
+          "tipo": "Diagrama y PDF",
+          "titulo": "Modern Data Analytics Reference Architecture",
+          "institucion": "AWS Architecture Center",
+          "url": "https://docs.aws.amazon.com/architecture-diagrams/latest/modern-data-analytics-on-aws/modern-data-analytics-on-aws.html",
+          "idioma": "Inglés",
+          "dedicacion": "Exploración visual · 15 min",
+          "descripcion": "Arquitectura industrial para comparar escala, capas y servicios con la solución mínima propuesta para Faro Sur."
+        }
+      ]
     }
   }
 }

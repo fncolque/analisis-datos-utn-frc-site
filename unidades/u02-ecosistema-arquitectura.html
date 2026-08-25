@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ecosistema, roles y arquitectura proporcional. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Ecosistema, roles y arquitectura proporcional · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 2</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 2</span></div>
+        <h1 id="reading-title">Ecosistema, roles y arquitectura proporcional</h1>
+        <p class="hero-lede">Una arquitectura de datos describe el recorrido que siguen los registros desde los sistemas que los producen hasta las personas que los utilizan. El capítulo explica cómo elegir fuentes, almacenamiento, transformaciones y controles de acuerdo con una decisión concreta, y cómo asignar responsabilidades que el equipo realmente pueda operar.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué arquitectura puede operar el equipo y qué decisión debe sostener?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar Paquete B <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u02-ecosistema-arquitectura">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u02-ecosistema-arquitectura">Capas, controles y responsabilidades</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u02-arquitectura-roles.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u02-arquitectura-roles.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-standard">
+        <a href="../assets/diagrams/u02-arquitectura-roles.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u02-arquitectura-roles.svg?v=20260825b" alt="Arquitectura por capas desde sistemas fuente hasta decisiones, con las responsabilidades principales de ingeniería, análisis y analytics engineering." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>Cada capa recibe datos, aplica una transformación observable y entrega un contrato al siguiente consumidor.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#la-arquitectura-responde-a-requisitos">La arquitectura responde a requisitos</a><a href="#el-ciclo-de-vida-del-dato">El ciclo de vida del dato</a><a href="#roles-del-ecosistema-de-datos">Roles del ecosistema de datos</a><a href="#sistemas-operacionales-y-sistemas-analiticos">Sistemas operacionales y sistemas analíticos</a><a href="#formas-de-almacenamiento">Formas de almacenamiento</a><a href="#computo-y-almacenamiento-en-la-nube">Cómputo y almacenamiento en la nube</a><a href="#big-data-como-diagnostico-de-escala">Big Data como diagnóstico de escala</a><a href="#una-arquitectura-proporcional-para-faro-sur">Una arquitectura proporcional para Faro Sur</a><a href="#caso-aplicado-archivos-recurrentes">Caso aplicado: archivos recurrentes</a><a href="#trade-offs-de-diseno">Trade-offs de diseño</a><a href="#fallas-de-diseno-que-conviene-reconocer">Fallas de diseño que conviene reconocer</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="la-arquitectura-responde-a-requisitos">La arquitectura responde a requisitos</h2>
+<p>Una arquitectura de datos describe cómo se originan, se transportan, se almacenan y se usan los datos. También asigna responsabilidades y controles. Su representación puede incluir sistemas, archivos, bases, procesos de transformación, modelos analíticos y herramientas de consumo.</p>
+<p>El diseño comienza con una decisión. Si la dirección de Faro Sur revisa margen por familia una vez por semana, la arquitectura necesita integrar ventas y costos con esa frecuencia, conservar una copia reproducible y entregar un modelo que permita comparar períodos. Un flujo en tiempo real agregaría costo y operación sin cambiar la decisión semanal.</p>
+<p>Los requisitos principales surgen de preguntas concretas. ¿Quién consume la información? ¿Qué fuentes participan? ¿Qué representa cada fila? ¿Cuánta demora es tolerable? ¿Qué volumen existe y cómo crece? ¿Qué nivel de disponibilidad requiere el proceso? ¿Qué datos necesitan protección? ¿Qué capacidades tiene el equipo que operará la solución?</p>
+<p>La arquitectura proporcional satisface esos requisitos con una cantidad de componentes que el equipo puede comprender y mantener. Una práctica académica o una empresa mediana puede trabajar con archivos versionados, DuckDB y Power BI. Una plataforma global que procesa millones de eventos por segundo enfrenta otra escala, otras obligaciones y un presupuesto diferente. El dibujo técnico adquiere valor cuando permite explicar esa relación entre requisitos y decisiones de diseño.</p>
+<h2 id="el-ciclo-de-vida-del-dato">El ciclo de vida del dato</h2>
+<p>El ciclo de vida sigue al dato desde su generación hasta su eliminación o archivo. Cada etapa cambia alguna propiedad del registro y puede introducir controles.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Etapa</th>
+<th>Pregunta principal</th>
+<th>Ejemplo en Faro Sur</th>
+</tr></thead><tbody>
+<tr><td>Generación</td><td>¿Qué hecho registra el proceso?</td><td>un pedido confirmado</td></tr>
+<tr><td>Captura</td><td>¿Cómo sale del sistema fuente?</td><td>una exportación CSV o una API</td></tr>
+<tr><td>Almacenamiento</td><td>¿Dónde se conserva?</td><td>carpeta versionada o base de datos</td></tr>
+<tr><td>Transformación</td><td>¿Qué reglas se aplican?</td><td>tipos de fecha, nombres y cálculo de venta neta</td></tr>
+<tr><td>Modelado</td><td>¿Cómo se organiza para consultar?</td><td>vista de ventas o esquema estrella</td></tr>
+<tr><td>Análisis</td><td>¿Qué comparación se ejecuta?</td><td>margen por familia y período</td></tr>
+<tr><td>Consumo</td><td>¿Quién utiliza el resultado?</td><td>responsable comercial</td></tr>
+<tr><td>Retención</td><td>¿Cuánto tiempo permanece disponible?</td><td>política de archivo del histórico</td></tr>
+</tbody></table></div>
+<p>La <strong>generación</strong> ocurre dentro de un proceso operativo. Un pedido aparece porque una persona o una aplicación confirma una transacción. La <strong>captura</strong> extrae o transmite el registro mediante un archivo, una consulta, una réplica, una API o un evento. En ese paso conviene conservar la referencia a la fuente y al momento de extracción.</p>
+<p>El <strong>almacenamiento</strong> mantiene una copia con políticas de acceso, respaldo y retención. La <strong>transformación</strong> corrige tipos, normaliza nombres y aplica reglas conocidas. Una transformación puede convertir el texto <code>2026-08-12</code> en una fecha, asociar un código de cliente con su maestro y calcular la venta después del descuento.</p>
+<p>El <strong>modelado</strong> organiza datos para una clase de preguntas. El modelo puede preservar entidades operativas o construir una tabla analítica centrada en ventas. El <strong>análisis</strong> utiliza ese modelo para explorar, comparar y validar. El <strong>consumo</strong> entrega un reporte, una alerta, un modelo predictivo o una interfaz a la persona o sistema que actúa.</p>
+<p>La <strong>retención</strong> cierra el ciclo. Algunos datos deben conservarse por obligación. Otros pierden valor y aumentan exposición. Archivar o eliminar también forma parte del diseño.</p>
+<p>El grano, la latencia, la calidad y los permisos pueden cambiar durante el recorrido. Una arquitectura clara permite señalar dónde ocurrió cada cambio.</p>
+<h2 id="roles-del-ecosistema-de-datos">Roles del ecosistema de datos</h2>
+<p>Los roles agrupan responsabilidades frecuentes. Sus límites dependen del tamaño y de la madurez de la organización. En una empresa pequeña, una misma persona puede cubrir varios tramos. En una organización grande, cada tramo puede pertenecer a equipos especializados.</p>
+<h3 id="data-analyst">Data Analyst</h3>
+<p>La persona analista traduce una necesidad de negocio en preguntas que pueden responderse con datos. Explora fuentes, escribe consultas, define métricas y comunica hallazgos. Su trabajo incluye declarar límites y recomendar acciones que la evidencia sostiene.</p>
+<p>En Faro Sur, el Data Analyst puede recibir la preocupación por el margen, documentar la fórmula, consultar la vista de ventas y comparar familias. También debe advertir que una asociación entre descuento y margen requiere considerar costo y mezcla de productos.</p>
+<h3 id="data-engineer">Data Engineer</h3>
+<p>La persona de ingeniería de datos construye y opera los mecanismos que integran fuentes. Diseña almacenamiento, automatiza pipelines y gestiona confiabilidad, rendimiento y seguridad. Su responsabilidad incluye que el dato llegue con la frecuencia acordada y que los fallos sean observables.</p>
+<p>Para Faro Sur, este rol podría automatizar la extracción del sistema de pedidos, conservar snapshots y preparar tablas tipadas. También establecería controles sobre cantidad de filas, claves y fechas.</p>
+<h3 id="analytics-engineer">Analytics Engineer</h3>
+<p>La persona de analytics engineering transforma datos integrados en modelos analíticos reutilizables. Trabaja sobre definiciones de negocio, pruebas y documentación. Su aporte reduce la repetición de lógica: la fórmula de venta neta o el criterio de pedido válido se implementan una vez y quedan disponibles para varios análisis.</p>
+<p>En el caso, puede construir <code>vw_ventas</code>, documentar su grano y agregar pruebas que detecten claves duplicadas o valores imposibles.</p>
+<h3 id="responsabilidad-de-negocio-y-colaboracion">Responsabilidad de negocio y colaboración</h3>
+<p>El responsable de negocio define el objetivo, valida las reglas y decide. El conocimiento técnico permite implementar una métrica; la autoridad sobre su significado pertenece al proceso que la utiliza. Si Comercial y Finanzas emplean costos distintos, la arquitectura debe registrar la definición elegida y sus usos autorizados.</p>
+<p>La colaboración se vuelve visible mediante cuatro preguntas: quién aprueba una definición, quién mantiene cada tramo, quién responde ante un incidente y quién revisa una salida de IA. Una matriz de responsabilidades evita que un resultado quede sin dueño.</p>
+<h2 id="sistemas-operacionales-y-sistemas-analiticos">Sistemas operacionales y sistemas analíticos</h2>
+<p>Un sistema operacional registra la actividad cotidiana. Prioriza transacciones consistentes y respuestas rápidas para aplicaciones. Un sistema de pedidos debe crear una orden, actualizar su estado y evitar referencias inválidas. Su modelo suele separar entidades para mantener integridad y reducir anomalías.</p>
+<p>Un sistema analítico integra historia y facilita comparaciones. Prioriza consultas que recorren muchos registros, agregan períodos y combinan dimensiones. La carga puede ocurrir por lotes y los modelos se organizan alrededor de métricas compartidas.</p>
+<p>La diferencia responde al propósito. El sistema operacional conserva el pedido vigente y sostiene la operación. El analítico reúne pedidos, clientes, productos y entregas para estudiar tendencias. Consultar directamente la base transaccional para cada reporte puede afectar la aplicación, mezclar estados cambiantes y repetir reglas.</p>
+<p>Por eso resulta habitual capturar una copia reproducible y transformarla en un entorno analítico. La frecuencia de esa copia depende de la decisión: semanal, diaria, horaria o cercana al tiempo real.</p>
+<h2 id="formas-de-almacenamiento">Formas de almacenamiento</h2>
+<h3 id="archivos">Archivos</h3>
+<p>Un archivo funciona bien para intercambiar datos, conservar un snapshot o trabajar con un volumen acotado. CSV representa tablas de manera simple y portable. Parquet conserva tipos y estructura columnar, lo que mejora consultas analíticas sobre conjuntos mayores. Una planilla agrega una interfaz conocida para revisión manual, aunque sus fórmulas y ediciones dificultan la reproducibilidad.</p>
+<p>Los archivos requieren convenciones de nombre, versión y ubicación. También necesitan controles de esquema. Dos exportaciones con columnas distintas pueden romper una transformación aunque compartan extensión.</p>
+<h3 id="base-de-datos-operacional">Base de datos operacional</h3>
+<p>Una base operacional administra transacciones y relaciones entre entidades. Sus restricciones pueden impedir pedidos sin cliente o líneas asociadas a productos inexistentes. El motor coordina accesos concurrentes y aplica reglas de integridad.</p>
+<h3 id="data-warehouse">Data warehouse</h3>
+<p>Un data warehouse integra historia de varias fuentes y organiza datos para consultas estructuradas. Las tablas analíticas suelen compartir dimensiones, como cliente, producto y fecha. Este diseño favorece métricas consistentes y rendimiento de lectura.</p>
+<h3 id="data-lake">Data lake</h3>
+<p>Un data lake utiliza almacenamiento de objetos para conservar grandes volúmenes y formatos diversos. Puede recibir archivos estructurados, logs y contenido semiestructurado. Catálogo, permisos y reglas de calidad permiten encontrar y comprender los activos. Sin esas condiciones, aparecen conjuntos duplicados y significado incierto.</p>
+<h3 id="lakehouse">Lakehouse</h3>
+<p>La categoría lakehouse combina almacenamiento de objetos con tablas administradas, metadatos y capacidades transaccionales. Su estudio en esta materia sirve para reconocer la evolución de las plataformas. La elección concreta queda para una instancia posterior cuando el volumen y la variedad justifiquen comparar implementaciones.</p>
+<h2 id="computo-y-almacenamiento-en-la-nube">Cómputo y almacenamiento en la nube</h2>
+<p>La computación en la nube ofrece recursos mediante servicios accesibles por red. El usuario puede contratar almacenamiento, capacidad de procesamiento o una plataforma administrada. La provisión ocurre bajo demanda y el costo suele vincularse con uso o capacidad reservada.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u02-arquitecturas-por-escala-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u02-arquitecturas-por-escala-title">Una necesidad analítica, tres escalas de arquitectura</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Cuándo alcanza una solución de archivos y cuándo conviene sumar automatización o servicios administrados?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u02-cloud-elasticity.webp')">
+        <div class="atlas-board atlas-lanes"><section class="atlas-lane">
+              <header><span>ESCALA 1</span><h4>Archivo controlado</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:4"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Fuente</h5>
+      <div class="atlas-card-copy"><p>OneDrive o SharePoint</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Transformación</h5>
+      <div class="atlas-card-copy"><p>Power Query</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Consumo</h5>
+      <div class="atlas-card-copy"><p>Excel o Power BI</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Conviene cuando</h5>
+      <div class="atlas-card-copy"><p>volumen y frecuencia son bajos</p></div>
+      <div class="atlas-stats"><span>operación simple</span></div>
+    </article></div>
+            </section><section class="atlas-lane">
+              <header><span>ESCALA 2</span><h4>Flujo colaborativo</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:4"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Captura</h5>
+      <div class="atlas-card-copy"><p>Power Apps + Dataverse</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Movimiento</h5>
+      <div class="atlas-card-copy"><p>Power Automate desde Outlook o SharePoint</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Preparación</h5>
+      <div class="atlas-card-copy"><p>Power Query o Dataflow</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Consumo</h5>
+      <div class="atlas-card-copy"><p>Power BI con permisos compartidos</p></div>
+      <div class="atlas-stats"><span>automatización media</span></div>
+    </article></div>
+            </section><section class="atlas-lane">
+              <header><span>ESCALA 3</span><h4>Plataforma administrada</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:4"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Fuentes</h5>
+      <div class="atlas-card-copy"><p>sistemas operacionales y eventos</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Servicios GCP</h5>
+      <div class="atlas-card-copy"><p>ingestión y procesamiento administrados</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Warehouse</h5>
+      <div class="atlas-card-copy"><p>capas raw, staging y marts</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>BI</h5>
+      <div class="atlas-card-copy"><p>consumo gobernado</p></div>
+      <div class="atlas-stats"><span>operación continua</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u02-arquitecturas-por-escala.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>La arquitectura cambia cuando aumentan volumen, frecuencia, latencia, colaboración, permisos y capacidad de operación. Power Apps ocupa la frontera de captura; Power Query transforma de manera reproducible en Excel y Power BI.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La primera ruta sirve para archivos controlados y actualización manual o periódica.</p></li><li><span>02</span><p>La segunda agrega captura validada, automatización y trabajo compartido dentro del ecosistema Microsoft.</p></li><li><span>03</span><p>La tercera separa ingestión, procesamiento, warehouse y consumo para operar a mayor escala.</p></li><li><span>04</span><p>La elección se revisa con volumen, frecuencia, latencia, permisos, costo y capacidad del equipo.</p></li></ol>
+        <small>Fuentes técnicas: <a href="https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query" target="_blank" rel="noopener noreferrer">Microsoft Learn · ¿Qué es Power Query?</a>, <a href="https://learn.microsoft.com/en-us/power-apps/powerapps-overview" target="_blank" rel="noopener noreferrer">Microsoft Learn · Power Apps</a>.</small>
+      </figcaption>
+    </figure>
+
+<figure class="sourced-visual sourced-visual-inline sourced-visual-generated">
+      <img src="../assets/images/generated/u02-cloud-contemporary.webp" alt="Ilustración contemporánea de una nube organizada en tres capas: infraestructura, plataforma de datos y aplicaciones analíticas, conectadas con dispositivos y sistemas operacionales." width="1536" height="1024" loading="lazy" decoding="async">
+
+      <figcaption>
+        <span>La infraestructura aporta cómputo, redes y almacenamiento. La plataforma organiza servicios compartidos para procesar y gobernar datos. Las aplicaciones utilizan esas capacidades para responder preguntas concretas desde distintos dispositivos.</span>
+        <small>Ilustración generada con ChatGPT · OpenAI Images.</small>
+      </figcaption>
+    </figure>
+
+<p>La separación entre <strong>almacenamiento</strong> y <strong>cómputo</strong> resulta central. Almacenar significa conservar bytes de manera durable. Computar significa ejecutar consultas, transformaciones o modelos. Un conjunto de archivos puede permanecer en un servicio de objetos mientras distintos motores lo procesan cuando hace falta.</p>
+<p>Los <strong>servicios administrados</strong> delegan parte de la operación al proveedor. Una base administrada puede incluir parches y backups automáticos. La organización conserva responsabilidades sobre configuración, permisos, calidad y uso de la información.</p>
+<p>La <strong>elasticidad</strong> permite aumentar o reducir la capacidad de cómputo según la carga de trabajo. Pensemos en un cierre mensual de Faro Sur: durante unas horas podrían necesitarse más recursos para procesar ventas, inventario y entregas; después de completar el cálculo, esa capacidad podría reducirse. El beneficio consiste en evitar una infraestructura dimensionada de manera permanente para el momento de mayor demanda.</p>
+<p>El costo deja de ser completamente previsible cuando cada consulta, copia o transferencia consume recursos medidos. Una consulta que lee todo el historial para calcular una sola semana puede procesar muchos más datos de los necesarios. Mantener copias redundantes en distintas regiones, trasladar grandes volúmenes entre servicios o dejar un recurso activo después de utilizarlo también genera cargos. Por esa razón, el diseño debe incluir métricas de consumo, presupuestos y alertas. La arquitectura explica qué recurso se utiliza, quién puede crearlo y qué condición indica que debe detenerse o revisarse.</p>
+<p>La seguridad sigue un modelo de responsabilidad compartida. El proveedor protege la infraestructura según el servicio. El cliente configura identidades, accesos y políticas. Una clave pública con permisos amplios expone datos aunque el centro de datos esté protegido.</p>
+<p>Para la práctica, el entorno local con Colab y DuckDB cubre el aprendizaje común. Una demostración cloud permite observar almacenamiento remoto y consultas administradas. Así se estudia el concepto sin convertir una cuenta paga o una plataforma específica en requisito.</p>
+<h2 id="big-data-como-diagnostico-de-escala">Big Data como diagnóstico de escala</h2>
+<p>El término Big Data describe situaciones en las que las propiedades del dato superan la capacidad práctica del patrón vigente. Las “V” funcionan como preguntas de diagnóstico.</p>
+<p>El <strong>volumen</strong> pregunta cuánto debe conservarse y cómo crece. La <strong>velocidad</strong> examina la rapidez de generación y la demora tolerable. La <strong>variedad</strong> considera formatos, estructuras y fuentes. La <strong>veracidad</strong> analiza calidad, origen y posibilidad de explicación. El valor conecta estas propiedades con una decisión que justifica el esfuerzo.</p>
+<p>Un archivo de varios gigabytes puede ser grande para una notebook y pequeño para una plataforma distribuida. El volumen se interpreta en relación con la herramienta y el tiempo disponible. Del mismo modo, una actualización diaria puede ser suficiente para planificación y demasiado lenta para detectar fraude durante una transacción.</p>
+<p>Faro Sur cabe en una notebook. Esa escala permite observar todo el pipeline con herramientas accesibles. El concepto de Big Data prepara una pregunta futura: ¿qué componente debería cambiar si el volumen creciera cien veces o si la decisión exigiera respuesta en segundos?</p>
+<h2 id="una-arquitectura-proporcional-para-faro-sur">Una arquitectura proporcional para Faro Sur</h2>
+<p>La arquitectura base del caso conserva pocas piezas y separa responsabilidades:</p>
+<figure class="theory-visual pipeline-concept" aria-labelledby="faro-pipeline-title" data-pipeline-activity>
+      <header><span>Arquitectura aplicada</span><h3 id="faro-pipeline-title">El recorrido completo de los datos de Faro Sur</h3></header>
+      <p class="theory-visual-question"><span>Actividad de lectura</span>¿Podés reconstruir el recorrido desde las fuentes hasta el aprendizaje?</p>
+      <div class="pipeline-board-scroll" tabindex="0" aria-label="Pipeline ilustrado. En pantallas angostas puede desplazarse horizontalmente.">
+        <div class="theory-visual-media pipeline-game-board">
+          <img src="../assets/images/generated/u02-faro-sur-pipeline.webp" alt="Siete estaciones visuales conectan fuentes operacionales, snapshot, notebook, capas de datos, reporte, decisión y retroalimentación." width="1536" height="1024" loading="lazy" decoding="async">
+          <div class="pipeline-dropzones" data-pipeline-slots hidden aria-label="Siete casilleros del pipeline"><button type="button" class="pipeline-dropzone" data-pipeline-slot="sources" data-pipeline-position="1" aria-label="Etapa 1: casillero vacío"><span data-pipeline-slot-label></span></button><button type="button" class="pipeline-dropzone" data-pipeline-slot="snapshot" data-pipeline-position="2" aria-label="Etapa 2: casillero vacío"><span data-pipeline-slot-label></span></button><button type="button" class="pipeline-dropzone" data-pipeline-slot="notebook" data-pipeline-position="3" aria-label="Etapa 3: casillero vacío"><span data-pipeline-slot-label></span></button><button type="button" class="pipeline-dropzone" data-pipeline-slot="layers" data-pipeline-position="4" aria-label="Etapa 4: casillero vacío"><span data-pipeline-slot-label></span></button><button type="button" class="pipeline-dropzone" data-pipeline-slot="report" data-pipeline-position="5" aria-label="Etapa 5: casillero vacío"><span data-pipeline-slot-label></span></button><button type="button" class="pipeline-dropzone" data-pipeline-slot="decision" data-pipeline-position="6" aria-label="Etapa 6: casillero vacío"><span data-pipeline-slot-label></span></button><button type="button" class="pipeline-dropzone" data-pipeline-slot="learning" data-pipeline-position="7" aria-label="Etapa 7: casillero vacío"><span data-pipeline-slot-label></span></button></div>
+        </div>
+      </div>
+      <section class="pipeline-game-panel" data-pipeline-game hidden aria-labelledby="pipeline-game-title">
+        <div class="pipeline-game-toolbar">
+          <div><span>Desafío de secuencia</span><h4 id="pipeline-game-title">Ubicá las siete etiquetas en el pipeline</h4></div>
+          <strong data-pipeline-progress aria-label="Progreso: cero de siete">0 / 7</strong>
+        </div>
+        <p id="pipeline-game-instructions">Arrastrá cada etiqueta hasta su casillero. Con teclado o en una pantalla táctil, seleccioná primero una etiqueta y después el casillero.</p>
+        <div class="pipeline-label-bank" data-pipeline-label-bank role="group" aria-describedby="pipeline-game-instructions"><button type="button" class="pipeline-chip" draggable="true" data-pipeline-chip="report" aria-pressed="false">Reporte</button><button type="button" class="pipeline-chip" draggable="true" data-pipeline-chip="snapshot" aria-pressed="false">Snapshot</button><button type="button" class="pipeline-chip" draggable="true" data-pipeline-chip="learning" aria-pressed="false">Aprendizaje</button><button type="button" class="pipeline-chip" draggable="true" data-pipeline-chip="notebook" aria-pressed="false">Notebook</button><button type="button" class="pipeline-chip" draggable="true" data-pipeline-chip="sources" aria-pressed="false">Fuentes</button><button type="button" class="pipeline-chip" draggable="true" data-pipeline-chip="decision" aria-pressed="false">Decisión</button><button type="button" class="pipeline-chip" draggable="true" data-pipeline-chip="layers" aria-pressed="false">Capas</button></div>
+        <div class="pipeline-game-actions">
+          <p class="pipeline-feedback" data-pipeline-feedback data-state="neutral" role="status" aria-live="polite">Comenzá por la etapa que reconoce los sistemas y archivos de origen.</p>
+          <button class="button pipeline-reset" type="button" data-pipeline-reset>Mezclar y reiniciar</button>
+        </div>
+      </section>
+      <div class="pipeline-answer" data-pipeline-answer>
+        <h4 tabindex="-1" data-pipeline-answer-title>El recorrido explicado</h4>
+        <ol class="pipeline-stage-grid"><li><span>01</span><div><h4>Fuentes operacionales</h4><p>ERP, archivos, API logística e inventario</p></div></li><li><span>02</span><div><h4>Snapshot versionado</h4><p>Copia inmutable con fecha, versión y hash</p></div></li><li><span>03</span><div><h4>Notebook de trabajo</h4><p>Colab ejecuta Python y DuckDB consulta con SQL</p></div></li><li><span>04</span><div><h4>Raw, staging y marts</h4><p>Preservan, preparan y organizan los datos</p></div></li><li><span>05</span><div><h4>Reporte analítico</h4><p>Power BI presenta medidas, filtros y contexto</p></div></li><li><span>06</span><div><h4>Decisión</h4><p>Una persona interpreta la evidencia y elige una acción</p></div></li><li><span>07</span><div><h4>Aprendizaje</h4><p>El resultado observado alimenta la siguiente revisión</p></div></li></ol>
+      </div>
+      <figcaption><span>La copia versionada permite repetir el análisis; las capas separan preservación, preparación y consumo; la decisión devuelve una nueva pregunta al pipeline.</span><small>Imagen base generada con ChatGPT · OpenAI Images.</small></figcaption>
+    </figure>
+<p>Las fuentes representan procesos distintos. Los snapshots conservan una copia reproducible y registran el momento de extracción. DuckDB permite consultar archivos con SQL dentro de una notebook. Las capas <code>raw</code>, <code>staging</code> y <code>marts</code> separan preservación, limpieza y modelos de negocio. Power BI consume un conjunto estable y presenta indicadores.</p>
+<p>La capa <code>raw</code> mantiene la forma recibida y facilita auditoría. <code>staging</code> aplica nombres, tipos y controles. Los <code>marts</code> organizan métricas para una audiencia o proceso. Esta separación ayuda a localizar una regla y evita editar la única copia disponible.</p>
+<p>Una versión cloud puede trasladar snapshots a almacenamiento de objetos y ejecutar consultas en un servicio administrado. La lógica del pipeline permanece reconocible. El cambio se justifica por colaboración, escala o automatización.</p>
+<h2 id="caso-aplicado-archivos-recurrentes">Caso aplicado: archivos recurrentes</h2>
+<p>Un proceso laboral frecuente recibe archivos Excel por correo o en una carpeta compartida. Una arquitectura proporcional conserva el archivo recibido y su momento de recepción, aplica reglas repetibles en Power Query, separa filas rechazadas y publica una tabla curada para Excel o Power BI.</p>
+<p>El flujo mantiene cinco fronteras: entrada, copia <code>raw</code>, transformación, control y consumo. Cada frontera declara responsable, evidencia y respuesta ante una falla. La recepción puede continuar manual mientras el volumen sea controlable. Power Automate aporta valor cuando guardar adjuntos, iniciar una actualización o enviar una notificación consume tiempo operativo recurrente.</p>
+<p>Power Apps corresponde a otra frontera: reemplaza el intercambio de archivos cuando la captura necesita campos obligatorios, catálogos y validaciones antes de guardar. Esta elección exige definir el repositorio, los permisos, las licencias y la operación posterior. El caso se utiliza durante el curso para practicar el recorrido completo sin convertir cada producto de Microsoft en una unidad independiente.</p>
+<h2 id="trade-offs-de-diseno">Trade-offs de diseño</h2>
+<p>Un trade-off aparece cuando mejorar una propiedad implica ceder otra. Documentarlo hace visible por qué una arquitectura adopta cierta forma.</p>
+<p><strong>Construir o comprar.</strong> Un desarrollo propio ofrece control y adaptación. También requiere mantenimiento, monitoreo y conocimiento interno. Un servicio SaaS acelera la puesta en marcha y concentra soporte, a cambio de costo recurrente y dependencia del proveedor.</p>
+<p><strong>Procesamiento por lotes o menor latencia.</strong> Un pipeline batch agrupa registros y se ejecuta con una frecuencia definida. Suele ser más simple de operar. Una actualización frecuente reduce demora y aumenta exigencias de infraestructura, observabilidad y recuperación.</p>
+<p><strong>Centralización o autonomía.</strong> Un equipo central facilita definiciones comunes. Puede transformarse en cuello de botella. El autoservicio permite respuesta local y necesita gobierno para evitar métricas incompatibles.</p>
+<p><strong>Cloud o entorno local.</strong> La nube aporta elasticidad y servicios administrados. Introduce costo variable, gestión de permisos y dependencia. Un entorno local ofrece control directo y capacidad limitada; su operación recae en el equipo.</p>
+<p>La defensa técnica relaciona cada elección con el requisito que satisface. “Usar cloud porque escala” deja preguntas abiertas. Una justificación completa indica qué crecimiento se espera, qué componente debe escalar y cuánto costo operativo resulta aceptable.</p>
+<h2 id="fallas-de-diseno-que-conviene-reconocer">Fallas de diseño que conviene reconocer</h2>
+<p>Dibujar productos antes de formular requisitos suele producir arquitecturas sobredimensionadas. Confundir la aplicación fuente con el repositorio analítico dificulta conservar historia. La expresión “tiempo real” carece de utilidad cuando la decisión ocurre una vez al mes.</p>
+<p>También aparecen fallas de propiedad. Una métrica puede circular sin responsable. Un pipeline puede depender de una sola persona. Un servicio SaaS puede almacenar información sin una estrategia de salida. La calidad arquitectónica incluye la capacidad del equipo para operar, explicar y modificar la solución.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Qué componente podría simplificarse si la decisión se toma mensualmente?</li><li>¿Dónde se conserva la copia reproducible de una fuente?</li><li>¿Quién define el margen y quién implementa su transformación?</li><li>¿Qué componente cambiaría primero si el volumen se multiplicara por cien?</li><li>¿Qué dependencia introduce un servicio SaaS?</li><li>¿Qué parte de la arquitectura cloud puede demostrarse sin transformarla en requisito?</li><li>¿Qué condición justificaría reemplazar el archivo recibido por una aplicación de captura?</li></ol>
+<h2 id="alcance-de-la-unidad">Alcance de la unidad</h2>
+<p>El núcleo comprende el ciclo de vida, los roles, la diferencia entre sistemas operacionales y analíticos, la separación entre almacenamiento y cómputo, la arquitectura proporcional y sus trade-offs. Lakehouse, plataformas distribuidas, servicios específicos de proveedores y FinOps quedan como reconocimiento o continuidad para la materia correlativa.</p>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo elegir una arquitectura que Faro Sur pueda operar</h2></div>
+      <div class="applied-prose"><p>Faro Sur necesita integrar ventas, productos, clientes e inventario para revisar margen y servicio. El volumen cabe en una notebook, por lo que un conjunto de snapshots versionados y DuckDB cubre la práctica. Una demostración cloud permite observar permisos, separación entre almacenamiento y cómputo y costo por uso.</p><p>La arquitectura se evalúa por su capacidad de producir una respuesta reproducible. Un recurso adicional requiere una razón: menor latencia, mejor control de acceso, mayor disponibilidad o una escala que supera el patrón vigente.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">02</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Representar la arquitectura de Faro Sur</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>La actividad representa el recorrido desde el ERP, logística e inventario hasta una capa analítica utilizada para revisar margen y servicio. Cada tramo identifica una entrada, una salida, una persona responsable, una frecuencia y un control observable. El diagrama resultante puede incorporarse al Hito 1 como explicación de las decisiones de diseño.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar Paquete B <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u02-ecosistema-arquitectura">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u02-ecosistema-arquitectura">Rutas para comprender cloud y arquitectura de datos</h2></div>
+        <p>Los materiales parten de conceptos de nube y avanzan hacia arquitecturas de datos de mayor escala. La comparación con Faro Sur ayuda a reconocer qué componentes responden a una necesidad real.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Ruta gratuita</span><small>Español</small></div>
+          <h3><a href="https://learn.microsoft.com/es-es/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/" target="_blank" rel="noopener noreferrer">Describe cloud concepts</a></h3>
+          <p>Introduce modelos de servicio, responsabilidad compartida y criterios básicos de adopción de nube.</p>
+          <footer><span>Microsoft Learn</span><small>3 módulos · ≈ 1 h</small><a href="https://learn.microsoft.com/es-es/training/paths/microsoft-azure-fundamentals-describe-cloud-concepts/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Describe cloud concepts">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Curso abierto</span><small>Inglés</small></div>
+          <h3><a href="https://github.com/DataTalksClub/data-engineering-zoomcamp" target="_blank" rel="noopener noreferrer">Data Engineering Zoomcamp</a></h3>
+          <p>Recorrido práctico por ingestión, almacenamiento, orquestación, warehouse y analytics engineering. Conviene elegir módulos según interés.</p>
+          <footer><span>DataTalks.Club</span><small>Ruta extensa · autoguiada</small><a href="https://github.com/DataTalksClub/data-engineering-zoomcamp" target="_blank" rel="noopener noreferrer" aria-label="Abrir Data Engineering Zoomcamp">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Guía de arquitectura</span><small>Inglés</small></div>
+          <h3><a href="https://docs.cloud.google.com/architecture/framework?hl=en" target="_blank" rel="noopener noreferrer">Google Cloud Well-Architected Framework</a></h3>
+          <p>Pautas para evaluar seguridad, confiabilidad, costo y operación de una arquitectura cloud.</p>
+          <footer><span>Google Cloud</span><small>Consulta por criterio</small><a href="https://docs.cloud.google.com/architecture/framework?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Abrir Google Cloud Well-Architected Framework">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Diagrama y PDF</span><small>Inglés</small></div>
+          <h3><a href="https://docs.aws.amazon.com/architecture-diagrams/latest/modern-data-analytics-on-aws/modern-data-analytics-on-aws.html" target="_blank" rel="noopener noreferrer">Modern Data Analytics Reference Architecture</a></h3>
+          <p>Arquitectura industrial para comparar escala, capas y servicios con la solución mínima propuesta para Faro Sur.</p>
+          <footer><span>AWS Architecture Center</span><small>Exploración visual · 15 min</small><a href="https://docs.aws.amazon.com/architecture-diagrams/latest/modern-data-analytics-on-aws/modern-data-analytics-on-aws.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir Modern Data Analytics Reference Architecture">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u01-laboratorio-faro-sur.html"><span>ANTERIOR</span><b>Unidad 1 · Laboratorio inicial</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 3 · Modelo relacional</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>
