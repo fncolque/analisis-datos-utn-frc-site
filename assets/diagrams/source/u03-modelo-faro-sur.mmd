@@ -1,0 +1,9 @@
+flowchart TB
+    C["CLIENTES<br/>customer_id · PK<br/>una fila por cliente"] -->|"1 a muchos"| O["PEDIDOS<br/>order_id · PK<br/>customer_id · FK"]
+    O -->|"1 a muchos"| L["LÍNEAS DE PEDIDO<br/>line_id · PK<br/>order_id · FK<br/>product_id · FK"]
+    P["PRODUCTOS<br/>product_id · PK<br/>una fila por producto"] -->|"1 a muchos"| L
+
+    classDef entity fill:#DCE6F1,stroke:#1F497D,color:#151616,stroke-width:2px;
+    classDef fact fill:#FFFF33,stroke:#1F497D,color:#151616,stroke-width:2px;
+    class C,O,P entity;
+    class L fact;

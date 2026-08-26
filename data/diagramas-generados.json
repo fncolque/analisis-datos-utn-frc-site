@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-08-25",
+  "actualizado": "2026-08-26",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -423,6 +423,218 @@
         "tipo": "ilustracion-generada",
         "version_revision": "conservada-para-rollback-2026-08-24",
         "publicar": false
+      }
+    ],
+    "u03-modelado-relacional": [
+      {
+        "page": "u03-modelado-relacional",
+        "unit": "C04",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u03-plana-a-relacional.svg",
+        "base_generada": "theory/u03-plana-a-relacional-base.webp",
+        "base_provisoria": "u03-relational-model.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "De una tabla plana a un modelo relacional",
+        "pregunta_lectura": "¿Qué se repite en la tabla plana y qué entidad debería conservar cada dato?",
+        "alt": "Una tabla plana de ventas se divide en clientes, pedidos, líneas y productos; cada etapa identifica grano, clave primaria, clave foránea y anomalía evitada.",
+        "epigrafe": "Separar entidades reduce repeticiones y evita que una actualización modifique solo algunas copias del mismo dato. Las claves preservan las relaciones entre los nuevos granos.",
+        "after_heading": "el-modelo-relacional-de-faro-sur",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La fila plana mezcla datos del cliente, el pedido, el producto y la venta.",
+          "Cada entidad recibe una clave primaria y un grano estable.",
+          "Las claves foráneas conectan pedidos con clientes y líneas con pedidos y productos.",
+          "La separación evita anomalías de actualización, inserción y eliminación."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A wide table progressively unfolding into four linked entity tables, with duplicate fields visually collapsing into single records and key connectors remaining visible.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "flow",
+          "columns": 5,
+          "cards": [
+            {
+              "title": "venta_plana",
+              "body": [
+                "Una fila por línea; cliente y producto se repiten."
+              ],
+              "accent": "blue",
+              "tag": "mezcla",
+              "step": 1,
+              "rows": [
+                [
+                  "O101",
+                  "CLI01",
+                  "P01"
+                ],
+                [
+                  "O102",
+                  "CLI02",
+                  "P01"
+                ]
+              ]
+            },
+            {
+              "title": "clientes",
+              "body": [
+                "PK cliente_id",
+                "Una fila por cliente."
+              ],
+              "accent": "blue",
+              "tag": "entidad",
+              "step": 2,
+              "stats": [
+                "evita repetir región"
+              ]
+            },
+            {
+              "title": "pedidos",
+              "body": [
+                "PK pedido_id",
+                "FK cliente_id"
+              ],
+              "accent": "blue",
+              "tag": "cabecera",
+              "step": 3,
+              "stats": [
+                "evita repetir fecha"
+              ]
+            },
+            {
+              "title": "lineas_pedido",
+              "body": [
+                "PK pedido_id + linea_nro",
+                "FK producto_id"
+              ],
+              "accent": "blue",
+              "tag": "hecho",
+              "step": 4,
+              "stats": [
+                "cantidad y precio"
+              ]
+            },
+            {
+              "title": "productos",
+              "body": [
+                "PK producto_id",
+                "Una fila por producto."
+              ],
+              "accent": "blue",
+              "tag": "catálogo",
+              "step": 5,
+              "stats": [
+                "evita nombres divergentes"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u03-modelado-relacional",
+        "unit": "C04",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u03-operacional-vs-estrella.svg",
+        "base_generada": "theory/u03-operacional-vs-estrella-base.webp",
+        "base_provisoria": "u03-grain-keys.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Modelo operacional y esquema estrella sobre la misma venta",
+        "pregunta_lectura": "¿Por qué la misma operación comercial se organiza de manera distinta para registrar y para analizar?",
+        "alt": "Dos columnas comparan un modelo operacional normalizado con un esquema estrella formado por fact_ventas y dimensiones, indicando escritura, consulta, detalle y ubicación de las medidas.",
+        "epigrafe": "El modelo operacional protege la consistencia al registrar transacciones. El esquema estrella reorganiza hechos y dimensiones para consultar medidas con filtros previsibles.",
+        "after_heading": "claves-e-integridad",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "El modelo operacional distribuye la operación entre entidades normalizadas.",
+          "Las escrituras actualizan la entidad responsable de cada atributo.",
+          "El esquema estrella concentra medidas en fact_ventas y descripciones en dimensiones.",
+          "Ambos modelos pueden conservar el mismo detalle, aunque optimizan trabajos diferentes."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A split-screen transformation of one commercial transaction: a normalized operational entity network on the left and a clean star schema with a central fact and surrounding dimensions on the right.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "compare",
+          "groups": [
+            {
+              "title": "MODELO OPERACIONAL · REGISTRAR",
+              "cards": [
+                {
+                  "title": "Entidades normalizadas",
+                  "body": [
+                    "clientes → pedidos → líneas ← productos"
+                  ],
+                  "accent": "blue",
+                  "tag": "relaciones"
+                },
+                {
+                  "title": "Escritura",
+                  "body": [
+                    "Inserta o actualiza una entidad por responsabilidad."
+                  ],
+                  "accent": "blue",
+                  "tag": "prioridad",
+                  "stats": [
+                    "consistencia"
+                  ]
+                },
+                {
+                  "title": "Consulta analítica",
+                  "body": [
+                    "Requiere varios JOINs para reunir contexto y medidas."
+                  ],
+                  "accent": "blue",
+                  "tag": "costo",
+                  "stats": [
+                    "detalle transaccional"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "ESQUEMA ESTRELLA · ANALIZAR",
+              "cards": [
+                {
+                  "title": "Hecho central",
+                  "body": [
+                    "fact_ventas conserva cantidad, venta y costo."
+                  ],
+                  "accent": "blue",
+                  "tag": "medidas"
+                },
+                {
+                  "title": "Dimensiones",
+                  "body": [
+                    "fecha, cliente, producto y región filtran el hecho."
+                  ],
+                  "accent": "blue",
+                  "tag": "contexto",
+                  "stats": [
+                    "claves sustitutas"
+                  ]
+                },
+                {
+                  "title": "Consulta analítica",
+                  "body": [
+                    "Agrupa medidas con relaciones simples y previsibles."
+                  ],
+                  "accent": "blue",
+                  "tag": "prioridad",
+                  "stats": [
+                    "lectura rápida"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
       }
     ]
   }

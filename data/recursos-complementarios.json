@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-08-25",
+  "actualizado": "2026-08-26",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -169,6 +169,66 @@
           "idioma": "Inglés",
           "dedicacion": "Exploración visual · 15 min",
           "descripcion": "Arquitectura industrial para comparar escala, capas y servicios con la solución mínima propuesta para Faro Sur."
+        }
+      ]
+    },
+    "u03-modelado-relacional": {
+      "titulo": "Modelado relacional: teoría, diseño y representación",
+      "introduccion": "La selección combina una clase universitaria, apuntes técnicos y una guía aplicada de diseño. El último recurso permite expresar relaciones mediante código versionable.",
+      "diagrama": {
+        "archivo": "u03-modelo-faro-sur.svg",
+        "fuente": "u03-modelo-faro-sur.mmd",
+        "alt": "Diagrama entidad-relación de Faro Sur con clientes, pedidos, líneas de pedido y productos, incluyendo sus cardinalidades.",
+        "titulo": "Modelo relacional de Faro Sur",
+        "epigrafe": "El pedido pertenece a un cliente. Cada pedido contiene líneas y cada línea referencia un producto.",
+        "base": "Elaboración propia a partir del Paquete B de Faro Sur."
+      },
+      "imagen": {
+        "archivo": "relational-database-terms.svg",
+        "alt": "Ilustración de una tabla relacional que identifica relación, tupla, atributo y dominio.",
+        "epigrafe": "Terminología del modelo relacional en una representación tabular.",
+        "autor": "Booyabazooka; traducción SVG de la comunidad Wikimedia",
+        "licencia": "Dominio público",
+        "url": "https://commons.wikimedia.org/wiki/File:Relational_database_terms.svg",
+        "publicar": false,
+        "after_heading": "entidades-atributos-y-registros"
+      },
+      "recursos": [
+        {
+          "tipo": "Video universitario",
+          "titulo": "Relational Model & Algebra",
+          "institucion": "CMU Database Group",
+          "url": "https://www.youtube.com/watch?v=7NPIENPr-zk",
+          "idioma": "Inglés",
+          "dedicacion": "≈ 90 min",
+          "descripcion": "Andy Pavlo presenta relaciones, claves, restricciones y álgebra relacional dentro de un curso completo de bases de datos."
+        },
+        {
+          "tipo": "Apunte PDF",
+          "titulo": "Lecture 01: Relational Model & Algebra",
+          "institucion": "Carnegie Mellon University",
+          "url": "https://15445.courses.cs.cmu.edu/fall2024/notes/01-relationalmodel.pdf",
+          "idioma": "Inglés",
+          "dedicacion": "4 páginas · 20 min",
+          "descripcion": "Síntesis técnica sobre modelo, esquema, integridad, claves y operaciones relacionales."
+        },
+        {
+          "tipo": "Clase abierta",
+          "titulo": "CS50 SQL · Designing",
+          "institucion": "Harvard OpenCourseWare",
+          "url": "https://cs50.harvard.edu/sql/weeks/2/",
+          "idioma": "Inglés · subtítulos disponibles",
+          "dedicacion": "Video, notas y ejercicios",
+          "descripcion": "Desarrolla esquemas, normalización, tipos de datos, claves y restricciones mediante ejemplos aplicados."
+        },
+        {
+          "tipo": "Referencia visual",
+          "titulo": "Entity Relationship Diagrams",
+          "institucion": "Mermaid",
+          "url": "https://mermaid.js.org/syntax/entityRelationshipDiagram.html",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta · 15 min",
+          "descripcion": "Sintaxis para documentar entidades y cardinalidades como texto versionable. Incluye ejemplos editables."
         }
       ]
     }

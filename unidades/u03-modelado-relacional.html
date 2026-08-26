@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Modelo relacional y granularidad. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Modelo relacional y granularidad · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 3 · CAPÍTULO 1</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 3 · CAPÍTULO 1</span></div>
+        <h1 id="reading-title">Modelo relacional y granularidad</h1>
+        <p class="hero-lede">Un modelo de datos representa una parte del negocio mediante tablas, claves y relaciones. Este capítulo muestra cómo declarar qué significa cada fila, cómo reconocer la cardinalidad entre entidades y por qué esas decisiones determinan qué consultas preservan el significado de los datos.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué representa exactamente una fila y qué relación la conecta con el negocio?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar Paquete B <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u03-modelado-relacional">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u03-modelado-relacional">Modelo relacional de Faro Sur</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u03-modelo-faro-sur.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u03-modelo-faro-sur.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-standard">
+        <a href="../assets/diagrams/u03-modelo-faro-sur.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u03-modelo-faro-sur.svg?v=20260825b" alt="Diagrama entidad-relación de Faro Sur con clientes, pedidos, líneas de pedido y productos, incluyendo sus cardinalidades." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>El pedido pertenece a un cliente. Cada pedido contiene líneas y cada línea referencia un producto.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#un-modelo-representa-una-parte-del-negocio">Un modelo representa una parte del negocio</a><a href="#el-problema-de-una-tabla-plana">El problema de una tabla plana</a><a href="#entidades-atributos-y-registros">Entidades, atributos y registros</a><a href="#el-grano-como-contrato-semantico">El grano como contrato semántico</a><a href="#claves-e-integridad">Claves e integridad</a><a href="#cardinalidad-cuantos-registros-pueden-relacionarse">Cardinalidad: cuántos registros pueden relacionarse</a><a href="#normalizacion-al-nivel-necesario">Normalización al nivel necesario</a><a href="#modelo-operacional-y-esquema-estrella">Modelo operacional y esquema estrella</a><a href="#el-significado-de-null">El significado de `NULL`</a><a href="#el-modelo-relacional-de-faro-sur">El modelo relacional de Faro Sur</a><a href="#controles-antes-de-consultar">Controles antes de consultar</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="un-modelo-representa-una-parte-del-negocio">Un modelo representa una parte del negocio</h2>
+<p>Un modelo de datos selecciona qué objetos, eventos y relaciones se conservarán. Cada tabla expresa decisiones sobre el proceso. Define cuándo nace un registro, qué atributos lo describen y qué cambios se actualizan o se guardan como historia.</p>
+<p>Un modelo de ventas puede registrar pedidos y productos. Esa representación permite estudiar demanda y facturación. La satisfacción del cliente quedará fuera mientras el sistema carezca de encuestas, reclamos o renovaciones. Reconocer el límite evita atribuir a una tabla capacidades que su diseño nunca contempló.</p>
+<p>El modelo también crea un vocabulario compartido. “Cliente”, “pedido” y “línea” parecen palabras cotidianas, pero necesitan una definición operativa. Un cliente puede ser una persona jurídica, una cuenta comercial o un punto de entrega. Un pedido puede crearse al recibir una solicitud o al aprobarla. El análisis utiliza esas reglas aunque la persona que consulta la tabla nunca haya participado en el diseño original.</p>
+<h2 id="el-problema-de-una-tabla-plana">El problema de una tabla plana</h2>
+<p>Una exportación plana facilita el intercambio porque reúne muchos datos en una sola fila. En una tabla de líneas de venta pueden repetirse el nombre del cliente, su región, la descripción del producto y la familia. La repetición permite leer cada fila de forma aislada, pero genera anomalías cuando el archivo se usa como fuente administrada.</p>
+<p>Considere este ejemplo reducido:</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>pedido_id</th>
+<th>fecha</th>
+<th>cliente_id</th>
+<th>cliente</th>
+<th>región</th>
+<th>producto_id</th>
+<th>producto</th>
+<th>cantidad</th>
+</tr></thead><tbody>
+<tr><td>P100</td><td>2026-08-01</td><td>CLI01</td><td>Andina SA</td><td>Centro</td><td>PR10</td><td>Bomba X</td><td>2</td></tr>
+<tr><td>P100</td><td>2026-08-01</td><td>CLI01</td><td>Andina SA</td><td>Centro</td><td>PR20</td><td>Válvula Y</td><td>5</td></tr>
+<tr><td>P101</td><td>2026-08-02</td><td>CLI01</td><td>Andina SA</td><td>Centro</td><td>PR10</td><td>Bomba X</td><td>1</td></tr>
+</tbody></table></div>
+<p>El nombre y la región de Andina SA aparecen en cada línea. Si la región cambia, todas las filas deberían actualizarse. Una corrección parcial deja versiones contradictorias. El producto también se repite y puede adquirir distintas descripciones por un error de carga.</p>
+<p>La cabecera del pedido se repite por cada producto incluido. Sumar una columna con el total del pedido después de esta expansión duplicaría el importe. La tabla plana sigue siendo útil como vista de consumo cuando su grano está documentado. El modelo relacional permite administrar cada entidad en el lugar que corresponde.</p>
+<h2 id="entidades-atributos-y-registros">Entidades, atributos y registros</h2>
+<p>Una <strong>entidad</strong> es un tipo de objeto o evento relevante para el proceso. Cliente y producto representan objetos. Pedido y despacho representan eventos. Un <strong>registro</strong> es una instancia almacenada: Andina SA es un cliente concreto; P100 es un pedido concreto.</p>
+<p>Los <strong>atributos</strong> describen la entidad. Región pertenece al cliente cuando expresa su clasificación comercial vigente. Fecha de pedido pertenece al pedido. Cantidad y precio pertenecen a la línea porque pueden variar para cada producto incluido.</p>
+<p>El <strong>dominio</strong> define los valores permitidos para un atributo. La cantidad puede requerir un entero positivo. La fecha debe seguir un tipo temporal. El canal puede restringirse a una lista conocida. Los dominios reducen ambigüedad y permiten controles automáticos.</p>
+<p>La asignación de un atributo se prueba con una pregunta: ¿qué unidad describe y cuándo puede cambiar? Si el precio negociado varía por pedido, pertenece a la línea o al acuerdo comercial. Guardarlo únicamente en el maestro de productos perdería la condición real de la transacción.</p>
+<h2 id="el-grano-como-contrato-semantico">El grano como contrato semántico</h2>
+<p>El <strong>grano</strong> responde qué representa exactamente una fila. Declararlo antes de sumar, contar o unir evita errores que pueden producir resultados plausibles.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Tabla</th>
+<th>Grano de una fila</th>
+<th>Identificador posible</th>
+</tr></thead><tbody>
+<tr><td><code>customers</code></td><td>un cliente</td><td><code>customer_id</code></td></tr>
+<tr><td><code>products</code></td><td>un producto</td><td><code>product_id</code></td></tr>
+<tr><td><code>sales_orders</code></td><td>un pedido</td><td><code>order_id</code></td></tr>
+<tr><td><code>sales_order_lines</code></td><td>un producto dentro de un pedido</td><td><code>order_line_id</code></td></tr>
+<tr><td><code>inventory_snapshots</code></td><td>un producto en una ubicación y fecha</td><td>producto + ubicación + fecha</td></tr>
+<tr><td><code>shipments</code></td><td>un despacho asociado a una línea</td><td><code>shipment_id</code></td></tr>
+</tbody></table></div>
+<p>Dos tablas pueden contener una columna llamada <code>fecha</code> y representar niveles distintos. Una fecha de pedido corresponde a la cabecera. Una fecha de snapshot corresponde a una combinación de producto y depósito. La coincidencia de nombres nunca reemplaza la definición del grano.</p>
+<p>El grano determina qué conteos tienen sentido. <code>COUNT(*)</code> sobre líneas responde cuántas líneas existen. <code>COUNT(DISTINCT order_id)</code> responde cuántos pedidos aparecen. Si un pedido tiene tres productos, ambos resultados difieren.</p>
+<p>También condiciona las sumas. La cantidad de una línea puede sumarse entre líneas compatibles. El total de cabecera repetido después de unir con el detalle requiere una corrección previa. Algunas medidas se agregan con facilidad; otras necesitan elegir un nivel y una regla.</p>
+<h2 id="claves-e-integridad">Claves e integridad</h2>
+<p>Una <strong>clave primaria</strong>, abreviada PK, identifica cada registro de forma única. La clave permite referirse a una fila sin depender de su posición. Su valor debe ser único y estar presente.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u03-operacional-vs-estrella-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u03-operacional-vs-estrella-title">Modelo operacional y esquema estrella sobre la misma venta</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Por qué la misma operación comercial se organiza de manera distinta para registrar y para analizar?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u03-grain-keys.webp')">
+        <div class="atlas-board atlas-compare" style="--atlas-cols:2"><section class="atlas-compare-group">
+              <header><h4>MODELO OPERACIONAL · REGISTRAR</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">relaciones</span></div>
+      <h5>Entidades normalizadas</h5>
+      <div class="atlas-card-copy"><p>clientes → pedidos → líneas ← productos</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">prioridad</span></div>
+      <h5>Escritura</h5>
+      <div class="atlas-card-copy"><p>Inserta o actualiza una entidad por responsabilidad.</p></div>
+      <div class="atlas-stats"><span>consistencia</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">costo</span></div>
+      <h5>Consulta analítica</h5>
+      <div class="atlas-card-copy"><p>Requiere varios JOINs para reunir contexto y medidas.</p></div>
+      <div class="atlas-stats"><span>detalle transaccional</span></div>
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>ESQUEMA ESTRELLA · ANALIZAR</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">medidas</span></div>
+      <h5>Hecho central</h5>
+      <div class="atlas-card-copy"><p>fact_ventas conserva cantidad, venta y costo.</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">contexto</span></div>
+      <h5>Dimensiones</h5>
+      <div class="atlas-card-copy"><p>fecha, cliente, producto y región filtran el hecho.</p></div>
+      <div class="atlas-stats"><span>claves sustitutas</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">prioridad</span></div>
+      <h5>Consulta analítica</h5>
+      <div class="atlas-card-copy"><p>Agrupa medidas con relaciones simples y previsibles.</p></div>
+      <div class="atlas-stats"><span>lectura rápida</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u03-operacional-vs-estrella.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El modelo operacional protege la consistencia al registrar transacciones. El esquema estrella reorganiza hechos y dimensiones para consultar medidas con filtros previsibles.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>El modelo operacional distribuye la operación entre entidades normalizadas.</p></li><li><span>02</span><p>Las escrituras actualizan la entidad responsable de cada atributo.</p></li><li><span>03</span><p>El esquema estrella concentra medidas en fact_ventas y descripciones en dimensiones.</p></li><li><span>04</span><p>Ambos modelos pueden conservar el mismo detalle, aunque optimizan trabajos diferentes.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>Una <strong>clave foránea</strong>, abreviada FK, contiene el identificador de otra tabla. <code>sales_orders.customer_id</code> referencia a <code>customers.customer_id</code>. Esta relación expresa que cada pedido pertenece a un cliente registrado.</p>
+<p>La integridad referencial impide referencias huérfanas. Un pedido con un <code>customer_id</code> inexistente rompe la relación y puede desaparecer de ciertos análisis. Las bases de datos pueden aplicar la restricción al escribir; un pipeline analítico también puede detectarla mediante una prueba.</p>
+<h3 id="claves-naturales-sustitutas-y-compuestas">Claves naturales, sustitutas y compuestas</h3>
+<p>Una <strong>clave natural</strong> existe dentro del negocio, como el CUIT o un número de pedido. Puede ser útil para reconciliar fuentes. También puede cambiar, contener reglas complejas o incluir información que conviene proteger.</p>
+<p>Una <strong>clave sustituta</strong> es un identificador técnico sin significado de negocio. Simplifica relaciones y permite conservar historial cuando el identificador natural cambia. El campo natural sigue necesitando sus controles de unicidad según el proceso.</p>
+<p>Una <strong>clave compuesta</strong> combina varios atributos. En un snapshot de inventario, producto, ubicación y fecha pueden identificar el registro. La combinación debe reflejar el grano declarado. Si existen varios cortes por día, hará falta agregar hora o un identificador de snapshot.</p>
+<p>Una clave única controla duplicación de identidad. La validez del resto de los atributos requiere pruebas adicionales. Un pedido único puede contener una fecha imposible o un cliente equivocado.</p>
+<h2 id="cardinalidad-cuantos-registros-pueden-relacionarse">Cardinalidad: cuántos registros pueden relacionarse</h2>
+<p>La <strong>cardinalidad</strong> describe cuántos registros de una entidad pueden vincularse con otra. Esta propiedad anticipa qué ocurrirá con la cantidad de filas al hacer un join.</p>
+<h3 id="uno-a-muchos">Uno a muchos</h3>
+<p>Un cliente puede tener muchos pedidos; cada pedido pertenece a un cliente. La clave del cliente aparece como FK en la tabla de pedidos.</p>
+<pre><code class="language-text">customers 1 ───────&lt; sales_orders</code></pre>
+<p>Si la clave de <code>customers</code> es única, unir pedidos con clientes conserva la cantidad de pedidos. Cada pedido encuentra como máximo una fila maestra.</p>
+<h3 id="muchos-a-muchos">Muchos a muchos</h3>
+<p>Un pedido puede contener muchos productos y un producto puede aparecer en muchos pedidos. La relación se representa mediante <code>sales_order_lines</code>. Esa tabla intermedia registra el encuentro y conserva medidas propias, como cantidad, precio y descuento.</p>
+<pre><code class="language-text">sales_orders 1 ──&lt; sales_order_lines &gt;── 1 products</code></pre>
+<p>La tabla intermedia transforma una relación muchos a muchos en dos relaciones uno a muchos. Además, fija el grano del hecho comercial: un producto dentro de un pedido.</p>
+<h3 id="uno-a-uno">Uno a uno</h3>
+<p>Una relación uno a uno vincula como máximo un registro a cada lado. Puede separar información sensible o una extensión opcional. Su existencia requiere una razón funcional, porque muchas veces ambos grupos de atributos podrían convivir en la misma entidad.</p>
+<h3 id="opcionalidad">Opcionalidad</h3>
+<p>La cardinalidad también contempla registros sin correspondencia. Un pedido nuevo puede carecer de despacho. Un cliente puede existir antes de realizar su primera compra. Esta opcionalidad influye en la elección entre <code>INNER JOIN</code> y <code>LEFT JOIN</code>, tema desarrollado en la unidad siguiente.</p>
+<h2 id="normalizacion-al-nivel-necesario">Normalización al nivel necesario</h2>
+<p>La normalización organiza atributos según sus dependencias. En este curso se utilizará como razonamiento práctico. Un atributo debe describir la entidad del grano, depender de su clave y actualizarse en un lugar definido.</p>
+<p>Separar clientes, productos, pedidos y líneas reduce repetición. Un cambio de región se registra en el cliente. Una modificación de descripción se realiza en el producto. La fecha de la orden permanece en su cabecera. La cantidad se conserva en la línea.</p>
+<p>Este diseño evita tres anomalías frecuentes. La anomalía de actualización aparece cuando un mismo dato debe cambiar en muchas filas. La de inserción obliga a inventar una transacción para registrar una entidad. La de eliminación borra información sobre un cliente al quitar su última venta.</p>
+<p>La normalización sirve al sistema operacional porque protege integridad y facilita transacciones. Un diseño con muchas tablas puede exigir más joins para analizar. El pipeline puede transformar ese modelo en estructuras de consumo sin abandonar la fuente administrada.</p>
+<h2 id="modelo-operacional-y-esquema-estrella">Modelo operacional y esquema estrella</h2>
+<p>El modelo operacional refleja procesos y separa entidades para registrar cambios con consistencia. El esquema estrella organiza datos alrededor de un <strong>hecho</strong> y varias <strong>dimensiones</strong>.</p>
+<p>La tabla de hechos conserva eventos medibles en un grano estable. En un mart de ventas, una fila puede representar una línea de pedido. Sus medidas incluyen cantidad, venta neta y margen. Las dimensiones aportan contexto para filtrar y agrupar: fecha, cliente, producto o canal.</p>
+<figure class="theory-visual star-schema-figure" aria-labelledby="star-schema-title">
+      <header><span>Modelo dimensional</span><h3 id="star-schema-title">Una tabla de hechos conectada con cuatro dimensiones</h3></header>
+      <p class="theory-visual-question"><span>Pregunta de lectura</span>¿Qué clave permite que cada dimensión filtre muchas filas de ventas?</p>
+      <div class="star-schema-grid">
+        <span class="star-line star-line-v" aria-hidden="true"></span><span class="star-line star-line-h" aria-hidden="true"></span>
+        <article class="schema-table schema-dim" style="grid-area:fecha">
+      <header><span>Dimensión</span><strong>dim_fecha</strong><i aria-label="Cardinalidad 1">1</i></header>
+      <ul><li><code>fecha_id</code><span class="schema-key schema-key-pk">PK</span></li><li><code>fecha</code></li><li><code>mes</code></li><li><code>año</code></li></ul>
+    </article><article class="schema-table schema-dim" style="grid-area:cliente">
+      <header><span>Dimensión</span><strong>dim_cliente</strong><i aria-label="Cardinalidad 1">1</i></header>
+      <ul><li><code>cliente_id</code><span class="schema-key schema-key-pk">PK</span></li><li><code>cliente</code></li><li><code>región</code></li><li><code>segmento</code></li></ul>
+    </article><article class="schema-table schema-fact" style="grid-area:hecho">
+      <header><span>Tabla de hechos</span><strong>fact_ventas</strong><i aria-label="Cardinalidad ∗">∗</i></header>
+      <ul><li><code>venta_id</code><span class="schema-key schema-key-pk">PK</span></li><li><code>fecha_id</code><span class="schema-key schema-key-fk">FK</span></li><li><code>cliente_id</code><span class="schema-key schema-key-fk">FK</span></li><li><code>producto_id</code><span class="schema-key schema-key-fk">FK</span></li><li><code>canal_id</code><span class="schema-key schema-key-fk">FK</span></li><li><code>cantidad</code></li><li><code>venta_neta</code></li><li><code>margen</code></li></ul>
+    </article><article class="schema-table schema-dim" style="grid-area:producto">
+      <header><span>Dimensión</span><strong>dim_producto</strong><i aria-label="Cardinalidad 1">1</i></header>
+      <ul><li><code>producto_id</code><span class="schema-key schema-key-pk">PK</span></li><li><code>producto</code></li><li><code>familia</code></li></ul>
+    </article><article class="schema-table schema-dim" style="grid-area:canal">
+      <header><span>Dimensión</span><strong>dim_canal</strong><i aria-label="Cardinalidad 1">1</i></header>
+      <ul><li><code>canal_id</code><span class="schema-key schema-key-pk">PK</span></li><li><code>canal</code></li></ul>
+    </article>
+      </div>
+      <div class="schema-legend"><span class="schema-key schema-key-pk">PK</span><p>identifica una fila dentro de su tabla</p><span class="schema-key schema-key-fk">FK</span><p>apunta a la clave primaria de una dimensión</p><b>1 → ∗</b><p>una fila de dimensión puede relacionarse con muchas ventas</p></div>
+      <figcaption><span>El grano de <code>fact_ventas</code> es una línea de venta. Las dimensiones aportan el contexto utilizado para filtrar y agrupar sus medidas.</span></figcaption>
+    </figure>
+<p>Las relaciones van desde cada dimensión, con una fila por miembro, hacia muchas filas del hecho. Esta forma facilita que una herramienta de BI aplique filtros coherentes.</p>
+<p>El pipeline puede leer las tablas normalizadas y producir un mart dimensional. El modelo operacional conserva el pedido de manera consistente. El mart facilita ventas por región, familia o mes. Sus finalidades se complementan dentro de la arquitectura.</p>
+<h3 id="medidas-y-nivel-de-calculo">Medidas y nivel de cálculo</h3>
+<p>Una medida debe respetar el grano del hecho. La venta neta por línea puede calcularse como <code>cantidad × precio × (1 - descuento)</code>. El margen se deriva de la venta y del costo de esa línea. Un total de pedido almacenado en la cabecera necesita asignación o tratamiento separado antes de llegar al mart de líneas.</p>
+<h2 id="el-significado-de-null">El significado de <code>NULL</code></h2>
+<p><code>NULL</code> representa ausencia o desconocimiento. Se distingue de cero, cadena vacía, falso y una categoría explícita como “no aplica”. Esta distinción afecta filtros, joins y métricas.</p>
+<p>Una fecha de entrega <code>NULL</code> puede indicar que el pedido sigue abierto. Una cantidad igual a cero expresa un valor observado o una regla del proceso. Reemplazar automáticamente el <code>NULL</code> por cero mezclará estados diferentes.</p>
+<p>En SQL, una comparación con <code>NULL</code> utiliza <code>IS NULL</code> o <code>IS NOT NULL</code>. Las funciones de agregación suelen ignorar valores ausentes, salvo <code>COUNT(*)</code>, que cuenta filas. Cada indicador debe documentar qué tratamiento aplica y qué proporción de valores faltantes existe.</p>
+<h2 id="el-modelo-relacional-de-faro-sur">El modelo relacional de Faro Sur</h2>
+<p>Faro Sur separa inicialmente cuatro entidades:</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u03-plana-a-relacional-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u03-plana-a-relacional-title">De una tabla plana a un modelo relacional</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué se repite en la tabla plana y qué entidad debería conservar cada dato?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u03-relational-model.webp')">
+        <div class="atlas-board atlas-flow" style="--atlas-cols:5"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">mezcla</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>venta_plana</h5>
+      <div class="atlas-card-copy"><p>Una fila por línea; cliente y producto se repiten.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>O101</td><td>CLI01</td><td>P01</td></tr><tr><td>O102</td><td>CLI02</td><td>P01</td></tr></tbody></table></div>
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">entidad</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>clientes</h5>
+      <div class="atlas-card-copy"><p>PK cliente_id</p><p>Una fila por cliente.</p></div>
+      <div class="atlas-stats"><span>evita repetir región</span></div>
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">cabecera</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>pedidos</h5>
+      <div class="atlas-card-copy"><p>PK pedido_id</p><p>FK cliente_id</p></div>
+      <div class="atlas-stats"><span>evita repetir fecha</span></div>
+    </article><article class="atlas-card is-blue" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">hecho</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>lineas_pedido</h5>
+      <div class="atlas-card-copy"><p>PK pedido_id + linea_nro</p><p>FK producto_id</p></div>
+      <div class="atlas-stats"><span>cantidad y precio</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">catálogo</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>productos</h5>
+      <div class="atlas-card-copy"><p>PK producto_id</p><p>Una fila por producto.</p></div>
+      <div class="atlas-stats"><span>evita nombres divergentes</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u03-plana-a-relacional.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Separar entidades reduce repeticiones y evita que una actualización modifique solo algunas copias del mismo dato. Las claves preservan las relaciones entre los nuevos granos.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La fila plana mezcla datos del cliente, el pedido, el producto y la venta.</p></li><li><span>02</span><p>Cada entidad recibe una clave primaria y un grano estable.</p></li><li><span>03</span><p>Las claves foráneas conectan pedidos con clientes y líneas con pedidos y productos.</p></li><li><span>04</span><p>La separación evita anomalías de actualización, inserción y eliminación.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Tabla</th>
+<th>Contenido principal</th>
+<th>Grano</th>
+</tr></thead><tbody>
+<tr><td><code>customers</code></td><td>segmento y región comercial</td><td>un cliente</td></tr>
+<tr><td><code>products</code></td><td>descripción, familia y costo estándar</td><td>un producto</td></tr>
+<tr><td><code>sales_orders</code></td><td>fecha, canal y cliente</td><td>un pedido</td></tr>
+<tr><td><code>sales_order_lines</code></td><td>producto, cantidad, precio y descuento</td><td>una línea de pedido</td></tr>
+</tbody></table></div>
+<p>La tabla plana repite atributos de cliente y producto por cada línea. El modelo relacional conserva cada atributo en su entidad. <code>sales_orders</code> vincula clientes con pedidos. <code>sales_order_lines</code> vincula pedidos con productos.</p>
+<p>La vista <code>vw_ventas</code> vuelve a combinar las columnas necesarias para análisis. Su grano sigue siendo la línea de pedido. La comodidad de una vista ancha exige comprender de dónde proviene cada campo y qué relaciones participaron. Esa comprensión será la base para escribir joins y controlar duplicaciones.</p>
+<h2 id="controles-antes-de-consultar">Controles antes de consultar</h2>
+<p>Antes de construir una métrica conviene escribir una frase de grano para cada tabla. Después se identifica la clave primaria, las claves foráneas y la cardinalidad esperada. Los conteos de filas y claves distintas ofrecen un control inicial.</p>
+<p>En una unión de pedidos con líneas, la cantidad de filas puede crecer porque un pedido contiene varios productos. En una unión de líneas con productos, la cantidad debería conservarse si cada <code>product_id</code> tiene una sola fila maestra. Esta predicción convierte al modelo en una herramienta de control.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Por qué la región comercial pertenece al cliente y no a una línea de pedido?</li><li>¿Qué sucede con la cantidad de filas cuando un pedido contiene tres productos?</li><li>¿Cómo identificaría una línea si la tabla careciera de un ID técnico?</li><li>¿Qué importe de cabecera se duplicaría al unirlo con el detalle?</li><li>¿Qué tabla funcionaría como hecho en un mart de ventas?</li><li>¿Cómo conservaría la historia si una dimensión cambia con el tiempo?</li></ol>
+<h2 id="alcance-de-la-unidad">Alcance de la unidad</h2>
+<p>El núcleo comprende grano, claves primarias y foráneas, relaciones uno a muchos, la tabla intermedia, la diferencia entre modelo operacional y esquema estrella, y el tratamiento conceptual de <code>NULL</code>. DDL, formas normales formales, índices y modelado temporal quedan como extensión o continuidad.</p>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">De una tabla plana a entidades relacionadas</h2></div>
+      <div class="applied-prose"><p>La tabla inicial repite región, segmento, producto y familia por cada línea. El modelo relacional ubica la región en clientes, la fecha y el canal en pedidos y las cantidades en líneas. Una actualización queda concentrada en la entidad que describe.</p><p>La vista <code>vw_ventas</code> vuelve a reunir esas entidades para consumo. Su conveniencia depende de una definición explícita de grano y de la trazabilidad de cada campo hacia su tabla de origen.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">3.1</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Leer el modelo relacional de Faro Sur</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>El Paquete B separa clientes, pedidos, líneas y productos para que la estructura del negocio quede visible. La práctica declara el grano de cada tabla, identifica claves primarias y foráneas y anticipa la cardinalidad de las relaciones antes de ejecutar SQL. Esa predicción servirá luego como referencia para controlar los joins.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar Paquete B <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u03-modelado-relacional">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u03-modelado-relacional">Modelado relacional: teoría, diseño y representación</h2></div>
+        <p>La selección combina una clase universitaria, apuntes técnicos y una guía aplicada de diseño. El último recurso permite expresar relaciones mediante código versionable.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Video universitario</span><small>Inglés</small></div>
+          <h3><a href="https://www.youtube.com/watch?v=7NPIENPr-zk" target="_blank" rel="noopener noreferrer">Relational Model &amp; Algebra</a></h3>
+          <p>Andy Pavlo presenta relaciones, claves, restricciones y álgebra relacional dentro de un curso completo de bases de datos.</p>
+          <footer><span>CMU Database Group</span><small>≈ 90 min</small><a href="https://www.youtube.com/watch?v=7NPIENPr-zk" target="_blank" rel="noopener noreferrer" aria-label="Abrir Relational Model &amp; Algebra">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Apunte PDF</span><small>Inglés</small></div>
+          <h3><a href="https://15445.courses.cs.cmu.edu/fall2024/notes/01-relationalmodel.pdf" target="_blank" rel="noopener noreferrer">Lecture 01: Relational Model &amp; Algebra</a></h3>
+          <p>Síntesis técnica sobre modelo, esquema, integridad, claves y operaciones relacionales.</p>
+          <footer><span>Carnegie Mellon University</span><small>4 páginas · 20 min</small><a href="https://15445.courses.cs.cmu.edu/fall2024/notes/01-relationalmodel.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir Lecture 01: Relational Model &amp; Algebra">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Clase abierta</span><small>Inglés · subtítulos disponibles</small></div>
+          <h3><a href="https://cs50.harvard.edu/sql/weeks/2/" target="_blank" rel="noopener noreferrer">CS50 SQL · Designing</a></h3>
+          <p>Desarrolla esquemas, normalización, tipos de datos, claves y restricciones mediante ejemplos aplicados.</p>
+          <footer><span>Harvard OpenCourseWare</span><small>Video, notas y ejercicios</small><a href="https://cs50.harvard.edu/sql/weeks/2/" target="_blank" rel="noopener noreferrer" aria-label="Abrir CS50 SQL · Designing">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Referencia visual</span><small>Inglés</small></div>
+          <h3><a href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html" target="_blank" rel="noopener noreferrer">Entity Relationship Diagrams</a></h3>
+          <p>Sintaxis para documentar entidades y cardinalidades como texto versionable. Incluye ejemplos editables.</p>
+          <footer><span>Mermaid</span><small>Consulta · 15 min</small><a href="https://mermaid.js.org/syntax/entityRelationshipDiagram.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir Entity Relationship Diagrams">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u02-ecosistema-arquitectura.html"><span>ANTERIOR</span><b>Unidad 2 · Arquitectura</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 3 · SQL sobre una vista</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>
