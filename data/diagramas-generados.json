@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-08-26",
+  "actualizado": "2026-09-02",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -629,6 +629,269 @@
                   "tag": "prioridad",
                   "stats": [
                     "lectura rápida"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "u03-sql-consultas": [
+      {
+        "page": "u03-sql-consultas",
+        "unit": "C05",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u03-orden-logico-sql.svg",
+        "base_generada": "theory/u03-orden-logico-sql-base.webp",
+        "base_provisoria": "u03-sql-logical-order.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Cómo cambia la tabla durante el orden lógico de SQL",
+        "pregunta_lectura": "¿Qué filas y columnas existen cuando el motor evalúa cada cláusula?",
+        "alt": "Nueve etapas muestran el orden lógico FROM y JOIN, WHERE, GROUP BY, agregación, HAVING, SELECT, ventana, ORDER BY y LIMIT, con conteos y grano resultante.",
+        "epigrafe": "El orden lógico permite anticipar cuándo cambia la población, cuándo cambia el grano y en qué momento aparecen los nombres calculados de la salida.",
+        "after_heading": "orden-escrito-y-orden-logico",
+        "interactivo": true,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "FROM y JOIN forman primero una población de seis líneas de venta.",
+          "WHERE descarta una línea anulada antes de agrupar.",
+          "GROUP BY y las agregaciones producen una fila por familia; HAVING filtra grupos completos.",
+          "SELECT, la ventana, el orden y el límite preparan la salida sin volver a la fuente."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Nine sequential transformations of a small table, with rows visibly filtered, folded into groups, enriched by a window, sorted and narrowed to a final result; strong step rhythm and no labels.",
+        "version_revision": "1.0",
+        "svg_height": 1250,
+        "estructura": {
+          "layout": "flow",
+          "columns": 3,
+          "cards": [
+            {
+              "title": "FROM + JOIN",
+              "body": [
+                "Une líneas con productos."
+              ],
+              "accent": "blue",
+              "tag": "población",
+              "step": 1,
+              "stats": [
+                "6 filas",
+                "grano: línea"
+              ]
+            },
+            {
+              "title": "WHERE",
+              "body": [
+                "estado = 'completado'"
+              ],
+              "accent": "blue",
+              "tag": "filtra filas",
+              "step": 2,
+              "stats": [
+                "5 filas",
+                "mismo grano"
+              ]
+            },
+            {
+              "title": "GROUP BY",
+              "body": [
+                "familia"
+              ],
+              "accent": "blue",
+              "tag": "define grupos",
+              "step": 3,
+              "stats": [
+                "3 familias"
+              ]
+            },
+            {
+              "title": "Agregaciones",
+              "body": [
+                "SUM(venta), COUNT(*)"
+              ],
+              "accent": "blue",
+              "tag": "calcula",
+              "step": 4,
+              "stats": [
+                "3 filas",
+                "grano: familia"
+              ]
+            },
+            {
+              "title": "HAVING",
+              "body": [
+                "SUM(venta) > 1000"
+              ],
+              "accent": "blue",
+              "tag": "filtra grupos",
+              "step": 5,
+              "stats": [
+                "2 familias"
+              ]
+            },
+            {
+              "title": "SELECT",
+              "body": [
+                "familia, venta_total"
+              ],
+              "accent": "blue",
+              "tag": "proyecta",
+              "step": 6,
+              "stats": [
+                "2 columnas"
+              ]
+            },
+            {
+              "title": "Ventana",
+              "body": [
+                "SUM(venta_total) OVER ()"
+              ],
+              "accent": "blue",
+              "tag": "añade contexto",
+              "step": 7,
+              "stats": [
+                "2 filas",
+                "no colapsa"
+              ]
+            },
+            {
+              "title": "ORDER BY",
+              "body": [
+                "venta_total DESC"
+              ],
+              "accent": "blue",
+              "tag": "ordena",
+              "step": 8,
+              "stats": [
+                "mayor primero"
+              ]
+            },
+            {
+              "title": "LIMIT",
+              "body": [
+                "1"
+              ],
+              "accent": "blue",
+              "tag": "presenta",
+              "step": 9,
+              "stats": [
+                "1 fila final"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u03-sql-consultas",
+        "unit": "C05",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u03-filtro-grupo-ventana.svg",
+        "base_generada": "theory/u03-filtro-grupo-ventana-base.webp",
+        "base_provisoria": "u03-sql-grain-change.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Filtrar, agrupar y usar una ventana producen salidas distintas",
+        "pregunta_lectura": "¿Qué operación reduce filas y cuál agrega contexto sin cambiar el grano?",
+        "alt": "Tres columnas comparan WHERE, GROUP BY y una función OVER sobre la misma tabla, con filas, grano, COUNT de filas, COUNT DISTINCT de pedidos y diferencia entre WHERE y HAVING.",
+        "epigrafe": "WHERE conserva el significado de cada fila aceptada. GROUP BY resume varias filas en un grupo. Una función de ventana calcula contexto sobre un conjunto y mantiene visibles las filas originales.",
+        "after_heading": "group-by-cambiar-el-grano-de-salida",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "COUNT(*) cuenta filas; COUNT(DISTINCT pedido_id) cuenta pedidos únicos.",
+          "WHERE actúa antes del agrupamiento y filtra observaciones.",
+          "GROUP BY reduce la salida a una fila por grupo; HAVING decide qué grupos permanecen.",
+          "OVER() agrega un cálculo relacionado con el conjunto sin colapsar las filas."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Three parallel table transformations from one shared dataset: filtering removes rows, grouping folds rows into summary blocks, and a window adds a contextual band while every row remains.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "compare",
+          "groups": [
+            {
+              "title": "WHERE · CONSERVA EL GRANO",
+              "cards": [
+                {
+                  "title": "Entrada",
+                  "body": [
+                    "6 líneas pertenecen a 4 pedidos."
+                  ],
+                  "accent": "blue",
+                  "tag": "antes",
+                  "stats": [
+                    "COUNT(*) = 6",
+                    "DISTINCT = 4"
+                  ]
+                },
+                {
+                  "title": "Filtro",
+                  "body": [
+                    "WHERE estado = 'completado'"
+                  ],
+                  "accent": "blue",
+                  "tag": "condición",
+                  "code": [
+                    "5 líneas · 3 pedidos"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "GROUP BY · CAMBIA EL GRANO",
+              "cards": [
+                {
+                  "title": "Agrupación",
+                  "body": [
+                    "GROUP BY familia"
+                  ],
+                  "accent": "blue",
+                  "tag": "una fila por familia",
+                  "stats": [
+                    "3 filas"
+                  ]
+                },
+                {
+                  "title": "Filtro de grupos",
+                  "body": [
+                    "HAVING SUM(venta) > 1000"
+                  ],
+                  "accent": "blue",
+                  "tag": "después",
+                  "stats": [
+                    "2 familias"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "OVER() · MANTIENE LAS FILAS",
+              "cards": [
+                {
+                  "title": "Ventana",
+                  "body": [
+                    "SUM(venta) OVER (PARTITION BY familia)"
+                  ],
+                  "accent": "blue",
+                  "tag": "contexto",
+                  "stats": [
+                    "5 filas"
+                  ]
+                },
+                {
+                  "title": "Resultado",
+                  "body": [
+                    "Cada línea conserva su venta y recibe el total de su familia."
+                  ],
+                  "accent": "blue",
+                  "tag": "detalle + total",
+                  "stats": [
+                    "grano: línea"
                   ]
                 }
               ]

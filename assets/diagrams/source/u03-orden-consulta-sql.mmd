@@ -1,0 +1,15 @@
+flowchart LR
+    F["1 · FROM"] --> J["2 · JOIN / ON"]
+    J --> W["3 · WHERE"]
+    W --> G["4 · GROUP BY"]
+    G --> H["5 · HAVING"]
+    H --> S["6 · SELECT"]
+    S --> D["7 · DISTINCT"]
+    D --> O["8 · ORDER BY"]
+    O --> L["9 · LIMIT"]
+    Q["Población"] -.-> F
+    R["Salida"] -.-> L
+    classDef accent fill:#FFFF33,color:#151616,stroke:#1F497D,stroke-width:2px;
+    classDef dark fill:#1F497D,color:#FFFFFF,stroke:#1F497D,stroke-width:2px;
+    class F,W,G,H dark;
+    class S,L accent;

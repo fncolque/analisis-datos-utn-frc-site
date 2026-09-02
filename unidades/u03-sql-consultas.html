@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SQL sobre una vista. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>SQL sobre una vista · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 3 · CAPÍTULO 2</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 3 · CAPÍTULO 2</span></div>
+        <h1 id="reading-title">SQL sobre una vista</h1>
+        <p class="hero-lede">SQL permite describir qué datos deben participar en una respuesta y cómo deben organizarse. El capítulo traduce preguntas de negocio a consultas reproducibles, explica el orden lógico de sus cláusulas y muestra cómo documentar población, grano y controles antes de interpretar una salida.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Cómo se traduce una pregunta de negocio a una consulta reproducible?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar notebook y datos <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u03-sql-consultas">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u03-sql-consultas">Orden lógico de una consulta</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u03-orden-consulta-sql.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u03-orden-consulta-sql.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u03-orden-consulta-sql.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u03-orden-consulta-sql.svg?v=20260825b" alt="Flujo del orden lógico de una consulta SQL desde FROM y JOIN hasta SELECT, DISTINCT, ORDER BY y LIMIT." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>La consulta se escribe comenzando por SELECT. El motor forma y filtra la población antes de proyectar la salida.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#que-es-sql">Qué es SQL</a><a href="#que-objetos-encuentra-una-consulta">Qué objetos encuentra una consulta</a><a href="#familias-de-sentencias-sql">Familias de sentencias SQL</a><a href="#el-entorno-de-practica">El entorno de práctica</a><a href="#la-fuente-faro-sur-y-su-grano">La fuente Faro Sur y su grano</a><a href="#de-la-pregunta-de-negocio-al-contrato-de-consulta">De la pregunta de negocio al contrato de consulta</a><a href="#primera-consulta-select-from-y-limit">Primera consulta: `SELECT`, `FROM` y `LIMIT`</a><a href="#alias-y-expresiones">Alias y expresiones</a><a href="#where-definir-la-poblacion">`WHERE`: definir la población</a><a href="#fechas-y-limites-de-periodo">Fechas y límites de período</a><a href="#order-by-y-determinismo-de-la-salida">`ORDER BY` y determinismo de la salida</a><a href="#null-y-logica-de-tres-valores">`NULL` y lógica de tres valores</a><a href="#conteos-y-distinct">Conteos y `DISTINCT`</a><a href="#agregaciones-y-metricas-aditivas">Agregaciones y métricas aditivas</a><a href="#group-by-cambiar-el-grano-de-salida">`GROUP BY`: cambiar el grano de salida</a><a href="#una-consulta-completa-sobre-patagonia">Una consulta completa sobre Patagonia</a><a href="#where-y-having">`WHERE` y `HAVING`</a><a href="#case-crear-categorias-reproducibles">`CASE`: crear categorías reproducibles</a><a href="#cte-y-funcion-de-ventana-una-consulta-intermedia">CTE y función de ventana: una consulta intermedia</a><a href="#ddl-crear-estructuras-para-trabajar">DDL: crear estructuras para trabajar</a><a href="#dml-y-transacciones">DML y transacciones</a><a href="#dcl-y-permisos">DCL y permisos</a><a href="#orden-escrito-y-orden-logico">Orden escrito y orden lógico</a><a href="#como-interpretar-un-resultado">Cómo interpretar un resultado</a><a href="#auditoria-de-consultas-y-uso-de-ia">Auditoría de consultas y uso de IA</a><a href="#recorrido-practico-progresivo">Recorrido práctico progresivo</a><a href="#preguntas-de-control">Preguntas de control</a><a href="#alcance">Alcance</a><a href="#referencias">Referencias</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="que-es-sql">Qué es SQL</h2>
+<p>SQL, Structured Query Language, es un lenguaje para trabajar con datos organizados en relaciones. En una base relacional, una relación se representa habitualmente como una tabla: cada fila describe una observación y cada columna expresa un atributo con un tipo definido.</p>
+<p>SQL es declarativo. La consulta describe el resultado buscado y el motor elige un plan de ejecución. Por ejemplo, una persona puede pedir la venta neta por familia mediante <code>SELECT</code>, <code>SUM</code> y <code>GROUP BY</code>; el motor decide cómo leer, filtrar y agregar los datos disponibles.</p>
+<p>El lenguaje aparece en sistemas transaccionales, data warehouses, herramientas de Business Intelligence, procesos ETL o ELT y notebooks analíticos. La sintaxis cambia en algunos detalles entre DuckDB, PostgreSQL, BigQuery, SQL Server, Snowflake y otros motores. El modelo mental central se mantiene: fuentes, filas, columnas, relaciones, tipos y operaciones sobre conjuntos.</p>
+<h2 id="que-objetos-encuentra-una-consulta">Qué objetos encuentra una consulta</h2>
+<p>Una consulta puede leer distintos objetos del catálogo:</p>
+<ul class="theory-list"><li>una <strong>tabla</strong> conserva datos y una definición de columnas;</li><li>una <strong>vista</strong> conserva una consulta con un nombre reutilizable;</li><li>una <strong>tabla temporal</strong> vive durante una sesión y sirve para cálculos intermedios;</li><li>una <strong>CTE</strong> da nombre a un resultado dentro de una consulta;</li><li>una <strong>subconsulta</strong> produce una relación que otra consulta puede consumir.</li></ul>
+<p>En Faro Sur se comienza con <code>vw_ventas</code>. Esa vista ya reúne campos de pedidos, clientes, productos y líneas. Su grano es la línea de pedido: una fila representa un producto incluido en un pedido.</p>
+<h2 id="familias-de-sentencias-sql">Familias de sentencias SQL</h2>
+<p>La clasificación siguiente ayuda a reconocer el alcance de una sentencia. Algunos manuales agrupan <code>SELECT</code> dentro de DML; en docencia también se usa DQL para distinguir la consulta de la modificación.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Familia</th>
+<th>Propósito</th>
+<th>Sentencias frecuentes</th>
+<th>Uso en esta materia</th>
+</tr></thead><tbody>
+<tr><td>DQL</td><td>Consultar datos</td><td><code>SELECT</code></td><td>Núcleo de los capítulos de consulta y joins</td></tr>
+<tr><td>DDL</td><td>Definir estructuras</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code></td><td>Introducción y lectura de scripts</td></tr>
+<tr><td>DML</td><td>Incorporar o modificar filas</td><td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>MERGE</code></td><td>Demostración sobre una tabla temporal</td></tr>
+<tr><td>DCL</td><td>Administrar permisos</td><td><code>GRANT</code>, <code>REVOKE</code></td><td>Panorama conceptual para plataformas multiusuario</td></tr>
+<tr><td>TCL</td><td>Controlar transacciones</td><td><code>BEGIN</code>, <code>COMMIT</code>, <code>ROLLBACK</code></td><td>Demostración de cambios reversibles</td></tr>
+</tbody></table></div>
+<p>La consulta analítica ocupa la mayor parte del recorrido. DDL aporta vocabulario para comprender cómo nace una tabla o una vista. DML permite reconocer cuándo una sentencia cambia datos. DCL conecta SQL con gobierno y acceso. TCL muestra cómo una base agrupa cambios para confirmarlos o descartarlos.</p>
+<h2 id="el-entorno-de-practica">El entorno de práctica</h2>
+<p>Los notebooks usan DuckDB. El motor puede consultar archivos CSV desde una sesión local y devolver resultados tabulares. Esta elección reduce configuración y conserva una experiencia SQL cercana a sistemas de bases relacionales mayores.</p>
+<p>El Paquete B crea una vista sobre el archivo preparado:</p>
+<pre><code class="language-sql">CREATE OR REPLACE VIEW vw_ventas AS
+SELECT *
+FROM read_csv_auto(
+    &#x27;datos/vw_ventas.csv&#x27;,
+    header = true
+);</code></pre>
+<p><code>CREATE OR REPLACE VIEW</code> pertenece a DDL. La sentencia registra un nombre y una definición de consulta. En cada ejecución posterior, <code>SELECT</code> usa esa definición para acceder a los datos.</p>
+<h2 id="la-fuente-faro-sur-y-su-grano">La fuente Faro Sur y su grano</h2>
+<p>Estas filas ilustran la estructura de <code>vw_ventas</code>:</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>fecha_pedido</th>
+<th>pedido</th>
+<th>familia</th>
+<th>cantidad</th>
+<th>venta_neta</th>
+</tr></thead><tbody>
+<tr><td>2024-08-01</td><td>FSB-2024-00001</td><td>Repuestos</td><td>5</td><td>3744.00</td></tr>
+<tr><td>2024-08-01</td><td>FSB-2024-00235</td><td>Kits de mantenimiento</td><td>2</td><td>659.60</td></tr>
+<tr><td>2024-08-01</td><td>FSB-2024-00235</td><td>Kits de mantenimiento</td><td>3</td><td>1716.90</td></tr>
+<tr><td>2024-08-01</td><td>FSB-2024-00235</td><td>Repuestos</td><td>20</td><td>28310.00</td></tr>
+<tr><td>2024-08-01</td><td>FSB-2024-00260</td><td>Bombas</td><td>2</td><td>6500.00</td></tr>
+</tbody></table></div>
+<p>El pedido <code>FSB-2024-00235</code> aparece tres veces porque contiene tres productos. Esta repetición representa el grano de línea. Contar filas, pedidos y clientes produce unidades distintas.</p>
+<p>El control inicial del release es:</p>
+<pre><code class="language-sql">SELECT
+    COUNT(*) AS lineas,
+    COUNT(DISTINCT pedido) AS pedidos,
+    COUNT(DISTINCT cliente) AS clientes,
+    MIN(fecha_pedido) AS fecha_min,
+    MAX(fecha_pedido) AS fecha_max
+FROM vw_ventas;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>lineas</th>
+<th>pedidos</th>
+<th>clientes</th>
+<th>fecha_min</th>
+<th>fecha_max</th>
+</tr></thead><tbody>
+<tr><td>7500</td><td>3574</td><td>120</td><td>2024-08-01</td><td>2026-07-31</td></tr>
+</tbody></table></div>
+<p>Este resultado funciona como huella del archivo. Una diferencia indica otra versión, una carga incompleta o una interpretación equivocada de la fuente.</p>
+<h2 id="de-la-pregunta-de-negocio-al-contrato-de-consulta">De la pregunta de negocio al contrato de consulta</h2>
+<p>Antes de escribir SQL conviene declarar siete elementos:</p>
+<ol class="theory-list"><li><strong>decisión:</strong> qué uso tendrá el resultado;</li><li><strong>unidad:</strong> qué representa una fila de la fuente;</li><li><strong>métrica:</strong> qué se medirá;</li><li><strong>dimensión:</strong> cómo se dividirá el resultado;</li><li><strong>población:</strong> qué filtros delimitan los casos;</li><li><strong>orden:</strong> cómo se facilitará la comparación;</li><li><strong>control:</strong> qué total o conteo debe reconciliar.</li></ol>
+<p>Pregunta de ejemplo:</p>
+<blockquote>¿Qué familias explican la venta neta de Patagonia durante los meses disponibles de 2026?</blockquote>
+<p>El contrato queda definido así:</p>
+<ul class="theory-list"><li>unidad de entrada: línea de pedido;</li><li>métrica: suma de <code>venta_neta</code>;</li><li>dimensión: <code>familia</code>;</li><li>población: Patagonia, desde 2026-01-01 hasta el límite exclusivo 2026-08-01;</li><li>orden: venta neta descendente;</li><li>control: total de Patagonia para el mismo período.</li></ul>
+<h2 id="primera-consulta-select-from-y-limit">Primera consulta: <code>SELECT</code>, <code>FROM</code> y <code>LIMIT</code></h2>
+<p><code>SELECT</code> declara las columnas del resultado. <code>FROM</code> identifica la fuente. <code>LIMIT</code> restringe la cantidad de filas mostradas.</p>
+<pre><code class="language-sql">SELECT
+    fecha_pedido,
+    pedido,
+    cliente,
+    producto,
+    venta_neta
+FROM vw_ventas
+LIMIT 5;</code></pre>
+<p>Esta consulta sirve para reconocer nombres, valores y grano. <code>LIMIT</code> cambia la salida visible y deja intacta la fuente.</p>
+<p><code>SELECT *</code> permite una inspección breve. Una consulta documentada declara columnas explícitas para exponer intención, estabilizar el esquema de salida y limitar transferencia innecesaria.</p>
+<h2 id="alias-y-expresiones">Alias y expresiones</h2>
+<p>Una columna de salida puede calcularse a partir de otras columnas. <code>AS</code> asigna un nombre legible al resultado.</p>
+<pre><code class="language-sql">SELECT
+    pedido,
+    producto,
+    cantidad,
+    precio_unitario,
+    descuento_pct,
+    cantidad * precio_unitario AS venta_bruta_calculada,
+    cantidad * precio_unitario * (1 - descuento_pct)
+        AS venta_neta_calculada
+FROM vw_ventas
+LIMIT 5;</code></pre>
+<p>La expresión revela la regla de negocio. También permite comparar <code>venta_neta_calculada</code> con la columna publicada y detectar diferencias de fórmula o redondeo.</p>
+<h2 id="where-definir-la-poblacion"><code>WHERE</code>: definir la población</h2>
+<p><code>WHERE</code> conserva las filas cuya condición resulta verdadera. Los operadores frecuentes incluyen:</p>
+<ul class="theory-list"><li>comparación: <code>=</code>, <code>&lt;&gt;</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>;</li><li>pertenencia: <code>IN</code>;</li><li>rango: <code>BETWEEN</code>;</li><li>patrón de texto: <code>LIKE</code>;</li><li>composición lógica: <code>AND</code>, <code>OR</code>, <code>NOT</code>.</li></ul>
+<pre><code class="language-sql">SELECT
+    pedido,
+    cliente,
+    familia,
+    venta_neta
+FROM vw_ventas
+WHERE region = &#x27;Patagonia&#x27;
+  AND familia IN (&#x27;Bombas&#x27;, &#x27;Repuestos&#x27;)
+  AND venta_neta &gt;= 5000
+ORDER BY venta_neta DESC
+LIMIT 10;</code></pre>
+<p>Los paréntesis vuelven explícita la precedencia cuando se combinan <code>AND</code> y <code>OR</code>:</p>
+<pre><code class="language-sql">WHERE region = &#x27;Norte&#x27;
+  AND (
+      familia = &#x27;Bombas&#x27;
+      OR familia = &#x27;Repuestos&#x27;
+  )</code></pre>
+<p>Cada filtro modifica el universo. La documentación debe conservar las condiciones aplicadas y el motivo de cada una.</p>
+<h2 id="fechas-y-limites-de-periodo">Fechas y límites de período</h2>
+<p>La fecha elegida debe corresponder al evento de la pregunta. <code>fecha_pedido</code> mide demanda registrada. Una futura <code>fecha_prometida</code> mediría compromiso y una <code>fecha_entrega</code> mediría ejecución logística.</p>
+<p>Para períodos consecutivos conviene usar un límite inferior inclusivo y un límite superior exclusivo:</p>
+<pre><code class="language-sql">WHERE fecha_pedido &gt;= DATE &#x27;2026-01-01&#x27;
+  AND fecha_pedido &lt;  DATE &#x27;2026-08-01&#x27;</code></pre>
+<p>Este patrón sigue funcionando si el campo incorpora hora. También evita decidir manualmente cuál es el último instante de un mes.</p>
+<h2 id="order-by-y-determinismo-de-la-salida"><code>ORDER BY</code> y determinismo de la salida</h2>
+<p><code>ORDER BY</code> organiza las filas del resultado. <code>ASC</code> indica orden ascendente y <code>DESC</code> descendente.</p>
+<pre><code class="language-sql">SELECT
+    pedido,
+    producto,
+    cantidad,
+    venta_neta
+FROM vw_ventas
+ORDER BY venta_neta DESC, pedido ASC
+LIMIT 5;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>pedido</th>
+<th>producto</th>
+<th>cantidad</th>
+<th>venta_neta</th>
+</tr></thead><tbody>
+<tr><td>FSB-2025-00072</td><td>Tablero de control 10 HP</td><td>20</td><td>29204.00</td></tr>
+<tr><td>FSB-2024-00612</td><td>Tablero de control 10 HP</td><td>20</td><td>28608.00</td></tr>
+<tr><td>FSB-2024-00843</td><td>Tablero de control 10 HP</td><td>20</td><td>28608.00</td></tr>
+<tr><td>FSB-2025-00568</td><td>Tablero de control 10 HP</td><td>20</td><td>28608.00</td></tr>
+<tr><td>FSB-2025-01330</td><td>Tablero de control 10 HP</td><td>20</td><td>28608.00</td></tr>
+</tbody></table></div>
+<p>El segundo criterio resuelve empates y hace reproducible el orden visible.</p>
+<h2 id="null-y-logica-de-tres-valores"><code>NULL</code> y lógica de tres valores</h2>
+<p><code>NULL</code> representa un valor ausente o desconocido. La comparación se expresa con <code>IS NULL</code> o <code>IS NOT NULL</code>:</p>
+<pre><code class="language-sql">SELECT COUNT(*) AS filas_sin_region
+FROM vw_ventas
+WHERE region IS NULL;</code></pre>
+<p>Expresiones como <code>region = NULL</code> producen un valor desconocido y quedan fuera del filtro. Las agregaciones suelen omitir valores <code>NULL</code> de la columna agregada. <code>COUNT(*)</code> cuenta filas; <code>COUNT(region)</code> cuenta valores presentes.</p>
+<p><code>COALESCE(region, 'Sin clasificar')</code> reemplaza el valor en la salida. Esa decisión reúne casos distintos bajo una etiqueta y requiere una regla de negocio explícita.</p>
+<h2 id="conteos-y-distinct">Conteos y <code>DISTINCT</code></h2>
+<pre><code class="language-sql">SELECT
+    COUNT(*) AS lineas,
+    COUNT(DISTINCT pedido) AS pedidos,
+    COUNT(DISTINCT cliente) AS clientes
+FROM vw_ventas;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>lineas</th>
+<th>pedidos</th>
+<th>clientes</th>
+</tr></thead><tbody>
+<tr><td>7500</td><td>3574</td><td>120</td></tr>
+</tbody></table></div>
+<p><code>DISTINCT</code> elimina duplicados del conjunto seleccionado. Aplicarlo sobre <code>pedido</code> produce pedidos únicos. Aplicarlo sobre <code>pedido, familia</code> produce combinaciones únicas. La lista de columnas define qué significa duplicado.</p>
+<h2 id="agregaciones-y-metricas-aditivas">Agregaciones y métricas aditivas</h2>
+<p>Las funciones de agregación resumen varias filas:</p>
+<ul class="theory-list"><li><code>SUM</code> calcula un total;</li><li><code>COUNT</code> calcula una cantidad;</li><li><code>AVG</code> calcula un promedio simple;</li><li><code>MIN</code> y <code>MAX</code> identifican extremos.</li></ul>
+<p>El total del release se obtiene con:</p>
+<pre><code class="language-sql">SELECT
+    ROUND(SUM(venta_neta), 2) AS ventas_netas_usd,
+    ROUND(SUM(margen_bruto), 2) AS margen_bruto_usd,
+    ROUND(
+        SUM(margen_bruto) / NULLIF(SUM(venta_neta), 0),
+        4
+    ) AS margen_pct
+FROM vw_ventas;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>ventas_netas_usd</th>
+<th>margen_bruto_usd</th>
+<th>margen_pct</th>
+</tr></thead><tbody>
+<tr><td>32825861.00</td><td>9038105.00</td><td>0.2753</td></tr>
+</tbody></table></div>
+<p>El margen global es 27,53 %. El promedio simple de <code>margen_pct</code> por línea da 31,21 %. La diferencia aparece porque una línea pequeña y una línea grande reciben el mismo peso en <code>AVG(margen_pct)</code>. El ratio de sumas conserva los importes que originan el indicador.</p>
+<p><code>NULLIF(SUM(venta_neta), 0)</code> devuelve <code>NULL</code> cuando el denominador es cero y evita una división inválida.</p>
+<h2 id="group-by-cambiar-el-grano-de-salida"><code>GROUP BY</code>: cambiar el grano de salida</h2>
+<p><code>GROUP BY</code> crea un grupo por cada combinación de dimensiones. Toda columna seleccionada fuera de una agregación debe identificar un grupo.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u03-filtro-grupo-ventana-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u03-filtro-grupo-ventana-title">Filtrar, agrupar y usar una ventana producen salidas distintas</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué operación reduce filas y cuál agrega contexto sin cambiar el grano?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u03-sql-grain-change.webp')">
+        <div class="atlas-board atlas-compare" style="--atlas-cols:3"><section class="atlas-compare-group">
+              <header><h4>WHERE · CONSERVA EL GRANO</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">antes</span></div>
+      <h5>Entrada</h5>
+      <div class="atlas-card-copy"><p>6 líneas pertenecen a 4 pedidos.</p></div>
+      <div class="atlas-stats"><span>COUNT(*) = 6</span><span>DISTINCT = 4</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">condición</span></div>
+      <h5>Filtro</h5>
+      <div class="atlas-card-copy"><p>WHERE estado = &#x27;completado&#x27;</p></div>
+      <div class="atlas-code-lines"><code>5 líneas · 3 pedidos</code></div>
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>GROUP BY · CAMBIA EL GRANO</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">una fila por familia</span></div>
+      <h5>Agrupación</h5>
+      <div class="atlas-card-copy"><p>GROUP BY familia</p></div>
+      <div class="atlas-stats"><span>3 filas</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">después</span></div>
+      <h5>Filtro de grupos</h5>
+      <div class="atlas-card-copy"><p>HAVING SUM(venta) &gt; 1000</p></div>
+      <div class="atlas-stats"><span>2 familias</span></div>
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>OVER() · MANTIENE LAS FILAS</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">contexto</span></div>
+      <h5>Ventana</h5>
+      <div class="atlas-card-copy"><p>SUM(venta) OVER (PARTITION BY familia)</p></div>
+      <div class="atlas-stats"><span>5 filas</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">detalle + total</span></div>
+      <h5>Resultado</h5>
+      <div class="atlas-card-copy"><p>Cada línea conserva su venta y recibe el total de su familia.</p></div>
+      <div class="atlas-stats"><span>grano: línea</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u03-filtro-grupo-ventana.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>WHERE conserva el significado de cada fila aceptada. GROUP BY resume varias filas en un grupo. Una función de ventana calcula contexto sobre un conjunto y mantiene visibles las filas originales.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>COUNT(*) cuenta filas; COUNT(DISTINCT pedido_id) cuenta pedidos únicos.</p></li><li><span>02</span><p>WHERE actúa antes del agrupamiento y filtra observaciones.</p></li><li><span>03</span><p>GROUP BY reduce la salida a una fila por grupo; HAVING decide qué grupos permanecen.</p></li><li><span>04</span><p>OVER() agrega un cálculo relacionado con el conjunto sin colapsar las filas.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<pre><code class="language-sql">SELECT
+    familia,
+    COUNT(*) AS lineas,
+    COUNT(DISTINCT pedido) AS pedidos,
+    ROUND(SUM(venta_neta), 2) AS ventas_netas_usd,
+    ROUND(SUM(margen_bruto), 2) AS margen_bruto_usd,
+    ROUND(SUM(margen_bruto) / SUM(venta_neta), 4)
+        AS margen_pct
+FROM vw_ventas
+GROUP BY familia
+ORDER BY ventas_netas_usd DESC;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>familia</th>
+<th>lineas</th>
+<th>pedidos</th>
+<th>ventas_netas_usd</th>
+<th>margen_pct</th>
+</tr></thead><tbody>
+<tr><td>Bombas</td><td>2923</td><td>2122</td><td>14588690.80</td><td>0.2277</td></tr>
+<tr><td>Repuestos</td><td>2528</td><td>1928</td><td>13707691.25</td><td>0.3049</td></tr>
+<tr><td>Kits de mantenimiento</td><td>2049</td><td>1676</td><td>4529478.95</td><td>0.3395</td></tr>
+</tbody></table></div>
+<p>Cada fila de la salida representa una familia. Bombas lidera la venta neta. Repuestos aporta el mayor margen bruto absoluto, con USD 4.178.871,25. Kits de mantenimiento presenta el mayor margen porcentual, 33,95 %.</p>
+<p>Agregar <code>region</code> al <code>SELECT</code> y al <code>GROUP BY</code> cambia el grano a una combinación de región y familia.</p>
+<h2 id="una-consulta-completa-sobre-patagonia">Una consulta completa sobre Patagonia</h2>
+<pre><code class="language-sql">SELECT
+    familia,
+    COUNT(DISTINCT pedido) AS pedidos,
+    ROUND(SUM(venta_neta), 2) AS ventas_netas_usd,
+    ROUND(SUM(margen_bruto), 2) AS margen_bruto_usd,
+    ROUND(SUM(margen_bruto) / SUM(venta_neta), 4)
+        AS margen_pct
+FROM vw_ventas
+WHERE region = &#x27;Patagonia&#x27;
+  AND fecha_pedido &gt;= DATE &#x27;2026-01-01&#x27;
+  AND fecha_pedido &lt;  DATE &#x27;2026-08-01&#x27;
+GROUP BY familia
+ORDER BY ventas_netas_usd DESC;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>familia</th>
+<th>pedidos</th>
+<th>ventas_netas_usd</th>
+<th>margen_bruto_usd</th>
+<th>margen_pct</th>
+</tr></thead><tbody>
+<tr><td>Bombas</td><td>132</td><td>930671.80</td><td>207526.80</td><td>0.2230</td></tr>
+<tr><td>Repuestos</td><td>101</td><td>624206.70</td><td>201162.70</td><td>0.3223</td></tr>
+<tr><td>Kits de mantenimiento</td><td>102</td><td>262787.30</td><td>88201.30</td><td>0.3356</td></tr>
+</tbody></table></div>
+<p>La suma de las tres familias es USD 1.817.665,80. Ese total debe coincidir con una consulta que filtre Patagonia y el período, dejando fuera <code>GROUP BY</code>.</p>
+<h2 id="where-y-having"><code>WHERE</code> y <code>HAVING</code></h2>
+<p><code>WHERE</code> filtra filas antes de agrupar. <code>HAVING</code> filtra grupos después de calcular las agregaciones.</p>
+<pre><code class="language-sql">SELECT
+    familia,
+    ROUND(SUM(venta_neta), 2) AS ventas_netas_usd
+FROM vw_ventas
+GROUP BY familia
+HAVING SUM(venta_neta) &gt; 5000000
+ORDER BY ventas_netas_usd DESC;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>familia</th>
+<th>ventas_netas_usd</th>
+</tr></thead><tbody>
+<tr><td>Bombas</td><td>14588690.80</td></tr>
+<tr><td>Repuestos</td><td>13707691.25</td></tr>
+</tbody></table></div>
+<p>El umbral actúa sobre el total de cada familia. Un filtro regional seguiría ubicado en <code>WHERE</code> porque define las filas que entran en esos totales.</p>
+<h2 id="case-crear-categorias-reproducibles"><code>CASE</code>: crear categorías reproducibles</h2>
+<p><code>CASE</code> traduce condiciones en una clasificación.</p>
+<pre><code class="language-sql">SELECT
+    CASE
+        WHEN descuento_pct = 0 THEN &#x27;Sin descuento&#x27;
+        WHEN descuento_pct &lt;= 0.05 THEN &#x27;Hasta 5 %&#x27;
+        ELSE &#x27;Más de 5 %&#x27;
+    END AS banda_descuento,
+    COUNT(*) AS lineas,
+    ROUND(SUM(venta_neta), 2) AS ventas_netas_usd,
+    ROUND(SUM(margen_bruto) / SUM(venta_neta), 4)
+        AS margen_pct
+FROM vw_ventas
+GROUP BY banda_descuento
+ORDER BY ventas_netas_usd DESC;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>banda_descuento</th>
+<th>lineas</th>
+<th>ventas_netas_usd</th>
+<th>margen_pct</th>
+</tr></thead><tbody>
+<tr><td>Más de 5 %</td><td>3278</td><td>15479747.45</td><td>0.2566</td></tr>
+<tr><td>Hasta 5 %</td><td>3485</td><td>14795163.55</td><td>0.2893</td></tr>
+<tr><td>Sin descuento</td><td>737</td><td>2550950.00</td><td>0.3081</td></tr>
+</tbody></table></div>
+<p>Los umbrales expresan una decisión analítica. Su documentación debe indicar quién los definió y con qué propósito. La salida describe una asociación entre banda y margen; una afirmación causal requeriría otro diseño de análisis.</p>
+<h2 id="cte-y-funcion-de-ventana-una-consulta-intermedia">CTE y función de ventana: una consulta intermedia</h2>
+<p>Una Common Table Expression separa etapas con nombres. La función de ventana calcula sobre varias filas y conserva una fila por grupo.</p>
+<pre><code class="language-sql">WITH ventas_por_familia AS (
+    SELECT
+        familia,
+        SUM(venta_neta) AS ventas_netas_usd
+    FROM vw_ventas
+    GROUP BY familia
+)
+SELECT
+    familia,
+    ROUND(ventas_netas_usd, 2) AS ventas_netas_usd,
+    ROUND(
+        100 * ventas_netas_usd
+        / SUM(ventas_netas_usd) OVER (),
+        2
+    ) AS participacion_pct
+FROM ventas_por_familia
+ORDER BY ventas_netas_usd DESC;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>familia</th>
+<th>ventas_netas_usd</th>
+<th>participacion_pct</th>
+</tr></thead><tbody>
+<tr><td>Bombas</td><td>14588690.80</td><td>44.44</td></tr>
+<tr><td>Repuestos</td><td>13707691.25</td><td>41.76</td></tr>
+<tr><td>Kits de mantenimiento</td><td>4529478.95</td><td>13.80</td></tr>
+</tbody></table></div>
+<p>La CTE produce una fila por familia. <code>SUM(...) OVER ()</code> calcula el total sobre esas tres filas y permite obtener participación sin reducir la cantidad de filas de la salida.</p>
+<h2 id="ddl-crear-estructuras-para-trabajar">DDL: crear estructuras para trabajar</h2>
+<p>DDL modifica el catálogo de la base. Este ejemplo crea una tabla temporal de objetivos:</p>
+<pre><code class="language-sql">CREATE TEMP TABLE objetivos_familia (
+    familia VARCHAR PRIMARY KEY,
+    objetivo_margen_pct DECIMAL(5, 4)
+);
+
+ALTER TABLE objetivos_familia
+ADD COLUMN responsable VARCHAR;</code></pre>
+<p>Una tabla temporal queda asociada a la sesión. Resulta apropiada para ejercicios y etapas intermedias. Una tabla persistente permanece en el archivo de base y requiere decisiones de diseño, gobierno y ciclo de vida.</p>
+<p><code>CREATE TABLE AS SELECT</code> materializa el resultado de una consulta:</p>
+<pre><code class="language-sql">CREATE TEMP TABLE resumen_region AS
+SELECT
+    region,
+    SUM(venta_neta) AS ventas_netas_usd
+FROM vw_ventas
+GROUP BY region;</code></pre>
+<p><code>DROP TABLE resumen_region;</code> elimina la tabla del catálogo. La práctica usa objetos temporales para mantener acotado el riesgo de cambios.</p>
+<h2 id="dml-y-transacciones">DML y transacciones</h2>
+<p>DML cambia las filas de una tabla. Se practica sobre la tabla temporal:</p>
+<pre><code class="language-sql">INSERT INTO objetivos_familia (
+    familia,
+    objetivo_margen_pct,
+    responsable
+)
+VALUES
+    (&#x27;Bombas&#x27;, 0.2500, &#x27;Dirección comercial&#x27;),
+    (&#x27;Repuestos&#x27;, 0.3000, &#x27;Gerencia de posventa&#x27;);</code></pre>
+<p>Una transacción agrupa cambios:</p>
+<pre><code class="language-sql">BEGIN TRANSACTION;
+
+UPDATE objetivos_familia
+SET objetivo_margen_pct = 0.2600
+WHERE familia = &#x27;Bombas&#x27;;
+
+SELECT *
+FROM objetivos_familia;
+
+ROLLBACK;</code></pre>
+<p><code>ROLLBACK</code> descarta los cambios de la transacción. <code>COMMIT</code> los confirma. Un <code>UPDATE</code> o <code>DELETE</code> requiere revisar el filtro con un <code>SELECT</code> previo y verificar cuántas filas serán afectadas.</p>
+<h2 id="dcl-y-permisos">DCL y permisos</h2>
+<p>En una plataforma multiusuario, DCL expresa qué rol puede acceder a cada objeto. Un patrón habitual es:</p>
+<pre><code class="language-sql">GRANT SELECT ON vw_ventas TO rol_analista;
+REVOKE UPDATE ON vw_ventas FROM rol_analista;</code></pre>
+<p>La sintaxis exacta y las capacidades dependen del motor. El notebook local de DuckDB se concentra en archivos y sesiones individuales. Plataformas como PostgreSQL, SQL Server y los data warehouses cloud incorporan administración de roles y permisos como parte de su operación.</p>
+<p>El principio de mínimo privilegio asigna las capacidades necesarias para una tarea concreta. Un perfil analítico suele recibir lectura sobre vistas curadas y permisos acotados para crear resultados en un espacio propio.</p>
+<h2 id="orden-escrito-y-orden-logico">Orden escrito y orden lógico</h2>
+<p>La consulta se escribe con <code>SELECT</code> al comienzo. El razonamiento lógico sigue otra secuencia aproximada:</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u03-orden-logico-sql-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u03-orden-logico-sql-title">Cómo cambia la tabla durante el orden lógico de SQL</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué filas y columnas existen cuando el motor evalúa cada cláusula?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u03-sql-logical-order.webp')">
+        <div class="atlas-board atlas-flow" style="--atlas-cols:3"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">población</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>FROM + JOIN</h5>
+      <div class="atlas-card-copy"><p>Une líneas con productos.</p></div>
+      <div class="atlas-stats"><span>6 filas</span><span>grano: línea</span></div>
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">filtra filas</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>WHERE</h5>
+      <div class="atlas-card-copy"><p>estado = &#x27;completado&#x27;</p></div>
+      <div class="atlas-stats"><span>5 filas</span><span>mismo grano</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">define grupos</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>GROUP BY</h5>
+      <div class="atlas-card-copy"><p>familia</p></div>
+      <div class="atlas-stats"><span>3 familias</span></div>
+    </article><article class="atlas-card is-blue" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">calcula</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Agregaciones</h5>
+      <div class="atlas-card-copy"><p>SUM(venta), COUNT(*)</p></div>
+      <div class="atlas-stats"><span>3 filas</span><span>grano: familia</span></div>
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">filtra grupos</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>HAVING</h5>
+      <div class="atlas-card-copy"><p>SUM(venta) &gt; 1000</p></div>
+      <div class="atlas-stats"><span>2 familias</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">proyecta</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>SELECT</h5>
+      <div class="atlas-card-copy"><p>familia, venta_total</p></div>
+      <div class="atlas-stats"><span>2 columnas</span></div>
+    </article><article class="atlas-card is-blue" data-step="7" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">añade contexto</span><span class="atlas-step-number" aria-hidden="true">07</span></div>
+      <h5>Ventana</h5>
+      <div class="atlas-card-copy"><p>SUM(venta_total) OVER ()</p></div>
+      <div class="atlas-stats"><span>2 filas</span><span>no colapsa</span></div>
+    </article><article class="atlas-card is-blue" data-step="8" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">ordena</span><span class="atlas-step-number" aria-hidden="true">08</span></div>
+      <h5>ORDER BY</h5>
+      <div class="atlas-card-copy"><p>venta_total DESC</p></div>
+      <div class="atlas-stats"><span>mayor primero</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="9" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">presenta</span><span class="atlas-step-number" aria-hidden="true">09</span></div>
+      <h5>LIMIT</h5>
+      <div class="atlas-card-copy"><p>1</p></div>
+      <div class="atlas-stats"><span>1 fila final</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u03-orden-logico-sql.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El orden lógico permite anticipar cuándo cambia la población, cuándo cambia el grano y en qué momento aparecen los nombres calculados de la salida.</p>
+        <div class="atlas-controls" aria-label="Pasos de lectura"><button type="button" data-atlas-control="1" aria-pressed="false"><span>01</span>FROM y JOIN forman primero una población de seis líneas de venta.</button><button type="button" data-atlas-control="2" aria-pressed="false"><span>02</span>WHERE descarta una línea anulada antes de agrupar.</button><button type="button" data-atlas-control="3" aria-pressed="false"><span>03</span>GROUP BY y las agregaciones producen una fila por familia; HAVING filtra grupos completos.</button><button type="button" data-atlas-control="4" aria-pressed="false"><span>04</span>SELECT, la ventana, el orden y el límite preparan la salida sin volver a la fuente.</button></div>
+
+      </figcaption>
+    </figure>
+
+<ol class="theory-list"><li><code>FROM</code> y relaciones;</li><li><code>WHERE</code>;</li><li><code>GROUP BY</code>;</li><li>agregaciones;</li><li><code>HAVING</code>;</li><li><code>SELECT</code>;</li><li>funciones de ventana;</li><li><code>ORDER BY</code>;</li><li><code>LIMIT</code>.</li></ol>
+<p>Esta secuencia explica por qué un alias creado en <code>SELECT</code> puede usarse en <code>ORDER BY</code> y suele quedar fuera del alcance de <code>WHERE</code>.</p>
+<h2 id="como-interpretar-un-resultado">Cómo interpretar un resultado</h2>
+<p>Una salida permite describir patrones observados dentro del universo consultado:</p>
+<blockquote>Bombas representa 44,44 % de la venta neta del release y presenta un margen porcentual de 22,77 %.</blockquote>
+<p>La frase declara la fuente, el período y la métrica cuando forma parte de una entrega. Una recomendación comercial necesita sumar objetivos, capacidad, condiciones competitivas y riesgo. SQL aporta evidencia reproducible; la decisión integra esa evidencia con el contexto del negocio.</p>
+<h2 id="auditoria-de-consultas-y-uso-de-ia">Auditoría de consultas y uso de IA</h2>
+<p>Una consulta sugerida por IA atraviesa el mismo control que una consulta escrita manualmente:</p>
+<ol class="theory-list"><li>identificar la fuente y el grano;</li><li>comprobar nombres y tipos de campos;</li><li>revisar filtros y límites temporales;</li><li>verificar el tratamiento de <code>NULL</code>;</li><li>ejecutar sobre un caso pequeño;</li><li>contar filas y claves distintas;</li><li>reconciliar una métrica;</li><li>explicar cada cláusula;</li><li>registrar los cambios hechos al borrador.</li></ol>
+<p>La entrega conserva cuatro piezas: pregunta, consulta ejecutada, control y lectura del resultado. Esa estructura permite revisar el razonamiento completo.</p>
+<h2 id="recorrido-practico-progresivo">Recorrido práctico progresivo</h2>
+<h3 id="nivel-inicial">Nivel inicial</h3>
+<ol class="theory-list"><li>Mostrar cinco filas y explicar qué representa una fila.</li><li>Seleccionar columnas explícitas.</li><li>Filtrar una región.</li><li>Ordenar por venta neta.</li><li>Diferenciar líneas, pedidos y clientes.</li></ol>
+<h3 id="nivel-de-consolidacion">Nivel de consolidación</h3>
+<ol class="theory-list"><li>Calcular ventas y margen global.</li><li>Agrupar por región o familia.</li><li>Usar un rango de fechas.</li><li>Construir una categoría con <code>CASE</code>.</li><li>Reconciliar los subtotales con el total filtrado.</li></ol>
+<h3 id="nivel-intermedio">Nivel intermedio</h3>
+<ol class="theory-list"><li>Filtrar grupos con <code>HAVING</code>.</li><li>Organizar etapas mediante una CTE.</li><li>Calcular participación con una función de ventana.</li><li>Crear una vista o una tabla temporal.</li><li>Ejecutar una modificación dentro de una transacción y revertirla.</li></ol>
+<h2 id="preguntas-de-control">Preguntas de control</h2>
+<ol class="theory-list"><li>¿Qué representa una fila de <code>vw_ventas</code>?</li><li>¿Qué cambia entre <code>COUNT(*)</code> y <code>COUNT(DISTINCT pedido)</code>?</li><li>¿Qué evento mide <code>fecha_pedido</code>?</li><li>¿Qué filas excluye cada condición de <code>WHERE</code>?</li><li>¿Cómo se trata un valor <code>NULL</code> en un conteo o una suma?</li><li>¿Por qué el ratio de sumas difiere del promedio de porcentajes?</li><li>¿Qué diferencia operativa existe entre una vista y una tabla?</li><li>¿Qué sentencias cambian estructuras y cuáles cambian filas?</li><li>¿Qué control permite validar un <code>GROUP BY</code>?</li><li>¿Qué parte del razonamiento debe quedar documentada cuando participa IA?</li></ol>
+<h2 id="alcance">Alcance</h2>
+<h3 id="nucleo-de-la-unidad">Núcleo de la unidad</h3>
+<p><code>SELECT</code>, <code>FROM</code>, alias, expresiones, <code>WHERE</code>, fechas, <code>NULL</code>, <code>COUNT</code>, <code>DISTINCT</code>, <code>SUM</code>, <code>GROUP BY</code>, <code>CASE</code>, <code>HAVING</code>, <code>ORDER BY</code>, grano, ratios y reconciliación.</p>
+<h3 id="orientacion-complementaria">Orientación complementaria</h3>
+<p>DDL, DML, DCL, transacciones, CTE y funciones de ventana se presentan para ubicar la consulta analítica dentro del lenguaje SQL completo. La práctica guiada usa vistas y tablas temporales.</p>
+<h2 id="referencias">Referencias</h2>
+<ul class="theory-list"><li><a href="https://duckdb.org/docs/current/sql/introduction" target="_blank" rel="noopener noreferrer">DuckDB: introducción a SQL</a></li><li><a href="https://duckdb.org/docs/current/sql/statements/select" target="_blank" rel="noopener noreferrer">DuckDB: sentencia SELECT</a></li><li><a href="https://duckdb.org/docs/current/sql/statements/create_table" target="_blank" rel="noopener noreferrer">DuckDB: CREATE TABLE y tablas temporales</a></li><li><a href="https://duckdb.org/docs/current/sql/statements/transactions" target="_blank" rel="noopener noreferrer">DuckDB: administración de transacciones</a></li><li><a href="https://duckdb.org/docs/current/sql/functions/window_functions" target="_blank" rel="noopener noreferrer">DuckDB: funciones de ventana</a></li><li><a href="https://www.postgresql.org/docs/current/sql-commands.html" target="_blank" rel="noopener noreferrer">PostgreSQL: referencia de comandos SQL y permisos</a></li></ul>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo conservar la pregunta dentro de una consulta</h2></div>
+      <div class="applied-prose"><p>Para estudiar venta neta por familia en Patagonia, la unidad disponible es la línea, la métrica es una suma y la dimensión es la familia. El filtro regional y el período definen la población. El total de Patagonia en el mismo período funciona como reconciliación.</p><p>El resultado permite describir concentración o diferencias observadas. Una recomendación exige incorporar objetivos, restricciones y datos complementarios del proceso.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">3.2</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Construir consultas guiadas sobre <code>vw_ventas</code></h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>El notebook del Paquete B comienza con una vista curada. Las actividades avanzan desde selección y filtros hasta agregaciones, ratios, CTE y una función de ventana. Cada resultado incluye un control y una frase de interpretación.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar notebook y datos <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u03-sql-consultas">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u03-sql-consultas">Práctica adicional para construir consultas SQL</h2></div>
+        <p>Los recursos recorren consulta, filtrado, agregación y funciones de ventana. SQLBolt permite practicar desde el navegador y DuckDB documenta el dialecto utilizado en Faro Sur.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Clase abierta</span><small>Inglés · subtítulos disponibles</small></div>
+          <h3><a href="https://cs50.harvard.edu/sql/weeks/0/" target="_blank" rel="noopener noreferrer">CS50 SQL · Querying</a></h3>
+          <p>Introducción completa a tablas, SELECT, filtros, NULL, ordenamiento y agregaciones.</p>
+          <footer><span>Harvard OpenCourseWare</span><small>Video, notas y ejercicios</small><a href="https://cs50.harvard.edu/sql/weeks/0/" target="_blank" rel="noopener noreferrer" aria-label="Abrir CS50 SQL · Querying">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Práctica interactiva</span><small>Inglés</small></div>
+          <h3><a href="https://sqlbolt.com/" target="_blank" rel="noopener noreferrer">SQLBolt</a></h3>
+          <p>Ejercicios en el navegador con devolución inmediata. Resulta útil para repetir sintaxis fuera del caso Faro Sur.</p>
+          <footer><span>SQLBolt</span><small>Lecciones breves · autoguiado</small><a href="https://sqlbolt.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir SQLBolt">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Documentación</span><small>Inglés</small></div>
+          <h3><a href="https://duckdb.org/docs/current/sql/introduction" target="_blank" rel="noopener noreferrer">SQL Introduction</a></h3>
+          <p>Referencia del motor utilizado en la práctica, con ejemplos de tablas, consultas, joins y agregaciones.</p>
+          <footer><span>DuckDB</span><small>Consulta técnica</small><a href="https://duckdb.org/docs/current/sql/introduction" target="_blank" rel="noopener noreferrer" aria-label="Abrir SQL Introduction">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Documentación intermedia</span><small>Inglés</small></div>
+          <h3><a href="https://duckdb.org/docs/current/sql/functions/window_functions" target="_blank" rel="noopener noreferrer">Window Functions</a></h3>
+          <p>Explica particiones, orden y cálculo por ventana para conservar el detalle mientras se comparan filas.</p>
+          <footer><span>DuckDB</span><small>20–30 min</small><a href="https://duckdb.org/docs/current/sql/functions/window_functions" target="_blank" rel="noopener noreferrer" aria-label="Abrir Window Functions">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u03-modelado-relacional.html"><span>ANTERIOR</span><b>Unidad 3 · Modelo relacional</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 3 · Joins controlados</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

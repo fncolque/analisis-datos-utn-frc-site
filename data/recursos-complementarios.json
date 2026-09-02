@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-08-26",
+  "actualizado": "2026-09-02",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -229,6 +229,56 @@
           "idioma": "Inglés",
           "dedicacion": "Consulta · 15 min",
           "descripcion": "Sintaxis para documentar entidades y cardinalidades como texto versionable. Incluye ejemplos editables."
+        }
+      ]
+    },
+    "u03-sql-consultas": {
+      "titulo": "Práctica adicional para construir consultas SQL",
+      "introduccion": "Los recursos recorren consulta, filtrado, agregación y funciones de ventana. SQLBolt permite practicar desde el navegador y DuckDB documenta el dialecto utilizado en Faro Sur.",
+      "diagrama": {
+        "archivo": "u03-orden-consulta-sql.svg",
+        "fuente": "u03-orden-consulta-sql.mmd",
+        "alt": "Flujo del orden lógico de una consulta SQL desde FROM y JOIN hasta SELECT, DISTINCT, ORDER BY y LIMIT.",
+        "titulo": "Orden lógico de una consulta",
+        "epigrafe": "La consulta se escribe comenzando por SELECT. El motor forma y filtra la población antes de proyectar la salida.",
+        "base": "Elaboración propia basada en el orden lógico de SQL."
+      },
+      "recursos": [
+        {
+          "tipo": "Clase abierta",
+          "titulo": "CS50 SQL · Querying",
+          "institucion": "Harvard OpenCourseWare",
+          "url": "https://cs50.harvard.edu/sql/weeks/0/",
+          "idioma": "Inglés · subtítulos disponibles",
+          "dedicacion": "Video, notas y ejercicios",
+          "descripcion": "Introducción completa a tablas, SELECT, filtros, NULL, ordenamiento y agregaciones."
+        },
+        {
+          "tipo": "Práctica interactiva",
+          "titulo": "SQLBolt",
+          "institucion": "SQLBolt",
+          "url": "https://sqlbolt.com/",
+          "idioma": "Inglés",
+          "dedicacion": "Lecciones breves · autoguiado",
+          "descripcion": "Ejercicios en el navegador con devolución inmediata. Resulta útil para repetir sintaxis fuera del caso Faro Sur."
+        },
+        {
+          "tipo": "Documentación",
+          "titulo": "SQL Introduction",
+          "institucion": "DuckDB",
+          "url": "https://duckdb.org/docs/current/sql/introduction",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta técnica",
+          "descripcion": "Referencia del motor utilizado en la práctica, con ejemplos de tablas, consultas, joins y agregaciones."
+        },
+        {
+          "tipo": "Documentación intermedia",
+          "titulo": "Window Functions",
+          "institucion": "DuckDB",
+          "url": "https://duckdb.org/docs/current/sql/functions/window_functions",
+          "idioma": "Inglés",
+          "dedicacion": "20–30 min",
+          "descripcion": "Explica particiones, orden y cálculo por ventana para conservar el detalle mientras se comparan filas."
         }
       ]
     }

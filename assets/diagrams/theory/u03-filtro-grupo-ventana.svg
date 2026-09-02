@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1100" viewBox="0 0 1600 1100" role="img" aria-labelledby="title desc">
+<title id="title">Filtrar, agrupar y usar una ventana producen salidas distintas</title>
+<desc id="desc">Tres columnas comparan WHERE, GROUP BY y una función OVER sobre la misma tabla, con filas, grano, COUNT de filas, COUNT DISTINCT de pedidos y diferencia entre WHERE y HAVING.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9aabb9" stroke-width="1" opacity=".32"/></pattern><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0,0 L12,6 L0,12 z" fill="#1f497d"/></marker></defs>
+<style>.atlas-step{outline:none;cursor:pointer}.atlas-step .card-bg{transition:stroke .16s ease,filter .16s ease}.atlas-step:hover .card-bg,.atlas-step:focus .card-bg{stroke:#ffff33;stroke-width:7px}</style>
+<rect x="0" y="0" width="1600" height="1100" fill="#f7f2e8"/>
+<image href="../../images/generated/u03-sql-grain-change.webp" x="0" y="0" width="1600" height="1100" opacity="0.055" preserveAspectRatio="xMidYMid slice"/>
+<rect x="0" y="0" width="1600" height="1100" fill="url(#grid)" opacity=".36"/>
+<rect x="52" y="38" width="250" height="42" rx="21" fill="#143254"/>
+<text x="177.0" y="66.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="850" text-anchor="middle" letter-spacing="1">ATLAS TEÓRICO · C05</text>
+<text x="52.0" y="118.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="850" text-anchor="start">¿Qué operación reduce filas y cuál agrega contexto sin cambiar el grano?</text>
+<rect x="52.0" y="190" width="480.0" height="58" rx="14" fill="#143254"/>
+<text x="76.0" y="228.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="850" text-anchor="start">WHERE · CONSERVA EL GRANO</text>
+<g>
+<rect class="card-bg" x="52.0" y="266.0" width="480.0" height="367.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="266.0" width="10" height="367.0" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="288.0" width="82.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="312.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">ANTES</text>
+<text x="82.0" y="352.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Entrada</text>
+<text x="82.0" y="389.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• 6 líneas pertenecen a 4 pedidos.</text>
+<rect x="80.0" y="560.0" width="144.0" height="32" rx="4" fill="#ffff33"/>
+<text x="92.0" y="582.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">COUNT(*) = 6</text>
+<rect x="234.0" y="560.0" width="144.0" height="32" rx="4" fill="#ffff33"/>
+<text x="246.0" y="582.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">DISTINCT = 4</text>
+</g>
+<g>
+<rect class="card-bg" x="52.0" y="651.0" width="480.0" height="367.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="651.0" width="10" height="367.0" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="673.0" width="115.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="697.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CONDICIÓN</text>
+<text x="82.0" y="737.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Filtro</text>
+<text x="82.0" y="774.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• WHERE estado = &#x27;completado&#x27;</text>
+<rect x="80.0" y="783.5" width="424.0" height="34" rx="5" fill="#143254"/>
+<text x="92.0" y="806.5" fill="#ffffff" font-family="Consolas, 'Courier New', monospace" font-size="18" font-weight="600" text-anchor="start">5 líneas · 3 pedidos</text>
+</g>
+<rect x="560.0" y="190" width="480.0" height="58" rx="14" fill="#143254"/>
+<text x="584.0" y="228.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="850" text-anchor="start">GROUP BY · CAMBIA EL GRANO</text>
+<g>
+<rect class="card-bg" x="560.0" y="266.0" width="480.0" height="367.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="560.0" y="266.0" width="10" height="367.0" rx="5" fill="#1f497d"/>
+<rect x="588.0" y="288.0" width="225.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="602.0" y="312.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="800" text-anchor="start" letter-spacing="0.8">UNA FILA POR FAMILIA</text>
+<text x="590.0" y="352.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Agrupación</text>
+<text x="590.0" y="389.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• GROUP BY familia</text>
+<rect x="588.0" y="560.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="600.0" y="582.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">3 filas</text>
+</g>
+<g>
+<rect class="card-bg" x="560.0" y="651.0" width="480.0" height="367.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="560.0" y="651.0" width="10" height="367.0" rx="5" fill="#1f497d"/>
+<rect x="588.0" y="673.0" width="95.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="602.0" y="697.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">DESPUÉS</text>
+<text x="590.0" y="737.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Filtro de grupos</text>
+<text x="590.0" y="774.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• HAVING SUM(venta) &gt; 1000</text>
+<rect x="588.0" y="945.0" width="124.0" height="32" rx="4" fill="#ffff33"/>
+<text x="600.0" y="967.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">2 familias</text>
+</g>
+<rect x="1068.0" y="190" width="480.0" height="58" rx="14" fill="#143254"/>
+<text x="1092.0" y="228.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="24" font-weight="850" text-anchor="start">OVER() · MANTIENE LAS FILAS</text>
+<g>
+<rect class="card-bg" x="1068.0" y="266.0" width="480.0" height="367.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1068.0" y="266.0" width="10" height="367.0" rx="5" fill="#1f497d"/>
+<rect x="1096.0" y="288.0" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="1110.0" y="312.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CONTEXTO</text>
+<text x="1098.0" y="352.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Ventana</text>
+<text x="1098.0" y="389.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• SUM(venta) OVER (PARTITION BY</text>
+<text x="1098.0" y="413.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">familia)</text>
+<rect x="1096.0" y="560.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="1108.0" y="582.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">5 filas</text>
+</g>
+<g>
+<rect class="card-bg" x="1068.0" y="651.0" width="480.0" height="367.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1068.0" y="651.0" width="10" height="367.0" rx="5" fill="#1f497d"/>
+<rect x="1096.0" y="673.0" width="175.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="1110.0" y="697.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="800" text-anchor="start" letter-spacing="0.8">DETALLE + TOTAL</text>
+<text x="1098.0" y="737.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Resultado</text>
+<text x="1098.0" y="774.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Cada línea conserva su venta y</text>
+<text x="1098.0" y="798.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">recibe el total de su familia.</text>
+<rect x="1096.0" y="945.0" width="144.0" height="32" rx="4" fill="#ffff33"/>
+<text x="1108.0" y="967.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">grano: línea</text>
+</g>
+<line x1="52" y1="1052" x2="1548" y2="1052" stroke="#9aabb9" stroke-width="2"/>
+<text x="52.0" y="1082.0" fill="#1f497d" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="start">Análisis de Datos · UTN FRC · lectura guiada</text>
+<text x="1548.0" y="1082.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" text-anchor="end">Abrir a tamaño completo para revisar rótulos y relaciones</text>
+</svg>
