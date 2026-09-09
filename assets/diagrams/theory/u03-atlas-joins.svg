@@ -1,0 +1,208 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1300" viewBox="0 0 1600 1300" role="img" aria-labelledby="title desc">
+<title id="title">Atlas de JOINs con filas reales</title>
+<desc id="desc">Ocho paneles comparan INNER, LEFT, RIGHT, FULL OUTER, SEMI, ANTI, CROSS y SELF JOIN mediante pedidos y clientes de ejemplo, con filas, valores nulos y totales.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9aabb9" stroke-width="1" opacity=".32"/></pattern><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0,0 L12,6 L0,12 z" fill="#1f497d"/></marker></defs>
+<style>.atlas-step{outline:none;cursor:pointer}.atlas-step .card-bg{transition:stroke .16s ease,filter .16s ease}.atlas-step:hover .card-bg,.atlas-step:focus .card-bg{stroke:#ffff33;stroke-width:7px}</style>
+<rect x="0" y="0" width="1600" height="1300" fill="#f7f2e8"/>
+<image href="../../images/generated/u03-joins-behavior.webp" x="0" y="0" width="1600" height="1300" opacity="0.055" preserveAspectRatio="xMidYMid slice"/>
+<rect x="0" y="0" width="1600" height="1300" fill="url(#grid)" opacity=".36"/>
+<rect x="52" y="38" width="250" height="42" rx="21" fill="#143254"/>
+<text x="177.0" y="66.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="850" text-anchor="middle" letter-spacing="1">ATLAS TEÓRICO · C06</text>
+<text x="52.0" y="118.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="850" text-anchor="start">¿Qué población y qué filas conserva cada tipo de JOIN?</text>
+<g class="atlas-step" data-step="1" tabindex="0" role="group" aria-label="Paso 1: INNER JOIN">
+<rect class="card-bg" x="52.0" y="190.0" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="190.0" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="212.0" width="145.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">INTERSECCIÓN</text>
+<circle cx="755.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="755.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">01</text>
+<text x="82.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">INNER JOIN</text>
+<text x="82.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Conserva coincidencias en ambos lados.</text>
+<rect x="81.0" y="321.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="342.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O101</text>
+<rect x="420.5" y="321.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="342.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI01</text>
+<rect x="81.0" y="343.5" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="364.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O102</text>
+<rect x="420.5" y="343.5" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="364.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI02</text>
+<rect x="81.0" y="365.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="386.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O103</text>
+<rect x="420.5" y="365.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="386.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI02</text>
+<rect x="80.0" y="357.5" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="92.0" y="379.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">3 filas</text>
+<rect x="184.0" y="357.5" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="196.0" y="379.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">$ 2.500</text>
+</g>
+<g class="atlas-step" data-step="2" tabindex="0" role="group" aria-label="Paso 2: LEFT JOIN">
+<rect class="card-bg" x="811.0" y="190.0" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="190.0" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="839.0" y="212.0" width="95.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="853.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">PEDIDOS</text>
+<circle cx="1514.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">02</text>
+<text x="841.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">LEFT JOIN</text>
+<text x="841.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Preserva los cuatro pedidos; O104 recibe cliente NULL.</text>
+<rect x="840.0" y="321.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="342.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O101</text>
+<rect x="1179.5" y="321.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="342.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI01</text>
+<rect x="840.0" y="343.5" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="364.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O102</text>
+<rect x="1179.5" y="343.5" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="364.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI02</text>
+<rect x="840.0" y="365.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="386.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O103</text>
+<rect x="1179.5" y="365.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="386.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI02</text>
+<rect x="840.0" y="387.5" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="408.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O104</text>
+<rect x="1179.5" y="387.5" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="408.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">NULL</text>
+<rect x="839.0" y="357.5" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="851.0" y="379.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">4 filas</text>
+<rect x="943.0" y="357.5" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="955.0" y="379.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">$ 3.400</text>
+</g>
+<g class="atlas-step" data-step="3" tabindex="0" role="group" aria-label="Paso 3: RIGHT JOIN">
+<rect class="card-bg" x="52.0" y="452.5" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="452.5" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="474.5" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="498.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CLIENTES</text>
+<circle cx="755.0" cy="486.5" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="755.0" y="493.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">03</text>
+<text x="82.0" y="538.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">RIGHT JOIN</text>
+<text x="82.0" y="575.6" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Preserva los tres clientes; CLI03 recibe pedido NULL.</text>
+<rect x="81.0" y="584.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="605.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O101</text>
+<rect x="420.5" y="584.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="605.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI01</text>
+<rect x="81.0" y="606.0" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="627.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O102/O103</text>
+<rect x="420.5" y="606.0" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="627.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI02</text>
+<rect x="81.0" y="628.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="649.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">NULL</text>
+<rect x="420.5" y="628.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="649.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI03</text>
+<rect x="80.0" y="620.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="92.0" y="642.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">4 filas</text>
+<rect x="184.0" y="620.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="196.0" y="642.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">$ 2.500</text>
+</g>
+<g class="atlas-step" data-step="4" tabindex="0" role="group" aria-label="Paso 4: FULL OUTER JOIN">
+<rect class="card-bg" x="811.0" y="452.5" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="452.5" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="839.0" y="474.5" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="853.0" y="498.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">UNIVERSO</text>
+<circle cx="1514.0" cy="486.5" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="493.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">04</text>
+<text x="841.0" y="538.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">FULL OUTER JOIN</text>
+<text x="841.0" y="575.6" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Reúne coincidencias y faltantes de ambos lados.</text>
+<rect x="840.0" y="584.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="605.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O101</text>
+<rect x="1179.5" y="584.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="605.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI01</text>
+<rect x="840.0" y="606.0" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="627.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O102/O103</text>
+<rect x="1179.5" y="606.0" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="627.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI02</text>
+<rect x="840.0" y="628.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="649.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">NULL</text>
+<rect x="1179.5" y="628.0" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="649.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI03</text>
+<rect x="840.0" y="650.0" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="671.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O104</text>
+<rect x="1179.5" y="650.0" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="671.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">NULL</text>
+<rect x="839.0" y="620.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="851.0" y="642.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">5 filas</text>
+<rect x="943.0" y="620.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="955.0" y="642.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">$ 3.400</text>
+</g>
+<g class="atlas-step" data-step="5" tabindex="0" role="group" aria-label="Paso 5: SEMI JOIN">
+<rect class="card-bg" x="52.0" y="715.0" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="715.0" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="737.0" width="85.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="761.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">EXISTE</text>
+<circle cx="755.0" cy="749.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="755.0" y="756.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">05</text>
+<text x="82.0" y="801.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">SEMI JOIN</text>
+<text x="82.0" y="838.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Devuelve pedidos que tienen cliente, sin columnas del lado</text>
+<text x="82.0" y="862.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">derecho.</text>
+<rect x="81.0" y="870.9" width="679.0" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="891.9" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O101</text>
+<rect x="81.0" y="892.9" width="679.0" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="913.9" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O102</text>
+<rect x="81.0" y="914.9" width="679.0" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="935.9" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O103</text>
+<rect x="80.0" y="882.5" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="92.0" y="904.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">3 filas</text>
+<rect x="184.0" y="882.5" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="196.0" y="904.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">$ 2.500</text>
+</g>
+<g class="atlas-step" data-step="6" tabindex="0" role="group" aria-label="Paso 6: ANTI JOIN">
+<rect class="card-bg" x="811.0" y="715.0" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="715.0" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="839.0" y="737.0" width="82.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="853.0" y="761.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">FALTA</text>
+<circle cx="1514.0" cy="749.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="756.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">06</text>
+<text x="841.0" y="801.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">ANTI JOIN</text>
+<text x="841.0" y="838.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Devuelve pedidos cuya clave no encuentra cliente.</text>
+<rect x="840.0" y="846.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="867.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O104</text>
+<rect x="1179.5" y="846.5" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="867.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI99</text>
+<rect x="839.0" y="882.5" width="90.0" height="32" rx="4" fill="#ffff33"/>
+<text x="851.0" y="904.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">1 fila</text>
+<rect x="939.0" y="882.5" width="90.0" height="32" rx="4" fill="#ffff33"/>
+<text x="951.0" y="904.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">$ 900</text>
+</g>
+<g class="atlas-step" data-step="7" tabindex="0" role="group" aria-label="Paso 7: CROSS JOIN">
+<rect class="card-bg" x="52.0" y="977.5" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="977.5" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="999.5" width="215.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="1023.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="800" text-anchor="start" letter-spacing="0.8">PRODUCTO CARTESIANO</text>
+<circle cx="755.0" cy="1011.5" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="755.0" y="1018.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">07</text>
+<text x="82.0" y="1063.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">CROSS JOIN</text>
+<text x="82.0" y="1100.6" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Combina cada pedido con cada cliente; no usa una clave de</text>
+<text x="82.0" y="1125.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">unión.</text>
+<rect x="81.0" y="1133.4" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="1154.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">4 pedidos</text>
+<rect x="420.5" y="1133.4" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="1154.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">×</text>
+<rect x="81.0" y="1155.4" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="1176.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">3 clientes</text>
+<rect x="420.5" y="1155.4" width="339.5" height="22.0" fill="#ffffff" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="1176.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">=</text>
+<rect x="81.0" y="1177.4" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="90.0" y="1198.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">12 pares</text>
+<rect x="420.5" y="1177.4" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="429.5" y="1198.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start"></text>
+<rect x="80.0" y="1145.0" width="104.0" height="32" rx="4" fill="#ffff33"/>
+<text x="92.0" y="1167.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">12 filas</text>
+</g>
+<g class="atlas-step" data-step="8" tabindex="0" role="group" aria-label="Paso 8: SELF JOIN">
+<rect class="card-bg" x="811.0" y="977.5" width="737.0" height="240.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="977.5" width="10" height="240.5" rx="5" fill="#1f497d"/>
+<rect x="839.0" y="999.5" width="135.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="853.0" y="1023.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">MISMA TABLA</text>
+<circle cx="1514.0" cy="1011.5" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="1018.5" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">08</text>
+<text x="841.0" y="1063.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">SELF JOIN</text>
+<text x="841.0" y="1100.6" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Relaciona pedidos del mismo cliente dentro de una sola</text>
+<text x="841.0" y="1125.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">tabla.</text>
+<rect x="840.0" y="1133.4" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="849.0" y="1154.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">CLI02</text>
+<rect x="1179.5" y="1133.4" width="339.5" height="22.0" fill="#edf2f6" stroke="#9aabb9" stroke-width="1"/>
+<text x="1188.5" y="1154.4" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="650" text-anchor="start">O102 ↔ O103</text>
+<rect x="839.0" y="1145.0" width="134.0" height="32" rx="4" fill="#ffff33"/>
+<text x="851.0" y="1167.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">1 par único</text>
+</g>
+<line x1="52" y1="1252" x2="1548" y2="1252" stroke="#9aabb9" stroke-width="2"/>
+<text x="52.0" y="1282.0" fill="#1f497d" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="start">Análisis de Datos · UTN FRC · lectura guiada</text>
+<text x="1548.0" y="1282.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" text-anchor="end">Abrir a tamaño completo para revisar rótulos y relaciones</text>
+</svg>

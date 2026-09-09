@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Joins y reconciliación. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Joins y reconciliación · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 3 · CAPÍTULO 3</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 3 · CAPÍTULO 3</span></div>
+        <h1 id="reading-title">Joins y reconciliación</h1>
+        <p class="hero-lede">Un join reúne tablas y, al hacerlo, puede conservar, descartar o multiplicar filas. Este capítulo enseña a anticipar ese efecto mediante la cardinalidad y a verificarlo después con conteos de filas, claves distintas y métricas reconciliadas.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué filas sobreviven y qué medida puede duplicarse después de una unión?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar notebook y modelo <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u03-joins-reconciliacion">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u03-joins-reconciliacion">Un join bajo control</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u03-joins-controles.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u03-joins-controles.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u03-joins-controles.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u03-joins-controles.svg?v=20260825b" alt="Flujo de control de un join que parte de dos tablas, verifica unicidad, ejecuta la relación y reconcilia filas, claves y métricas." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>La predicción de cardinalidad ocurre antes de ejecutar. Los conteos y las sumas verifican el resultado después de la unión.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#que-hace-un-join">Qué hace un join</a><a href="#ejemplo-minimo-clientes-y-pedidos">Ejemplo mínimo: clientes y pedidos</a><a href="#inner-join-conservar-coincidencias">`INNER JOIN`: conservar coincidencias</a><a href="#left-join-conservar-la-poblacion-base">`LEFT JOIN`: conservar la población base</a><a href="#claves-y-cardinalidad">Claves y cardinalidad</a><a href="#modelo-relacional-de-faro-sur">Modelo relacional de Faro Sur</a><a href="#verificar-unicidad-antes-del-join">Verificar unicidad antes del join</a><a href="#primer-join-real-pedidos-con-clientes">Primer join real: pedidos con clientes</a><a href="#segundo-join-real-lineas-con-productos">Segundo join real: líneas con productos</a><a href="#reconstruccion-progresiva-del-detalle">Reconstrucción progresiva del detalle</a><a href="#reconciliacion-con-la-vista-curada">Reconciliación con la vista curada</a><a href="#el-riesgo-de-multiplicar-una-medida">El riesgo de multiplicar una medida</a><a href="#agregar-despues-de-unir">Agregar después de unir</a><a href="#consulta-intermedia-los-cinco-clientes-con-mayor-venta">Consulta intermedia: los cinco clientes con mayor venta</a><a href="#cte-para-separar-etapas-de-control">CTE para separar etapas de control</a><a href="#otros-tipos-de-join">Otros tipos de join</a><a href="#alias-on-y-using">Alias, `ON` y `USING`</a><a href="#secuencia-de-depuracion">Secuencia de depuración</a><a href="#valores-null-despues-de-una-union">Valores `NULL` después de una unión</a><a href="#auditoria-de-sql-asistido-por-ia">Auditoría de SQL asistido por IA</a><a href="#recorrido-practico-progresivo">Recorrido práctico progresivo</a><a href="#preguntas-de-control">Preguntas de control</a><a href="#alcance">Alcance</a><a href="#referencias">Referencias</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="que-hace-un-join">Qué hace un join</h2>
+<p>Un join combina filas de dos relaciones a partir de una condición. La operación redefine la población de la consulta: determina qué registros aparecen, cuántas veces aparecen y qué columnas quedan disponibles.</p>
+<p>La sintaxis expresa una decisión sobre el grano. Antes de ejecutar conviene declarar:</p>
+<ol class="theory-list"><li>tabla base;</li><li>grano de cada tabla;</li><li>clave de relación;</li><li>cardinalidad esperada;</li><li>cantidad esperada de filas;</li><li>comportamiento de las claves sin coincidencia;</li><li>métricas expuestas a repetición.</li></ol>
+<p>El resultado se controla después de cada relación. Este hábito permite localizar el paso que introduce una pérdida o una multiplicación.</p>
+<h2 id="ejemplo-minimo-clientes-y-pedidos">Ejemplo mínimo: clientes y pedidos</h2>
+<p>Las tablas siguientes son una demostración pedagógica.</p>
+<h3 id="clientes-demo"><code>clientes_demo</code></h3>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>customer_id</th>
+<th>cliente</th>
+<th>region</th>
+</tr></thead><tbody>
+<tr><td>CLI01</td><td>Andina</td><td>Centro</td></tr>
+<tr><td>CLI02</td><td>Delta</td><td>Norte</td></tr>
+<tr><td>CLI03</td><td>Vértice</td><td>Patagonia</td></tr>
+</tbody></table></div>
+<h3 id="pedidos-demo"><code>pedidos_demo</code></h3>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>order_id</th>
+<th>customer_id</th>
+<th>importe_usd</th>
+</tr></thead><tbody>
+<tr><td>O101</td><td>CLI01</td><td>800.00</td></tr>
+<tr><td>O102</td><td>CLI02</td><td>1200.00</td></tr>
+<tr><td>O103</td><td>CLI02</td><td>500.00</td></tr>
+<tr><td>O104</td><td>CLI99</td><td>900.00</td></tr>
+</tbody></table></div>
+<p><code>clientes_demo</code> tiene una fila por cliente. <code>pedidos_demo</code> tiene una fila por pedido. El cliente CLI02 aparece en dos pedidos. El pedido O104 referencia una clave ausente en la tabla de clientes.</p>
+<h2 id="inner-join-conservar-coincidencias"><code>INNER JOIN</code>: conservar coincidencias</h2>
+<pre><code class="language-sql">SELECT
+    o.order_id,
+    o.customer_id,
+    c.cliente,
+    c.region,
+    o.importe_usd
+FROM pedidos_demo AS o
+INNER JOIN clientes_demo AS c
+    ON o.customer_id = c.customer_id
+ORDER BY o.order_id;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>order_id</th>
+<th>customer_id</th>
+<th>cliente</th>
+<th>region</th>
+<th>importe_usd</th>
+</tr></thead><tbody>
+<tr><td>O101</td><td>CLI01</td><td>Andina</td><td>Centro</td><td>800.00</td></tr>
+<tr><td>O102</td><td>CLI02</td><td>Delta</td><td>Norte</td><td>1200.00</td></tr>
+<tr><td>O103</td><td>CLI02</td><td>Delta</td><td>Norte</td><td>500.00</td></tr>
+</tbody></table></div>
+<p>O104 queda fuera porque CLI99 carece de coincidencia. El resultado contiene tres pedidos y suma USD 2.500. La tabla base contenía cuatro pedidos por USD 3.400. La diferencia de USD 900 revela el efecto de la elección.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u03-atlas-joins-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u03-atlas-joins-title">Atlas de JOINs con filas reales</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué población y qué filas conserva cada tipo de JOIN?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u03-joins-behavior.webp')">
+        <div class="atlas-board atlas-grid" style="--atlas-cols:2"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">intersección</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>INNER JOIN</h5>
+      <div class="atlas-card-copy"><p>Conserva coincidencias en ambos lados.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>O101</td><td>CLI01</td></tr><tr><td>O102</td><td>CLI02</td></tr><tr><td>O103</td><td>CLI02</td></tr></tbody></table></div><div class="atlas-stats"><span>3 filas</span><span>$ 2.500</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pedidos</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>LEFT JOIN</h5>
+      <div class="atlas-card-copy"><p>Preserva los cuatro pedidos; O104 recibe cliente NULL.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>O101</td><td>CLI01</td></tr><tr><td>O102</td><td>CLI02</td></tr><tr><td>O103</td><td>CLI02</td></tr><tr><td>O104</td><td>NULL</td></tr></tbody></table></div><div class="atlas-stats"><span>4 filas</span><span>$ 3.400</span></div>
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">clientes</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>RIGHT JOIN</h5>
+      <div class="atlas-card-copy"><p>Preserva los tres clientes; CLI03 recibe pedido NULL.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>O101</td><td>CLI01</td></tr><tr><td>O102/O103</td><td>CLI02</td></tr><tr><td>NULL</td><td>CLI03</td></tr></tbody></table></div><div class="atlas-stats"><span>4 filas</span><span>$ 2.500</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">universo</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>FULL OUTER JOIN</h5>
+      <div class="atlas-card-copy"><p>Reúne coincidencias y faltantes de ambos lados.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>O101</td><td>CLI01</td></tr><tr><td>O102/O103</td><td>CLI02</td></tr><tr><td>NULL</td><td>CLI03</td></tr><tr><td>O104</td><td>NULL</td></tr></tbody></table></div><div class="atlas-stats"><span>5 filas</span><span>$ 3.400</span></div>
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">existe</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>SEMI JOIN</h5>
+      <div class="atlas-card-copy"><p>Devuelve pedidos que tienen cliente, sin columnas del lado derecho.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>O101</td></tr><tr><td>O102</td></tr><tr><td>O103</td></tr></tbody></table></div><div class="atlas-stats"><span>3 filas</span><span>$ 2.500</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">falta</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>ANTI JOIN</h5>
+      <div class="atlas-card-copy"><p>Devuelve pedidos cuya clave no encuentra cliente.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>O104</td><td>CLI99</td></tr></tbody></table></div><div class="atlas-stats"><span>1 fila</span><span>$ 900</span></div>
+    </article><article class="atlas-card is-blue" data-step="7" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">producto cartesiano</span><span class="atlas-step-number" aria-hidden="true">07</span></div>
+      <h5>CROSS JOIN</h5>
+      <div class="atlas-card-copy"><p>Combina cada pedido con cada cliente; no usa una clave de unión.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>4 pedidos</td><td>×</td></tr><tr><td>3 clientes</td><td>=</td></tr><tr><td>12 pares</td><td></td></tr></tbody></table></div><div class="atlas-stats"><span>12 filas</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="8" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">misma tabla</span><span class="atlas-step-number" aria-hidden="true">08</span></div>
+      <h5>SELF JOIN</h5>
+      <div class="atlas-card-copy"><p>Relaciona pedidos del mismo cliente dentro de una sola tabla.</p></div>
+      <div class="atlas-mini-table"><table><tbody><tr><td>CLI02</td><td>O102 ↔ O103</td></tr></tbody></table></div><div class="atlas-stats"><span>1 par único</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u03-atlas-joins.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>La cláusula JOIN expresa una decisión sobre la población. Las tablas de salida permiten comprobar qué claves sobreviven, dónde aparece NULL y qué total debe reconciliarse.</p>
+        <div class="atlas-controls" aria-label="Pasos de lectura"><button type="button" data-atlas-control="1" aria-pressed="false"><span>01</span>Partí de cuatro pedidos y tres clientes; CLI99 no existe en clientes y CLI03 no tiene pedidos.</button><button type="button" data-atlas-control="2" aria-pressed="false"><span>02</span>Compará las filas devueltas antes de observar el total monetario.</button><button type="button" data-atlas-control="3" aria-pressed="false"><span>03</span>SEMI y ANTI responden por existencia; CROSS forma todas las combinaciones.</button><button type="button" data-atlas-control="4" aria-pressed="false"><span>04</span>SELF relaciona una tabla consigo misma y exige una condición que evite pares redundantes.</button></div>
+
+      </figcaption>
+    </figure>
+
+<h2 id="left-join-conservar-la-poblacion-base"><code>LEFT JOIN</code>: conservar la población base</h2>
+<pre><code class="language-sql">SELECT
+    o.order_id,
+    o.customer_id,
+    c.cliente,
+    c.region,
+    o.importe_usd
+FROM pedidos_demo AS o
+LEFT JOIN clientes_demo AS c
+    ON o.customer_id = c.customer_id
+ORDER BY o.order_id;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>order_id</th>
+<th>customer_id</th>
+<th>cliente</th>
+<th>region</th>
+<th>importe_usd</th>
+</tr></thead><tbody>
+<tr><td>O101</td><td>CLI01</td><td>Andina</td><td>Centro</td><td>800.00</td></tr>
+<tr><td>O102</td><td>CLI02</td><td>Delta</td><td>Norte</td><td>1200.00</td></tr>
+<tr><td>O103</td><td>CLI02</td><td>Delta</td><td>Norte</td><td>500.00</td></tr>
+<tr><td>O104</td><td>CLI99</td><td>NULL</td><td>NULL</td><td>900.00</td></tr>
+</tbody></table></div>
+<p>El lado izquierdo conserva cuatro filas y USD 3.400. Los valores <code>NULL</code> vuelven visible la referencia sin correspondencia.</p>
+<p>Este patrón mide integridad:</p>
+<pre><code class="language-sql">SELECT COUNT(*) AS pedidos_sin_cliente
+FROM pedidos_demo AS o
+LEFT JOIN clientes_demo AS c
+    ON o.customer_id = c.customer_id
+WHERE c.customer_id IS NULL;</code></pre>
+<p>El resultado es 1 para el ejemplo mínimo y 0 para el release oficial de Faro Sur.</p>
+<h2 id="claves-y-cardinalidad">Claves y cardinalidad</h2>
+<p>Una clave primaria identifica una fila de su tabla. Una clave foránea referencia la clave de otra tabla. La cardinalidad describe cuántas filas pueden relacionarse a cada lado.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Relación</th>
+<th>Condición esperada</th>
+<th>Efecto al usar la tabla izquierda como base</th>
+</tr></thead><tbody>
+<tr><td>Muchos a uno</td><td>La clave derecha es única</td><td>Conserva el grano izquierdo</td></tr>
+<tr><td>Uno a muchos</td><td>La clave derecha aparece varias veces</td><td>Lleva la salida al detalle derecho</td></tr>
+<tr><td>Uno a uno</td><td>Ambas claves son únicas</td><td>Conserva una fila por entidad</td></tr>
+<tr><td>Muchos a muchos</td><td>Ambas claves se repiten</td><td>Multiplica combinaciones</td></tr>
+</tbody></table></div>
+<p>La relación pedidos a clientes es muchos a uno. La relación pedidos a líneas es uno a muchos. La relación pedidos a productos se resuelve mediante la entidad intermedia <code>sales_order_lines</code>.</p>
+<h2 id="modelo-relacional-de-faro-sur">Modelo relacional de Faro Sur</h2>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Tabla</th>
+<th>Grano</th>
+<th>Clave primaria</th>
+<th>Clave foránea</th>
+<th>Filas</th>
+</tr></thead><tbody>
+<tr><td><code>customers</code></td><td>un cliente</td><td><code>customer_id</code></td><td>Sin clave foránea</td><td>120</td></tr>
+<tr><td><code>products</code></td><td>un producto</td><td><code>product_id</code></td><td>Sin clave foránea</td><td>30</td></tr>
+<tr><td><code>sales_orders</code></td><td>un pedido</td><td><code>order_id</code></td><td><code>customer_id</code></td><td>3574</td></tr>
+<tr><td><code>sales_order_lines</code></td><td>una línea</td><td><code>line_id</code></td><td><code>order_id</code>, <code>product_id</code></td><td>7500</td></tr>
+</tbody></table></div>
+<p><code>vw_ventas</code> también contiene 7.500 filas porque reconstruye el grano de línea y agrega atributos descriptivos.</p>
+<h2 id="verificar-unicidad-antes-del-join">Verificar unicidad antes del join</h2>
+<p>El lado “uno” debe tener una clave única. La consulta siguiente busca clientes duplicados:</p>
+<pre><code class="language-sql">SELECT
+    customer_id,
+    COUNT(*) AS apariciones
+FROM customers
+GROUP BY customer_id
+HAVING COUNT(*) &gt; 1;</code></pre>
+<p>El release oficial devuelve cero filas. El mismo control se aplica a <code>products.product_id</code>, <code>sales_orders.order_id</code> y <code>sales_order_lines.line_id</code>.</p>
+<p>Una clave repetida en <code>customers</code> haría que cada pedido de ese cliente aparezca varias veces. La condición SQL podría ser sintácticamente válida y producir totales inflados.</p>
+<h2 id="primer-join-real-pedidos-con-clientes">Primer join real: pedidos con clientes</h2>
+<pre><code class="language-sql">SELECT
+    o.order_number,
+    o.order_date,
+    o.channel,
+    c.customer_name,
+    c.segment,
+    c.region
+FROM sales_orders AS o
+INNER JOIN customers AS c
+    ON o.customer_id = c.customer_id
+ORDER BY o.order_date, o.order_number
+LIMIT 10;</code></pre>
+<p>La tabla base contiene una fila por pedido. <code>customer_id</code> es único en <code>customers</code>. La salida conserva una fila por pedido y agrega atributos del cliente.</p>
+<p>El control utiliza <code>LEFT JOIN</code>:</p>
+<pre><code class="language-sql">SELECT
+    COUNT(*) AS filas_despues_del_join,
+    COUNT(DISTINCT o.order_id) AS pedidos,
+    SUM(
+        CASE
+            WHEN c.customer_id IS NULL THEN 1
+            ELSE 0
+        END
+    ) AS sin_cliente
+FROM sales_orders AS o
+LEFT JOIN customers AS c
+    ON o.customer_id = c.customer_id;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>filas_despues_del_join</th>
+<th>pedidos</th>
+<th>sin_cliente</th>
+</tr></thead><tbody>
+<tr><td>3574</td><td>3574</td><td>0</td></tr>
+</tbody></table></div>
+<p>La igualdad entre filas y pedidos confirma que el join conserva el grano esperado.</p>
+<h2 id="segundo-join-real-lineas-con-productos">Segundo join real: líneas con productos</h2>
+<pre><code class="language-sql">SELECT
+    l.line_id,
+    l.order_id,
+    p.product_name,
+    p.family,
+    l.quantity,
+    l.unit_price_usd,
+    l.discount_pct,
+    p.standard_cost_usd
+FROM sales_order_lines AS l
+INNER JOIN products AS p
+    ON l.product_id = p.product_id
+ORDER BY l.line_id
+LIMIT 10;</code></pre>
+<p>La tabla base tiene una fila por línea. <code>product_id</code> es único en productos. La salida conserva 7.500 líneas.</p>
+<pre><code class="language-sql">SELECT
+    COUNT(*) AS filas_despues_del_join,
+    COUNT(DISTINCT l.line_id) AS lineas,
+    SUM(
+        CASE
+            WHEN p.product_id IS NULL THEN 1
+            ELSE 0
+        END
+    ) AS sin_producto
+FROM sales_order_lines AS l
+LEFT JOIN products AS p
+    ON l.product_id = p.product_id;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>filas_despues_del_join</th>
+<th>lineas</th>
+<th>sin_producto</th>
+</tr></thead><tbody>
+<tr><td>7500</td><td>7500</td><td>0</td></tr>
+</tbody></table></div>
+<h2 id="reconstruccion-progresiva-del-detalle">Reconstrucción progresiva del detalle</h2>
+<p>La consulta integrada parte de líneas porque la salida buscada conserva ese grano.</p>
+<pre><code class="language-sql">SELECT
+    l.line_id,
+    o.order_date,
+    o.order_number,
+    c.customer_name,
+    c.segment,
+    c.region,
+    o.channel,
+    p.product_name,
+    p.family,
+    l.quantity,
+    l.unit_price_usd,
+    l.discount_pct,
+    p.standard_cost_usd,
+    l.quantity
+        * l.unit_price_usd
+        * (1 - l.discount_pct) AS venta_neta,
+    l.quantity * (
+        l.unit_price_usd * (1 - l.discount_pct)
+        - p.standard_cost_usd
+    ) AS margen_bruto
+FROM sales_order_lines AS l
+INNER JOIN sales_orders AS o
+    ON l.order_id = o.order_id
+INNER JOIN customers AS c
+    ON o.customer_id = c.customer_id
+INNER JOIN products AS p
+    ON l.product_id = p.product_id;</code></pre>
+<p>Cada relación agrega columnas y conserva una fila por <code>line_id</code>. Las métricas se calculan con cantidad, precio, descuento y costo estándar al mismo grano.</p>
+<h2 id="reconciliacion-con-la-vista-curada">Reconciliación con la vista curada</h2>
+<p>Una reconciliación compara dos caminos que deberían producir el mismo resultado.</p>
+<pre><code class="language-sql">WITH reconstruido AS (
+    SELECT
+        l.line_id,
+        l.quantity
+            * l.unit_price_usd
+            * (1 - l.discount_pct) AS venta_neta,
+        l.quantity * (
+            l.unit_price_usd * (1 - l.discount_pct)
+            - p.standard_cost_usd
+        ) AS margen_bruto
+    FROM sales_order_lines AS l
+    INNER JOIN products AS p
+        ON l.product_id = p.product_id
+),
+totales AS (
+    SELECT
+        &#x27;tablas&#x27; AS origen,
+        COUNT(*) AS lineas,
+        ROUND(SUM(venta_neta), 2) AS ventas_netas_usd,
+        ROUND(SUM(margen_bruto), 2) AS margen_bruto_usd
+    FROM reconstruido
+
+    UNION ALL
+
+    SELECT
+        &#x27;vista&#x27;,
+        COUNT(*),
+        ROUND(SUM(venta_neta), 2),
+        ROUND(SUM(margen_bruto), 2)
+    FROM vw_ventas
+)
+SELECT *
+FROM totales;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>origen</th>
+<th>lineas</th>
+<th>ventas_netas_usd</th>
+<th>margen_bruto_usd</th>
+</tr></thead><tbody>
+<tr><td>tablas</td><td>7500</td><td>32825861.00</td><td>9038105.00</td></tr>
+<tr><td>vista</td><td>7500</td><td>32825861.00</td><td>9038105.00</td></tr>
+</tbody></table></div>
+<p>La coincidencia valida filas y dos métricas aditivas. También aporta evidencia de que la vista aplica las fórmulas esperadas para este release.</p>
+<h2 id="el-riesgo-de-multiplicar-una-medida">El riesgo de multiplicar una medida</h2>
+<p>Al unir pedidos con líneas, cada pedido se repite según su cantidad de líneas:</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u03-cardinalidad-reconciliacion-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u03-cardinalidad-reconciliacion-title">Cardinalidad, multiplicación y reconciliación</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Cuándo más filas son esperables y cuándo indican que una medida quedó duplicada?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u03-joins-multiplication.webp')">
+        <div class="atlas-board atlas-grid" style="--atlas-cols:3"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">1 : 1</span></div>
+      <h5>Uno a uno</h5>
+      <div class="atlas-card-copy"><p>Cada clave encuentra como máximo una fila en ambos lados.</p></div>
+      <div class="atlas-stats"><span>filas estables</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">N : 1</span></div>
+      <h5>Muchos a uno</h5>
+      <div class="atlas-card-copy"><p>Muchas líneas encuentran un producto único.</p></div>
+      <div class="atlas-stats"><span>detalle estable</span></div>
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"><span class="atlas-card-tag">1 : N</span></div>
+      <h5>Uno a muchos</h5>
+      <div class="atlas-card-copy"><p>Un pedido se expande a todas sus líneas.</p></div>
+      <div class="atlas-stats"><span>filas aumentan</span></div>
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"><span class="atlas-card-tag">N : M</span></div>
+      <h5>Muchos a muchos</h5>
+      <div class="atlas-card-copy"><p>Duplicados en ambos lados forman combinaciones.</p></div>
+      <div class="atlas-stats"><span>revisar puente</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">expansión esperada</span></div>
+      <h5>Caso Faro Sur</h5>
+      <div class="atlas-card-copy"><p>3.574 pedidos se relacionan con 7.500 líneas.</p><p>Hay 3.926 repeticiones adicionales del id de pedido.</p></div>
+      <div class="atlas-stats"><span>3.574 → 7.500</span></div>
+    </article><article class="atlas-card is-success is-row-end">
+      <div class="atlas-card-top"><span class="atlas-card-tag">control</span></div>
+      <h5>Reconciliación</h5>
+      <div class="atlas-card-copy"><p>COUNT filas · COUNT DISTINCT claves</p><p>SUM ventas antes y después: $ 32.825.861.</p></div>
+      <div class="atlas-stats"><span>total debe coincidir</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u03-cardinalidad-reconciliacion.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Un JOIN puede aumentar filas porque una entidad tiene varios detalles. El aumento es correcto para el detalle; una medida de cabecera debe agregarse antes o asignarse una sola vez para evitar duplicación.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La cardinalidad declara cuántas coincidencias espera cada clave en ambos lados.</p></li><li><span>02</span><p>Un pedido con varias líneas produce varias filas de detalle por diseño.</p></li><li><span>03</span><p>Repetir el importe total del pedido en cada línea aumenta la suma de manera artificial.</p></li><li><span>04</span><p>Los controles comparan filas, claves distintas y totales monetarios antes y después del JOIN.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<pre><code class="language-sql">SELECT
+    COUNT(*) AS filas_despues_del_join,
+    COUNT(DISTINCT o.order_id) AS pedidos,
+    COUNT(*) - COUNT(DISTINCT o.order_id)
+        AS repeticiones_por_detalle
+FROM sales_orders AS o
+INNER JOIN sales_order_lines AS l
+    ON o.order_id = l.order_id;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>filas_despues_del_join</th>
+<th>pedidos</th>
+<th>repeticiones_por_detalle</th>
+</tr></thead><tbody>
+<tr><td>7500</td><td>3574</td><td>3926</td></tr>
+</tbody></table></div>
+<p>Los atributos de pedido se repiten 3.926 veces adicionales. Fecha, canal y cliente pueden repetirse porque funcionan como dimensiones de la línea. Un importe almacenado a nivel de cabecera quedaría duplicado al sumarlo en este resultado.</p>
+<p>La protección depende del diseño:</p>
+<ul class="theory-list"><li>agregar la medida antes de bajar al detalle;</li><li>seleccionar una fila de cabecera por pedido;</li><li>recalcular la medida desde componentes de línea;</li><li>conservar tablas de hechos separadas cuando existen procesos con granos diferentes.</li></ul>
+<p><code>DISTINCT</code> aplicado al final puede esconder el síntoma y también eliminar observaciones legítimas. El control de cardinalidad ataca la causa.</p>
+<h2 id="agregar-despues-de-unir">Agregar después de unir</h2>
+<p>La consulta siguiente produce ventas por segmento desde las cuatro tablas:</p>
+<pre><code class="language-sql">SELECT
+    c.segment,
+    COUNT(DISTINCT o.order_id) AS pedidos,
+    COUNT(DISTINCT c.customer_id) AS clientes,
+    ROUND(SUM(
+        l.quantity
+        * l.unit_price_usd
+        * (1 - l.discount_pct)
+    ), 2) AS ventas_netas_usd,
+    ROUND(SUM(
+        l.quantity * (
+            l.unit_price_usd * (1 - l.discount_pct)
+            - p.standard_cost_usd
+        )
+    ), 2) AS margen_bruto_usd
+FROM sales_order_lines AS l
+INNER JOIN sales_orders AS o
+    ON l.order_id = o.order_id
+INNER JOIN customers AS c
+    ON o.customer_id = c.customer_id
+INNER JOIN products AS p
+    ON l.product_id = p.product_id
+GROUP BY c.segment
+ORDER BY ventas_netas_usd DESC;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>segmento</th>
+<th>pedidos</th>
+<th>clientes</th>
+<th>ventas_netas_usd</th>
+<th>margen_bruto_usd</th>
+</tr></thead><tbody>
+<tr><td>Agroindustria</td><td>1196</td><td>40</td><td>10280279.45</td><td>2722178.45</td></tr>
+<tr><td>Manufactura</td><td>916</td><td>32</td><td>8560798.55</td><td>2385445.55</td></tr>
+<tr><td>Minería y energía</td><td>756</td><td>25</td><td>7596231.70</td><td>2040447.70</td></tr>
+<tr><td>Servicios industriales</td><td>706</td><td>23</td><td>6388551.30</td><td>1890033.30</td></tr>
+</tbody></table></div>
+<p>La salida tiene una fila por segmento. La suma de <code>ventas_netas_usd</code> debe reconciliar con USD 32.825.861,00.</p>
+<h2 id="consulta-intermedia-los-cinco-clientes-con-mayor-venta">Consulta intermedia: los cinco clientes con mayor venta</h2>
+<pre><code class="language-sql">SELECT
+    c.customer_name,
+    c.region,
+    COUNT(DISTINCT o.order_id) AS pedidos,
+    ROUND(SUM(
+        l.quantity
+        * l.unit_price_usd
+        * (1 - l.discount_pct)
+    ), 2) AS ventas_netas_usd,
+    ROUND(
+        SUM(l.quantity * (
+            l.unit_price_usd * (1 - l.discount_pct)
+            - p.standard_cost_usd
+        ))
+        / SUM(l.quantity
+            * l.unit_price_usd
+            * (1 - l.discount_pct)),
+        4
+    ) AS margen_pct
+FROM sales_order_lines AS l
+INNER JOIN sales_orders AS o
+    ON l.order_id = o.order_id
+INNER JOIN customers AS c
+    ON o.customer_id = c.customer_id
+INNER JOIN products AS p
+    ON l.product_id = p.product_id
+GROUP BY c.customer_name, c.region
+ORDER BY ventas_netas_usd DESC
+LIMIT 5;</code></pre>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>cliente</th>
+<th>region</th>
+<th>pedidos</th>
+<th>ventas_netas_usd</th>
+<th>margen_pct</th>
+</tr></thead><tbody>
+<tr><td>FS Río Procesos 57</td><td>Norte</td><td>41</td><td>481366.10</td><td>0.2684</td></tr>
+<tr><td>FS Andina Servicios 61</td><td>Patagonia</td><td>49</td><td>465922.85</td><td>0.2854</td></tr>
+<tr><td>FS Delta Envases 27</td><td>Patagonia</td><td>49</td><td>465043.80</td><td>0.2913</td></tr>
+<tr><td>FS Vector Mineral 120</td><td>Patagonia</td><td>43</td><td>447769.10</td><td>0.2510</td></tr>
+<tr><td>FS Rumbo Mineral 118</td><td>Patagonia</td><td>41</td><td>444470.25</td><td>0.2612</td></tr>
+</tbody></table></div>
+<p>El ranking identifica concentración comercial. Una evaluación de valor de cliente incorporaría costo de servicio, riesgo de crédito, recurrencia y potencial futuro.</p>
+<h2 id="cte-para-separar-etapas-de-control">CTE para separar etapas de control</h2>
+<p>Una consulta extensa gana trazabilidad cuando cada etapa recibe un nombre.</p>
+<pre><code class="language-sql">WITH lineas_con_producto AS (
+    SELECT
+        l.line_id,
+        l.order_id,
+        p.family,
+        l.quantity,
+        l.unit_price_usd,
+        l.discount_pct,
+        p.standard_cost_usd
+    FROM sales_order_lines AS l
+    LEFT JOIN products AS p
+        ON l.product_id = p.product_id
+),
+detalle_comercial AS (
+    SELECT
+        lp.*,
+        o.order_date,
+        o.customer_id,
+        c.segment,
+        c.region
+    FROM lineas_con_producto AS lp
+    LEFT JOIN sales_orders AS o
+        ON lp.order_id = o.order_id
+    LEFT JOIN customers AS c
+        ON o.customer_id = c.customer_id
+)
+SELECT
+    COUNT(*) AS lineas,
+    COUNT(DISTINCT line_id) AS lineas_distintas,
+    SUM(CASE WHEN family IS NULL THEN 1 ELSE 0 END)
+        AS lineas_sin_producto,
+    SUM(CASE WHEN customer_id IS NULL THEN 1 ELSE 0 END)
+        AS lineas_sin_cliente
+FROM detalle_comercial;</code></pre>
+<p>Cada CTE puede ejecutarse de manera aislada durante el desarrollo. Los nombres describen la transformación y facilitan que otra persona revise el recorrido.</p>
+<h2 id="otros-tipos-de-join">Otros tipos de join</h2>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Tipo</th>
+<th>Población conservada</th>
+<th>Uso habitual</th>
+</tr></thead><tbody>
+<tr><td><code>INNER JOIN</code></td><td>Coincidencias de ambos lados</td><td>Integración con relaciones validadas</td></tr>
+<tr><td><code>LEFT JOIN</code></td><td>Todas las filas izquierdas</td><td>Enriquecimiento y búsqueda de faltantes</td></tr>
+<tr><td><code>RIGHT JOIN</code></td><td>Todas las filas derechas</td><td>Misma lógica con la orientación invertida</td></tr>
+<tr><td><code>FULL OUTER JOIN</code></td><td>Ambos lados</td><td>Reconciliación de dos universos</td></tr>
+<tr><td><code>CROSS JOIN</code></td><td>Todas las combinaciones</td><td>Escenarios, calendarios o grillas controladas</td></tr>
+<tr><td><code>SELF JOIN</code></td><td>Una tabla relacionada consigo misma</td><td>Jerarquías o comparaciones internas</td></tr>
+</tbody></table></div>
+<p>El recorrido práctico utiliza <code>INNER</code> y <code>LEFT</code>. <code>FULL OUTER</code> resulta útil para comparar dos sistemas de origen. <code>CROSS JOIN</code> exige estimar el tamaño: 1.000 filas por 500 filas producen 500.000 combinaciones.</p>
+<h2 id="alias-on-y-using">Alias, <code>ON</code> y <code>USING</code></h2>
+<p>Los alias acortan referencias y vuelven visible el origen de cada columna:</p>
+<pre><code class="language-sql">FROM sales_orders AS o
+JOIN customers AS c
+  ON o.customer_id = c.customer_id</code></pre>
+<p><code>USING (customer_id)</code> ofrece una forma breve cuando ambos lados usan el mismo nombre. <code>ON</code> se prefiere en los primeros ejercicios porque deja escrita la relación completa y admite nombres diferentes.</p>
+<p>Una condición por descripción, como nombre del cliente o producto, queda expuesta a cambios de escritura, espacios y homónimos. Las claves técnicas estabilizan la relación. Los campos descriptivos sirven como controles auxiliares.</p>
+<h2 id="secuencia-de-depuracion">Secuencia de depuración</h2>
+<p>Cuando un total cambia después de un join, la revisión sigue un orden concreto:</p>
+<ol class="theory-list"><li>ejecutar el resultado previo al join;</li><li>contar filas y claves distintas en ambos lados;</li><li>comprobar unicidad en el lado esperado;</li><li>buscar claves sin coincidencia;</li><li>ejecutar una sola relación;</li><li>comparar filas antes y después;</li><li>inspeccionar una clave que se multiplica;</li><li>reconciliar una medida al grano correcto;</li><li>agregar la siguiente relación.</li></ol>
+<p>Este procedimiento reduce el espacio de búsqueda. También produce evidencia útil para documentar la corrección.</p>
+<h2 id="valores-null-despues-de-una-union">Valores <code>NULL</code> después de una unión</h2>
+<p>Un <code>LEFT JOIN</code> introduce <code>NULL</code> en las columnas derechas cuando falta una coincidencia. El valor ausente debe conservarse durante el control. Reemplazarlo de inmediato con <code>COALESCE</code> puede ocultar la cantidad de casos incompletos.</p>
+<p>Después de medir faltantes, una salida de consumo puede usar una etiqueta:</p>
+<pre><code class="language-sql">SELECT
+    COALESCE(c.region, &#x27;Sin región&#x27;) AS region,
+    COUNT(*) AS pedidos
+FROM sales_orders AS o
+LEFT JOIN customers AS c
+    ON o.customer_id = c.customer_id
+GROUP BY COALESCE(c.region, &#x27;Sin región&#x27;);</code></pre>
+<p>La etiqueta forma parte de la semántica publicada y debe quedar definida en el diccionario.</p>
+<h2 id="auditoria-de-sql-asistido-por-ia">Auditoría de SQL asistido por IA</h2>
+<p>Una propuesta de join generada por IA debe declarar:</p>
+<ul class="theory-list"><li>tabla base y grano inicial;</li><li>tabla incorporada y grano;</li><li>clave y cardinalidad;</li><li>tipo de join;</li><li>filas esperadas;</li><li>claves sin coincidencia esperadas;</li><li>medida que puede repetirse;</li><li>consulta de reconciliación.</li></ul>
+<p>La ejecución aporta conteos observados. La explicación humana compara esos resultados con la predicción y documenta cualquier ajuste.</p>
+<h2 id="recorrido-practico-progresivo">Recorrido práctico progresivo</h2>
+<h3 id="nivel-inicial">Nivel inicial</h3>
+<ol class="theory-list"><li>Unir pedidos con clientes.</li><li>Explicar cada alias y cada lado de <code>ON</code>.</li><li>Comparar <code>INNER</code> y <code>LEFT</code> con el ejemplo mínimo.</li><li>Contar pedidos sin cliente.</li></ol>
+<h3 id="nivel-de-consolidacion">Nivel de consolidación</h3>
+<ol class="theory-list"><li>Unir líneas con productos.</li><li>Comprobar unicidad del lado producto.</li><li>Reconstruir venta neta y margen bruto.</li><li>Reconciliar con <code>vw_ventas</code>.</li></ol>
+<h3 id="nivel-intermedio">Nivel intermedio</h3>
+<ol class="theory-list"><li>Integrar las cuatro tablas mediante CTE.</li><li>Calcular ventas por segmento.</li><li>Identificar los cinco clientes con mayor venta.</li><li>Demostrar el riesgo de duplicar una medida de cabecera.</li><li>Diseñar un control para un release con claves faltantes.</li></ol>
+<h2 id="preguntas-de-control">Preguntas de control</h2>
+<ol class="theory-list"><li>¿Qué representa una fila antes y después del join?</li><li>¿Qué clave conecta las tablas y qué dominio representa?</li><li>¿Qué cardinalidad se espera?</li><li>¿Qué filas conserva cada tipo de join?</li><li>¿Por qué pedidos con líneas produce 7.500 filas?</li><li>¿Qué revela <code>LEFT JOIN</code> mediante valores <code>NULL</code>?</li><li>¿Qué campo debe ser único del lado “uno”?</li><li>¿Cómo puede <code>DISTINCT</code> ocultar una multiplicación?</li><li>¿Qué total puede reconciliarse con <code>vw_ventas</code>?</li><li>¿Qué evidencia debe acompañar un join en el proyecto?</li></ol>
+<h2 id="alcance">Alcance</h2>
+<h3 id="nucleo-de-la-unidad">Núcleo de la unidad</h3>
+<p><code>INNER JOIN</code>, <code>LEFT JOIN</code>, alias, <code>ON</code>, claves, cardinalidad, predicción de filas, controles de integridad, reconciliación, CTE y protección de métricas.</p>
+<h3 id="orientacion-complementaria">Orientación complementaria</h3>
+<p><code>RIGHT JOIN</code>, <code>FULL OUTER JOIN</code>, <code>CROSS JOIN</code>, <code>SELF JOIN</code>, planes de ejecución, índices y optimización quedan como mapa para una instancia posterior.</p>
+<h2 id="referencias">Referencias</h2>
+<ul class="theory-list"><li><a href="https://duckdb.org/docs/stable/sql/query_syntax/from" target="_blank" rel="noopener noreferrer">DuckDB: cláusulas FROM y JOIN</a></li><li><a href="https://duckdb.org/docs/current/sql/statements/select" target="_blank" rel="noopener noreferrer">DuckDB: sentencia SELECT</a></li><li><a href="https://duckdb.org/docs/current/sql/introduction" target="_blank" rel="noopener noreferrer">DuckDB: introducción a SQL</a></li></ul>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo detectar si un join cambió el conjunto de datos</h2></div>
+      <div class="applied-prose"><p>El release contiene 3.574 pedidos y 7.500 líneas. Unir pedidos con clientes conserva el grano de pedido cuando <code>customer_id</code> es único. Unir pedidos con líneas produce una fila por línea y repite los atributos de cabecera.</p><p>La suma segura utiliza medidas definidas al grano de línea. Los totales de cabecera requieren una agregación previa o una selección que evite repetirlos.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">3.3</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Reconstruir <code>vw_ventas</code> sin perder el control</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>El segundo notebook del Paquete B une pedidos con clientes y líneas con productos. Antes de ejecutar cada relación se anticipa qué filas deberían sobrevivir y qué grano tendrá el resultado. Después se registran filas, claves distintas, faltantes y totales para localizar cualquier diferencia.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_B_v1.0_estudiantes.zip" download>Descargar notebook y modelo <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u03-joins-reconciliacion">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u03-joins-reconciliacion">Relaciones, joins y controles de reconciliación</h2></div>
+        <p>Esta biblioteca permite observar la misma operación desde una clase aplicada, documentación del motor y ejercicios interactivos. Los apuntes de CMU agregan álgebra y subconsultas como extensión.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Clase abierta</span><small>Inglés · subtítulos disponibles</small></div>
+          <h3><a href="https://cs50.harvard.edu/sql/weeks/1/" target="_blank" rel="noopener noreferrer">CS50 SQL · Relating</a></h3>
+          <p>Presenta cardinalidades, claves, subconsultas, joins y operaciones de conjuntos en una secuencia aplicada.</p>
+          <footer><span>Harvard OpenCourseWare</span><small>Video, notas y ejercicios</small><a href="https://cs50.harvard.edu/sql/weeks/1/" target="_blank" rel="noopener noreferrer" aria-label="Abrir CS50 SQL · Relating">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Documentación</span><small>Inglés</small></div>
+          <h3><a href="https://duckdb.org/docs/stable/sql/query_syntax/from" target="_blank" rel="noopener noreferrer">FROM and JOIN clauses</a></h3>
+          <p>Referencia de INNER, LEFT, RIGHT, FULL, CROSS, SEMI y ANTI JOIN con ejemplos ejecutables.</p>
+          <footer><span>DuckDB</span><small>Consulta técnica</small><a href="https://duckdb.org/docs/stable/sql/query_syntax/from" target="_blank" rel="noopener noreferrer" aria-label="Abrir FROM and JOIN clauses">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Práctica interactiva</span><small>Inglés</small></div>
+          <h3><a href="https://sqlbolt.com/lesson/select_queries_with_joins" target="_blank" rel="noopener noreferrer">SQLBolt · Multi-table queries with JOINs</a></h3>
+          <p>Ejercicios breves para reconocer claves de unión y revisar qué columnas aparecen en el resultado.</p>
+          <footer><span>SQLBolt</span><small>15–25 min</small><a href="https://sqlbolt.com/lesson/select_queries_with_joins" target="_blank" rel="noopener noreferrer" aria-label="Abrir SQLBolt · Multi-table queries with JOINs">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Apunte PDF</span><small>Inglés</small></div>
+          <h3><a href="https://15445.courses.cs.cmu.edu/fall2021/notes/02-advancedsql.pdf" target="_blank" rel="noopener noreferrer">Intermediate SQL</a></h3>
+          <p>Extensión sobre álgebra relacional, subconsultas y operaciones que ayudan a razonar consultas compuestas.</p>
+          <footer><span>CMU Database Group</span><small>Lectura selectiva · 25 min</small><a href="https://15445.courses.cs.cmu.edu/fall2021/notes/02-advancedsql.pdf" target="_blank" rel="noopener noreferrer" aria-label="Abrir Intermediate SQL">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u03-sql-consultas.html"><span>ANTERIOR</span><b>Unidad 3 · SQL sobre una vista</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 4 · APIs y MCP</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

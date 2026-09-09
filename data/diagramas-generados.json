@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-09-02",
+  "actualizado": "2026-09-09",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -894,6 +894,347 @@
                     "grano: línea"
                   ]
                 }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "u03-joins-reconciliacion": [
+      {
+        "page": "u03-joins-reconciliacion",
+        "unit": "C06",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u03-atlas-joins.svg",
+        "base_generada": "theory/u03-atlas-joins-base.webp",
+        "base_provisoria": "u03-joins-behavior.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Atlas de JOINs con filas reales",
+        "pregunta_lectura": "¿Qué población y qué filas conserva cada tipo de JOIN?",
+        "alt": "Ocho paneles comparan INNER, LEFT, RIGHT, FULL OUTER, SEMI, ANTI, CROSS y SELF JOIN mediante pedidos y clientes de ejemplo, con filas, valores nulos y totales.",
+        "epigrafe": "La cláusula JOIN expresa una decisión sobre la población. Las tablas de salida permiten comprobar qué claves sobreviven, dónde aparece NULL y qué total debe reconciliarse.",
+        "after_heading": "inner-join-conservar-coincidencias",
+        "interactivo": true,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "Partí de cuatro pedidos y tres clientes; CLI99 no existe en clientes y CLI03 no tiene pedidos.",
+          "Compará las filas devueltas antes de observar el total monetario.",
+          "SEMI y ANTI responden por existencia; CROSS forma todas las combinaciones.",
+          "SELF relaciona una tabla consigo misma y exige una condición que evite pares redundantes."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Eight balanced visual modules suggesting relational table matching, unmatched records, null gaps and controlled combinations; subtle Venn motifs only as secondary decoration.",
+        "version_revision": "1.0",
+        "svg_height": 1300,
+        "estructura": {
+          "layout": "grid",
+          "columns": 2,
+          "cards": [
+            {
+              "title": "INNER JOIN",
+              "body": [
+                "Conserva coincidencias en ambos lados."
+              ],
+              "accent": "blue",
+              "tag": "intersección",
+              "step": 1,
+              "stats": [
+                "3 filas",
+                "$ 2.500"
+              ],
+              "rows": [
+                [
+                  "O101",
+                  "CLI01"
+                ],
+                [
+                  "O102",
+                  "CLI02"
+                ],
+                [
+                  "O103",
+                  "CLI02"
+                ]
+              ]
+            },
+            {
+              "title": "LEFT JOIN",
+              "body": [
+                "Preserva los cuatro pedidos; O104 recibe cliente NULL."
+              ],
+              "accent": "blue",
+              "tag": "pedidos",
+              "step": 2,
+              "stats": [
+                "4 filas",
+                "$ 3.400"
+              ],
+              "rows": [
+                [
+                  "O101",
+                  "CLI01"
+                ],
+                [
+                  "O102",
+                  "CLI02"
+                ],
+                [
+                  "O103",
+                  "CLI02"
+                ],
+                [
+                  "O104",
+                  "NULL"
+                ]
+              ]
+            },
+            {
+              "title": "RIGHT JOIN",
+              "body": [
+                "Preserva los tres clientes; CLI03 recibe pedido NULL."
+              ],
+              "accent": "blue",
+              "tag": "clientes",
+              "step": 3,
+              "stats": [
+                "4 filas",
+                "$ 2.500"
+              ],
+              "rows": [
+                [
+                  "O101",
+                  "CLI01"
+                ],
+                [
+                  "O102/O103",
+                  "CLI02"
+                ],
+                [
+                  "NULL",
+                  "CLI03"
+                ]
+              ]
+            },
+            {
+              "title": "FULL OUTER JOIN",
+              "body": [
+                "Reúne coincidencias y faltantes de ambos lados."
+              ],
+              "accent": "blue",
+              "tag": "universo",
+              "step": 4,
+              "stats": [
+                "5 filas",
+                "$ 3.400"
+              ],
+              "rows": [
+                [
+                  "O101",
+                  "CLI01"
+                ],
+                [
+                  "O102/O103",
+                  "CLI02"
+                ],
+                [
+                  "NULL",
+                  "CLI03"
+                ],
+                [
+                  "O104",
+                  "NULL"
+                ]
+              ]
+            },
+            {
+              "title": "SEMI JOIN",
+              "body": [
+                "Devuelve pedidos que tienen cliente, sin columnas del lado derecho."
+              ],
+              "accent": "blue",
+              "tag": "existe",
+              "step": 5,
+              "stats": [
+                "3 filas",
+                "$ 2.500"
+              ],
+              "rows": [
+                [
+                  "O101"
+                ],
+                [
+                  "O102"
+                ],
+                [
+                  "O103"
+                ]
+              ]
+            },
+            {
+              "title": "ANTI JOIN",
+              "body": [
+                "Devuelve pedidos cuya clave no encuentra cliente."
+              ],
+              "accent": "blue",
+              "tag": "falta",
+              "step": 6,
+              "stats": [
+                "1 fila",
+                "$ 900"
+              ],
+              "rows": [
+                [
+                  "O104",
+                  "CLI99"
+                ]
+              ]
+            },
+            {
+              "title": "CROSS JOIN",
+              "body": [
+                "Combina cada pedido con cada cliente; no usa una clave de unión."
+              ],
+              "accent": "blue",
+              "tag": "producto cartesiano",
+              "step": 7,
+              "stats": [
+                "12 filas"
+              ],
+              "rows": [
+                [
+                  "4 pedidos",
+                  "×"
+                ],
+                [
+                  "3 clientes",
+                  "="
+                ],
+                [
+                  "12 pares",
+                  ""
+                ]
+              ]
+            },
+            {
+              "title": "SELF JOIN",
+              "body": [
+                "Relaciona pedidos del mismo cliente dentro de una sola tabla."
+              ],
+              "accent": "blue",
+              "tag": "misma tabla",
+              "step": 8,
+              "stats": [
+                "1 par único"
+              ],
+              "rows": [
+                [
+                  "CLI02",
+                  "O102 ↔ O103"
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u03-joins-reconciliacion",
+        "unit": "C06",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u03-cardinalidad-reconciliacion.svg",
+        "base_generada": "theory/u03-cardinalidad-reconciliacion-base.webp",
+        "base_provisoria": "u03-joins-multiplication.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Cardinalidad, multiplicación y reconciliación",
+        "pregunta_lectura": "¿Cuándo más filas son esperables y cuándo indican que una medida quedó duplicada?",
+        "alt": "Seis paneles comparan relaciones uno a uno, muchos a uno, uno a muchos y muchos a muchos, y muestran cómo 3574 pedidos pasan a 7500 líneas y pueden duplicar importes de cabecera.",
+        "epigrafe": "Un JOIN puede aumentar filas porque una entidad tiene varios detalles. El aumento es correcto para el detalle; una medida de cabecera debe agregarse antes o asignarse una sola vez para evitar duplicación.",
+        "after_heading": "el-riesgo-de-multiplicar-una-medida",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La cardinalidad declara cuántas coincidencias espera cada clave en ambos lados.",
+          "Un pedido con varias líneas produce varias filas de detalle por diseño.",
+          "Repetir el importe total del pedido en cada línea aumenta la suma de manera artificial.",
+          "Los controles comparan filas, claves distintas y totales monetarios antes y después del JOIN."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A relational cardinality teaching board with single and repeated key tokens, a controlled expansion from order headers to line items, a highlighted duplication hazard and a reconciliation checkpoint.",
+        "version_revision": "1.0",
+        "svg_height": 1150,
+        "estructura": {
+          "layout": "grid",
+          "columns": 3,
+          "cards": [
+            {
+              "title": "Uno a uno",
+              "body": [
+                "Cada clave encuentra como máximo una fila en ambos lados."
+              ],
+              "accent": "blue",
+              "tag": "1 : 1",
+              "stats": [
+                "filas estables"
+              ]
+            },
+            {
+              "title": "Muchos a uno",
+              "body": [
+                "Muchas líneas encuentran un producto único."
+              ],
+              "accent": "blue",
+              "tag": "N : 1",
+              "stats": [
+                "detalle estable"
+              ]
+            },
+            {
+              "title": "Uno a muchos",
+              "body": [
+                "Un pedido se expande a todas sus líneas."
+              ],
+              "accent": "blue",
+              "tag": "1 : N",
+              "stats": [
+                "filas aumentan"
+              ]
+            },
+            {
+              "title": "Muchos a muchos",
+              "body": [
+                "Duplicados en ambos lados forman combinaciones."
+              ],
+              "accent": "danger",
+              "tag": "N : M",
+              "stats": [
+                "revisar puente"
+              ]
+            },
+            {
+              "title": "Caso Faro Sur",
+              "body": [
+                "3.574 pedidos se relacionan con 7.500 líneas.",
+                "Hay 3.926 repeticiones adicionales del id de pedido."
+              ],
+              "accent": "blue",
+              "tag": "expansión esperada",
+              "stats": [
+                "3.574 → 7.500"
+              ]
+            },
+            {
+              "title": "Reconciliación",
+              "body": [
+                "COUNT filas · COUNT DISTINCT claves",
+                "SUM ventas antes y después: $ 32.825.861."
+              ],
+              "accent": "success",
+              "tag": "control",
+              "stats": [
+                "total debe coincidir"
               ]
             }
           ]

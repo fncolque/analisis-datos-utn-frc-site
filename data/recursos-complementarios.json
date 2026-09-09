@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-09-02",
+  "actualizado": "2026-09-09",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -279,6 +279,56 @@
           "idioma": "Inglés",
           "dedicacion": "20–30 min",
           "descripcion": "Explica particiones, orden y cálculo por ventana para conservar el detalle mientras se comparan filas."
+        }
+      ]
+    },
+    "u03-joins-reconciliacion": {
+      "titulo": "Relaciones, joins y controles de reconciliación",
+      "introduccion": "Esta biblioteca permite observar la misma operación desde una clase aplicada, documentación del motor y ejercicios interactivos. Los apuntes de CMU agregan álgebra y subconsultas como extensión.",
+      "diagrama": {
+        "archivo": "u03-joins-controles.svg",
+        "fuente": "u03-joins-controles.mmd",
+        "alt": "Flujo de control de un join que parte de dos tablas, verifica unicidad, ejecuta la relación y reconcilia filas, claves y métricas.",
+        "titulo": "Un join bajo control",
+        "epigrafe": "La predicción de cardinalidad ocurre antes de ejecutar. Los conteos y las sumas verifican el resultado después de la unión.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Clase abierta",
+          "titulo": "CS50 SQL · Relating",
+          "institucion": "Harvard OpenCourseWare",
+          "url": "https://cs50.harvard.edu/sql/weeks/1/",
+          "idioma": "Inglés · subtítulos disponibles",
+          "dedicacion": "Video, notas y ejercicios",
+          "descripcion": "Presenta cardinalidades, claves, subconsultas, joins y operaciones de conjuntos en una secuencia aplicada."
+        },
+        {
+          "tipo": "Documentación",
+          "titulo": "FROM and JOIN clauses",
+          "institucion": "DuckDB",
+          "url": "https://duckdb.org/docs/stable/sql/query_syntax/from",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta técnica",
+          "descripcion": "Referencia de INNER, LEFT, RIGHT, FULL, CROSS, SEMI y ANTI JOIN con ejemplos ejecutables."
+        },
+        {
+          "tipo": "Práctica interactiva",
+          "titulo": "SQLBolt · Multi-table queries with JOINs",
+          "institucion": "SQLBolt",
+          "url": "https://sqlbolt.com/lesson/select_queries_with_joins",
+          "idioma": "Inglés",
+          "dedicacion": "15–25 min",
+          "descripcion": "Ejercicios breves para reconocer claves de unión y revisar qué columnas aparecen en el resultado."
+        },
+        {
+          "tipo": "Apunte PDF",
+          "titulo": "Intermediate SQL",
+          "institucion": "CMU Database Group",
+          "url": "https://15445.courses.cs.cmu.edu/fall2021/notes/02-advancedsql.pdf",
+          "idioma": "Inglés",
+          "dedicacion": "Lectura selectiva · 25 min",
+          "descripcion": "Extensión sobre álgebra relacional, subconsultas y operaciones que ayudan a razonar consultas compuestas."
         }
       ]
     }

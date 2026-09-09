@@ -1,0 +1,15 @@
+flowchart LR
+    L["Tabla izquierda<br/>grano y filas"] --> P["Predecir cardinalidad"]
+    R["Tabla derecha<br/>clave y unicidad"] --> P
+    P --> J["Ejecutar<br/>JOIN"]
+    J --> C1["Contar filas"]
+    J --> C2["Contar claves"]
+    J --> C3["Reconciliar<br/>métricas"]
+    C1 --> E["Resultado explicado"]
+    C2 --> E
+    C3 --> E
+    X["Elegir INNER o LEFT"] -.-> J
+    classDef accent fill:#FFFF33,color:#151616,stroke:#1F497D,stroke-width:2px;
+    classDef dark fill:#1F497D,color:#FFFFFF,stroke:#1F497D,stroke-width:2px;
+    class J,E accent;
+    class X dark;

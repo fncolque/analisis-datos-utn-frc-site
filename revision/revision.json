@@ -2,19 +2,20 @@
   "schema_version": 1,
   "source_commit": "d53bf5f4a19319559d4f95bcfb3e3971880a8208",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/33646548840",
-  "generated_at_utc": "2026-09-02T15:08:21+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/34368302096",
+  "generated_at_utc": "2026-09-09T15:09:05+00:00",
   "qa_status": "passed",
-  "as_of": "2026-09-02",
+  "as_of": "2026-09-09",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
     "Unidad 1 · Laboratorio inicial de Faro Sur",
     "Unidad 2 · Ecosistema, roles y arquitectura",
     "Unidad 3.1 · Modelo relacional y granularidad",
-    "Unidad 3.2 · SQL sobre una vista"
+    "Unidad 3.2 · SQL sobre una vista",
+    "Unidad 3.3 · Joins y reconciliación"
   ],
-  "content_digest": "c3cb8f621fca22907522657fc8ee31f9010db59f925e8463e06eaf86720632a2",
-  "file_count": 60,
-  "html_count": 10,
+  "content_digest": "c2cb3911fa4c7d59e18887d15724b84b341b15d46fb63349c7eb9a77ca04f6a1",
+  "file_count": 68,
+  "html_count": 11,
   "contact": "analisisdatosutnfrc@gmail.com"
 }
