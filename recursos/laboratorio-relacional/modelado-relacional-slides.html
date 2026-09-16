@@ -1,0 +1,435 @@
+<!doctype html><html lang="es" data-theme="dark"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#111820"><title>Modelado relacional · Laboratorio visual UTN</title><link rel="stylesheet" href="slides.css"><script src="slides.js" defer></script></head><body>
+<a class="skip-link" href="#main">Saltar al contenido</a><div class="deck">
+<header class="topbar"><a class="brand" href="#s1" aria-label="Volver al inicio"><img class="brand-mark" src="../../assets/utn-symbol.svg" alt=""><span class="brand-copy"><b>Análisis de Datos</b><small>UTN FRC · Ingeniería Industrial</small></span></a><span class="version">LABORATORIO INTERACTIVO</span><div class="header-actions"><button class="btn" data-index>Índice</button><button class="btn" id="helpBtn">Ayuda</button><button class="btn" id="fullscreen" aria-label="Activar pantalla completa">⛶ <span>Pantalla completa</span></button></div></header>
+<nav class="chapter-nav" aria-label="Bloques del recorrido" id="chapterNav"></nav><main id="main" tabindex="-1"><section data-group="Inicio" class="slide cover-slide" data-title="Inicio">
+<div class="cover"><div><p class="eyebrow">Unidad 3 · Capítulo 1 · Laboratorio visual</p>
+<h1>Modelado<br>relacional<span class="title-dot">.</span></h1>
+<p class="cover-subtitle">Cada fila tiene un significado.</p>
+<p class="lead">Explorá cómo una empresa organiza sus clientes, pedidos y productos. Después, usá SQL para hacerles preguntas a esos datos.</p>
+<div class="cover-actions"><button class="btn primary" data-start>Empezar el recorrido <span aria-hidden="true">→</span></button><button class="btn" data-index>Elegir un tema</button></div>
+<p class="note">Datos de ejemplo de Faro Sur. Podés probar, equivocarte y volver a intentar.</p></div>
+<div class="cover-map" aria-label="Un cliente realiza un pedido que contiene dos líneas de productos">
+<div class="map-heading"><span>CASO FARO SUR</span><span>01 → N</span></div>
+<div class="map-node"><span class="map-label">UN CLIENTE</span><strong>Andina SA</strong><code>CLI01</code></div>
+<div class="map-link">realiza <span>↓</span></div>
+<div class="map-node order-node"><span class="map-label">UN PEDIDO</span><strong>Pedido P100</strong><code>cliente: CLI01</code></div>
+<div class="map-link">contiene <span>↓</span></div>
+<div class="map-lines"><div class="map-node"><span class="map-label">LÍNEA 1</span><strong>Bomba X</strong><code>2 unidades</code></div><div class="map-node"><span class="map-label">LÍNEA 2</span><strong>Válvula Y</strong><code>5 unidades</code></div></div>
+<p class="map-takeaway">1 pedido <span>≠</span> 2 líneas <span>≠</span> 7 unidades</p></div></div>
+<div class="cover-route"><span>EL RECORRIDO</span><button data-jump="Entidades">01 · Entender las tablas ↗</button><button data-jump="PK y FK">02 · Conectar los datos ↗</button><button data-jump="SQL: anatomía">03 · Hacer preguntas ↗</button></div></section>
+<section data-group="Las tablas" class="slide" data-title="Entidades">
+  <p class="eyebrow">Vocabulario</p>
+  <h2>Entidades, atributos y registros</h2>
+  <p class="lead">Una entidad es la cosa que modelamos (Cliente). Un registro es un caso concreto (Andina SA). Un atributo es una característica que describe a la entidad (región). Seleccioná un concepto o explorá las filas y columnas de la tabla.</p><div class="try-it"><span>PROBÁ</span><p>Elegí “Registro” y después “Atributo”.</p><details><summary>Qué observar</summary><p>Una fila es un caso; una columna describe una característica.</p></details></div>
+  <div class="grid wide">
+    <div class="panel">
+      <div class="toolbar">
+        <button class="btn" data-ent="entidad">Entidad</button>
+        <button class="btn" data-ent="atributo">Atributo</button>
+        <button class="btn" data-ent="registro">Registro</button>
+        <button class="btn" data-ent="none">Limpiar</button>
+      </div>
+      <div class="tablewrap">
+        <table id="entTable">
+          <caption>customers <small>entidad: Cliente</small></caption>
+          <thead><tr><th class="pk">customer_id</th><th>customer_name</th><th>cuit</th><th>region</th><th>segmento</th></tr></thead>
+          <tbody>
+            <tr><td class="pk">CLI01</td><td>Andina SA</td><td>30-70123456-1</td><td>Centro</td><td>Industria</td></tr>
+            <tr><td class="pk">CLI02</td><td>Pampa SRL</td><td>30-70987654-3</td><td>Sur</td><td>Distribuidor</td></tr>
+            <tr><td class="pk">CLI03</td><td>Litoral SA</td><td>30-71555555-9</td><td>Litoral</td><td>Industria</td></tr>
+            <tr><td class="pk">CLI04</td><td>Norte Minera</td><td>30-71222222-4</td><td>Norte</td><td>Minería</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Qué estás mirando</h3>
+      <div class="msg" id="entMsg">Elegí un concepto para resaltarlo en la tabla.</div>
+      <p class="note">Regla para ubicar un atributo: ¿a qué unidad describe y cuándo cambia? La región comercial actual describe al cliente. Por eso vive en <span class="dep">customers</span> y no en cada línea de venta.</p>
+    </div>
+  </div>
+</section>
+<section data-group="Las tablas" class="slide" data-title="Grano">
+  <p class="eyebrow">Concepto base</p>
+  <h2>El grano: qué representa exactamente una fila</h2>
+  <p class="lead">Antes de sumar, contar o unir, hay que poder responder "una fila de esta tabla es…". Elegí una tabla y mirá cómo cambia la respuesta y el identificador que la acompaña.</p><div class="try-it"><span>PROBÁ</span><p>Elegí sales_order_lines y buscá el pedido P100.</p><details><summary>Qué observar</summary><p>P100 aparece en dos líneas. Contar líneas y contar pedidos da resultados diferentes.</p></details></div>
+  <div class="grid wide">
+    <div class="panel">
+      <h3>Tablas de Faro Sur</h3>
+      <div class="toolbar" id="grainBtns"></div>
+      <div class="tablewrap" id="grainTable"></div>
+    </div>
+    <div class="panel">
+      <h3>Una fila es…</h3>
+      <p class="big" id="grainText"></p>
+      <dl class="def">
+        <dt>identificador</dt><dd id="grainId"></dd>
+        <dt>si sumo</dt><dd id="grainSum"></dd>
+        <dt>error típico</dt><dd id="grainErr"></dd>
+      </dl>
+    </div>
+  </div>
+</section>
+<section data-group="Las tablas" class="slide" data-title="Tablas completas">
+  <p class="eyebrow">Antes de abstraer</p>
+  <h2>Las tablas de Faro Sur, con todos sus datos</h2>
+  <p class="lead">El esquema describe la estructura: columnas, claves y relaciones. Compará esa estructura con los datos de ejemplo. Elegí un campo del esquema para encontrar su columna.</p><div class="try-it"><span>PROBÁ</span><p>Elegí sales_orders y seleccioná customer_id.</p><details><summary>Qué observar</summary><p>CLI01 aparece en más de un pedido. Una referencia puede repetirse.</p></details></div>
+  <div class="toolbar" id="fullBtns"></div>
+  <div class="schema-grid">
+    <div class="ent" id="fullSchema"></div>
+    <div class="panel">
+      <div class="tablewrap" id="fullTable"></div>
+      <p class="note" id="fullNote"></p>
+    </div>
+  </div>
+</section>
+<section data-group="Las tablas" class="slide" data-title="Tabla plana">
+  <p class="eyebrow">El problema</p>
+  <h2>La tabla plana y sus anomalías</h2>
+  <p class="lead">Una tabla plana reúne los datos del cliente, el pedido y el producto. Explorá qué pasa si la usamos para registrar cambios.</p><div class="try-it"><span>PROBÁ</span><p>Corregí la región en una sola fila; luego, en todas.</p><details><summary>Qué observar</summary><p>El mismo cliente queda con dos regiones hasta que actualizás todas sus filas.</p></details></div>
+  <div class="grid wide">
+    <div class="panel">
+      <div class="toolbar">
+        <button class="btn" data-flat="upd1">Andina SA pasa a región Norte (corrijo 1 fila)</button>
+        <button class="btn" data-flat="updall">Corregir todas las filas</button>
+        <button class="btn" data-flat="ins">Alta de Pampa SRL, todavía sin pedidos</button>
+        <button class="btn danger" data-flat="del">Eliminar un pedido de Andina SA</button>
+        <button class="btn" data-flat="reset">Reiniciar</button>
+      </div>
+      <div class="tablewrap" id="flatTable"></div>
+      <div class="msg" id="flatMsg">Tres filas, un solo cliente, una sola región… repetida tres veces.</div>
+    </div>
+    <div class="panel">
+      <h3>Las tres anomalías</h3>
+      <dl class="def">
+        <dt>actualización</dt><dd>Un dato que cambió una vez hay que tocarlo en N filas. Si se corrige a medias, quedan dos verdades.</dd>
+        <dt>inserción</dt><dd>No puedo registrar un cliente hasta que tenga un pedido: no hay fila donde ponerlo.</dd>
+        <dt>eliminación</dt><dd>Al borrar el último pedido de un cliente, se pierde también el cliente y su región.</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+<section data-group="Las relaciones" class="slide" data-title="PK y FK">
+  <p class="eyebrow">Integridad</p>
+  <h2>Clave primaria y clave foránea</h2>
+  <p class="lead">La clave primaria (PK) identifica una fila. La clave foránea (FK) conecta con una clave única de otra tabla. Explorá las reglas.</p><div class="try-it"><span>PROBÁ</span><p>Intentá agregar un pedido del cliente CLI99.</p><details><summary>Qué observar</summary><p>La regla rechaza el pedido porque CLI99 no está registrado.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="tablewrap">
+        <table id="pkCustomers">
+          <caption>customers</caption>
+          <thead><tr><th class="pk">customer_id<span class="tag pk">PK</span></th><th>customer_name</th><th>region</th></tr></thead>
+          <tbody>
+            <tr data-id="CLI01"><td class="pk">CLI01</td><td>Andina SA</td><td>Centro</td></tr>
+            <tr data-id="CLI02"><td class="pk">CLI02</td><td>Pampa SRL</td><td>Sur</td></tr>
+            <tr data-id="CLI03"><td class="pk">CLI03</td><td>Litoral SA</td><td>Litoral</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tablewrap" style="margin-top:14px">
+        <table id="pkOrders">
+          <caption>sales_orders</caption>
+          <thead><tr><th class="pk">order_id<span class="tag pk">PK</span></th><th>order_date</th><th class="fk">customer_id<span class="tag fk">FK</span></th></tr></thead>
+          <tbody>
+            <tr data-ref="CLI01"><td class="pk">P100</td><td>2026-08-01</td><td class="fk">CLI01</td></tr>
+            <tr data-ref="CLI01"><td class="pk">P101</td><td>2026-08-02</td><td class="fk">CLI01</td></tr>
+            <tr data-ref="CLI02"><td class="pk">P102</td><td>2026-08-03</td><td class="fk">CLI02</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="panel">
+      <h3>Probá las reglas</h3><p class="note" style="margin:0 0 12px">En este ejemplo, el cliente es obligatorio y se bloquea su borrado si tiene pedidos.</p>
+      <div class="toolbar col">
+        <button class="btn sql" data-pk="ok">Agregar P103 para el cliente CLI03</button>
+        <button class="btn sql" data-pk="fk">Agregar P104 para el cliente CLI99</button>
+        <button class="btn sql" data-pk="pk">Agregar otro cliente con identificador CLI01</button>
+        <button class="btn sql" data-pk="delref">Eliminar CLI01, que tiene pedidos</button>
+        <button class="btn sql" data-pk="delfree">Eliminar CLI03, si no tiene pedidos</button>
+        <button class="btn" data-pk="reset">Reiniciar</button>
+      </div>
+      <div class="msg" id="pkMsg">Cada pedido apunta a un cliente que existe. Eso es integridad referencial.</div>
+      <div class="legend"><span><i style="background:var(--pk)"></i>clave primaria</span><span><i style="background:var(--fk)"></i>clave foránea</span></div>
+    </div>
+  </div>
+</section>
+<section data-group="Las relaciones" class="slide" data-title="Tipos de clave">
+  <p class="eyebrow">Diseño de claves</p>
+  <h2>Natural o sustituta: elegir un identificador</h2>
+  <p class="lead">Compará una clave del negocio (natural) con un identificador creado por el sistema (sustituta).</p><div class="try-it"><span>PROBÁ</span><p>Corregí el CUIT en ambos diseños.</p><details><summary>Qué observar</summary><p>La clave natural cambia en 3 celdas; con la sustituta cambia un solo atributo.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <h3>Natural</h3>
+      <p class="note" style="margin:0 0 8px">El CUIT, una identificación tributaria, se usa como PK del cliente y FK de sus pedidos.</p>
+      <div class="tablewrap" id="natTable"></div>
+      <button class="btn" data-key="nat" style="margin-top:10px">Corregir el CUIT de Andina SA</button>
+      <div class="msg" id="natMsg">El mismo CUIT identifica al cliente y aparece en sus pedidos.</div>
+    </div>
+    <div class="panel">
+      <h3>Sustituta</h3>
+      <p class="note" style="margin:0 0 8px">El sistema asigna el identificador 1. El CUIT queda como un atributo único.</p>
+      <div class="tablewrap" id="surTable"></div>
+      <button class="btn" data-key="sur" style="margin-top:10px">Corregir el CUIT de Andina SA</button>
+      <div class="msg" id="surMsg">El número 1 identifica al cliente. Para conocer su nombre, consultamos customers.</div>
+    </div>
+  </div>
+</section>
+<section data-group="Las relaciones" class="slide" data-title="Clave compuesta">
+<p class="eyebrow">Identificar una combinación</p><h2>Cuando una sola columna no alcanza</h2>
+<p class="lead">El stock cambia según el producto, el depósito y la fecha. Juntos, esos tres valores identifican una fila.</p><div class="try-it"><span>PROBÁ</span><p>Intentá agregar la combinación inicial. Después cambiá el depósito.</p><details><summary>Qué observar</summary><p>La primera combinación ya existe. Una combinación nueva puede agregarse.</p></details></div>
+<div class="grid wide">    <div class="panel">
+      <h3>Compuesta</h3>
+      <p class="note" style="margin:0 0 8px"><span class="dep">inventory_snapshots</span>: una fila es un producto en una ubicación en una fecha. Ninguna columna sola alcanza.</p>
+      <div class="tablewrap" id="compTable"></div>
+      <div class="toolbar" style="margin-top:10px">
+        <select id="cProd" class="btn" aria-label="producto"><option>PR10</option><option>PR20</option></select>
+        <select id="cLoc" class="btn" aria-label="ubicación"><option>Depósito A</option><option>Depósito B</option></select>
+        <select id="cDate" class="btn" aria-label="fecha"><option>2026-08-01</option><option>2026-08-02</option></select>
+        <button class="btn" data-key="comp">Agregar registro</button>
+      </div>
+      <div class="msg" id="compMsg">PK = (producto, ubicación, fecha). Probá insertar una combinación repetida.</div>
+    </div>
+<div class="panel concept-panel"><h3>Leé la clave como una dirección</h3>
+<div class="combination"><span>Producto<br><strong>PR10</strong></span><i>+</i><span>Depósito<br><strong>A</strong></span><i>+</i><span>Fecha<br><strong>01/08</strong></span></div>
+<p>Cambiar cualquiera de estos valores identifica otra observación de stock.</p>
+<p>El producto puede repetirse. El depósito puede repetirse. La combinación completa debe ser única.</p>
+<p class="note">Snapshot significa una foto del stock en un momento. El nuevo registro de esta simulación usa 25 unidades de ejemplo.</p></div></div></section>
+<section data-group="Las relaciones" class="slide" data-title="Cardinalidad">
+  <p class="eyebrow">Relaciones</p>
+  <h2>Cardinalidad: cuántos de un lado por cada uno del otro</h2>
+  <p class="lead">Elegí un tipo de relación. La forma en que se conectan los registros decide dónde va la clave foránea.</p><div class="try-it"><span>PROBÁ</span><p>Compará “Uno a muchos” con “Muchos a muchos”.</p><details><summary>Qué observar</summary><p>Las líneas de pedido forman la tabla intermedia entre pedidos y productos.</p></details></div>
+  <div class="grid wide">
+    <div class="panel">
+      <div class="toolbar">
+        <button class="btn on" data-card="1n">Uno a muchos</button>
+        <button class="btn" data-card="nm">Muchos a muchos</button>
+        <button class="btn" data-card="11">Uno a uno</button>
+        <button class="btn" data-card="opt">Opcionalidad</button>
+      </div>
+      <div class="tablewrap diagram-scroll"><svg class="card-svg" id="cardSvg" viewBox="0 0 640 230" role="img" aria-label="Diagrama de cardinalidad"></svg></div>
+    </div>
+    <div class="panel">
+      <h3 id="cardTitle">Uno a muchos</h3>
+      <div id="cardText" class="msg"></div>
+    </div>
+  </div>
+</section>
+<section data-group="Las relaciones" class="slide" data-title="Modelo Faro Sur">
+  <p class="eyebrow">Caso</p>
+  <h2>El modelo operacional de Faro Sur</h2>
+  <p class="lead">El modelo operacional organiza los datos para registrar la actividad del negocio. Seleccioná una clave para seguir las referencias entre estas cuatro tablas.</p><div class="try-it"><span>PROBÁ</span><p>Seleccioná customer_id en sales_orders.</p><details><summary>Qué observar</summary><p>Esa FK conecta el pedido con la PK del cliente en customers.</p></details></div>
+  <div class="toolbar"><button class="btn" data-showdata="erd">Ver las tablas con datos</button></div>
+  <div class="erd" id="erd">
+    <div class="ent" data-table="customers"><h4>customers <small>un cliente</small></h4><ul>
+      <li data-pk="customers.customer_id"><span class="tag pk">PK</span>customer_id<span class="type">varchar</span></li>
+      <li>customer_name</li><li>cuit</li><li>region</li><li>segmento</li></ul></div>
+    <div class="ent" data-table="products"><h4>products <small>un producto</small></h4><ul>
+      <li data-pk="products.product_id"><span class="tag pk">PK</span>product_id<span class="type">varchar</span></li>
+      <li>description</li><li>familia</li><li>costo_estandar</li></ul></div>
+    <div class="ent" data-table="sales_orders"><h4>sales_orders <small>un pedido</small></h4><ul>
+      <li data-pk="sales_orders.order_id"><span class="tag pk">PK</span>order_id<span class="type">varchar</span></li>
+      <li>order_date</li><li>canal</li>
+      <li class="ref" data-fk="customers.customer_id"><span class="tag fk">FK</span>customer_id<span class="type">→ customers</span></li></ul></div>
+    <div class="ent" data-table="sales_order_lines"><h4>sales_order_lines <small>una línea de pedido</small></h4><ul>
+      <li data-pk="sales_order_lines.order_line_id"><span class="tag pk">PK</span>order_line_id<span class="type">int</span></li>
+      <li class="ref" data-fk="sales_orders.order_id"><span class="tag fk">FK</span>order_id<span class="type">→ sales_orders</span></li>
+      <li class="ref" data-fk="products.product_id"><span class="tag fk">FK</span>product_id<span class="type">→ products</span></li>
+      <li>cantidad</li><li>precio_unitario</li><li>descuento</li></ul></div>
+  </div>
+  <div class="msg" id="erdMsg" style="margin-top:14px">customers 1 ───&lt; sales_orders 1 ───&lt; sales_order_lines &gt;─── 1 products. La tabla de líneas resuelve el muchos-a-muchos entre pedidos y productos.</div>
+</section>
+<section data-group="El diseño" class="slide" data-title="Normalización">
+  <p class="eyebrow">Método</p>
+  <h2>Normalización paso a paso</h2>
+  <p class="lead">Normalizar ayuda a ubicar cada dato en la tabla que le corresponde. Seguí cómo una lista de productos se convierte en tablas relacionadas. FN significa forma normal.</p><div class="try-it"><span>PROBÁ</span><p>Avanzá hasta 3FN y localizá la región del cliente.</p><details><summary>Qué observar</summary><p>La región queda en customers y se actualiza en un solo lugar. FN significa forma normal.</p></details></div>
+  <div class="steps" id="nfSteps"></div>
+  <div class="panel">
+    <div id="nfDeps" style="margin-bottom:10px"></div>
+    <div class="nf-tables" id="nfTables"></div>
+    <div class="msg" id="nfMsg"></div>
+  </div>
+</section>
+<section data-group="El diseño" class="slide" data-title="Decisiones de diseño"><p class="eyebrow">Elegir según el uso</p>
+<h2>¿Registrar operaciones o preparar un análisis?</h2><p class="lead">Compará formas de organizar los mismos datos. La consulta de referencia es: “¿cuánto vendimos por región y mes?”.</p><div class="try-it"><span>PROBÁ</span><p>Compará el operacional con la tabla plana.</p><details><summary>Qué observar</summary><p>La tabla plana evita uniones al consultar, pero repite datos que habrá que mantener coherentes.</p></details></div>
+<div class="toolbar" id="tradeChoices"><button class="btn on" data-trade="0">Modelo operacional</button><button class="btn" data-trade="1">Cliente dentro del pedido</button><button class="btn" data-trade="2">Esquema estrella</button><button class="btn" data-trade="3">Tabla plana</button></div>
+<div class="grid"><div class="panel"><h3 id="tradeName"></h3><div id="tradeDesc" class="msg"></div><div class="tablewrap" id="tradeSchema"></div></div><div class="panel"><h3>Qué cambia para esta pregunta</h3><div id="tradeFacts"></div><p class="note">La velocidad real depende del volumen, los índices y el motor. Este ejemplo compara la estructura de la consulta.</p></div></div></section>
+<section data-group="El diseño" class="slide" data-title="Estrella">
+  <p class="eyebrow">Dos modelos, dos trabajos</p>
+  <h2>Modelo operacional vs esquema estrella</h2>
+  <p class="lead">El modelo operacional organiza las transacciones. La estrella reúne medidas en una tabla de hechos y contexto en dimensiones.</p><div class="try-it"><span>PROBÁ</span><p>Elegí “Estrella” y después dim_cliente.</p><details><summary>Qué observar</summary><p>Una dimensión aporta contexto. Una fila de hechos conserva el detalle de una línea de venta.</p></details></div>
+  <div class="mode">
+    <button class="btn on" data-mode="op">Operacional</button>
+    <button class="btn" data-mode="star">Estrella</button>
+  </div>
+  <div id="modeOp">
+    <div class="erd">
+      <div class="ent"><h4>customers</h4><ul><li><span class="tag pk">PK</span>customer_id</li><li>customer_name</li><li>region</li><li>segmento</li></ul></div>
+      <div class="ent"><h4>products</h4><ul><li><span class="tag pk">PK</span>product_id</li><li>description</li><li>familia</li><li>costo_estandar</li></ul></div>
+      <div class="ent"><h4>sales_orders</h4><ul><li><span class="tag pk">PK</span>order_id</li><li>order_date</li><li>canal</li><li><span class="tag fk">FK</span>customer_id</li></ul></div>
+      <div class="ent"><h4>sales_order_lines</h4><ul><li><span class="tag pk">PK</span>order_line_id</li><li><span class="tag fk">FK</span>order_id</li><li><span class="tag fk">FK</span>product_id</li><li>cantidad</li><li>precio_unitario</li><li>descuento</li></ul></div>
+    </div>
+    <div class="msg" style="margin-top:14px">Para calcular ventas netas por región y mes, unimos customers, sales_orders y sales_order_lines: 3 tablas, 2 uniones. La venta neta de una línea es cantidad × precio_unitario × (1 − descuento).</div>
+  </div>
+  <div id="modeStar" hidden>
+    <div class="toolbar"><button class="btn" data-showdata="star">Ver las tablas con datos</button></div>
+    <div class="star" id="star">
+      <div class="ent" data-dim="fecha_id" data-table="dim_fecha"><h4>dim_fecha</h4><ul><li><span class="tag pk">PK</span>fecha_id</li><li>fecha</li><li>mes</li><li>año</li></ul></div>
+      <div class="ent fact" data-table="fact_ventas"><h4>fact_ventas <small>una línea de venta</small></h4><ul>
+        <li><span class="tag pk">PK</span>venta_id</li>
+        <li data-fkdim="fecha_id"><span class="tag fk">FK</span>fecha_id</li>
+        <li data-fkdim="cliente_id"><span class="tag fk">FK</span>cliente_id</li>
+        <li data-fkdim="producto_id"><span class="tag fk">FK</span>producto_id</li>
+        <li data-fkdim="canal_id"><span class="tag fk">FK</span>canal_id</li>
+        <li class="measure">cantidad<span class="type">medida</span></li>
+        <li class="measure">venta_neta<span class="type">medida</span></li>
+        <li class="measure">margen<span class="type">medida</span></li></ul></div>
+      <div class="ent" data-dim="cliente_id" data-table="dim_cliente"><h4>dim_cliente</h4><ul><li><span class="tag pk">PK</span>cliente_id</li><li>cliente</li><li>región</li><li>segmento</li></ul></div>
+      <div class="ent" data-dim="producto_id" data-table="dim_producto"><h4>dim_producto</h4><ul><li><span class="tag pk">PK</span>producto_id</li><li>producto</li><li>familia</li></ul></div>
+      <div class="ent" data-dim="canal_id" data-table="dim_canal"><h4>dim_canal</h4><ul><li><span class="tag pk">PK</span>canal_id</li><li>canal</li></ul></div>
+    </div>
+    <div class="msg" style="margin-top:14px" id="starMsg">Seleccioná una dimensión. Cada fila de fact_ventas representa una línea; sus medidas ya están calculadas.</div>
+  </div>
+</section>
+<section data-group="El diseño" class="slide" data-title="NULL">
+  <p class="eyebrow">Detalle que rompe reportes</p>
+  <h2>Qué significa NULL</h2>
+  <p class="lead">NULL indica un valor ausente. Su significado se documenta para cada campo. Usá IS NULL para encontrarlo y compará cómo cambia el promedio del flete.</p><div class="try-it"><span>PROBÁ</span><p>Compará AVG con AVG(COALESCE(...)).</p><details><summary>Qué observar</summary><p>El promedio cambia de 600 a 300 porque reemplazar lo desconocido por cero cambia el cálculo.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="tablewrap">
+        <table id="nullTable">
+          <caption>shipments <small>un despacho asociado a una línea</small></caption>
+          <thead><tr><th class="pk">shipment_id</th><th>order_line_id</th><th>fecha_entrega</th><th>costo_flete</th></tr></thead>
+          <tbody>
+            <tr><td class="pk">S1</td><td>1</td><td>2026-08-05</td><td>1200</td></tr>
+            <tr><td class="pk">S2</td><td>2</td><td class="null">NULL</td><td>0</td></tr>
+            <tr><td class="pk">S3</td><td>3</td><td>2026-08-07</td><td class="null">NULL</td></tr>
+            <tr><td class="pk">S4</td><td>4</td><td class="null">NULL</td><td class="null">NULL</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Convención documentada: fecha_entrega NULL = entrega sin confirmar. costo_flete 0 = flete bonificado; NULL = todavía no se cargó.</p>
+    </div>
+    <div class="panel">
+      <div class="toolbar col">
+        <button class="btn sql" data-null="eq">SELECT * FROM shipments WHERE fecha_entrega = NULL</button>
+        <button class="btn sql" data-null="is">SELECT * FROM shipments WHERE fecha_entrega IS NULL</button>
+        <button class="btn sql" data-null="avg">SELECT AVG(costo_flete) FROM shipments</button>
+        <button class="btn sql" data-null="avg0">SELECT AVG(COALESCE(costo_flete, 0)) FROM shipments</button>
+      </div>
+      <div class="msg" id="nullMsg">Elegí una consulta.</div>
+    </div>
+  </div>
+</section>
+<section data-group="SQL paso a paso" class="slide" data-title="SQL: anatomía">
+  <p class="eyebrow">SQL desde cero · 1 de 5</p>
+  <h2>Tu primera pregunta en SQL</h2>
+  <p class="lead">SQL permite consultar datos. Esta pregunta pide nombre y región de los clientes del segmento Industria. Explorá cada línea.</p><div class="try-it"><span>PROBÁ</span><p>Seleccioná FROM, WHERE y SELECT, en ese orden.</p><details><summary>Qué observar</summary><p>Partís de 5 clientes. El filtro deja 2 filas y SELECT muestra 2 columnas.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="sqlq" id="anat">
+        <span class="clause c-select" data-cl="select"><span class="kw">SELECT</span> <span class="txt">customer_name, region</span><span class="why">← qué columnas quiero ver</span></span>
+        <span class="clause c-from" data-cl="from"><span class="kw">FROM</span> <span class="txt">customers</span><span class="why">← de qué tabla</span></span>
+        <span class="clause c-where" data-cl="where"><span class="kw">WHERE</span> <span class="txt">segmento = 'Industria'</span><span class="why">← qué filas cumplen</span></span>
+      </div>
+      <div class="msg" id="anatMsg">Para entender esta consulta, seguí su orden lógico: FROM elige la tabla; WHERE conserva las filas que cumplen; SELECT elige las columnas. El motor puede optimizar la ejecución.</div>
+      <p class="note">Las palabras clave pueden ir en mayúscula o minúscula. Los textos van entre comillas simples; los números, sin comillas. El punto y coma final cierra la sentencia.</p>
+    </div>
+    <div class="panel">
+      <div class="tablewrap" id="anatTable"></div>
+      <h3 style="margin-top:14px">Resultado</h3>
+      <div class="tablewrap" id="anatResult"></div>
+    </div>
+  </div>
+</section>
+<section data-group="SQL paso a paso" class="slide" data-title="SQL: SELECT">
+  <p class="eyebrow">SQL desde cero · 2 de 5</p>
+  <h2>SELECT y FROM: elegir columnas de una tabla</h2>
+  <p class="lead">Tildá las columnas que querés ver. El asterisco * significa "todas". DISTINCT elimina las filas repetidas del resultado.</p><div class="try-it"><span>PROBÁ</span><p>Elegí sales_orders, dejá solo canal y activá DISTINCT.</p><details><summary>Qué observar</summary><p>Los 6 pedidos usan 3 canales distintos. DISTINCT devuelve 3 filas.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="field"><span class="lab">FROM</span><select id="selTable" class="btn"><option value="products">products</option><option value="customers">customers</option><option value="sales_orders">sales_orders</option></select></div>
+      <div class="field"><span class="lab">SELECT</span><div class="chk" id="selCols" style="margin:0"></div></div>
+      <div class="field"><span class="lab"></span><label class="chk" style="margin:0"><input type="checkbox" id="selDistinct"> DISTINCT</label></div>
+      <div class="sqlq" id="selSql"></div>
+      <div class="msg" id="selMsg"></div>
+    </div>
+    <div class="panel">
+      <h3>Tabla origen</h3>
+      <div class="tablewrap" id="selSource"></div>
+      <h3 style="margin-top:14px">Resultado</h3>
+      <div class="tablewrap" id="selResult"></div>
+    </div>
+  </div>
+</section>
+<section data-group="SQL paso a paso" class="slide" data-title="SQL: WHERE">
+  <p class="eyebrow">SQL desde cero · 3 de 5</p>
+  <h2>WHERE: quedarse solo con las filas que cumplen</h2>
+  <p class="lead">Cada fila se evalúa contra la condición: si da verdadero, pasa; si no, se descarta. Armá la condición y mirá qué filas sobreviven en sales_order_lines.</p><div class="try-it"><span>PROBÁ</span><p>Filtrá order_id = P100 y agregá AND cantidad > 2.</p><details><summary>Qué observar</summary><p>Queda la línea de PR20, con 5 unidades. Las dos condiciones se cumplen en esa fila.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="field"><span class="lab">WHERE</span>
+        <select id="w1c" class="btn"></select><select id="w1o" class="btn"></select><input id="w1v" class="btn" value="P100" aria-label="valor 1"></div>
+      <div class="field"><span class="lab"></span>
+        <select id="wjoin" class="btn"><option value="">(sin segunda condición)</option><option value="AND">AND</option><option value="OR">OR</option></select>
+        <select id="w2c" class="btn"></select><select id="w2o" class="btn"></select><input id="w2v" class="btn" value="2" aria-label="valor 2"></div>
+      <div class="sqlq" id="whSql"></div>
+      <div class="msg" id="whMsg"></div>
+      <p class="note">AND: las dos condiciones tienen que cumplirse. OR: alcanza con una. Para texto se usan comillas simples; para números, no.</p>
+    </div>
+    <div class="panel">
+      <h3>Evaluación fila por fila</h3>
+      <div class="tablewrap" id="whTable"></div>
+      <h3 style="margin-top:14px">Resultado</h3>
+      <div class="tablewrap" id="whResult"></div>
+    </div>
+  </div>
+</section>
+<section data-group="SQL paso a paso" class="slide" data-title="SQL: ORDER BY">
+  <p class="eyebrow">SQL desde cero · 4 de 5</p>
+  <h2>ORDER BY y LIMIT: ordenar y elegir</h2>
+  <p class="lead">ORDER BY define el orden de las filas; LIMIT conserva las primeras N. Buscá los tres productos de mayor costo estándar. Sin ORDER BY, el orden no está garantizado.</p><div class="try-it"><span>PROBÁ</span><p>Ordená costo_estandar de mayor a menor y elegí LIMIT 3.</p><details><summary>Qué observar</summary><p>Quedan Motor W, Bomba X y Válvula Y: los tres productos de mayor costo estándar.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="field"><span class="lab">FROM</span><span class="dep">products</span></div>
+      <div class="field"><span class="lab">ORDER BY</span><select id="obCol" class="btn"></select>
+        <select id="obDir" class="btn"><option value="ASC">ASC (de menor a mayor)</option><option value="DESC">DESC (de mayor a menor)</option></select></div>
+      <div class="field"><span class="lab">LIMIT</span><input type="range" id="obLim" min="0" max="5" value="0" class="slider" style="width:160px;margin:0" aria-label="límite"><span class="count" id="obLimTxt">sin límite</span></div>
+      <div class="sqlq" id="obSql"></div>
+      <div class="msg" id="obMsg"></div>
+    </div>
+    <div class="panel">
+      <h3>Resultado ordenado</h3>
+      <div class="tablewrap" id="obTable"></div>
+    </div>
+  </div>
+</section>
+<section data-group="SQL paso a paso" class="slide" data-title="SQL: GROUP BY">
+  <p class="eyebrow">SQL desde cero · 5 de 5</p>
+  <h2>GROUP BY: una fila por grupo</h2>
+  <p class="lead">COUNT, SUM, AVG, MIN y MAX toman muchas filas y devuelven un número. GROUP BY arma un grupo por cada valor distinto de una columna y aplica la función a cada grupo.</p><div class="try-it"><span>PROBÁ</span><p>Compará COUNT(*) y SUM(cantidad) agrupando por order_id.</p><details><summary>Qué observar</summary><p>Para P100, COUNT(*) da 2 líneas y SUM(cantidad) da 7 unidades.</p></details></div>
+  <div class="grid">
+    <div class="panel">
+      <div class="field"><span class="lab">SELECT</span><select id="agFn" class="btn"></select></div>
+      <div class="field"><span class="lab">FROM</span><span class="dep">sales_order_lines</span></div>
+      <div class="field"><span class="lab">GROUP BY</span><select id="agGroup" class="btn"><option value="">(sin GROUP BY: toda la tabla es un grupo)</option><option value="order_id">order_id</option><option value="product_id">product_id</option></select></div>
+      <div class="sqlq" id="agSql"></div>
+      <div class="msg" id="agMsg"></div>
+    </div>
+    <div class="panel">
+      <h3>Filas agrupadas por color</h3>
+      <div class="tablewrap" id="agTable"></div>
+      <h3 style="margin-top:14px">Resultado: una fila por grupo</h3>
+      <div class="tablewrap" id="agResult"></div>
+    </div>
+  </div>
+</section>
+<section data-group="Tu turno" class="slide" data-title="Comprobá lo aprendido"><p class="eyebrow">Tu turno</p><h2>Leé los datos antes de calcular</h2>
+<p class="lead">Elegí una respuesta. La explicación te ayuda a revisar el razonamiento; podés volver a intentar.</p>
+<div class="grid"><div class="panel"><h3>Un pedido, dos líneas</h3><div class="tablewrap"><table><caption>sales_order_lines · recorte del ejemplo</caption><thead><tr><th>order_id</th><th>product_id</th><th>cantidad</th></tr></thead><tbody><tr><td>P100</td><td>PR10</td><td>2</td></tr><tr><td>P100</td><td>PR20</td><td>5</td></tr></tbody></table></div>
+<div class="quiz-progress" id="quizProgress"></div><h3 id="quizQuestion"></h3><div class="toolbar col" id="quizOptions"></div><div id="quizFeedback" class="msg" role="status">Seleccioná una respuesta para comprobarla.</div><button class="btn" id="quizNext" hidden>Siguiente pregunta →</button></div>
+<div class="panel recap"><h3>Para resolver una consulta</h3><ol><li>Completá: “una fila representa…”.</li><li>Identificá la clave que distingue cada fila.</li><li>Seguí las referencias entre tablas.</li><li>Decidí si necesitás contar filas, pedidos o unidades.</li><li>Revisá qué significan los valores NULL.</li></ol><button class="btn" data-jump="Grano">Volver al grano ↗</button><button class="btn" data-jump="SQL: GROUP BY">Explorar conteos y sumas ↗</button></div></div></section>
+</main><footer class="foot"><div class="position"><span id="posNow">1</span><span class="position-total">/ <span id="posTot">20</span></span><span id="slideTitle"></span></div><div class="dots" id="dots" aria-label="Diapositivas"></div><div class="nav"><button class="btn" id="prev" aria-label="Diapositiva anterior">← <span>Anterior</span></button><button class="btn primary" id="next">Siguiente <span aria-hidden="true">→</span></button></div></footer><div class="progress" aria-hidden="true"><i id="prog"></i></div></div>
+<dialog id="indexDialog" aria-labelledby="indexTitle"><div class="dialog-head"><div><p class="eyebrow">Elegí dónde explorar</p><h2 id="indexTitle">El recorrido</h2></div><button class="btn" data-close>Cerrar ×</button></div><div id="agenda"></div></dialog>
+<dialog id="helpDialog" aria-labelledby="helpTitle"><div class="dialog-head"><div><p class="eyebrow">Una ayuda a mano</p><h2 id="helpTitle">Leer y explorar</h2></div><button class="btn" data-close>Cerrar ×</button></div><p>Usá Anterior y Siguiente, las flechas del teclado o el índice. Dentro de un control, las teclas actúan sobre ese control. Tab recorre los controles; Enter o espacio los activa.</p><dl class="glossary"><dt>Grano</dt><dd>Lo que representa una fila.</dd><dt>PK · clave primaria</dt><dd>La columna o combinación que identifica una fila de forma única. Sus valores no se repiten ni pueden ser NULL.</dd><dt>FK · clave foránea</dt><dd>Una referencia a una clave única de otra tabla.</dd><dt>JOIN · unión</dt><dd>Una operación que combina filas de tablas según una condición.</dd><dt>NULL</dt><dd>Un valor ausente. Su significado depende de las reglas del dato.</dd><dt>Los nombres en inglés</dt><dd>customers = clientes; products = productos; sales_orders = pedidos; sales_order_lines = líneas de pedido; shipments = despachos; inventory_snapshots = registros de stock por fecha.</dd></dl><p class="note">Las actividades son simulaciones con datos de ejemplo. Los cambios viven en esta página y se reinician al recargar.</p><p class="note">Consultas: <a href="mailto:analisisdatosutnfrc@gmail.com">analisisdatosutnfrc@gmail.com</a></p></dialog>
+<div class="sr-only" id="slideAnnouncement" role="status" aria-live="polite"></div><noscript>Activá JavaScript para usar esta presentación interactiva.</noscript></body></html>
