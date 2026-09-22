@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1f497d">
+  <title>Repaso · Análisis de Datos · UTN FRC</title>
+  <link rel="stylesheet" href="../assets/styles.css">
+  <link rel="stylesheet" href="../assets/repaso/repaso.css">
+  <script type="module" src="../assets/repaso/app.mjs"></script>
+</head>
+<body class="repaso-page">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="repaso-header">
+    <a class="brand" href="../index.html"><span class="brand-mark" aria-hidden="true"></span><span class="brand-copy"><b>Análisis de Datos</b><small>UTN · Facultad Regional Córdoba</small></span></a>
+    <nav aria-label="Navegación"><a href="../index.html#recorrido">Las unidades</a><a href="?modo=docente">Acceso docente</a></nav>
+  </header>
+  <main id="contenido" class="repaso-main">
+    <section id="mode-picker" class="repaso-intro">
+      <div><p class="overline">ESPACIO DE REPASO</p><h1>Poné a prueba<br>tu <em>criterio.</em></h1><p class="intro-text">Elegí una respuesta. Revisá la explicación. Volvé a la teoría cuando lo necesites.</p></div>
+      <div class="mode-list" aria-label="Modos de repaso">
+        <button type="button" class="mode-choice" data-mode="self"><span class="mode-number">01</span><span><b>A tu ritmo</b><small>Elegí temas y dificultad.<br>Recibí una explicación en cada respuesta.</small></span><span aria-hidden="true">↗</span></button>
+        <button type="button" class="mode-choice" data-mode="live"><span class="mode-number">02</span><span><b>En vivo</b><small>Entrá con el código de sala.<br>Compartí el desafío con tu grupo.</small></span><span aria-hidden="true">↗</span></button>
+      </div>
+    </section>
+    <p id="app-status" class="notice" role="status" aria-live="polite" hidden></p>
+    <section id="self-mode" hidden aria-labelledby="self-title">
+      <div class="section-top"><div><p class="overline">AUTOEVALUACIÓN</p><h2 id="self-title" tabindex="-1">Armá tu recorrido.</h2></div><button class="text-button" type="button" data-home>Elegir otro modo ↗</button></div>
+      <form id="self-setup" class="setup-panel">
+        <fieldset><legend>¿Qué querés repasar?</legend><div class="field-actions"><button type="button" class="text-button" id="select-all">Seleccionar todas</button><button type="button" class="text-button" id="select-none">Quitar selección</button></div><div id="unit-options" class="unit-options"></div></fieldset>
+        <div class="setup-bottom"><fieldset><legend>Dificultad</legend><div class="difficulty-options"><label><input type="checkbox" name="difficulty" value="basica" checked> Básica</label><label><input type="checkbox" name="difficulty" value="intermedia" checked> Intermedia</label><label><input type="checkbox" name="difficulty" value="avanzada" checked> Avanzada</label></div></fieldset><div class="count-field"><label for="question-count">Cantidad de preguntas</label><input id="question-count" type="number" min="1" step="1" value="15" required></div></div>
+        <div class="setup-submit"><p id="available-count" role="status"></p><button class="primary-button" id="start-self" type="submit">Empezar repaso <span aria-hidden="true">→</span></button></div>
+        <p class="privacy-note">Sin reloj. Tus respuestas duran lo que dure este intento: al recargar o cerrar esta página se descartan.</p>
+      </form>
+      <section id="self-play" class="play-panel" hidden>
+        <div class="question-meta"><span id="self-progress"></span><span id="self-difficulty"></span></div>
+        <progress id="self-progress-bar" max="15" value="0" aria-label="Avance del repaso"></progress>
+        <p id="self-topic" class="overline"></p>
+        <div id="self-question"></div>
+        <div id="self-feedback" class="feedback-panel" role="status" aria-live="polite" hidden></div>
+        <div class="play-actions"><button class="text-button" id="leave-self" type="button">Terminar este intento</button><button class="primary-button" id="next-self" type="button" hidden>Siguiente pregunta →</button></div>
+      </section>
+      <section id="self-results" class="results-panel" hidden><p class="overline">TU RECORRIDO</p><h2 id="self-result-title" tabindex="-1"></h2><p id="self-result-detail"></p><div id="self-review" class="review-list"></div><button type="button" class="primary-button" id="restart-self">Armar otro repaso →</button></section>
+    </section>
+    <section id="live-mode" hidden aria-labelledby="live-title">
+      <div class="section-top"><div><p class="overline" id="live-role-label">REPASO EN VIVO</p><h2 id="live-title" tabindex="-1">Tu lugar en la sala.</h2></div><button class="text-button" type="button" data-home>Elegir otro modo ↗</button></div>
+      <p id="live-status" class="notice" role="status" aria-live="polite"></p>
+      <form id="join-form" class="join-panel"><label for="room-code">Código de sala<input id="room-code" name="code" autocomplete="off" maxlength="8" required placeholder="ABC123"></label><label for="student-id">Legajo<input id="student-id" name="legajo" inputmode="numeric" autocomplete="off" pattern="[0-9]{1,20}" maxlength="20" required></label><button class="primary-button" type="submit">Entrar →</button><p class="privacy-note">El grupo verá tu personaje. Tu legajo estará disponible para el docente durante 24 horas desde el cierre.</p></form>
+      <form id="host-form" class="join-panel" hidden><label for="host-secret">Clave docente<input id="host-secret" type="password" autocomplete="current-password" required></label><label for="host-room-code">Código para recuperar una sala <span class="optional">(opcional)</span><input id="host-room-code" autocomplete="off" maxlength="8"></label><button class="primary-button" type="submit">Crear o recuperar sala →</button></form>
+      <section id="live-room" hidden>
+        <div class="room-strip"><div><span class="overline">SALA</span><b id="live-code"></b></div><p id="live-participants"></p><div id="my-character"></div><span id="connection-state" role="status"></span></div>
+        <div id="host-controls" class="host-controls" hidden><button type="button" class="primary-button" id="host-advance">Presentar pregunta →</button><button type="button" class="text-button" id="copy-room">Copiar enlace</button><a id="project-room" target="_blank" rel="noopener">Abrir proyección ↗</a><button type="button" class="text-button" id="host-finish">Finalizar partida</button></div>
+        <div id="live-lobby"><p class="overline">PUNTO DE ENCUENTRO</p><h3>Estamos formando el grupo.</h3><p>Tu personaje aparecerá acá. La pregunta se mostrará cuando el docente la presente.</p><div id="character-roster" class="character-roster"></div></div>
+        <div id="live-play" class="play-panel" hidden><div class="question-meta"><span id="live-progress"></span><span id="live-phase"></span><span id="live-timer" class="timer" role="timer" aria-label="Tiempo restante"></span></div><div id="live-question"></div><p id="answer-status" role="status"></p><div id="live-feedback" class="feedback-panel" hidden></div><div id="answer-distribution" class="distribution"></div></div>
+        <section id="live-ranking" class="ranking-panel" hidden><p class="overline">CLASIFICACIÓN</p><h3 id="ranking-title">Así va el grupo.</h3><ol id="ranking-list"></ol><div id="export-controls" class="play-actions" hidden><button class="primary-button" type="button" data-export="all">Descargar clasificación CSV</button><button class="text-button" type="button" data-export="podium">Descargar podio CSV</button></div></section>
+        <details id="host-participants" hidden><summary>Participantes y recuperación de acceso</summary><p>Habilitá el reingreso solo después de identificar al estudiante. Su acceso anterior quedará invalidado.</p><div id="host-participant-list"></div></details>
+      </section>
+    </section>
+    <noscript><p class="notice">Activá JavaScript en tu navegador para utilizar el repaso.</p></noscript>
+  </main>
+  <footer class="repaso-footer"><span>UTN FRC · Análisis de Datos</span><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a><a href="../index.html">Volver al sitio ↗</a></footer>
+</body>
+</html>

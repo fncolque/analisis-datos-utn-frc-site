@@ -1,0 +1,4399 @@
+{
+  "schemaVersion": 1,
+  "units": [
+    {
+      "id": "u01-decisiones-datos-ia",
+      "label": "Unidad 1 · Decisiones, datos e IA"
+    },
+    {
+      "id": "u01-laboratorio-faro-sur",
+      "label": "Unidad 1 · Laboratorio inicial de Faro Sur"
+    },
+    {
+      "id": "u02-ecosistema-arquitectura",
+      "label": "Unidad 2 · Ecosistema, roles y arquitectura"
+    },
+    {
+      "id": "u03-modelado-relacional",
+      "label": "Unidad 3.1 · Modelo relacional y granularidad"
+    },
+    {
+      "id": "u03-sql-consultas",
+      "label": "Unidad 3.2 · SQL sobre una vista"
+    },
+    {
+      "id": "u03-joins-reconciliacion",
+      "label": "Unidad 3.3 · Joins y reconciliación"
+    },
+    {
+      "id": "u04-apis-mcp",
+      "label": "Unidad 4 · APIs y Model Context Protocol"
+    }
+  ],
+  "questions": [
+    {
+      "id": "u01-decisiones-datos-ia-01",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Del objetivo al KPI",
+      "difficulty": "basica",
+      "prompt": "¿Qué convierte una cifra en un KPI útil para decidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una definición vinculada a un objetivo y una acción posible."
+        },
+        {
+          "id": "b",
+          "text": "Que aparezca en un gráfico de colores."
+        },
+        {
+          "id": "c",
+          "text": "Que aumente todos los meses."
+        },
+        {
+          "id": "d",
+          "text": "Que se calcule con inteligencia artificial."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Un KPI necesita propósito, fórmula y condiciones de interpretación; además debe orientar una decisión.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#del-objetivo-al-kpi",
+        "label": "Del objetivo al KPI"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-02",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Qué es un pipeline de análisis de datos",
+      "difficulty": "basica",
+      "prompt": "¿Qué describe mejor un pipeline de datos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un programa que reemplaza todas las decisiones humanas."
+        },
+        {
+          "id": "b",
+          "text": "Etapas conectadas que llevan datos desde una fuente hasta un uso."
+        },
+        {
+          "id": "c",
+          "text": "Una carpeta con todos los archivos disponibles."
+        },
+        {
+          "id": "d",
+          "text": "Un gráfico que muestra ventas mensuales."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Cada etapa recibe una entrada, realiza una operación y entrega una salida al tramo siguiente.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#que-es-un-pipeline-de-analisis-de-datos",
+        "label": "Qué es un pipeline de análisis de datos"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-03",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Protocolo de verificación",
+      "difficulty": "basica",
+      "prompt": "Una IA propone una consulta SQL. ¿Qué permite confiar en su resultado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que la consulta tenga pocas líneas."
+        },
+        {
+          "id": "b",
+          "text": "Que dos asistentes escriban exactamente lo mismo."
+        },
+        {
+          "id": "c",
+          "text": "Ejecutarla y contrastarla con datos y controles conocidos."
+        },
+        {
+          "id": "d",
+          "text": "Que la explicación suene convincente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La revisión requiere evidencia ejecutada: comprender el cálculo, comprobar la salida y declarar sus límites.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#protocolo-de-verificacion",
+        "label": "Protocolo de verificación"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-01",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Data Engineer",
+      "difficulty": "basica",
+      "prompt": "¿Qué tarea corresponde principalmente a un Data Engineer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Construir y mantener la captura e integración de datos."
+        },
+        {
+          "id": "b",
+          "text": "Aprobar la política comercial de descuentos."
+        },
+        {
+          "id": "c",
+          "text": "Decidir el precio final de cada producto."
+        },
+        {
+          "id": "d",
+          "text": "Elegir únicamente los colores del tablero."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El Data Engineer organiza pipelines operables para que los datos lleguen con controles a quienes los utilizan.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#data-engineer",
+        "label": "Data Engineer"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-02",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Cómputo y almacenamiento en la nube",
+      "difficulty": "basica",
+      "prompt": "Conservás archivos en la nube sin ejecutar consultas. ¿Qué recurso seguís utilizando?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Renderizado de tableros."
+        },
+        {
+          "id": "b",
+          "text": "Almacenamiento."
+        },
+        {
+          "id": "c",
+          "text": "Cómputo de consultas SQL activas."
+        },
+        {
+          "id": "d",
+          "text": "Entrenamiento de modelos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Conservar los archivos consume almacenamiento. El cómputo corresponde al trabajo realizado para procesarlos.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#computo-y-almacenamiento-en-la-nube",
+        "label": "Cómputo y almacenamiento en la nube"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-03",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Sistemas operacionales y sistemas analíticos",
+      "difficulty": "basica",
+      "prompt": "¿Qué tarea encaja mejor en un sistema analítico?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Registrar un cambio de dirección de un cliente."
+        },
+        {
+          "id": "b",
+          "text": "Reservar una unidad al recibir un pedido."
+        },
+        {
+          "id": "c",
+          "text": "Comparar tendencias de ventas de varias sucursales y años."
+        },
+        {
+          "id": "d",
+          "text": "Confirmar una compra individual en la caja."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El análisis combina conjuntos e historia; el sistema operacional prioriza registrar y actualizar transacciones.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#sistemas-operacionales-y-sistemas-analiticos",
+        "label": "Sistemas operacionales y sistemas analíticos"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-01",
+      "unit": "u03-modelado-relacional",
+      "topic": "El grano como contrato semántico",
+      "difficulty": "basica",
+      "prompt": "P100 aparece en dos filas porque incluye dos productos. ¿Cuántos pedidos distintos hay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un pedido."
+        },
+        {
+          "id": "b",
+          "text": "Dos pedidos."
+        },
+        {
+          "id": "c",
+          "text": "Tres pedidos."
+        },
+        {
+          "id": "d",
+          "text": "No se puede saber aunque ambos tengan el mismo identificador."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Las filas representan líneas de pedido. Contar pedidos exige distinguir order_id, no contar cada línea.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#el-grano-como-contrato-semantico",
+        "label": "El grano como contrato semántico"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-02",
+      "unit": "u03-modelado-relacional",
+      "topic": "Claves e integridad",
+      "difficulty": "basica",
+      "prompt": "Una FK de pedidos referencia clientes. ¿Qué sucede si se exige integridad referencial y el cliente no existe?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Se cambia la clave primaria del pedido."
+        },
+        {
+          "id": "b",
+          "text": "Se rechaza ese pedido hasta contar con una referencia válida."
+        },
+        {
+          "id": "c",
+          "text": "Se crea automáticamente un cliente completo."
+        },
+        {
+          "id": "d",
+          "text": "Se convierte el identificador en cero."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La restricción impide referencias huérfanas; la FK debe apuntar a una clave existente cuando tiene valor.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#claves-e-integridad",
+        "label": "Claves e integridad"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-03",
+      "unit": "u03-modelado-relacional",
+      "topic": "Uno a muchos",
+      "difficulty": "basica",
+      "prompt": "Un cliente figura una vez en clientes y tiene varios pedidos. ¿Qué relación se representa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Muchos a muchos sin intermediación."
+        },
+        {
+          "id": "b",
+          "text": "Ninguna relación, porque se repite el cliente."
+        },
+        {
+          "id": "c",
+          "text": "Uno a muchos."
+        },
+        {
+          "id": "d",
+          "text": "Uno a uno."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El identificador es único en clientes y puede repetirse como FK en pedidos.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#uno-a-muchos",
+        "label": "Uno a muchos"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-04",
+      "unit": "u03-modelado-relacional",
+      "topic": "El problema de una tabla plana",
+      "difficulty": "basica",
+      "prompt": "La región de un cliente se repite en 30 ventas. Solo se corrige en una. ¿Qué problema aparece?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una mejora de integridad referencial."
+        },
+        {
+          "id": "b",
+          "text": "Una nueva clave compuesta."
+        },
+        {
+          "id": "c",
+          "text": "Una agregación correcta."
+        },
+        {
+          "id": "d",
+          "text": "Una anomalía de actualización."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El mismo cliente queda con versiones contradictorias. Separar sus atributos permite mantenerlos en un único lugar.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#el-problema-de-una-tabla-plana",
+        "label": "El problema de una tabla plana"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-01",
+      "unit": "u03-sql-consultas",
+      "topic": "Primera consulta: SELECT, FROM y LIMIT",
+      "difficulty": "basica",
+      "prompt": "En SELECT nombre FROM clientes, ¿qué indica FROM clientes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La tabla desde la que se consultan los datos."
+        },
+        {
+          "id": "b",
+          "text": "La columna que se elimina."
+        },
+        {
+          "id": "c",
+          "text": "El orden de las filas."
+        },
+        {
+          "id": "d",
+          "text": "La condición que filtra clientes."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "FROM identifica la fuente; SELECT elige las columnas de la salida.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#primera-consulta-select-from-y-limit",
+        "label": "Primera consulta: SELECT, FROM y LIMIT"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-02",
+      "unit": "u03-sql-consultas",
+      "topic": "Conteos y DISTINCT",
+      "difficulty": "basica",
+      "prompt": "Una consulta devuelve Centro, Centro, Norte. ¿Qué produce SELECT DISTINCT region?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El borrado de un cliente de la tabla original."
+        },
+        {
+          "id": "b",
+          "text": "Centro y Norte, una vez cada uno."
+        },
+        {
+          "id": "c",
+          "text": "Solo Centro."
+        },
+        {
+          "id": "d",
+          "text": "Tres filas ordenadas alfabéticamente."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "DISTINCT elimina repeticiones de la combinación seleccionada en el resultado; no modifica la fuente.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#conteos-y-distinct",
+        "label": "Conteos y DISTINCT"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-03",
+      "unit": "u03-sql-consultas",
+      "topic": "WHERE: definir la población",
+      "difficulty": "basica",
+      "prompt": "¿Qué exige WHERE region = 'Norte' AND cantidad > 10?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que cantidad sea exactamente 10."
+        },
+        {
+          "id": "b",
+          "text": "Que se agrupen todas las regiones."
+        },
+        {
+          "id": "c",
+          "text": "Que ambas condiciones sean verdaderas."
+        },
+        {
+          "id": "d",
+          "text": "Que se cumpla cualquiera de las dos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "AND conserva únicamente filas que cumplen simultáneamente las condiciones.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#where-definir-la-poblacion",
+        "label": "WHERE: definir la población"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-04",
+      "unit": "u03-sql-consultas",
+      "topic": "ORDER BY y determinismo de la salida",
+      "difficulty": "basica",
+      "prompt": "¿Qué busca ORDER BY costo DESC LIMIT 1?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una fila con el menor costo."
+        },
+        {
+          "id": "b",
+          "text": "La suma de todos los costos."
+        },
+        {
+          "id": "c",
+          "text": "La última fila cargada, cualquiera sea su costo."
+        },
+        {
+          "id": "d",
+          "text": "Una fila con el mayor costo."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "DESC ordena de mayor a menor y LIMIT 1 conserva una fila. Un empate requiere otro criterio si importa cuál se elige.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#order-by-y-determinismo-de-la-salida",
+        "label": "ORDER BY y determinismo de la salida"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-05",
+      "unit": "u03-sql-consultas",
+      "topic": "GROUP BY: cambiar el grano de salida",
+      "difficulty": "basica",
+      "prompt": "Un pedido tiene dos líneas con cantidades 2 y 5. ¿Qué devuelve SUM(cantidad) agrupado por pedido?",
+      "options": [
+        {
+          "id": "a",
+          "text": "7 unidades."
+        },
+        {
+          "id": "b",
+          "text": "2 unidades."
+        },
+        {
+          "id": "c",
+          "text": "1 unidad."
+        },
+        {
+          "id": "d",
+          "text": "5 pedidos."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "SUM agrega los valores: 2 + 5 = 7. COUNT(*) contaría las dos líneas.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#group-by-cambiar-el-grano-de-salida",
+        "label": "GROUP BY: cambiar el grano de salida"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-04",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "El análisis comienza con una decisión",
+      "difficulty": "basica",
+      "prompt": "Un archivo contiene el valor 1250 sin otra información. ¿Qué falta para interpretarlo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un gráfico circular."
+        },
+        {
+          "id": "b",
+          "text": "Más decimales."
+        },
+        {
+          "id": "c",
+          "text": "Una herramienta de IA."
+        },
+        {
+          "id": "d",
+          "text": "Su significado, unidad y contexto de registro."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El contexto permite distinguir si 1250 representa dinero, unidades u otra magnitud.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#el-analisis-comienza-con-una-decision",
+        "label": "El análisis comienza con una decisión"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-05",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "La anatomía de una decisión",
+      "difficulty": "basica",
+      "prompt": "¿Qué componente identifica quién debe actuar ante el resultado de un análisis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La persona responsable de la decisión."
+        },
+        {
+          "id": "b",
+          "text": "El formato del archivo."
+        },
+        {
+          "id": "c",
+          "text": "El lenguaje de consulta."
+        },
+        {
+          "id": "d",
+          "text": "La cantidad de columnas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Una decisión requiere autoridad y responsabilidad para pasar de la evidencia a una acción.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#la-anatomia-de-una-decision",
+        "label": "La anatomía de una decisión"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-06",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Inteligencia artificial integrada al análisis",
+      "difficulty": "basica",
+      "prompt": "¿Cuál es un uso de IA generativa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ordenar una columna mediante ORDER BY."
+        },
+        {
+          "id": "b",
+          "text": "Proponer un borrador de consulta SQL."
+        },
+        {
+          "id": "c",
+          "text": "Guardar filas en una tabla."
+        },
+        {
+          "id": "d",
+          "text": "Aplicar una restricción de clave primaria."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La IA generativa produce contenido como texto o código, cuya corrección debe verificarse.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#inteligencia-artificial-integrada-al-analisis",
+        "label": "Inteligencia artificial integrada al análisis"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-07",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Del objetivo al KPI",
+      "difficulty": "intermedia",
+      "prompt": "Dos equipos calculan ventas mensuales: uno usa fecha de pedido y otro fecha de entrega. ¿Qué explica una diferencia legítima?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ambos deben obtener el mismo total mensual."
+        },
+        {
+          "id": "b",
+          "text": "El lenguaje usado cambia la definición de venta."
+        },
+        {
+          "id": "c",
+          "text": "Miden eventos diferentes dentro del período."
+        },
+        {
+          "id": "d",
+          "text": "Uno necesariamente sumó mal."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La fecha que asigna el período forma parte de la definición de una métrica.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#del-objetivo-al-kpi",
+        "label": "Del objetivo al KPI"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-08",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Incentivos y efectos sobre el sistema",
+      "difficulty": "intermedia",
+      "prompt": "Se premia únicamente el volumen vendido. ¿Qué control complementario ayuda a detectar descuentos excesivos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La cantidad de archivos."
+        },
+        {
+          "id": "b",
+          "text": "El número de usuarios del tablero."
+        },
+        {
+          "id": "c",
+          "text": "El tamaño de la base."
+        },
+        {
+          "id": "d",
+          "text": "El margen porcentual."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El volumen puede crecer con descuentos que reducen la rentabilidad; el margen permite observar esa tensión.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#incentivos-y-efectos-sobre-el-sistema",
+        "label": "Incentivos y efectos sobre el sistema"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-09",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Faro Sur como sistema de decisiones",
+      "difficulty": "intermedia",
+      "prompt": "Una tabla de ventas carece de eventos logísticos. ¿Qué conclusión puede sostener directamente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La venta neta por producto."
+        },
+        {
+          "id": "b",
+          "text": "La causa de cada demora de transporte."
+        },
+        {
+          "id": "c",
+          "text": "La capacidad disponible del transportista."
+        },
+        {
+          "id": "d",
+          "text": "El stock al momento de prometer una entrega."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Las columnas comerciales permiten estudiar ventas; las explicaciones logísticas requieren otras fuentes.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#faro-sur-como-sistema-de-decisiones",
+        "label": "Faro Sur como sistema de decisiones"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-10",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "La anatomía de una decisión",
+      "difficulty": "intermedia",
+      "prompt": "La gerencia debe revisar descuentos antes de publicar la próxima lista. ¿Qué dato delimita el horizonte de decisión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El total de columnas del reporte."
+        },
+        {
+          "id": "b",
+          "text": "La fecha límite para publicar la lista."
+        },
+        {
+          "id": "c",
+          "text": "La extensión del notebook."
+        },
+        {
+          "id": "d",
+          "text": "El nombre del archivo de ventas."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El horizonte indica cuándo debe estar disponible la evidencia para que la decisión sea útil.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#la-anatomia-de-una-decision",
+        "label": "La anatomía de una decisión"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-11",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Los datos como ventaja competitiva",
+      "difficulty": "intermedia",
+      "prompt": "Una empresa mide faltantes pero nadie puede autorizar reposiciones. ¿Qué impide aprovechar el indicador?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Falta redondear los porcentajes."
+        },
+        {
+          "id": "b",
+          "text": "Falta usar una base distribuida."
+        },
+        {
+          "id": "c",
+          "text": "Falta un circuito de acción con autoridad definida."
+        },
+        {
+          "id": "d",
+          "text": "Falta almacenar más años de datos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La información genera valor cuando existe una respuesta operativa posible.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#los-datos-como-ventaja-competitiva",
+        "label": "Los datos como ventaja competitiva"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-12",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Qué es un pipeline de análisis de datos",
+      "difficulty": "intermedia",
+      "prompt": "Un paso convierte fechas de texto a un tipo temporal antes de calcular ventas. ¿A qué etapa corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Comunicación."
+        },
+        {
+          "id": "b",
+          "text": "Decisión comercial."
+        },
+        {
+          "id": "c",
+          "text": "Captura original."
+        },
+        {
+          "id": "d",
+          "text": "Transformación."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La transformación modifica la estructura o representación para permitir cálculos consistentes.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#que-es-un-pipeline-de-analisis-de-datos",
+        "label": "Qué es un pipeline de análisis de datos"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-13",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Distinciones para usar durante el curso",
+      "difficulty": "intermedia",
+      "prompt": "Dos regiones tienen igual demora promedio. ¿Qué conviene revisar antes de afirmar que prestan el mismo servicio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La distribución de demoras y los extremos."
+        },
+        {
+          "id": "b",
+          "text": "Solo la cantidad de decimales."
+        },
+        {
+          "id": "c",
+          "text": "El color de cada región."
+        },
+        {
+          "id": "d",
+          "text": "El nombre del archivo."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El promedio puede ocultar diferencias de dispersión o casos extremos relevantes para el servicio.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#distinciones-para-usar-durante-el-curso",
+        "label": "Distinciones para usar durante el curso"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-14",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Protocolo de verificación",
+      "difficulty": "intermedia",
+      "prompt": "Un asistente redacta una explicación con cifras que no calculó. ¿Qué convierte esas cifras en evidencia verificable?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Copiar la respuesta con una advertencia genérica."
+        },
+        {
+          "id": "b",
+          "text": "Ejecutar los cálculos sobre una fuente identificada y conservar controles."
+        },
+        {
+          "id": "c",
+          "text": "Pedirle una redacción más formal."
+        },
+        {
+          "id": "d",
+          "text": "Repetir la misma pregunta hasta obtener la misma cifra."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La evidencia depende de una ejecución comprobable y de su fuente, no de la consistencia verbal del asistente.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#protocolo-de-verificacion",
+        "label": "Protocolo de verificación"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-15",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Responsabilidad humana y límites de la evidencia",
+      "difficulty": "avanzada",
+      "prompt": "Descuentos altos se asocian con menor margen. ¿Qué limita afirmar que explican toda la caída?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El margen nunca depende del descuento."
+        },
+        {
+          "id": "b",
+          "text": "Más decimales eliminan otras explicaciones."
+        },
+        {
+          "id": "c",
+          "text": "También pueden variar costos y mezcla de productos."
+        },
+        {
+          "id": "d",
+          "text": "Una correlación siempre demuestra causalidad."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Una asociación observada necesita contrastarse con explicaciones alternativas antes de atribuir un efecto causal.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#responsabilidad-humana-y-limites-de-la-evidencia",
+        "label": "Responsabilidad humana y límites de la evidencia"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-16",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Del objetivo al KPI",
+      "difficulty": "avanzada",
+      "prompt": "Dos tableros coinciden en la fórmula margen/venta pero discrepan. ¿Qué auditoría es más útil?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Promediar ambos resultados."
+        },
+        {
+          "id": "b",
+          "text": "Elegir el tablero más reciente por defecto."
+        },
+        {
+          "id": "c",
+          "text": "Cambiar ambos a gráficos de barras."
+        },
+        {
+          "id": "d",
+          "text": "Comparar costos incluidos, fechas, filtros y población."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una fórmula compartida puede operar sobre definiciones y poblaciones distintas.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#del-objetivo-al-kpi",
+        "label": "Del objetivo al KPI"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-17",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Incentivos y efectos sobre el sistema",
+      "difficulty": "avanzada",
+      "prompt": "Mejora el porcentaje de entregas a tiempo al prometer plazos mucho más largos. ¿Qué revisión evita una conclusión incompleta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Examinar también la duración de la promesa y la experiencia del cliente."
+        },
+        {
+          "id": "b",
+          "text": "Dar por probado que bajó la demora real."
+        },
+        {
+          "id": "c",
+          "text": "Eliminar la fecha prometida del análisis."
+        },
+        {
+          "id": "d",
+          "text": "Medir solo la cantidad entregada."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El indicador puede mejorar por un cambio de referencia sin que mejore la velocidad del servicio.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#incentivos-y-efectos-sobre-el-sistema",
+        "label": "Incentivos y efectos sobre el sistema"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-18",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Protocolo de verificación",
+      "difficulty": "avanzada",
+      "prompt": "Un equipo quiere enviar datos de clientes a un asistente externo para revisar SQL. ¿Qué debe resolver antes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La redacción del título del notebook."
+        },
+        {
+          "id": "b",
+          "text": "La autorización y la necesidad de compartir esos datos."
+        },
+        {
+          "id": "c",
+          "text": "La elección del color del reporte."
+        },
+        {
+          "id": "d",
+          "text": "La cantidad de tokens únicamente."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El uso de datos sensibles en herramientas externas requiere autorización y alcance apropiado.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#protocolo-de-verificacion",
+        "label": "Protocolo de verificación"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-19",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Tres tensiones para investigar",
+      "difficulty": "avanzada",
+      "prompt": "Aumentan ventas y cae margen porcentual. ¿Qué descomposición ayuda a investigar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo longitud de las consultas."
+        },
+        {
+          "id": "b",
+          "text": "Solo filas del archivo."
+        },
+        {
+          "id": "c",
+          "text": "Precio, volumen, descuentos, costos y mezcla."
+        },
+        {
+          "id": "d",
+          "text": "Solo cantidad de clientes."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Separar los factores comerciales permite formular hipótesis sobre el cambio de rentabilidad.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#tres-tensiones-para-investigar",
+        "label": "Tres tensiones para investigar"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-05",
+      "unit": "u03-modelado-relacional",
+      "topic": "Entidades, atributos y registros",
+      "difficulty": "basica",
+      "prompt": "¿Qué representa Andina SA dentro de una tabla de clientes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un registro de la entidad cliente."
+        },
+        {
+          "id": "b",
+          "text": "Un atributo de cualquier pedido."
+        },
+        {
+          "id": "c",
+          "text": "El dominio de las fechas."
+        },
+        {
+          "id": "d",
+          "text": "La clave de todos los productos."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La entidad define el tipo de objeto; un registro representa una instancia concreta.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#entidades-atributos-y-registros",
+        "label": "Entidades, atributos y registros"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-06",
+      "unit": "u03-modelado-relacional",
+      "topic": "El significado de NULL",
+      "difficulty": "basica",
+      "prompt": "Una fecha de entrega NULL indica, según el proceso, que aún no se entregó. ¿Qué representa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una cadena de texto vacía obligatoria."
+        },
+        {
+          "id": "b",
+          "text": "Ausencia de una fecha de entrega registrada."
+        },
+        {
+          "id": "c",
+          "text": "Una entrega el día cero."
+        },
+        {
+          "id": "d",
+          "text": "Una entrega puntual confirmada."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "NULL expresa ausencia o desconocimiento; su significado de negocio debe documentarse.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#el-significado-de-null",
+        "label": "El significado de NULL"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-07",
+      "unit": "u03-modelado-relacional",
+      "topic": "Claves naturales, sustitutas y compuestas",
+      "difficulty": "intermedia",
+      "prompt": "Un snapshot tiene una fila por producto, depósito y día. ¿Qué clave candidata respeta ese grano?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Día únicamente."
+        },
+        {
+          "id": "b",
+          "text": "Nombre del depósito únicamente."
+        },
+        {
+          "id": "c",
+          "text": "Producto + depósito + día."
+        },
+        {
+          "id": "d",
+          "text": "Producto únicamente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La combinación distingue cada observación del producto en un depósito y un día.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#claves-naturales-sustitutas-y-compuestas",
+        "label": "Claves naturales, sustitutas y compuestas"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-08",
+      "unit": "u03-modelado-relacional",
+      "topic": "Muchos a muchos",
+      "difficulty": "intermedia",
+      "prompt": "Un pedido incluye varios productos y un producto aparece en varios pedidos. ¿Dónde guardar cantidad y precio negociado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo en el maestro de clientes."
+        },
+        {
+          "id": "b",
+          "text": "En una única fila por familia."
+        },
+        {
+          "id": "c",
+          "text": "En el encabezado sin identificar el producto."
+        },
+        {
+          "id": "d",
+          "text": "En las líneas que relacionan pedidos y productos."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La tabla intermedia conserva los atributos propios de cada encuentro entre pedido y producto.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#muchos-a-muchos",
+        "label": "Muchos a muchos"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-09",
+      "unit": "u03-modelado-relacional",
+      "topic": "Modelo operacional y esquema estrella",
+      "difficulty": "intermedia",
+      "prompt": "En un esquema estrella de ventas por línea, ¿qué tabla contiene los importes de cada venta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La tabla de hechos."
+        },
+        {
+          "id": "b",
+          "text": "La dimensión calendario."
+        },
+        {
+          "id": "c",
+          "text": "La dimensión cliente."
+        },
+        {
+          "id": "d",
+          "text": "El catálogo de columnas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Los hechos conservan eventos medibles; las dimensiones aportan contexto para agruparlos.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#modelo-operacional-y-esquema-estrella",
+        "label": "Modelo operacional y esquema estrella"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-10",
+      "unit": "u03-modelado-relacional",
+      "topic": "Claves e integridad",
+      "difficulty": "intermedia",
+      "prompt": "Una columna propuesta como clave primaria tiene valores repetidos. ¿Qué condición incumple?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La obligación de ser una clave foránea."
+        },
+        {
+          "id": "b",
+          "text": "La unicidad de la identidad de cada fila."
+        },
+        {
+          "id": "c",
+          "text": "La obligación de tener texto."
+        },
+        {
+          "id": "d",
+          "text": "La obligación de ser una fecha."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Una clave primaria debe identificar cada registro sin repetición y sin valores ausentes.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#claves-e-integridad",
+        "label": "Claves e integridad"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-11",
+      "unit": "u03-modelado-relacional",
+      "topic": "Opcionalidad",
+      "difficulty": "intermedia",
+      "prompt": "Un cliente registrado todavía no hizo pedidos. ¿Qué implica para la relación cliente-pedido?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La tabla clientes pierde su clave primaria."
+        },
+        {
+          "id": "b",
+          "text": "Todos los pedidos deben tener cliente NULL."
+        },
+        {
+          "id": "c",
+          "text": "Puede haber clientes sin una fila correspondiente en pedidos."
+        },
+        {
+          "id": "d",
+          "text": "Debe inventarse un pedido con importe cero."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La opcionalidad permite representar entidades antes de que ocurra una transacción asociada.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#opcionalidad",
+        "label": "Opcionalidad"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-12",
+      "unit": "u03-modelado-relacional",
+      "topic": "Normalización al nivel necesario",
+      "difficulty": "intermedia",
+      "prompt": "Para registrar un producto nuevo, una tabla obliga a inventar una venta. ¿Qué problema revela?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una agregación correcta."
+        },
+        {
+          "id": "b",
+          "text": "Una clave sustituta adecuada."
+        },
+        {
+          "id": "c",
+          "text": "Un esquema estrella completo."
+        },
+        {
+          "id": "d",
+          "text": "Una anomalía de inserción."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Separar el maestro de productos permite registrar productos independientemente de sus ventas.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#normalizacion-al-nivel-necesario",
+        "label": "Normalización al nivel necesario"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-13",
+      "unit": "u03-modelado-relacional",
+      "topic": "Entidades, atributos y registros",
+      "difficulty": "intermedia",
+      "prompt": "El precio acordado de un producto cambia entre pedidos. ¿Dónde conservar el precio efectivamente vendido?",
+      "options": [
+        {
+          "id": "a",
+          "text": "En la línea de cada transacción."
+        },
+        {
+          "id": "b",
+          "text": "Solo como precio actual del producto."
+        },
+        {
+          "id": "c",
+          "text": "En el nombre del cliente."
+        },
+        {
+          "id": "d",
+          "text": "En la dimensión fecha."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El precio transaccional describe la línea; reemplazarlo por el precio vigente perdería la condición original.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#entidades-atributos-y-registros",
+        "label": "Entidades, atributos y registros"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-14",
+      "unit": "u03-modelado-relacional",
+      "topic": "Controles antes de consultar",
+      "difficulty": "intermedia",
+      "prompt": "Una tabla contiene una fila por cliente. ¿Qué comparación inicial verifica su identidad declarada?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cantidad de clientes frente a cantidad de productos."
+        },
+        {
+          "id": "b",
+          "text": "Filas frente a claves de cliente distintas y no nulas."
+        },
+        {
+          "id": "c",
+          "text": "Filas frente al tamaño del archivo en bytes."
+        },
+        {
+          "id": "d",
+          "text": "Suma de precios frente a cantidad de columnas."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La coincidencia entre filas y claves válidas distintas ayuda a comprobar el grano esperado.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#controles-antes-de-consultar",
+        "label": "Controles antes de consultar"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-15",
+      "unit": "u03-modelado-relacional",
+      "topic": "Medidas y nivel de cálculo",
+      "difficulty": "avanzada",
+      "prompt": "Un pedido totaliza $100 y tiene tres líneas. Tras unir cabecera y detalle se suma el total repetido. ¿Qué ocurre?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Se obtienen tres pedidos distintos."
+        },
+        {
+          "id": "b",
+          "text": "El join convierte el total en precio unitario."
+        },
+        {
+          "id": "c",
+          "text": "Se obtienen $300 por multiplicar una medida de cabecera."
+        },
+        {
+          "id": "d",
+          "text": "Se conservan $100 automáticamente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El total de cabecera se repite por cada línea; debe agregarse en su grano o asignarse mediante una regla explícita.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#medidas-y-nivel-de-calculo",
+        "label": "Medidas y nivel de cálculo"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-16",
+      "unit": "u03-modelado-relacional",
+      "topic": "Claves naturales, sustitutas y compuestas",
+      "difficulty": "avanzada",
+      "prompt": "Se pasa de un snapshot diario a dos cortes por día. ¿Qué debe revisarse en la clave producto-depósito-día?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar el producto."
+        },
+        {
+          "id": "b",
+          "text": "Mantener la clave aunque duplique filas."
+        },
+        {
+          "id": "c",
+          "text": "Reemplazar la fecha por el nombre del depósito."
+        },
+        {
+          "id": "d",
+          "text": "Agregar el instante o identificador de corte para distinguir observaciones."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Al cambiar el grano temporal, la clave anterior puede dejar de identificar una fila.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#claves-naturales-sustitutas-y-compuestas",
+        "label": "Claves naturales, sustitutas y compuestas"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-17",
+      "unit": "u03-modelado-relacional",
+      "topic": "Claves e integridad",
+      "difficulty": "avanzada",
+      "prompt": "Todas las claves son únicas y las referencias existen. ¿Qué sigue sin estar demostrado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La validez de fechas e importes de cada registro."
+        },
+        {
+          "id": "b",
+          "text": "La existencia de registros."
+        },
+        {
+          "id": "c",
+          "text": "La unicidad de las claves ya controladas."
+        },
+        {
+          "id": "d",
+          "text": "La posibilidad de relacionar las tablas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La integridad de identidad y referencias no verifica todos los atributos ni las reglas de negocio.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#claves-e-integridad",
+        "label": "Claves e integridad"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-18",
+      "unit": "u03-modelado-relacional",
+      "topic": "Un modelo representa una parte del negocio",
+      "difficulty": "avanzada",
+      "prompt": "El modelo conserva pedidos y productos, pero no reclamos ni encuestas. ¿Qué afirmación excede su alcance?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Se pueden estudiar importes registrados."
+        },
+        {
+          "id": "b",
+          "text": "El nivel de satisfacción de todos los clientes está demostrado."
+        },
+        {
+          "id": "c",
+          "text": "Se pueden contar pedidos."
+        },
+        {
+          "id": "d",
+          "text": "Se pueden identificar productos pedidos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Un modelo solo permite observar los fenómenos que sus datos representan.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#un-modelo-representa-una-parte-del-negocio",
+        "label": "Un modelo representa una parte del negocio"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-19",
+      "unit": "u03-modelado-relacional",
+      "topic": "Normalización al nivel necesario",
+      "difficulty": "avanzada",
+      "prompt": "Al borrar la última venta de un cliente desaparece también su única información de contacto. ¿Cómo prevenirlo en el modelo operacional?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cambiar el orden de las columnas."
+        },
+        {
+          "id": "b",
+          "text": "Guardar únicamente el total mensual."
+        },
+        {
+          "id": "c",
+          "text": "Conservar el cliente como entidad independiente de las ventas."
+        },
+        {
+          "id": "d",
+          "text": "Duplicar más veces el contacto en la misma venta."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Separar entidades evita que eliminar una transacción borre información sobre otra entidad.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#normalizacion-al-nivel-necesario",
+        "label": "Normalización al nivel necesario"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-20",
+      "unit": "u03-modelado-relacional",
+      "topic": "El significado de NULL",
+      "difficulty": "avanzada",
+      "prompt": "Se reemplazan todas las fechas de entrega ausentes por una fecha fija antigua. ¿Qué riesgo introduce?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Garantizar integridad referencial."
+        },
+        {
+          "id": "b",
+          "text": "Restablecer la fecha real de entrega."
+        },
+        {
+          "id": "c",
+          "text": "Mejorar siempre la precisión del promedio."
+        },
+        {
+          "id": "d",
+          "text": "Confundir pedidos abiertos con entregas históricas y alterar métricas."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La sustitución inventa un evento temporal y debe evitarse si no representa una regla de negocio válida.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#el-significado-de-null",
+        "label": "El significado de NULL"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-20",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Responsabilidad humana y límites de la evidencia",
+      "difficulty": "avanzada",
+      "prompt": "Un informe suma correctamente ventas, pero recomienda capacidad de transporte sin observar despachos. ¿Qué falla debe corregirse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La suma debe expresarse con más decimales."
+        },
+        {
+          "id": "b",
+          "text": "El archivo debería ordenarse alfabéticamente."
+        },
+        {
+          "id": "c",
+          "text": "La recomendación queda validada por la aritmética."
+        },
+        {
+          "id": "d",
+          "text": "La conclusión excede la evidencia disponible."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La exactitud del cálculo no demuestra una explicación sobre un proceso que la fuente no observa.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#responsabilidad-humana-y-limites-de-la-evidencia",
+        "label": "Responsabilidad humana y límites de la evidencia"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-01",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "El documento y la sesión de ejecución son cosas distintas",
+      "difficulty": "basica",
+      "prompt": "¿Qué conserva las variables usadas por Python mientras trabajás en Colab?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La sesión de ejecución activa."
+        },
+        {
+          "id": "b",
+          "text": "El título del notebook."
+        },
+        {
+          "id": "c",
+          "text": "El navegador de cualquier compañero."
+        },
+        {
+          "id": "d",
+          "text": "La extensión .ipynb por sí sola."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La sesión mantiene el estado de ejecución; el documento puede conservar código y salidas sin las variables activas.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#el-documento-y-la-sesion-de-ejecucion-son-cosas-distintas",
+        "label": "El documento y la sesión de ejecución son cosas distintas"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-02",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Celdas de texto, celdas de código y salidas",
+      "difficulty": "basica",
+      "prompt": "¿Qué celda de un notebook contiene instrucciones que Python ejecuta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La tabla de contenido."
+        },
+        {
+          "id": "b",
+          "text": "Una celda de código."
+        },
+        {
+          "id": "c",
+          "text": "Una celda de título en Markdown."
+        },
+        {
+          "id": "d",
+          "text": "Cualquier imagen insertada."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El notebook distingue explicaciones de texto e instrucciones ejecutables.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#celdas-de-texto-celdas-de-codigo-y-salidas",
+        "label": "Celdas de texto, celdas de código y salidas"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-03",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Variables: nombres que permiten reutilizar valores",
+      "difficulty": "basica",
+      "prompt": "En DIMENSION = \"region\", ¿qué se asigna al nombre DIMENSION?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El número de regiones."
+        },
+        {
+          "id": "b",
+          "text": "Una función sin argumentos."
+        },
+        {
+          "id": "c",
+          "text": "El texto region."
+        },
+        {
+          "id": "d",
+          "text": "Una columna nueva en el CSV original."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La asignación asocia un nombre con un valor que podrá usarse después.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#variables-nombres-que-permiten-reutilizar-valores",
+        "label": "Variables: nombres que permiten reutilizar valores"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-04",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "El diccionario precede al cálculo",
+      "difficulty": "basica",
+      "prompt": "¿Qué recurso explica qué significa la columna precio_unitario?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La posición del archivo en la carpeta."
+        },
+        {
+          "id": "b",
+          "text": "El color de su encabezado."
+        },
+        {
+          "id": "c",
+          "text": "El número de celdas del notebook."
+        },
+        {
+          "id": "d",
+          "text": "El diccionario de datos."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El diccionario documenta significado, tipo y uso de cada campo.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#el-diccionario-precede-al-calculo",
+        "label": "El diccionario precede al cálculo"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-05",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Librerías: colecciones de herramientas ya construidas",
+      "difficulty": "basica",
+      "prompt": "¿Para qué se usa import pandas as pd?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para disponer de Pandas mediante el alias pd."
+        },
+        {
+          "id": "b",
+          "text": "Para cargar automáticamente todos los CSV."
+        },
+        {
+          "id": "c",
+          "text": "Para convertir números en porcentajes."
+        },
+        {
+          "id": "d",
+          "text": "Para ejecutar todas las celdas anteriores."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La importación habilita las herramientas de la librería; cargar un archivo requiere una instrucción adicional.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#librerias-colecciones-de-herramientas-ya-construidas",
+        "label": "Librerías: colecciones de herramientas ya construidas"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-06",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Grano: qué representa una fila",
+      "difficulty": "basica",
+      "prompt": "El archivo tiene una fila por línea de pedido. ¿Qué cuenta len(ventas)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Unidades físicas vendidas."
+        },
+        {
+          "id": "b",
+          "text": "Líneas almacenadas en la tabla."
+        },
+        {
+          "id": "c",
+          "text": "Pedidos distintos necesariamente."
+        },
+        {
+          "id": "d",
+          "text": "Clientes distintos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Contar filas responde al grano de línea; otros conteos requieren identificar la entidad correspondiente.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#grano-que-representa-una-fila",
+        "label": "Grano: qué representa una fila"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-07",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "El orden de ejecución forma parte del resultado",
+      "difficulty": "intermedia",
+      "prompt": "Editás DIMENSION de familia a region, pero no ejecutás la celda. ¿Qué valor usa la sesión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ambos valores a la vez."
+        },
+        {
+          "id": "b",
+          "text": "Un valor aleatorio."
+        },
+        {
+          "id": "c",
+          "text": "El último valor que fue ejecutado."
+        },
+        {
+          "id": "d",
+          "text": "El texto recién editado automáticamente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Editar código no actualiza el estado de Python hasta ejecutarlo.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#el-orden-de-ejecucion-forma-parte-del-resultado",
+        "label": "El orden de ejecución forma parte del resultado"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-08",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Funciones: acciones preparadas para volver a usarse",
+      "difficulty": "intermedia",
+      "prompt": "Ejecutás una celda que define una función con def y no aparece una tabla. ¿Qué interpretación es válida?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Toda definición debe imprimir una tabla."
+        },
+        {
+          "id": "b",
+          "text": "El archivo de datos se borró."
+        },
+        {
+          "id": "c",
+          "text": "La sesión perdió todas sus variables."
+        },
+        {
+          "id": "d",
+          "text": "La función puede haber quedado preparada sin ser llamada."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Definir una función la deja disponible; su cuerpo se ejecuta cuando se la llama.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#funciones-acciones-preparadas-para-volver-a-usarse",
+        "label": "Funciones: acciones preparadas para volver a usarse"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-09",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "La primera carga funciona como prueba de orientación",
+      "difficulty": "intermedia",
+      "prompt": "Esperabas 15 columnas al leer un CSV, pero obtenés una sola. ¿Qué revisarías primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El archivo y el separador usados en la lectura."
+        },
+        {
+          "id": "b",
+          "text": "El gráfico final."
+        },
+        {
+          "id": "c",
+          "text": "El promedio del identificador."
+        },
+        {
+          "id": "d",
+          "text": "El color del notebook."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Un separador incorrecto puede interpretar una línea completa como una sola columna.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#la-primera-carga-funciona-como-prueba-de-orientacion",
+        "label": "La primera carga funciona como prueba de orientación"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-10",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "El diccionario precede al cálculo",
+      "difficulty": "intermedia",
+      "prompt": "cliente_id contiene números. ¿Por qué su promedio no describe al cliente típico?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un promedio solo admite texto."
+        },
+        {
+          "id": "b",
+          "text": "El campo funciona como identificador nominal."
+        },
+        {
+          "id": "c",
+          "text": "Pandas nunca promedia números enteros."
+        },
+        {
+          "id": "d",
+          "text": "Todos los identificadores tienen el mismo valor."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El significado del campo determina las operaciones útiles, además de su tipo físico.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#el-diccionario-precede-al-calculo",
+        "label": "El diccionario precede al cálculo"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-11",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Adaptar una dimensión",
+      "difficulty": "intermedia",
+      "prompt": "Se cambia el resumen de ventas por familia a ventas por región, manteniendo fórmula y población. ¿Qué cambia?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La fuente original automáticamente."
+        },
+        {
+          "id": "b",
+          "text": "El grano de cada fila del CSV original."
+        },
+        {
+          "id": "c",
+          "text": "La dimensión de agrupación."
+        },
+        {
+          "id": "d",
+          "text": "La definición de venta neta necesariamente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Cambiar la dimensión reorganiza la lectura del mismo conjunto de datos.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#adaptar-una-dimension",
+        "label": "Adaptar una dimensión"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-12",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Controles de entrada y de proceso",
+      "difficulty": "intermedia",
+      "prompt": "El control esperaba 900 filas y encuentra 850. ¿Cuál es el paso apropiado antes de interpretar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ajustar el control a 850 sin investigar."
+        },
+        {
+          "id": "b",
+          "text": "Agregar 50 filas vacías."
+        },
+        {
+          "id": "c",
+          "text": "Presentar la cifra como una baja de ventas."
+        },
+        {
+          "id": "d",
+          "text": "Revisar versión, integridad de carga y filtros."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La diferencia puede provenir de una fuente incompleta o de condiciones distintas de ejecución.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#controles-de-entrada-y-de-proceso",
+        "label": "Controles de entrada y de proceso"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-13",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Comentarios y símbolos que ayudan a leer",
+      "difficulty": "intermedia",
+      "prompt": "En Python, ¿qué efecto tiene una línea que comienza con #?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Documenta una idea sin ejecutar esa línea como código."
+        },
+        {
+          "id": "b",
+          "text": "Define siempre una variable."
+        },
+        {
+          "id": "c",
+          "text": "Borra el resultado anterior."
+        },
+        {
+          "id": "d",
+          "text": "Importa una librería."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El comentario aporta información a quien lee y Python lo omite en la ejecución.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#comentarios-y-simbolos-que-ayudan-a-leer",
+        "label": "Comentarios y símbolos que ayudan a leer"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-14",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Del resultado al canvas",
+      "difficulty": "intermedia",
+      "prompt": "El análisis detecta menor cumplimiento en una región. ¿Qué agrega el canvas para orientar una acción?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La obligación de usar un gráfico circular."
+        },
+        {
+          "id": "b",
+          "text": "Una decisión, su responsable y los límites de la evidencia."
+        },
+        {
+          "id": "c",
+          "text": "Solo un nombre más corto para el archivo."
+        },
+        {
+          "id": "d",
+          "text": "Una garantía de causalidad."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El canvas vincula el hallazgo con una decisión y explicita qué falta conocer.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#del-resultado-al-canvas",
+        "label": "Del resultado al canvas"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-15",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Reproducir una métrica preparada",
+      "difficulty": "avanzada",
+      "prompt": "Una venta de $100 tiene $20 de margen y otra de $900 tiene $90. ¿Cuál es el margen porcentual conjunto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "30 %."
+        },
+        {
+          "id": "b",
+          "text": "20 %."
+        },
+        {
+          "id": "c",
+          "text": "11 %."
+        },
+        {
+          "id": "d",
+          "text": "15 %."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El ratio correcto es (20 + 90) / (100 + 900) = 11 %; promediar 20 % y 10 % daría igual peso a ventas distintas.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#reproducir-una-metrica-preparada",
+        "label": "Reproducir una métrica preparada"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-16",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "El documento y la sesión de ejecución son cosas distintas",
+      "difficulty": "avanzada",
+      "prompt": "Reabrís Colab y ves una tabla guardada, pero la sesión es nueva. ¿Cómo comprobás que podés reproducirla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Usás la tabla visible como prueba de ejecución actual."
+        },
+        {
+          "id": "b",
+          "text": "Ejecutás solo la última celda aunque falten variables."
+        },
+        {
+          "id": "c",
+          "text": "Renombrás el notebook."
+        },
+        {
+          "id": "d",
+          "text": "Cargás la fuente identificada y ejecutás desde el inicio."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Las salidas guardadas no prueban que la sesión actual tenga los datos y el estado necesarios.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#el-documento-y-la-sesion-de-ejecucion-son-cosas-distintas",
+        "label": "El documento y la sesión de ejecución son cosas distintas"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-17",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Celdas de texto, celdas de código y salidas",
+      "difficulty": "avanzada",
+      "prompt": "Una celda contiene contador += 1. ¿Qué ocurre al ejecutarla dos veces con contador inicialmente en cero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Queda en 2; la operación acumula efectos."
+        },
+        {
+          "id": "b",
+          "text": "Queda en 1 por ser idempotente."
+        },
+        {
+          "id": "c",
+          "text": "Vuelve a cero al terminar."
+        },
+        {
+          "id": "d",
+          "text": "Se modifica solo el comentario."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Incrementar depende del estado previo; repetir la operación vuelve a aumentarlo.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#celdas-de-texto-celdas-de-codigo-y-salidas",
+        "label": "Celdas de texto, celdas de código y salidas"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-18",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Los errores ofrecen información para diagnosticar",
+      "difficulty": "avanzada",
+      "prompt": "Después de reiniciar aparece NameError para una variable definida arriba. ¿Qué diagnóstico probarías primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que faltan filas en Power BI."
+        },
+        {
+          "id": "b",
+          "text": "Que su celda de definición aún no se ejecutó."
+        },
+        {
+          "id": "c",
+          "text": "Que el CSV contiene duplicados."
+        },
+        {
+          "id": "d",
+          "text": "Que los porcentajes están mal redondeados."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Una sesión nueva pierde los nombres definidos anteriormente; ejecutar en orden permite reconstruirlos.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#los-errores-ofrecen-informacion-para-diagnosticar",
+        "label": "Los errores ofrecen información para diagnosticar"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-19",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "IA como objeto de verificación",
+      "difficulty": "avanzada",
+      "prompt": "La IA atribuye las demoras de una región a un transportista, pero el extracto no tiene transportista. ¿Qué respuesta corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Agregar el transportista supuesto a cada fila."
+        },
+        {
+          "id": "b",
+          "text": "Cambiar el nombre de la región."
+        },
+        {
+          "id": "c",
+          "text": "Registrar la hipótesis como no verificada y pedir evidencia adicional."
+        },
+        {
+          "id": "d",
+          "text": "Aceptar la causa porque explica bien el gráfico."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Una explicación debe respetar los campos observados; la IA no aporta por sí sola la fuente faltante.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#ia-como-objeto-de-verificacion",
+        "label": "IA como objeto de verificación"
+      }
+    },
+    {
+      "id": "u01-laboratorio-faro-sur-20",
+      "unit": "u01-laboratorio-faro-sur",
+      "topic": "Del concepto a una experiencia reproducible",
+      "difficulty": "avanzada",
+      "prompt": "Dos personas usan el mismo notebook y obtienen totales distintos. ¿Qué conjunto de condiciones conviene comparar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo títulos de las celdas."
+        },
+        {
+          "id": "b",
+          "text": "Solo marcas de sus computadoras."
+        },
+        {
+          "id": "c",
+          "text": "Solo nombres de usuario de Colab."
+        },
+        {
+          "id": "d",
+          "text": "Versiones de fuente, filtros y orden de ejecución."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La reproducibilidad depende del código, sus entradas y el estado en que se ejecuta.",
+      "reference": {
+        "path": "unidades/u01-laboratorio-faro-sur.html#del-concepto-a-una-experiencia-reproducible",
+        "label": "Del concepto a una experiencia reproducible"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-04",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Data Analyst",
+      "difficulty": "basica",
+      "prompt": "¿Qué tarea corresponde al trabajo de una persona analista de datos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Administrar necesariamente todos los servidores."
+        },
+        {
+          "id": "b",
+          "text": "Aprobar por sí sola toda política comercial."
+        },
+        {
+          "id": "c",
+          "text": "Reemplazar toda validación del negocio."
+        },
+        {
+          "id": "d",
+          "text": "Traducir una necesidad comercial en preguntas y evidencia."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El rol analítico conecta preguntas, consultas, interpretación y comunicación.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#data-analyst",
+        "label": "Data Analyst"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-05",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Data lake",
+      "difficulty": "basica",
+      "prompt": "¿Qué almacén puede conservar objetos con formatos diversos, como CSV y logs?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un data lake."
+        },
+        {
+          "id": "b",
+          "text": "Solo una tabla de pedidos normalizada."
+        },
+        {
+          "id": "c",
+          "text": "Un gráfico de Power BI."
+        },
+        {
+          "id": "d",
+          "text": "Una clave primaria."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El almacenamiento de objetos admite variedad; necesita catálogo, permisos y controles para resultar utilizable.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#data-lake",
+        "label": "Data lake"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-06",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "El ciclo de vida del dato",
+      "difficulty": "basica",
+      "prompt": "¿Qué decisión establece cuánto tiempo se conservan los datos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La resolución de la pantalla."
+        },
+        {
+          "id": "b",
+          "text": "La política de retención."
+        },
+        {
+          "id": "c",
+          "text": "El orden de las columnas."
+        },
+        {
+          "id": "d",
+          "text": "El alias de una consulta."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La retención forma parte del ciclo de vida, junto con archivo o eliminación según el uso y las obligaciones.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#el-ciclo-de-vida-del-dato",
+        "label": "El ciclo de vida del dato"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-07",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Analytics Engineer",
+      "difficulty": "intermedia",
+      "prompt": "Varios reportes repiten distintas fórmulas de venta neta. ¿Qué aporte de analytics engineering ayuda?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar la documentación de la métrica."
+        },
+        {
+          "id": "b",
+          "text": "Cambiar la marca del servidor."
+        },
+        {
+          "id": "c",
+          "text": "Implementar y probar una definición reutilizable en el modelo analítico."
+        },
+        {
+          "id": "d",
+          "text": "Crear otra fórmula distinta en cada reporte."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Los modelos analíticos compartidos reducen diferencias de lógica entre consumidores.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#analytics-engineer",
+        "label": "Analytics Engineer"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-08",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Una arquitectura proporcional para Faro Sur",
+      "difficulty": "intermedia",
+      "prompt": "¿En qué capa conservarías el archivo exactamente como llegó?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo en el mart agregado."
+        },
+        {
+          "id": "b",
+          "text": "Solo en el gráfico final."
+        },
+        {
+          "id": "c",
+          "text": "En un comentario sin el archivo."
+        },
+        {
+          "id": "d",
+          "text": "Raw."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La copia raw permite reconstruir transformaciones y revisar la fuente recibida.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#una-arquitectura-proporcional-para-faro-sur",
+        "label": "Una arquitectura proporcional para Faro Sur"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-09",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Cómputo y almacenamiento en la nube",
+      "difficulty": "intermedia",
+      "prompt": "Un cierre mensual requiere mucha capacidad durante dos horas. ¿Qué característica cloud permite ajustarla luego?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Elasticidad de cómputo."
+        },
+        {
+          "id": "b",
+          "text": "Normalización de clientes."
+        },
+        {
+          "id": "c",
+          "text": "Unicidad de las claves."
+        },
+        {
+          "id": "d",
+          "text": "Orden alfabético de las tablas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La elasticidad permite aumentar y reducir recursos según la carga.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#computo-y-almacenamiento-en-la-nube",
+        "label": "Cómputo y almacenamiento en la nube"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-10",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "La arquitectura responde a requisitos",
+      "difficulty": "intermedia",
+      "prompt": "La gerencia decide semanalmente y admite un día de demora. ¿Qué frecuencia puede satisfacer ese requisito?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ninguna actualización después de la primera carga."
+        },
+        {
+          "id": "b",
+          "text": "Una actualización diaria por lotes."
+        },
+        {
+          "id": "c",
+          "text": "Eventos en milisegundos obligatoriamente."
+        },
+        {
+          "id": "d",
+          "text": "Una actualización anual."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La latencia debe responder a la decisión y al plazo tolerado.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#la-arquitectura-responde-a-requisitos",
+        "label": "La arquitectura responde a requisitos"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-11",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Responsabilidad de negocio y colaboración",
+      "difficulty": "intermedia",
+      "prompt": "Comercial y Finanzas discrepan sobre qué costos integran el margen. ¿Quién debe validar la definición de negocio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El proveedor de almacenamiento."
+        },
+        {
+          "id": "b",
+          "text": "La primera persona que abra el dashboard."
+        },
+        {
+          "id": "c",
+          "text": "Los responsables del proceso, con el equipo técnico."
+        },
+        {
+          "id": "d",
+          "text": "El motor SQL por defecto."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La implementación técnica requiere una regla de negocio acordada y con responsable.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#responsabilidad-de-negocio-y-colaboracion",
+        "label": "Responsabilidad de negocio y colaboración"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-12",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Sistemas operacionales y sistemas analíticos",
+      "difficulty": "intermedia",
+      "prompt": "Un reporte histórico pesado ralentiza el registro de pedidos. ¿Qué separación puede ayudar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ejecutar todos los reportes dentro de cada alta de pedido."
+        },
+        {
+          "id": "b",
+          "text": "Guardar gráficos en la tabla transaccional."
+        },
+        {
+          "id": "c",
+          "text": "Duplicar cada pedido en la misma tabla."
+        },
+        {
+          "id": "d",
+          "text": "Consultar una copia analítica actualizada según la necesidad."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Separar las cargas analíticas evita competir con transacciones y permite conservar historia.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#sistemas-operacionales-y-sistemas-analiticos",
+        "label": "Sistemas operacionales y sistemas analíticos"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-13",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Archivos",
+      "difficulty": "intermedia",
+      "prompt": "Dos archivos CSV tienen distinto esquema aunque comparten extensión. ¿Qué control corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Comparar columnas y tipos esperados antes de integrarlos."
+        },
+        {
+          "id": "b",
+          "text": "Asumir compatibilidad por la extensión."
+        },
+        {
+          "id": "c",
+          "text": "Cambiar ambos nombres a .txt."
+        },
+        {
+          "id": "d",
+          "text": "Sumar sus tamaños en bytes."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El formato no garantiza que campos y significado sean compatibles.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#archivos",
+        "label": "Archivos"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-14",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Caso aplicado: archivos recurrentes",
+      "difficulty": "intermedia",
+      "prompt": "Llegan planillas recurrentes con la misma estructura. ¿Qué patrón permite procesarlas con trazabilidad?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar archivos que no coincidan sin registrar la causa."
+        },
+        {
+          "id": "b",
+          "text": "Conservar originales y aplicar transformaciones repetibles con rechazos identificados."
+        },
+        {
+          "id": "c",
+          "text": "Sobrescribir el original después de cada corrección manual."
+        },
+        {
+          "id": "d",
+          "text": "Pegar solo los totales en una presentación."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La copia recibida y las reglas repetibles permiten reconstruir cada publicación.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#caso-aplicado-archivos-recurrentes",
+        "label": "Caso aplicado: archivos recurrentes"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-15",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Cómputo y almacenamiento en la nube",
+      "difficulty": "avanzada",
+      "prompt": "Una base administrada tiene respaldos automáticos, pero una credencial pública permite leer todo. ¿Qué responsabilidad sigue pendiente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reescribir todos los respaldos a mano."
+        },
+        {
+          "id": "b",
+          "text": "Aumentar la cantidad de regiones."
+        },
+        {
+          "id": "c",
+          "text": "Configurar identidades y permisos adecuados."
+        },
+        {
+          "id": "d",
+          "text": "Cambiar físicamente los discos del proveedor."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El servicio administrado no sustituye la gestión de acceso a cargo del cliente.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#computo-y-almacenamiento-en-la-nube",
+        "label": "Cómputo y almacenamiento en la nube"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-16",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Trade-offs de diseño",
+      "difficulty": "avanzada",
+      "prompt": "Se propone tiempo real para una decisión mensual sin justificar otra necesidad. ¿Qué evaluación resulta apropiada?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Adoptarlo porque siempre mejora cualquier decisión."
+        },
+        {
+          "id": "b",
+          "text": "Descartar toda automatización."
+        },
+        {
+          "id": "c",
+          "text": "Medir solo el número de productos del diagrama."
+        },
+        {
+          "id": "d",
+          "text": "Comparar el beneficio de menor latencia con su costo operativo."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una propiedad técnica necesita una necesidad concreta que justifique sus costos y complejidad.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#trade-offs-de-diseno",
+        "label": "Trade-offs de diseño"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-17",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Big Data como diagnóstico de escala",
+      "difficulty": "avanzada",
+      "prompt": "Un archivo cabe en memoria y se procesa dentro del tiempo requerido. ¿Qué justificaría migrar a un sistema distribuido?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un requisito de escala o latencia que el patrón actual ya no satisfaga."
+        },
+        {
+          "id": "b",
+          "text": "Que el archivo tenga muchas columnas únicamente."
+        },
+        {
+          "id": "c",
+          "text": "Que la palabra cloud aparezca en el proyecto."
+        },
+        {
+          "id": "d",
+          "text": "Que otro equipo use más servidores."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La escala se evalúa respecto de capacidades y plazos, no mediante una etiqueta aislada.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#big-data-como-diagnostico-de-escala",
+        "label": "Big Data como diagnóstico de escala"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-18",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Data lake",
+      "difficulty": "avanzada",
+      "prompt": "Se acumulan archivos sin catálogo ni responsables. ¿Qué riesgo limita su utilidad?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La eliminación automática de duplicados."
+        },
+        {
+          "id": "b",
+          "text": "No poder encontrar su significado, procedencia o versión."
+        },
+        {
+          "id": "c",
+          "text": "La imposibilidad física de guardar distintos formatos."
+        },
+        {
+          "id": "d",
+          "text": "La transformación automática en tablas normalizadas."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Un lago de datos requiere gobierno para que los objetos conservados sean interpretables y utilizables.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#data-lake",
+        "label": "Data lake"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-19",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Trade-offs de diseño",
+      "difficulty": "avanzada",
+      "prompt": "Un servicio SaaS reduce el trabajo inicial. ¿Qué debe incluir la comparación con un desarrollo propio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo la cantidad de diapositivas de venta."
+        },
+        {
+          "id": "b",
+          "text": "La suposición de que no requiere operación."
+        },
+        {
+          "id": "c",
+          "text": "Costo recurrente, dependencia y capacidad de salida."
+        },
+        {
+          "id": "d",
+          "text": "Solo el color de la interfaz."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El ahorro inicial convive con costos y dependencias que deben evaluarse durante el uso.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#trade-offs-de-diseno",
+        "label": "Trade-offs de diseño"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-20",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Fallas de diseño que conviene reconocer",
+      "difficulty": "avanzada",
+      "prompt": "El pipeline funciona, pero solo una persona conoce claves y recuperación. ¿Qué debilidad arquitectónica queda?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El volumen es necesariamente Big Data."
+        },
+        {
+          "id": "b",
+          "text": "El grano cambia automáticamente."
+        },
+        {
+          "id": "c",
+          "text": "La base no admite consultas."
+        },
+        {
+          "id": "d",
+          "text": "La operación depende de conocimiento sin transferencia ni procedimientos."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La capacidad de mantener y recuperar el sistema también forma parte de su diseño.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#fallas-de-diseno-que-conviene-reconocer",
+        "label": "Fallas de diseño que conviene reconocer"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-06",
+      "unit": "u03-sql-consultas",
+      "topic": "NULL y lógica de tres valores",
+      "difficulty": "basica",
+      "prompt": "¿Qué condición selecciona filas cuya región está ausente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "region = 'NULL'."
+        },
+        {
+          "id": "b",
+          "text": "region IS NULL."
+        },
+        {
+          "id": "c",
+          "text": "region = NULL."
+        },
+        {
+          "id": "d",
+          "text": "region = 0."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "IS NULL evalúa ausencia; el texto 'NULL' y el número cero son valores diferentes.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#null-y-logica-de-tres-valores",
+        "label": "NULL y lógica de tres valores"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-07",
+      "unit": "u03-sql-consultas",
+      "topic": "Conteos y DISTINCT",
+      "difficulty": "intermedia",
+      "prompt": "Hay cinco líneas: tres del pedido P1 y dos del P2. ¿Qué devuelve COUNT(DISTINCT pedido)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3."
+        },
+        {
+          "id": "b",
+          "text": "1."
+        },
+        {
+          "id": "c",
+          "text": "2."
+        },
+        {
+          "id": "d",
+          "text": "5."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "DISTINCT cuenta los dos identificadores de pedido diferentes.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#conteos-y-distinct",
+        "label": "Conteos y DISTINCT"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-08",
+      "unit": "u03-sql-consultas",
+      "topic": "WHERE y HAVING",
+      "difficulty": "intermedia",
+      "prompt": "Querés conservar familias cuya venta total supera 10000. ¿Dónde se filtra SUM(venta_neta) > 10000?",
+      "options": [
+        {
+          "id": "a",
+          "text": "En WHERE antes de formar los grupos."
+        },
+        {
+          "id": "b",
+          "text": "En FROM como nombre de tabla."
+        },
+        {
+          "id": "c",
+          "text": "En LIMIT como condición."
+        },
+        {
+          "id": "d",
+          "text": "En HAVING, después de agrupar por familia."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "HAVING filtra resultados agregados; WHERE decide qué filas ingresan a cada grupo.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#where-y-having",
+        "label": "WHERE y HAVING"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-09",
+      "unit": "u03-sql-consultas",
+      "topic": "GROUP BY: cambiar el grano de salida",
+      "difficulty": "intermedia",
+      "prompt": "SELECT region, familia, SUM(venta_neta) ... GROUP BY region, familia produce una fila por…",
+      "options": [
+        {
+          "id": "a",
+          "text": "Combinación de región y familia."
+        },
+        {
+          "id": "b",
+          "text": "Línea original de venta."
+        },
+        {
+          "id": "c",
+          "text": "Región, ignorando la familia."
+        },
+        {
+          "id": "d",
+          "text": "Pedido distinto."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La combinación de dimensiones del GROUP BY determina el grano de salida.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#group-by-cambiar-el-grano-de-salida",
+        "label": "GROUP BY: cambiar el grano de salida"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-10",
+      "unit": "u03-sql-consultas",
+      "topic": "Fechas y límites de período",
+      "difficulty": "intermedia",
+      "prompt": "Para incluir todo enero en un campo con fecha y hora, ¿qué límite superior conviene usar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "fecha = 1 de enero."
+        },
+        {
+          "id": "b",
+          "text": "fecha < 1 de febrero."
+        },
+        {
+          "id": "c",
+          "text": "fecha <= 31 de enero a las 00:00."
+        },
+        {
+          "id": "d",
+          "text": "fecha < 31 de enero."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Un límite superior exclusivo al comienzo del mes siguiente incluye todos los instantes de enero.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#fechas-y-limites-de-periodo",
+        "label": "Fechas y límites de período"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-11",
+      "unit": "u03-sql-consultas",
+      "topic": "Alias y expresiones",
+      "difficulty": "intermedia",
+      "prompt": "Una línea tiene cantidad 2, precio 100 y descuento 0,10. ¿Qué valor da cantidad * precio * (1 - descuento)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "20."
+        },
+        {
+          "id": "b",
+          "text": "198."
+        },
+        {
+          "id": "c",
+          "text": "180."
+        },
+        {
+          "id": "d",
+          "text": "200."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Se aplica 10 % de descuento sobre una venta bruta de 200.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#alias-y-expresiones",
+        "label": "Alias y expresiones"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-12",
+      "unit": "u03-sql-consultas",
+      "topic": "NULL y lógica de tres valores",
+      "difficulty": "intermedia",
+      "prompt": "Una tabla tiene tres filas y region vale Norte, NULL y Sur. ¿Qué devuelve COUNT(region)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "3."
+        },
+        {
+          "id": "b",
+          "text": "1."
+        },
+        {
+          "id": "c",
+          "text": "0."
+        },
+        {
+          "id": "d",
+          "text": "2."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "COUNT(columna) cuenta valores presentes; COUNT(*) contaría las tres filas.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#null-y-logica-de-tres-valores",
+        "label": "NULL y lógica de tres valores"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-13",
+      "unit": "u03-sql-consultas",
+      "topic": "CASE: crear categorías reproducibles",
+      "difficulty": "intermedia",
+      "prompt": "CASE WHEN descuento = 0 THEN 'Sin' ELSE 'Con' END clasifica una fila con descuento 0,05 como…",
+      "options": [
+        {
+          "id": "a",
+          "text": "Con."
+        },
+        {
+          "id": "b",
+          "text": "Sin."
+        },
+        {
+          "id": "c",
+          "text": "NULL siempre."
+        },
+        {
+          "id": "d",
+          "text": "0,05 sin etiqueta."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La primera condición es falsa para 0,05; se aplica la rama ELSE.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#case-crear-categorias-reproducibles",
+        "label": "CASE: crear categorías reproducibles"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-14",
+      "unit": "u03-sql-consultas",
+      "topic": "DML y transacciones",
+      "difficulty": "intermedia",
+      "prompt": "¿Qué efecto tiene ROLLBACK sobre cambios aún no confirmados de una transacción?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Los publica a todos los usuarios."
+        },
+        {
+          "id": "b",
+          "text": "Los descarta."
+        },
+        {
+          "id": "c",
+          "text": "Los confirma."
+        },
+        {
+          "id": "d",
+          "text": "Los convierte en una vista."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "ROLLBACK revierte los cambios pendientes; COMMIT los confirma.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#dml-y-transacciones",
+        "label": "DML y transacciones"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-15",
+      "unit": "u03-sql-consultas",
+      "topic": "Agregaciones y métricas aditivas",
+      "difficulty": "avanzada",
+      "prompt": "Para calcular margen porcentual de operaciones de importes distintos, ¿qué expresión conserva sus pesos económicos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "SUM(margen_pct)."
+        },
+        {
+          "id": "b",
+          "text": "COUNT(margen_bruto) / COUNT(venta_neta)."
+        },
+        {
+          "id": "c",
+          "text": "SUM(margen_bruto) / SUM(venta_neta)."
+        },
+        {
+          "id": "d",
+          "text": "AVG(margen_pct) siempre."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El ratio de sumas relaciona margen y ventas totales, mientras el promedio simple da igual peso a cada fila.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#agregaciones-y-metricas-aditivas",
+        "label": "Agregaciones y métricas aditivas"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-16",
+      "unit": "u03-sql-consultas",
+      "topic": "WHERE: definir la población",
+      "difficulty": "avanzada",
+      "prompt": "Se quiere Norte y familias Bombas o Repuestos. ¿Qué condición evita incluir Repuestos de otras regiones?",
+      "options": [
+        {
+          "id": "a",
+          "text": "region = 'Norte' AND familia = 'Bombas' OR familia = 'Repuestos'."
+        },
+        {
+          "id": "b",
+          "text": "region = 'Norte' OR familia = 'Bombas' OR familia = 'Repuestos'."
+        },
+        {
+          "id": "c",
+          "text": "region = 'Norte' AND familia = 'Bombas' AND familia = 'Repuestos'."
+        },
+        {
+          "id": "d",
+          "text": "region = 'Norte' AND (familia = 'Bombas' OR familia = 'Repuestos')."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Los paréntesis hacen que la condición regional se aplique a ambas familias.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#where-definir-la-poblacion",
+        "label": "WHERE: definir la población"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-17",
+      "unit": "u03-sql-consultas",
+      "topic": "ORDER BY y determinismo de la salida",
+      "difficulty": "avanzada",
+      "prompt": "Un ranking con LIMIT 5 cambia entre ejecuciones cuando empatan las ventas. ¿Qué debe agregarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un criterio de desempate estable que complete un orden único."
+        },
+        {
+          "id": "b",
+          "text": "Más decimales sin cambiar el orden."
+        },
+        {
+          "id": "c",
+          "text": "DISTINCT sobre el importe."
+        },
+        {
+          "id": "d",
+          "text": "Un filtro que quite todas las ventas repetidas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Para seleccionar siempre las mismas filas en un empate hace falta ordenar también por una clave estable.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#order-by-y-determinismo-de-la-salida",
+        "label": "ORDER BY y determinismo de la salida"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-18",
+      "unit": "u03-sql-consultas",
+      "topic": "Conteos y DISTINCT",
+      "difficulty": "avanzada",
+      "prompt": "Un pedido aparece en Bombas y Repuestos. ¿Por qué sumar pedidos distintos por familia puede exceder el total general?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Las familias necesariamente son clientes."
+        },
+        {
+          "id": "b",
+          "text": "El mismo pedido pertenece a más de un grupo."
+        },
+        {
+          "id": "c",
+          "text": "COUNT(DISTINCT) siempre duplica."
+        },
+        {
+          "id": "d",
+          "text": "GROUP BY modifica la tabla original."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El conteo distinto no es aditivo entre grupos que comparten identificadores.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#conteos-y-distinct",
+        "label": "Conteos y DISTINCT"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-19",
+      "unit": "u03-sql-consultas",
+      "topic": "CTE y función de ventana: una consulta intermedia",
+      "difficulty": "avanzada",
+      "prompt": "Una CTE produce tres filas, una por familia. Se agrega SUM(ventas) OVER () a cada fila. ¿Cuántas filas quedan?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nueve por producto cartesiano."
+        },
+        {
+          "id": "b",
+          "text": "Cero porque falta otro GROUP BY."
+        },
+        {
+          "id": "c",
+          "text": "Tres, con el total de las tres en cada una."
+        },
+        {
+          "id": "d",
+          "text": "Una sola con el total."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Una ventana calcula sobre un conjunto sin colapsar las filas que recibe.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#cte-y-funcion-de-ventana-una-consulta-intermedia",
+        "label": "CTE y función de ventana: una consulta intermedia"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-20",
+      "unit": "u03-sql-consultas",
+      "topic": "Auditoría de consultas y uso de IA",
+      "difficulty": "avanzada",
+      "prompt": "Una consulta ejecuta sin error pero devuelve ventas demasiado altas. ¿Qué evidencia conviene obtener antes de aceptarla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo el tiempo que tardó."
+        },
+        {
+          "id": "b",
+          "text": "La confirmación verbal del asistente."
+        },
+        {
+          "id": "c",
+          "text": "Un título más preciso para la salida."
+        },
+        {
+          "id": "d",
+          "text": "Conteos, grano, filtros y reconciliación con un total conocido."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La sintaxis válida no garantiza una métrica correcta; los controles verifican el significado del cálculo.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#auditoria-de-consultas-y-uso-de-ia",
+        "label": "Auditoría de consultas y uso de IA"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-01",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Qué hace un join",
+      "difficulty": "basica",
+      "prompt": "¿Qué determina ON en un JOIN?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La condición que relaciona filas de las tablas."
+        },
+        {
+          "id": "b",
+          "text": "La cantidad máxima de filas mostradas."
+        },
+        {
+          "id": "c",
+          "text": "El orden descendente."
+        },
+        {
+          "id": "d",
+          "text": "El nombre del archivo exportado."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "ON expresa qué filas pueden combinarse; esa condición debe representar una relación válida.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#que-hace-un-join",
+        "label": "Qué hace un join"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-02",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "INNER JOIN: conservar coincidencias",
+      "difficulty": "basica",
+      "prompt": "¿Qué ocurre con un pedido sin cliente coincidente al usar INNER JOIN con clientes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Se duplica por todos los clientes."
+        },
+        {
+          "id": "b",
+          "text": "Queda fuera del resultado."
+        },
+        {
+          "id": "c",
+          "text": "Se conserva con cliente NULL."
+        },
+        {
+          "id": "d",
+          "text": "Se inventa un cliente nuevo."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "INNER JOIN conserva las combinaciones que cumplen la condición de relación.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#inner-join-conservar-coincidencias",
+        "label": "INNER JOIN: conservar coincidencias"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-03",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "LEFT JOIN: conservar la población base",
+      "difficulty": "basica",
+      "prompt": "¿Qué conserva un LEFT JOIN de pedidos hacia clientes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo pedidos coincidentes."
+        },
+        {
+          "id": "b",
+          "text": "Una fila por región siempre."
+        },
+        {
+          "id": "c",
+          "text": "Todas las filas de pedidos, aunque falte coincidencia."
+        },
+        {
+          "id": "d",
+          "text": "Solo clientes sin pedidos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El lado izquierdo se conserva; la multiplicidad derecha todavía puede expandirlo.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#left-join-conservar-la-poblacion-base",
+        "label": "LEFT JOIN: conservar la población base"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-04",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Verificar unicidad antes del join",
+      "difficulty": "basica",
+      "prompt": "En un join muchos a uno de líneas a productos, ¿qué columna debe ser única del lado de productos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El importe vendido."
+        },
+        {
+          "id": "b",
+          "text": "El nombre de cada familia."
+        },
+        {
+          "id": "c",
+          "text": "La cantidad de líneas."
+        },
+        {
+          "id": "d",
+          "text": "La clave de producto usada para relacionar."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La unicidad del lado uno evita que una línea encuentre varias filas maestras.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#verificar-unicidad-antes-del-join",
+        "label": "Verificar unicidad antes del join"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-05",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Valores NULL después de una unión",
+      "difficulty": "basica",
+      "prompt": "Tras un LEFT JOIN, una clave no nula del maestro aparece NULL en el resultado. ¿Qué suele indicar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que la fila base no encontró correspondencia."
+        },
+        {
+          "id": "b",
+          "text": "Que el importe debe reemplazarse por cero."
+        },
+        {
+          "id": "c",
+          "text": "Que toda la tabla base está vacía."
+        },
+        {
+          "id": "d",
+          "text": "Que la fila base fue eliminada."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La ausencia de la clave derecha permite detectar relaciones faltantes.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#valores-null-despues-de-una-union",
+        "label": "Valores NULL después de una unión"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-06",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Reconciliación con la vista curada",
+      "difficulty": "basica",
+      "prompt": "¿Qué busca una reconciliación entre tablas reconstruidas y una vista curada?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar cualquier diferencia sin investigarla."
+        },
+        {
+          "id": "b",
+          "text": "Comprobar resultados que deberían coincidir por dos caminos."
+        },
+        {
+          "id": "c",
+          "text": "Hacer que ambas consultas tengan la misma cantidad de líneas de código."
+        },
+        {
+          "id": "d",
+          "text": "Ordenar todas las columnas alfabéticamente."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La reconciliación contrasta conteos y métricas equivalentes sobre el mismo universo.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#reconciliacion-con-la-vista-curada",
+        "label": "Reconciliación con la vista curada"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-07",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Ejemplo mínimo: clientes y pedidos",
+      "difficulty": "intermedia",
+      "prompt": "Tres pedidos tienen clientes C1, C2 y C9; el maestro contiene solo C1 y C2, únicos. ¿Cuántas filas devuelve el INNER JOIN?",
+      "options": [
+        {
+          "id": "a",
+          "text": "6."
+        },
+        {
+          "id": "b",
+          "text": "1."
+        },
+        {
+          "id": "c",
+          "text": "2."
+        },
+        {
+          "id": "d",
+          "text": "3."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Los pedidos con C1 y C2 encuentran coincidencia; el que referencia C9 queda excluido.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#ejemplo-minimo-clientes-y-pedidos",
+        "label": "Ejemplo mínimo: clientes y pedidos"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-08",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Claves y cardinalidad",
+      "difficulty": "intermedia",
+      "prompt": "Un pedido tiene tres líneas. Al unir ese pedido con su detalle, ¿cuántas filas se esperan?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una."
+        },
+        {
+          "id": "b",
+          "text": "Cuatro."
+        },
+        {
+          "id": "c",
+          "text": "Cero."
+        },
+        {
+          "id": "d",
+          "text": "Tres."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una relación uno a muchos lleva la salida al grano del detalle.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#claves-y-cardinalidad",
+        "label": "Claves y cardinalidad"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-09",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Verificar unicidad antes del join",
+      "difficulty": "intermedia",
+      "prompt": "Dos filas del maestro comparten la clave de un producto. Una línea usa ese producto. ¿Cuántas coincidencias genera?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dos."
+        },
+        {
+          "id": "b",
+          "text": "Una por defecto."
+        },
+        {
+          "id": "c",
+          "text": "Ninguna siempre."
+        },
+        {
+          "id": "d",
+          "text": "Una por familia distinta."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El join produce una fila por cada coincidencia de la condición, aunque la duplicación sea un defecto.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#verificar-unicidad-antes-del-join",
+        "label": "Verificar unicidad antes del join"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-10",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "LEFT JOIN: conservar la población base",
+      "difficulty": "intermedia",
+      "prompt": "¿Qué patrón encuentra pedidos sin cliente registrado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "ORDER BY cliente sin realizar una unión."
+        },
+        {
+          "id": "b",
+          "text": "LEFT JOIN por la clave y filtro por clave derecha IS NULL."
+        },
+        {
+          "id": "c",
+          "text": "INNER JOIN y filtro por importe positivo."
+        },
+        {
+          "id": "d",
+          "text": "CROSS JOIN y LIMIT 1."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El LEFT JOIN conserva la base y deja ausente la clave derecha cuando no existe coincidencia.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#left-join-conservar-la-poblacion-base",
+        "label": "LEFT JOIN: conservar la población base"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-11",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Alias, ON y USING",
+      "difficulty": "intermedia",
+      "prompt": "Dos clientes se llaman Comercial Sur. ¿Qué relación evita confundirlos si existe una clave válida?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Unir por la primera letra."
+        },
+        {
+          "id": "b",
+          "text": "Unir por el importe de su compra."
+        },
+        {
+          "id": "c",
+          "text": "Unir por customer_id."
+        },
+        {
+          "id": "d",
+          "text": "Unir por el nombre comercial."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Un nombre puede repetirse o cambiar; la clave identifica la entidad dentro del modelo.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#alias-on-y-using",
+        "label": "Alias, ON y USING"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-12",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Otros tipos de join",
+      "difficulty": "intermedia",
+      "prompt": "Un CROSS JOIN combina cuatro regiones y tres escenarios. ¿Cuántas filas produce?",
+      "options": [
+        {
+          "id": "a",
+          "text": "7."
+        },
+        {
+          "id": "b",
+          "text": "4."
+        },
+        {
+          "id": "c",
+          "text": "3."
+        },
+        {
+          "id": "d",
+          "text": "12."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El producto cartesiano genera cada combinación: 4 × 3.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#otros-tipos-de-join",
+        "label": "Otros tipos de join"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-13",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Reconstrucción progresiva del detalle",
+      "difficulty": "intermedia",
+      "prompt": "Querés reconstruir una salida de una fila por línea de venta. ¿Qué tabla es una base directa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "sales_order_lines."
+        },
+        {
+          "id": "b",
+          "text": "customers sin pedidos."
+        },
+        {
+          "id": "c",
+          "text": "Un resumen mensual por región."
+        },
+        {
+          "id": "d",
+          "text": "Una lista de familias únicas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Partir del grano deseado facilita controlar que las relaciones incorporadas lo conserven.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#reconstruccion-progresiva-del-detalle",
+        "label": "Reconstrucción progresiva del detalle"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-14",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "CTE para separar etapas de control",
+      "difficulty": "intermedia",
+      "prompt": "Una consulta tiene varias uniones y un total incorrecto. ¿Qué aporta separarlas en etapas con CTE?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar la necesidad de ejecutar controles."
+        },
+        {
+          "id": "b",
+          "text": "Inspeccionar dónde cambian filas y métricas."
+        },
+        {
+          "id": "c",
+          "text": "Garantizar automáticamente que ninguna unión duplique."
+        },
+        {
+          "id": "d",
+          "text": "Reemplazar las claves por textos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Las etapas con nombres permiten aislar y comparar transformaciones.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#cte-para-separar-etapas-de-control",
+        "label": "CTE para separar etapas de control"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-15",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "El riesgo de multiplicar una medida",
+      "difficulty": "avanzada",
+      "prompt": "Dos pedidos de $100 cada uno generan cuatro filas tras unir detalles. ¿Por qué SUM(DISTINCT total_pedido) tampoco arregla el total?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Contaría las líneas en lugar de importes."
+        },
+        {
+          "id": "b",
+          "text": "Convertiría el resultado en NULL."
+        },
+        {
+          "id": "c",
+          "text": "Sumaría $100 al tratar importes iguales de pedidos distintos como duplicados."
+        },
+        {
+          "id": "d",
+          "text": "Sumaría siempre los $200 correctos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La identidad del pedido y el valor monetario son diferentes; deduplicar importes elimina operaciones legítimas.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#el-riesgo-de-multiplicar-una-medida",
+        "label": "El riesgo de multiplicar una medida"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-16",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Secuencia de depuración",
+      "difficulty": "avanzada",
+      "prompt": "Tras un INNER JOIN se conservan 100 filas, igual que antes. ¿Qué falta descartar para dar por preservada la población?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que el archivo tenga encabezados."
+        },
+        {
+          "id": "b",
+          "text": "Que la consulta use un alias."
+        },
+        {
+          "id": "c",
+          "text": "Que el resultado esté ordenado."
+        },
+        {
+          "id": "d",
+          "text": "Que pérdidas y multiplicaciones se compensen."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Un conteo igual puede ocultar claves perdidas y otras repetidas; deben compararse identidades y métricas.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#secuencia-de-depuracion",
+        "label": "Secuencia de depuración"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-17",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Valores NULL después de una unión",
+      "difficulty": "avanzada",
+      "prompt": "Un LEFT JOIN conserva pedidos sin cliente, pero luego WHERE clientes.region = 'Norte' los excluye. ¿Por qué?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La condición sobre la derecha no es verdadera para los NULL sin coincidencia."
+        },
+        {
+          "id": "b",
+          "text": "LEFT JOIN elimina siempre todas las filas sin cliente."
+        },
+        {
+          "id": "c",
+          "text": "WHERE se ejecuta antes de conocer las tablas."
+        },
+        {
+          "id": "d",
+          "text": "Norte representa automáticamente cualquier región ausente."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El filtro posterior puede restringir la población preservada por el LEFT JOIN.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#valores-null-despues-de-una-union",
+        "label": "Valores NULL después de una unión"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-18",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "El riesgo de multiplicar una medida",
+      "difficulty": "avanzada",
+      "prompt": "Una línea de venta tiene dos despachos. ¿Cómo combinar importe de línea y seguimiento sin sumar dos veces la venta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aplicar DISTINCT solo al importe."
+        },
+        {
+          "id": "b",
+          "text": "Agregar despachos al grano de línea antes de unir o mantener hechos separados."
+        },
+        {
+          "id": "c",
+          "text": "Sumar el importe después de expandir los despachos."
+        },
+        {
+          "id": "d",
+          "text": "Quitar un despacho arbitrariamente."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La integración debe alinear granos y conservar la información logística sin repetir medidas comerciales.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#el-riesgo-de-multiplicar-una-medida",
+        "label": "El riesgo de multiplicar una medida"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-19",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Reconciliación con la vista curada",
+      "difficulty": "avanzada",
+      "prompt": "La suma reconstruida coincide con la vista, pero difiere por región. ¿Qué indica?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que las regiones no pueden verificarse."
+        },
+        {
+          "id": "b",
+          "text": "Que debe elegirse la salida con menos filas."
+        },
+        {
+          "id": "c",
+          "text": "El total global es insuficiente; hay que reconciliar también asignaciones y grupos."
+        },
+        {
+          "id": "d",
+          "text": "Que ambas salidas son equivalentes en todos los aspectos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Diferencias que se compensan pueden conservar el total y alterar la interpretación segmentada.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#reconciliacion-con-la-vista-curada",
+        "label": "Reconciliación con la vista curada"
+      }
+    },
+    {
+      "id": "u03-joins-reconciliacion-20",
+      "unit": "u03-joins-reconciliacion",
+      "topic": "Auditoría de SQL asistido por IA",
+      "difficulty": "avanzada",
+      "prompt": "La IA propone un join por nombre de producto y aplica DISTINCT al final. ¿Qué revisión ataca la causa de duplicación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Agregar otro DISTINCT exterior."
+        },
+        {
+          "id": "b",
+          "text": "Aceptar si la salida tiene pocas filas."
+        },
+        {
+          "id": "c",
+          "text": "Redondear el importe antes de sumar."
+        },
+        {
+          "id": "d",
+          "text": "Verificar clave, unicidad y cardinalidad antes de deduplicar."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El control de la relación evita ocultar errores o eliminar filas legítimas con una deduplicación indiscriminada.",
+      "reference": {
+        "path": "unidades/u03-joins-reconciliacion.html#auditoria-de-sql-asistido-por-ia",
+        "label": "Auditoría de SQL asistido por IA"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-01",
+      "unit": "u04-apis-mcp",
+      "topic": "Una API como contrato entre sistemas",
+      "difficulty": "basica",
+      "prompt": "¿Qué define una API?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cómo solicitar capacidades y qué respuestas esperar de un sistema."
+        },
+        {
+          "id": "b",
+          "text": "El color de las pantallas de todos los clientes."
+        },
+        {
+          "id": "c",
+          "text": "La obligación de almacenar datos en CSV."
+        },
+        {
+          "id": "d",
+          "text": "Una copia histórica inmutable."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La API establece un contrato entre sistemas, con operaciones, entradas y salidas.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#una-api-como-contrato-entre-sistemas",
+        "label": "Una API como contrato entre sistemas"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-02",
+      "unit": "u04-apis-mcp",
+      "topic": "La estructura de una solicitud HTTP",
+      "difficulty": "basica",
+      "prompt": "¿Dónde suele enviarse un token Bearer en una solicitud HTTP?",
+      "options": [
+        {
+          "id": "a",
+          "text": "En el pie de un gráfico."
+        },
+        {
+          "id": "b",
+          "text": "En el header Authorization."
+        },
+        {
+          "id": "c",
+          "text": "En el título público del notebook."
+        },
+        {
+          "id": "d",
+          "text": "En el nombre de una columna de negocio."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Los headers transportan metadatos; el secreto debe protegerse y evitarse en archivos compartidos.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#la-estructura-de-una-solicitud-http",
+        "label": "La estructura de una solicitud HTTP"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-03",
+      "unit": "u04-apis-mcp",
+      "topic": "Leer JSON",
+      "difficulty": "basica",
+      "prompt": "En JSON, ¿qué representan los corchetes [ ]?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una contraseña cifrada."
+        },
+        {
+          "id": "b",
+          "text": "Un comentario."
+        },
+        {
+          "id": "c",
+          "text": "Una lista."
+        },
+        {
+          "id": "d",
+          "text": "Un objeto de pares clave-valor."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Las listas contienen una secuencia de elementos; los objetos usan llaves.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#leer-json",
+        "label": "Leer JSON"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-04",
+      "unit": "u04-apis-mcp",
+      "topic": "Del servicio vivo al snapshot reproducible",
+      "difficulty": "basica",
+      "prompt": "¿Para qué conservar un snapshot de una respuesta de API?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Para garantizar que la API nunca cambie."
+        },
+        {
+          "id": "b",
+          "text": "Para evitar documentar la extracción."
+        },
+        {
+          "id": "c",
+          "text": "Para convertir toda respuesta en tiempo real."
+        },
+        {
+          "id": "d",
+          "text": "Para repetir el análisis con la misma entrada."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El snapshot preserva lo recibido en un momento y reduce la dependencia de cambios posteriores.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#del-servicio-vivo-al-snapshot-reproducible",
+        "label": "Del servicio vivo al snapshot reproducible"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-05",
+      "unit": "u04-apis-mcp",
+      "topic": "Tools, resources y prompts",
+      "difficulty": "basica",
+      "prompt": "¿Qué primitiva MCP expone una acción invocable con argumentos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tool."
+        },
+        {
+          "id": "b",
+          "text": "Resource."
+        },
+        {
+          "id": "c",
+          "text": "Prompt."
+        },
+        {
+          "id": "d",
+          "text": "Una imagen de la interfaz."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Una tool ejecuta una capacidad; recursos y plantillas cumplen otras funciones.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#tools-resources-y-prompts",
+        "label": "Tools, resources y prompts"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-06",
+      "unit": "u04-apis-mcp",
+      "topic": "Autenticación y manejo de secretos",
+      "difficulty": "basica",
+      "prompt": "¿Dónde debe guardarse una API key usada en un notebook compartido?",
+      "options": [
+        {
+          "id": "a",
+          "text": "En una captura de pantalla adjunta."
+        },
+        {
+          "id": "b",
+          "text": "En un gestor de secretos o entorno privado."
+        },
+        {
+          "id": "c",
+          "text": "Escrita en la primera celda de texto."
+        },
+        {
+          "id": "d",
+          "text": "Dentro del CSV público."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El código puede leer el secreto durante la ejecución sin incorporarlo al material compartido.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#autenticacion-y-manejo-de-secretos",
+        "label": "Autenticación y manejo de secretos"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-07",
+      "unit": "u04-apis-mcp",
+      "topic": "La estructura de una solicitud HTTP",
+      "difficulty": "intermedia",
+      "prompt": "Una API devuelve 200 con una lista vacía. ¿Qué se puede afirmar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La autenticación falló necesariamente."
+        },
+        {
+          "id": "b",
+          "text": "El esquema quedó validado automáticamente."
+        },
+        {
+          "id": "c",
+          "text": "La solicitud fue procesada; todavía deben verificarse filtros y contenido."
+        },
+        {
+          "id": "d",
+          "text": "El dataset completo tiene cero registros para siempre."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El estado HTTP exitoso no prueba completitud ni validez semántica de los datos.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#la-estructura-de-una-solicitud-http",
+        "label": "La estructura de una solicitud HTTP"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-08",
+      "unit": "u04-apis-mcp",
+      "topic": "Paginación y límites de uso",
+      "difficulty": "intermedia",
+      "prompt": "Una respuesta incluye un cursor para la página siguiente. ¿Qué requiere una extracción completa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Guardar solo la primera página."
+        },
+        {
+          "id": "b",
+          "text": "Repetir la primera página hasta alcanzar más filas."
+        },
+        {
+          "id": "c",
+          "text": "Suponer que el cursor es un identificador de cliente."
+        },
+        {
+          "id": "d",
+          "text": "Recorrer las páginas y controlar elementos y repeticiones."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La paginación divide la colección; cada página forma parte de la extracción del universo solicitado.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#paginacion-y-limites-de-uso",
+        "label": "Paginación y límites de uso"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-09",
+      "unit": "u04-apis-mcp",
+      "topic": "La estructura de una solicitud HTTP",
+      "difficulty": "intermedia",
+      "prompt": "Se recibe HTTP 401 al consultar un recurso protegido. ¿Qué revisarías primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La credencial y su forma de envío."
+        },
+        {
+          "id": "b",
+          "text": "El promedio de los importes."
+        },
+        {
+          "id": "c",
+          "text": "La cardinalidad de un join posterior."
+        },
+        {
+          "id": "d",
+          "text": "El orden de las filas del CSV."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "401 indica habitualmente autenticación ausente o inválida.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#la-estructura-de-una-solicitud-http",
+        "label": "La estructura de una solicitud HTTP"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-10",
+      "unit": "u04-apis-mcp",
+      "topic": "Paginación y límites de uso",
+      "difficulty": "intermedia",
+      "prompt": "Se recibe HTTP 429. ¿Qué comportamiento corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tratar la respuesta como una página vacía válida."
+        },
+        {
+          "id": "b",
+          "text": "Respetar la espera indicada y reintentar según la política del servicio."
+        },
+        {
+          "id": "c",
+          "text": "Enviar solicitudes más rápido."
+        },
+        {
+          "id": "d",
+          "text": "Cambiar todos los tipos a texto."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "429 señala un límite de uso; reintentos agresivos empeoran la situación.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#paginacion-y-limites-de-uso",
+        "label": "Paginación y límites de uso"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-11",
+      "unit": "u04-apis-mcp",
+      "topic": "Leer JSON",
+      "difficulty": "intermedia",
+      "prompt": "Un despacho incluye tres objetos en packages. Al convertir cada package en fila, ¿cuál pasa a ser el grano?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El conjunto de todos los despachos."
+        },
+        {
+          "id": "b",
+          "text": "Una fecha del calendario."
+        },
+        {
+          "id": "c",
+          "text": "Un bulto del despacho."
+        },
+        {
+          "id": "d",
+          "text": "Un cliente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Expandir una lista genera detalle y puede repetir atributos del objeto padre.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#leer-json",
+        "label": "Leer JSON"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-12",
+      "unit": "u04-apis-mcp",
+      "topic": "Qué problema organiza Model Context Protocol",
+      "difficulty": "intermedia",
+      "prompt": "En una arquitectura MCP, ¿quién coordina la experiencia del usuario y las conexiones?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un archivo CSV por sí mismo."
+        },
+        {
+          "id": "b",
+          "text": "La clave primaria del dataset."
+        },
+        {
+          "id": "c",
+          "text": "Cada fila de una respuesta."
+        },
+        {
+          "id": "d",
+          "text": "El host de IA."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El host coordina clientes MCP que se conectan a servidores con capacidades externas.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#que-problema-organiza-model-context-protocol",
+        "label": "Qué problema organiza Model Context Protocol"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-13",
+      "unit": "u04-apis-mcp",
+      "topic": "Tools, resources y prompts",
+      "difficulty": "intermedia",
+      "prompt": "Se quiere entregar el diccionario de ventas como contexto legible. ¿Qué primitiva MCP encaja?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Resource."
+        },
+        {
+          "id": "b",
+          "text": "Una tool de borrado."
+        },
+        {
+          "id": "c",
+          "text": "Un token con permisos de escritura."
+        },
+        {
+          "id": "d",
+          "text": "Una transacción SQL."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Un recurso ofrece contenido identificable que el cliente puede consultar.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#tools-resources-y-prompts",
+        "label": "Tools, resources y prompts"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-14",
+      "unit": "u04-apis-mcp",
+      "topic": "API y MCP dentro de la misma arquitectura",
+      "difficulty": "intermedia",
+      "prompt": "¿Cómo puede convivir una API logística con un servidor MCP?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ambos deben compartir una única contraseña pública."
+        },
+        {
+          "id": "b",
+          "text": "El servidor MCP puede consultar la API mediante una herramienta controlada."
+        },
+        {
+          "id": "c",
+          "text": "MCP obliga a eliminar la API existente."
+        },
+        {
+          "id": "d",
+          "text": "La API debe convertirse en una imagen."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "MCP puede exponer capacidades apoyadas en APIs, bases o archivos existentes.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#api-y-mcp-dentro-de-la-misma-arquitectura",
+        "label": "API y MCP dentro de la misma arquitectura"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-15",
+      "unit": "u04-apis-mcp",
+      "topic": "Permisos, contenido externo y trazabilidad",
+      "difficulty": "avanzada",
+      "prompt": "Un recurso externo incluye la instrucción de enviar credenciales a otro sitio. ¿Cómo debe tratarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Como un permiso automático del servidor."
+        },
+        {
+          "id": "b",
+          "text": "Como una regla que reemplaza el control de acceso."
+        },
+        {
+          "id": "c",
+          "text": "Como contenido externo que no concede autorización para esa acción."
+        },
+        {
+          "id": "d",
+          "text": "Como una orden del usuario por estar en el recurso."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El contenido recuperado puede contener instrucciones maliciosas y debe respetar los límites de autorización.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#permisos-contenido-externo-y-trazabilidad",
+        "label": "Permisos, contenido externo y trazabilidad"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-16",
+      "unit": "u04-apis-mcp",
+      "topic": "Autenticación y manejo de secretos",
+      "difficulty": "avanzada",
+      "prompt": "Una clave quedó publicada en el historial de un repositorio. ¿Qué acción corrige el acceso expuesto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Borrar solo la línea del último archivo."
+        },
+        {
+          "id": "b",
+          "text": "Cambiar el título del repositorio."
+        },
+        {
+          "id": "c",
+          "text": "Agregar un comentario que diga privada."
+        },
+        {
+          "id": "d",
+          "text": "Revocarla y rotarla, además de retirar su exposición."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Quitar la copia visible no invalida una credencial que pudo haber sido obtenida.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#autenticacion-y-manejo-de-secretos",
+        "label": "Autenticación y manejo de secretos"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-17",
+      "unit": "u04-apis-mcp",
+      "topic": "Del servicio vivo al snapshot reproducible",
+      "difficulty": "avanzada",
+      "prompt": "Hay dos snapshots distintos y no se sabe por qué. ¿Qué metadatos ayudan a reconstruir la captura?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Endpoint, parámetros, instante, versión y conteos."
+        },
+        {
+          "id": "b",
+          "text": "Solo el nombre de quien abrió el archivo."
+        },
+        {
+          "id": "c",
+          "text": "Solo la cantidad de gráficos."
+        },
+        {
+          "id": "d",
+          "text": "Solo el color de las carpetas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Esos metadatos permiten comparar condiciones de extracción e identificar cambios.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#del-servicio-vivo-al-snapshot-reproducible",
+        "label": "Del servicio vivo al snapshot reproducible"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-18",
+      "unit": "u04-apis-mcp",
+      "topic": "Permisos, contenido externo y trazabilidad",
+      "difficulty": "avanzada",
+      "prompt": "Una herramienta de lectura usa una credencial que también permite borrar tablas. ¿Qué mejora su diseño?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Confiar en que la IA elegirá siempre leer."
+        },
+        {
+          "id": "b",
+          "text": "Limitar la credencial a las capacidades necesarias."
+        },
+        {
+          "id": "c",
+          "text": "Ocultar el botón de borrado sin cambiar permisos."
+        },
+        {
+          "id": "d",
+          "text": "Documentar que nadie debería borrar."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El mínimo privilegio reduce la capacidad efectiva disponible ante errores o usos indebidos.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#permisos-contenido-externo-y-trazabilidad",
+        "label": "Permisos, contenido externo y trazabilidad"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-19",
+      "unit": "u04-apis-mcp",
+      "topic": "Leer JSON",
+      "difficulty": "avanzada",
+      "prompt": "En una respuesta JSON, packages: [] y la ausencia de la clave packages aparecen en registros distintos. ¿Qué control conviene?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Asumir que siempre significan el mismo estado."
+        },
+        {
+          "id": "b",
+          "text": "Eliminar los registros sin registrar el motivo."
+        },
+        {
+          "id": "c",
+          "text": "Distinguir lista vacía de campo ausente según el contrato."
+        },
+        {
+          "id": "d",
+          "text": "Convertir ambos en un bulto inventado."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El contrato define si se conoce una colección vacía o falta información esperada.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#leer-json",
+        "label": "Leer JSON"
+      }
+    },
+    {
+      "id": "u04-apis-mcp-20",
+      "unit": "u04-apis-mcp",
+      "topic": "APIs y MCP dentro del pipeline",
+      "difficulty": "avanzada",
+      "prompt": "Un host consulta ventas mediante MCP sobre un mart. ¿Qué sigue siendo necesario para confiar en la cifra?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aceptar la cifra por usar un protocolo estándar."
+        },
+        {
+          "id": "b",
+          "text": "Reemplazar toda reconciliación por el nombre de la tool."
+        },
+        {
+          "id": "c",
+          "text": "Exigir que la respuesta tenga más decimales."
+        },
+        {
+          "id": "d",
+          "text": "Verificar fuente, transformaciones, definición y controles del mart."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La interfaz permite acceder al dato, pero su calidad depende del proceso que lo produce.",
+      "reference": {
+        "path": "unidades/u04-apis-mcp.html#apis-y-mcp-dentro-del-pipeline",
+        "label": "APIs y MCP dentro del pipeline"
+      }
+    }
+  ],
+  "presets": [
+    {
+      "id": "repaso-inicial",
+      "title": "Fundamentos, arquitectura y modelo relacional",
+      "questionIds": [
+        "u01-decisiones-datos-ia-01",
+        "u01-decisiones-datos-ia-02",
+        "u01-decisiones-datos-ia-03",
+        "u02-ecosistema-arquitectura-01",
+        "u02-ecosistema-arquitectura-02",
+        "u02-ecosistema-arquitectura-03",
+        "u03-modelado-relacional-01",
+        "u03-modelado-relacional-02",
+        "u03-modelado-relacional-03",
+        "u03-modelado-relacional-04",
+        "u03-sql-consultas-01",
+        "u03-sql-consultas-02",
+        "u03-sql-consultas-03",
+        "u03-sql-consultas-04",
+        "u03-sql-consultas-05"
+      ]
+    }
+  ],
+  "version": "13ebb9e416917f98"
+}
