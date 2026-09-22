@@ -44,15 +44,15 @@
         },
         {
           "id": "b",
-          "text": "Que aparezca en un gráfico de colores."
+          "text": "Una fórmula estable, aunque no se haya definido qué decisión apoya."
         },
         {
           "id": "c",
-          "text": "Que aumente todos los meses."
+          "text": "Que supere el valor del mes anterior, cualquiera sea el objetivo."
         },
         {
           "id": "d",
-          "text": "Que se calcule con inteligencia artificial."
+          "text": "Que reúna todas las mediciones disponibles en una sola cifra."
         }
       ],
       "correctOptionId": "a",
@@ -137,15 +137,15 @@
         },
         {
           "id": "b",
-          "text": "Aprobar la política comercial de descuentos."
+          "text": "Interpretar una variación de ventas y comunicar su efecto al negocio."
         },
         {
           "id": "c",
-          "text": "Decidir el precio final de cada producto."
+          "text": "Entrenar y evaluar un modelo predictivo de demanda."
         },
         {
           "id": "d",
-          "text": "Elegir únicamente los colores del tablero."
+          "text": "Diseñar visualizaciones para explicar indicadores a la gerencia."
         }
       ],
       "correctOptionId": "a",
@@ -691,7 +691,7 @@
       "options": [
         {
           "id": "a",
-          "text": "El total de columnas del reporte."
+          "text": "La cantidad de meses de historia disponibles."
         },
         {
           "id": "b",
@@ -699,11 +699,11 @@
         },
         {
           "id": "c",
-          "text": "La extensión del notebook."
+          "text": "La frecuencia con que se generan ventas."
         },
         {
           "id": "d",
-          "text": "El nombre del archivo de ventas."
+          "text": "La fecha de la primera transacción registrada."
         }
       ],
       "correctOptionId": "b",
@@ -788,15 +788,15 @@
         },
         {
           "id": "b",
-          "text": "Solo la cantidad de decimales."
+          "text": "Un promedio único calculado con las dos regiones juntas."
         },
         {
           "id": "c",
-          "text": "El color de cada región."
+          "text": "El total combinado de entregas, sin separar sus demoras."
         },
         {
           "id": "d",
-          "text": "El nombre del archivo."
+          "text": "La misma media redondeada a menos decimales."
         }
       ],
       "correctOptionId": "a",
@@ -939,7 +939,7 @@
       "options": [
         {
           "id": "a",
-          "text": "La redacción del título del notebook."
+          "text": "Que el asistente reconozca el dialecto SQL, como único requisito."
         },
         {
           "id": "b",
@@ -947,11 +947,11 @@
         },
         {
           "id": "c",
-          "text": "La elección del color del reporte."
+          "text": "Que el archivo tenga pocas filas, como autorización suficiente."
         },
         {
           "id": "d",
-          "text": "La cantidad de tokens únicamente."
+          "text": "Que se hayan quitado los nombres, sin revisar otros identificadores."
         }
       ],
       "correctOptionId": "b",
@@ -1621,15 +1621,15 @@
       "options": [
         {
           "id": "a",
-          "text": "La posición del archivo en la carpeta."
+          "text": "El tipo numérico que infiere automáticamente Pandas."
         },
         {
           "id": "b",
-          "text": "El color de su encabezado."
+          "text": "El precio más alto encontrado al explorar las filas."
         },
         {
           "id": "c",
-          "text": "El número de celdas del notebook."
+          "text": "La ubicación de la columna junto a cantidad."
         },
         {
           "id": "d",
@@ -1780,15 +1780,15 @@
         },
         {
           "id": "b",
-          "text": "El gráfico final."
+          "text": "Si hay filas duplicadas que deban eliminarse."
         },
         {
           "id": "c",
-          "text": "El promedio del identificador."
+          "text": "Si se eligió entero o decimal para los importes."
         },
         {
           "id": "d",
-          "text": "El color del notebook."
+          "text": "Si conviene reemplazar los valores nulos."
         }
       ],
       "correctOptionId": "a",
@@ -2613,11 +2613,11 @@
       "options": [
         {
           "id": "a",
-          "text": "Solo la cantidad de diapositivas de venta."
+          "text": "Solo la inversión inicial de implementación."
         },
         {
           "id": "b",
-          "text": "La suposición de que no requiere operación."
+          "text": "Un mantenimiento futuro estimado en cero por ser SaaS."
         },
         {
           "id": "c",
@@ -2625,7 +2625,7 @@
         },
         {
           "id": "d",
-          "text": "Solo el color de la interfaz."
+          "text": "La posibilidad de salida dada por segura sin revisar contratos."
         }
       ],
       "correctOptionId": "c",
@@ -3152,7 +3152,7 @@
         },
         {
           "id": "d",
-          "text": "El nombre del archivo exportado."
+          "text": "Las columnas que aparecerán en la salida."
         }
       ],
       "correctOptionId": "a",
@@ -3764,15 +3764,15 @@
         },
         {
           "id": "b",
-          "text": "El color de las pantallas de todos los clientes."
+          "text": "La estructura interna de todas las tablas del sistema."
         },
         {
           "id": "c",
-          "text": "La obligación de almacenar datos en CSV."
+          "text": "El código fuente completo que ejecuta el proveedor."
         },
         {
           "id": "d",
-          "text": "Una copia histórica inmutable."
+          "text": "La secuencia de pantallas que recorre una persona."
         }
       ],
       "correctOptionId": "a",
@@ -4260,15 +4260,15 @@
         },
         {
           "id": "b",
-          "text": "Solo el nombre de quien abrió el archivo."
+          "text": "El último nombre asignado al archivo, sin parámetros de captura."
         },
         {
           "id": "c",
-          "text": "Solo la cantidad de gráficos."
+          "text": "La cantidad de filas, sin registrar filtros ni instante."
         },
         {
           "id": "d",
-          "text": "Solo el color de las carpetas."
+          "text": "La versión del notebook de análisis, sin registrar la extracción."
         }
       ],
       "correctOptionId": "a",
@@ -4395,5 +4395,5 @@
       ]
     }
   ],
-  "version": "13ebb9e416917f98"
+  "version": "0a7d159682e792ef"
 }
