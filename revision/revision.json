@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "source_commit": "918deb42dde9ac346b97675cde74b181c5aa03bf",
+  "source_commit": "d839e5900275da7ca7e0bff3308f7551954b2878",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/35811902489",
-  "generated_at_utc": "2026-09-23T02:50:25+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/35812462555",
+  "generated_at_utc": "2026-09-23T02:59:00+00:00",
   "qa_status": "passed",
   "as_of": "2026-09-22",
   "published_units": [
@@ -12,11 +12,10 @@
     "Unidad 2 · Ecosistema, roles y arquitectura",
     "Unidad 3.1 · Modelo relacional y granularidad",
     "Unidad 3.2 · SQL sobre una vista",
-    "Unidad 3.3 · Joins y reconciliación",
-    "Unidad 4 · APIs y Model Context Protocol"
+    "Unidad 3.3 · Joins y reconciliación"
   ],
-  "content_digest": "1c6022bcf3ab6d8a6484fc752bf608a3dae7e05bdf5f0d1175ec9a181b576fac",
-  "file_count": 90,
-  "html_count": 14,
+  "content_digest": "5bdd5e546130e1da9d233b654717e76e2517f5d48c5764484ac84f93ea62482a",
+  "file_count": 80,
+  "html_count": 13,
   "contact": "analisisdatosutnfrc@gmail.com"
 }
