@@ -3,6 +3,7 @@ import { renderCharacter, characterName } from './characters.mjs';
 
 const $ = id => document.getElementById(id);
 const storageKey = code => `repaso-live:${code}`;
+const countLabel = (count, noun) => `${count} ${noun}${count === 1 ? '' : 's'}`;
 
 export async function startLive(mode) {
   const abort = new AbortController();
@@ -39,9 +40,15 @@ export async function startLive(mode) {
       if (!catalog.ok) throw new Error('No se pudo cargar el catálogo de cuestionarios. Recargá para intentar nuevamente.');
       const presets = (await catalog.json()).presets;
       $('host-preset').replaceChildren(...presets.map(p => {
-        const option = element('option', `${p.title} · Versión ${p.version} · ${p.questionCount} preguntas`);
+        const option = element('option', `${p.title} · Versión ${p.version} · ${countLabel(p.questionCount, 'pregunta')}`);
         option.value = p.id; return option;
       }));
+      const describePreset = () => {
+        const p = presets.find(p => p.id === $('host-preset').value);
+        $('host-preset-detail').textContent = p ? `${p.title}. ${p.questionnaireId} · Versión ${p.version} · ${countLabel(p.questionCount, 'pregunta')}.` : 'No hay cuestionarios publicados.';
+      };
+      describePreset();
+      listen($('host-preset'), 'change', () => { createId = crypto.randomUUID(); describePreset(); });
       $('host-form').hidden = false;
     }
   } catch (error) {
@@ -91,8 +98,8 @@ export async function startLive(mode) {
     $('live-title').textContent = state.title;
     const questionnaire = state.questionnaire;
     $('live-questionnaire').textContent = questionnaire.version == null
-      ? `Revisión del banco ${questionnaire.bankVersion} · ${state.total} preguntas`
-      : `${questionnaire.id} · Versión ${questionnaire.version} · ${state.total} preguntas`;
+      ? `Revisión del banco ${questionnaire.bankVersion} · ${countLabel(state.total, 'pregunta')}`
+      : `${questionnaire.id} · Versión ${questionnaire.version} · ${countLabel(state.total, 'pregunta')}`;
     $('host-controls').hidden = role !== 'host';
     $('host-participants').hidden = role !== 'host';
     $('host-finish').hidden = state.phase === 'finished';
@@ -128,7 +135,7 @@ export async function startLive(mode) {
       if (q.explanation) renderExplanation($('live-feedback'), q, answer?.correct);
       $('answer-distribution').replaceChildren(...(state.distribution ? q.options.map(o => {
         const row = element('p', null, 'distribution-row');
-        row.append(element('span', o.text), element('b', `${state.distribution[o.id]} respuestas`)); return row;
+        row.append(element('span', o.text), element('b', countLabel(state.distribution[o.id], 'respuesta'))); return row;
       }) : []));
     }
     $('live-ranking').hidden = !state.ranking;
@@ -139,7 +146,7 @@ export async function startLive(mode) {
       rankingView = nextRanking;
       $('ranking-list').replaceChildren(...(state.ranking || []).filter(row => row.position <= 3).map(row => {
         const item = element('li'); item.value = row.position;
-        item.append(element('b', `${row.position}.`), renderCharacter(row.character), element('span', `${row.score.toLocaleString('es-AR')} puntos · ${row.correct} aciertos`)); return item;
+        item.append(element('b', `${row.position}.`), renderCharacter(row.character), element('span', `${row.score.toLocaleString('es-AR')} puntos · ${countLabel(row.correct, 'acierto')}`)); return item;
       }));
     }
     $('session-summary').hidden = state.phase !== 'finished';
@@ -170,17 +177,17 @@ export async function startLive(mode) {
       const row = element('div', null, `summary-option${correct ? ' correct-option' : ''}`);
       row.append(element('span', label), element('b', `${count} · ${percent(proportion)}`));
       const bar = element('meter'); bar.min = 0; bar.max = 1; bar.value = proportion;
-      bar.setAttribute('aria-label', `${label}: ${count} respuestas, ${percent(proportion)} del grupo`);
+      bar.setAttribute('aria-label', `${label}: ${countLabel(count, 'respuesta')}, ${percent(proportion)} del grupo`);
       row.append(bar); return row;
     };
     $('session-question-list').replaceChildren(...questions.map(q => {
       const details = element('details', null, 'summary-question');
       const heading = element('summary');
       heading.append(element('span', `Pregunta ${q.order}`, 'overline'), element('span', q.prompt, 'summary-prompt'),
-        element('span', `${q.incorrect} incorrectas · ${q.correct} aciertos · ${q.unanswered} sin respuesta`, 'summary-counts'));
+        element('span', `${countLabel(q.incorrect, 'incorrecta')} · ${countLabel(q.correct, 'acierto')} · ${q.unanswered} sin respuesta`, 'summary-counts'));
       const body = element('div', null, 'summary-body');
       body.append(element('p', `Tasa de acierto: ${q.successRate == null ? 'Sin respuestas' : percent(q.successRate)} · Participación: ${percent(q.participationRate)}`, 'summary-rates'),
-        element('p', `Porcentajes de opciones sobre ${q.total} participantes. La tasa de acierto considera las ${q.answered} respuestas recibidas.`, 'summary-caption'));
+        element('p', `Porcentajes de opciones sobre ${countLabel(q.total, 'participante')}. La tasa de acierto considera ${countLabel(q.answered, 'respuesta')}.`, 'summary-caption'));
       for (const [index, option] of q.distribution.entries()) {
         const correct = option.id === q.correctOptionId;
         body.append(distributionRow(`${'ABCD'[index]}. ${option.text}${correct ? ' · Correcta' : ''}`, option.count, option.proportion, correct));
@@ -305,7 +312,6 @@ export async function startLive(mode) {
     } catch (error) { status(error.message); }
     finally { busy = false; render(); }
   });
-  listen($('host-preset'), 'change', () => { createId = crypto.randomUUID(); });
   listen($('host-room-code'), 'input', () => { $('host-preset').disabled = !!$('host-room-code').value.trim(); });
   $('host-preset').disabled = !!code;
   timer = setInterval(tick, 200);

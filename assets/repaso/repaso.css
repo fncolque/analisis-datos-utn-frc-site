@@ -68,6 +68,7 @@ progress::-webkit-progress-bar { background:var(--paper-2); } progress::-webkit-
 .join-panel input { width:100%;display:block;margin-top:8px; }
 .join-panel select { width:100%;display:block;margin-top:8px;padding:12px;border:1px solid var(--muted);background:white;color:var(--ink);font:inherit; }
 .questionnaire-identity { color:var(--muted);font-size:.85rem;overflow-wrap:anywhere; }
+.preset-detail { margin:-12px 0 0;font-size:.9rem;color:var(--muted);overflow-wrap:anywhere; }
 .session-summary { padding:24px 0 40px;border-top:2px solid var(--ink); }
 .session-summary h3 { font-size:clamp(1.8rem,3vw,2.6rem);line-height:1.15; }
 .session-summary>p:not(.overline) { max-width:70ch;color:var(--muted); }
@@ -120,6 +121,9 @@ progress::-webkit-progress-bar { background:var(--paper-2); } progress::-webkit-
 :focus-visible { outline:3px solid var(--blue);outline-offset:4px; }
 .projection .repaso-main { max-width:1500px; }
 .projection .question-title { font-size:clamp(2rem,4vw,4rem); }
+.projection .summary-prompt { font-size:clamp(1.4rem,2vw,2rem); }
+.projection .summary-option { font-size:clamp(1.1rem,1.6vw,1.5rem); }
+.projection .summary-rates { font-size:1.2rem; }
 @media(max-width:720px) {
  .repaso-header { align-items:flex-start;padding:18px 20px; }
  .repaso-header nav { flex-direction:column;gap:8px;font-size:.75rem;text-align:right; }
