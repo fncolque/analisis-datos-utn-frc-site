@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "source_commit": "b9eb3f2211945eafb7a20ee241d9bfb99f551923",
+  "source_commit": "918deb42dde9ac346b97675cde74b181c5aa03bf",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/35805752709",
-  "generated_at_utc": "2026-09-23T01:19:22+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/35811902489",
+  "generated_at_utc": "2026-09-23T02:50:25+00:00",
   "qa_status": "passed",
   "as_of": "2026-09-22",
   "published_units": [
@@ -15,7 +15,7 @@
     "Unidad 3.3 · Joins y reconciliación",
     "Unidad 4 · APIs y Model Context Protocol"
   ],
-  "content_digest": "cfd1228cf081f253bf9073ca73ac7ac2ded683908eaa7eb25fd267e484b4e2f3",
+  "content_digest": "1c6022bcf3ab6d8a6484fc752bf608a3dae7e05bdf5f0d1175ec9a181b576fac",
   "file_count": 90,
   "html_count": 14,
   "contact": "analisisdatosutnfrc@gmail.com"
