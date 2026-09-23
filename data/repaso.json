@@ -4375,6 +4375,8 @@
   "presets": [
     {
       "id": "repaso-inicial",
+      "questionnaireId": "repaso-inicial",
+      "version": 1,
       "title": "Fundamentos, arquitectura y modelo relacional",
       "questionIds": [
         "u01-decisiones-datos-ia-01",
@@ -4392,8 +4394,10 @@
         "u03-sql-consultas-03",
         "u03-sql-consultas-04",
         "u03-sql-consultas-05"
-      ]
+      ],
+      "questionCount": 15,
+      "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "0a7d159682e792ef"
+  "version": "f4db1373a349683d"
 }

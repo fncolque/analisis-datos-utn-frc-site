@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "id": "repaso-inicial",
+  "questionnaireId": "repaso-inicial",
+  "version": 1,
+  "title": "Fundamentos, arquitectura y modelo relacional",
+  "questions": [
+    {
+      "id": "u01-decisiones-datos-ia-01",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Del objetivo al KPI",
+      "difficulty": "basica",
+      "prompt": "¿Qué convierte una cifra en un KPI útil para decidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una definición vinculada a un objetivo y una acción posible."
+        },
+        {
+          "id": "b",
+          "text": "Una fórmula estable, aunque no se haya definido qué decisión apoya."
+        },
+        {
+          "id": "c",
+          "text": "Que supere el valor del mes anterior, cualquiera sea el objetivo."
+        },
+        {
+          "id": "d",
+          "text": "Que reúna todas las mediciones disponibles en una sola cifra."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Un KPI necesita propósito, fórmula y condiciones de interpretación; además debe orientar una decisión.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#del-objetivo-al-kpi",
+        "label": "Del objetivo al KPI"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-02",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Qué es un pipeline de análisis de datos",
+      "difficulty": "basica",
+      "prompt": "¿Qué describe mejor un pipeline de datos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un programa que reemplaza todas las decisiones humanas."
+        },
+        {
+          "id": "b",
+          "text": "Etapas conectadas que llevan datos desde una fuente hasta un uso."
+        },
+        {
+          "id": "c",
+          "text": "Una carpeta con todos los archivos disponibles."
+        },
+        {
+          "id": "d",
+          "text": "Un gráfico que muestra ventas mensuales."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Cada etapa recibe una entrada, realiza una operación y entrega una salida al tramo siguiente.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#que-es-un-pipeline-de-analisis-de-datos",
+        "label": "Qué es un pipeline de análisis de datos"
+      }
+    },
+    {
+      "id": "u01-decisiones-datos-ia-03",
+      "unit": "u01-decisiones-datos-ia",
+      "topic": "Protocolo de verificación",
+      "difficulty": "basica",
+      "prompt": "Una IA propone una consulta SQL. ¿Qué permite confiar en su resultado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que la consulta tenga pocas líneas."
+        },
+        {
+          "id": "b",
+          "text": "Que dos asistentes escriban exactamente lo mismo."
+        },
+        {
+          "id": "c",
+          "text": "Ejecutarla y contrastarla con datos y controles conocidos."
+        },
+        {
+          "id": "d",
+          "text": "Que la explicación suene convincente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La revisión requiere evidencia ejecutada: comprender el cálculo, comprobar la salida y declarar sus límites.",
+      "reference": {
+        "path": "unidades/u01-decisiones-datos-ia.html#protocolo-de-verificacion",
+        "label": "Protocolo de verificación"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-01",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Data Engineer",
+      "difficulty": "basica",
+      "prompt": "¿Qué tarea corresponde principalmente a un Data Engineer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Construir y mantener la captura e integración de datos."
+        },
+        {
+          "id": "b",
+          "text": "Interpretar una variación de ventas y comunicar su efecto al negocio."
+        },
+        {
+          "id": "c",
+          "text": "Entrenar y evaluar un modelo predictivo de demanda."
+        },
+        {
+          "id": "d",
+          "text": "Diseñar visualizaciones para explicar indicadores a la gerencia."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El Data Engineer organiza pipelines operables para que los datos lleguen con controles a quienes los utilizan.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#data-engineer",
+        "label": "Data Engineer"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-02",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Cómputo y almacenamiento en la nube",
+      "difficulty": "basica",
+      "prompt": "Conservás archivos en la nube sin ejecutar consultas. ¿Qué recurso seguís utilizando?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Renderizado de tableros."
+        },
+        {
+          "id": "b",
+          "text": "Almacenamiento."
+        },
+        {
+          "id": "c",
+          "text": "Cómputo de consultas SQL activas."
+        },
+        {
+          "id": "d",
+          "text": "Entrenamiento de modelos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Conservar los archivos consume almacenamiento. El cómputo corresponde al trabajo realizado para procesarlos.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#computo-y-almacenamiento-en-la-nube",
+        "label": "Cómputo y almacenamiento en la nube"
+      }
+    },
+    {
+      "id": "u02-ecosistema-arquitectura-03",
+      "unit": "u02-ecosistema-arquitectura",
+      "topic": "Sistemas operacionales y sistemas analíticos",
+      "difficulty": "basica",
+      "prompt": "¿Qué tarea encaja mejor en un sistema analítico?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Registrar un cambio de dirección de un cliente."
+        },
+        {
+          "id": "b",
+          "text": "Reservar una unidad al recibir un pedido."
+        },
+        {
+          "id": "c",
+          "text": "Comparar tendencias de ventas de varias sucursales y años."
+        },
+        {
+          "id": "d",
+          "text": "Confirmar una compra individual en la caja."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El análisis combina conjuntos e historia; el sistema operacional prioriza registrar y actualizar transacciones.",
+      "reference": {
+        "path": "unidades/u02-ecosistema-arquitectura.html#sistemas-operacionales-y-sistemas-analiticos",
+        "label": "Sistemas operacionales y sistemas analíticos"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-01",
+      "unit": "u03-modelado-relacional",
+      "topic": "El grano como contrato semántico",
+      "difficulty": "basica",
+      "prompt": "P100 aparece en dos filas porque incluye dos productos. ¿Cuántos pedidos distintos hay?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un pedido."
+        },
+        {
+          "id": "b",
+          "text": "Dos pedidos."
+        },
+        {
+          "id": "c",
+          "text": "Tres pedidos."
+        },
+        {
+          "id": "d",
+          "text": "No se puede saber aunque ambos tengan el mismo identificador."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Las filas representan líneas de pedido. Contar pedidos exige distinguir order_id, no contar cada línea.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#el-grano-como-contrato-semantico",
+        "label": "El grano como contrato semántico"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-02",
+      "unit": "u03-modelado-relacional",
+      "topic": "Claves e integridad",
+      "difficulty": "basica",
+      "prompt": "Una FK de pedidos referencia clientes. ¿Qué sucede si se exige integridad referencial y el cliente no existe?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Se cambia la clave primaria del pedido."
+        },
+        {
+          "id": "b",
+          "text": "Se rechaza ese pedido hasta contar con una referencia válida."
+        },
+        {
+          "id": "c",
+          "text": "Se crea automáticamente un cliente completo."
+        },
+        {
+          "id": "d",
+          "text": "Se convierte el identificador en cero."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La restricción impide referencias huérfanas; la FK debe apuntar a una clave existente cuando tiene valor.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#claves-e-integridad",
+        "label": "Claves e integridad"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-03",
+      "unit": "u03-modelado-relacional",
+      "topic": "Uno a muchos",
+      "difficulty": "basica",
+      "prompt": "Un cliente figura una vez en clientes y tiene varios pedidos. ¿Qué relación se representa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Muchos a muchos sin intermediación."
+        },
+        {
+          "id": "b",
+          "text": "Ninguna relación, porque se repite el cliente."
+        },
+        {
+          "id": "c",
+          "text": "Uno a muchos."
+        },
+        {
+          "id": "d",
+          "text": "Uno a uno."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El identificador es único en clientes y puede repetirse como FK en pedidos.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#uno-a-muchos",
+        "label": "Uno a muchos"
+      }
+    },
+    {
+      "id": "u03-modelado-relacional-04",
+      "unit": "u03-modelado-relacional",
+      "topic": "El problema de una tabla plana",
+      "difficulty": "basica",
+      "prompt": "La región de un cliente se repite en 30 ventas. Solo se corrige en una. ¿Qué problema aparece?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una mejora de integridad referencial."
+        },
+        {
+          "id": "b",
+          "text": "Una nueva clave compuesta."
+        },
+        {
+          "id": "c",
+          "text": "Una agregación correcta."
+        },
+        {
+          "id": "d",
+          "text": "Una anomalía de actualización."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El mismo cliente queda con versiones contradictorias. Separar sus atributos permite mantenerlos en un único lugar.",
+      "reference": {
+        "path": "unidades/u03-modelado-relacional.html#el-problema-de-una-tabla-plana",
+        "label": "El problema de una tabla plana"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-01",
+      "unit": "u03-sql-consultas",
+      "topic": "Primera consulta: SELECT, FROM y LIMIT",
+      "difficulty": "basica",
+      "prompt": "En SELECT nombre FROM clientes, ¿qué indica FROM clientes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La tabla desde la que se consultan los datos."
+        },
+        {
+          "id": "b",
+          "text": "La columna que se elimina."
+        },
+        {
+          "id": "c",
+          "text": "El orden de las filas."
+        },
+        {
+          "id": "d",
+          "text": "La condición que filtra clientes."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "FROM identifica la fuente; SELECT elige las columnas de la salida.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#primera-consulta-select-from-y-limit",
+        "label": "Primera consulta: SELECT, FROM y LIMIT"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-02",
+      "unit": "u03-sql-consultas",
+      "topic": "Conteos y DISTINCT",
+      "difficulty": "basica",
+      "prompt": "Una consulta devuelve Centro, Centro, Norte. ¿Qué produce SELECT DISTINCT region?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El borrado de un cliente de la tabla original."
+        },
+        {
+          "id": "b",
+          "text": "Centro y Norte, una vez cada uno."
+        },
+        {
+          "id": "c",
+          "text": "Solo Centro."
+        },
+        {
+          "id": "d",
+          "text": "Tres filas ordenadas alfabéticamente."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "DISTINCT elimina repeticiones de la combinación seleccionada en el resultado; no modifica la fuente.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#conteos-y-distinct",
+        "label": "Conteos y DISTINCT"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-03",
+      "unit": "u03-sql-consultas",
+      "topic": "WHERE: definir la población",
+      "difficulty": "basica",
+      "prompt": "¿Qué exige WHERE region = 'Norte' AND cantidad > 10?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que cantidad sea exactamente 10."
+        },
+        {
+          "id": "b",
+          "text": "Que se agrupen todas las regiones."
+        },
+        {
+          "id": "c",
+          "text": "Que ambas condiciones sean verdaderas."
+        },
+        {
+          "id": "d",
+          "text": "Que se cumpla cualquiera de las dos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "AND conserva únicamente filas que cumplen simultáneamente las condiciones.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#where-definir-la-poblacion",
+        "label": "WHERE: definir la población"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-04",
+      "unit": "u03-sql-consultas",
+      "topic": "ORDER BY y determinismo de la salida",
+      "difficulty": "basica",
+      "prompt": "¿Qué busca ORDER BY costo DESC LIMIT 1?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una fila con el menor costo."
+        },
+        {
+          "id": "b",
+          "text": "La suma de todos los costos."
+        },
+        {
+          "id": "c",
+          "text": "La última fila cargada, cualquiera sea su costo."
+        },
+        {
+          "id": "d",
+          "text": "Una fila con el mayor costo."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "DESC ordena de mayor a menor y LIMIT 1 conserva una fila. Un empate requiere otro criterio si importa cuál se elige.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#order-by-y-determinismo-de-la-salida",
+        "label": "ORDER BY y determinismo de la salida"
+      }
+    },
+    {
+      "id": "u03-sql-consultas-05",
+      "unit": "u03-sql-consultas",
+      "topic": "GROUP BY: cambiar el grano de salida",
+      "difficulty": "basica",
+      "prompt": "Un pedido tiene dos líneas con cantidades 2 y 5. ¿Qué devuelve SUM(cantidad) agrupado por pedido?",
+      "options": [
+        {
+          "id": "a",
+          "text": "7 unidades."
+        },
+        {
+          "id": "b",
+          "text": "2 unidades."
+        },
+        {
+          "id": "c",
+          "text": "1 unidad."
+        },
+        {
+          "id": "d",
+          "text": "5 pedidos."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "SUM agrega los valores: 2 + 5 = 7. COUNT(*) contaría las dos líneas.",
+      "reference": {
+        "path": "unidades/u03-sql-consultas.html#group-by-cambiar-el-grano-de-salida",
+        "label": "GROUP BY: cambiar el grano de salida"
+      }
+    }
+  ]
+}
