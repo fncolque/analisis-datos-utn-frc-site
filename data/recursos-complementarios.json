@@ -331,6 +331,74 @@
           "descripcion": "Extensión sobre álgebra relacional, subconsultas y operaciones que ayudan a razonar consultas compuestas."
         }
       ]
+    },
+    "u04-apis-mcp": {
+      "titulo": "Interfaces para conectar datos, aplicaciones e inteligencia artificial",
+      "introduccion": "La primera parte introduce HTTP y una solicitud API observable. La segunda presenta MCP desde su documentación oficial y ofrece una ruta práctica más extensa.",
+      "diagrama": {
+        "archivo": "u04-api-mcp.svg",
+        "fuente": "u04-api-mcp.mmd",
+        "alt": "Arquitectura que muestra una aplicación de inteligencia artificial como host, sus clientes MCP, servidores de herramientas y recursos, y una API externa.",
+        "titulo": "De una API a un ecosistema MCP",
+        "epigrafe": "La API expone una interfaz específica. MCP permite descubrir capacidades declaradas por servidores y mantener límites de acceso por conexión.",
+        "base": "Elaboración propia basada en la arquitectura oficial de Model Context Protocol."
+      },
+      "imagen": {
+        "archivo": "generated/u04-api-request-response.webp",
+        "alt": "Ilustración de una solicitud API que parte de una aplicación, atraviesa autenticación y un endpoint, llega a un servicio y una base de datos, y regresa como respuesta con ramas de error observables.",
+        "epigrafe": "Una solicitud sale del cliente con una estructura definida, atraviesa autenticación y llega a un endpoint. El servicio consulta sus datos y devuelve una respuesta; las rutas alternativas representan errores de validación, permisos, límite de uso o ejecución.",
+        "generada": true,
+        "credito": "Ilustración generada con ChatGPT · OpenAI Images.",
+        "prompt": "Intercambio API completo entre cliente, autenticación, endpoint, servicio y base de datos, con respuesta y ramas de error; estilo editorial técnico marfil, azul UTN y amarillo; sin texto ni logotipos.",
+        "after_heading": "una-api-como-contrato-entre-sistemas"
+      },
+      "recursos": [
+        {
+          "tipo": "Guía web",
+          "titulo": "Overview of HTTP",
+          "institucion": "MDN Web Docs",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview",
+          "idioma": "Inglés",
+          "dedicacion": "20–30 min",
+          "descripcion": "Explica cliente, servidor, solicitud, respuesta, métodos, encabezados y códigos de estado con ejemplos legibles."
+        },
+        {
+          "tipo": "Tutorial práctico",
+          "titulo": "Postman Quick Start",
+          "institucion": "Postman",
+          "url": "https://learning.postman.com/docs/getting-started/quick-start/",
+          "idioma": "Inglés",
+          "dedicacion": "20 min",
+          "descripcion": "Guía para enviar una primera solicitud, guardar una colección y validar una respuesta con Postman Echo."
+        },
+        {
+          "tipo": "Documentación oficial",
+          "titulo": "What is the Model Context Protocol?",
+          "institucion": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/docs/getting-started/intro",
+          "idioma": "Inglés",
+          "dedicacion": "10–15 min",
+          "descripcion": "Entrada conceptual al estándar, sus participantes y los tipos de capacidades que puede exponer un servidor."
+        },
+        {
+          "tipo": "Arquitectura oficial",
+          "titulo": "MCP Architecture Overview",
+          "institucion": "Model Context Protocol",
+          "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+          "idioma": "Inglés",
+          "dedicacion": "25–35 min",
+          "descripcion": "Desarrolla host, cliente, servidor, negociación de capacidades, transportes y primitivas del protocolo."
+        },
+        {
+          "tipo": "Curso con videos",
+          "titulo": "MCP: Build Rich-Context AI Apps with Anthropic",
+          "institucion": "DeepLearning.AI y Anthropic",
+          "url": "https://www.deeplearning.ai/courses/mcp-build-rich-context-ai-apps-with-anthropic",
+          "idioma": "Inglés · subtítulos",
+          "dedicacion": "1 h 38 min · requiere cuenta",
+          "descripcion": "Curso práctico sobre arquitectura MCP, herramientas, recursos, prompts, servidores y clientes. El acceso gratuito depende de la etapa beta de la plataforma."
+        }
+      ]
     }
   }
 }

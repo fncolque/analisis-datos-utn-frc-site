@@ -1,5 +1,5 @@
 const names = ['Vector', 'Pixel', 'Nodo', 'Query', 'Byte', 'Índice', 'Matriz', 'Dato', 'Lambda', 'Bit', 'Nexo', 'Pivote', 'Delta', 'Sigma', 'Mapa', 'Prisma'];
-const palettes = [ ['Cobalto', '#1f497d'], ['Ámbar', '#947000'], ['Pino', '#22644a'], ['Coral', '#a04434'], ['Violeta', '#685187'] ];
+const palettes = [ ['Cobalto', '#1f497d'], ['Ámbar', '#947000'], ['Pino', '#22644a'], ['Coral', '#a04434'], ['Violeta', '#685187'], ['Turquesa', '#147575'], ['Borgoña', '#83334a'], ['Pizarra', '#4b5c6b'] ];
 export const CHARACTER_COUNT = names.length * palettes.length;
 
 export function characterName(index) {

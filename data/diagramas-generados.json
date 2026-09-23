@@ -1240,6 +1240,263 @@
           ]
         }
       }
+    ],
+    "u04-apis-mcp": [
+      {
+        "page": "u04-apis-mcp",
+        "unit": "C07",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u04-solicitud-api.svg",
+        "base_generada": "theory/u04-solicitud-api-base.webp",
+        "base_provisoria": "u04-api-lifecycle.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Recorrido completo de una solicitud API",
+        "pregunta_lectura": "¿Qué debe registrar el cliente para repetir, diagnosticar y validar una consulta?",
+        "alt": "Ocho etapas siguen una solicitud desde método, endpoint, parámetros, headers, body y autenticación hasta el servicio, la base, los códigos de estado, la paginación, la validación de esquema y el snapshot.",
+        "epigrafe": "Una integración reproducible conserva la solicitud, interpreta el código de estado, recorre todas las páginas, valida la estructura recibida y guarda el snapshot utilizado por el análisis.",
+        "after_heading": "la-estructura-de-una-solicitud-http",
+        "interactivo": true,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "El método y el endpoint indican la operación y el recurso; parámetros, headers y body completan el contrato.",
+          "La autenticación identifica al cliente y el límite de uso regula la frecuencia.",
+          "Los estados 4xx describen problemas de solicitud o acceso; 5xx señala un fallo del servicio.",
+          "La respuesta aceptada todavía requiere validar esquema, páginas, conteos y snapshot."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A complete client-server request path with a request envelope, authentication gate, rate gauge, service and database, branching status outcomes, pagination loop and a preserved raw snapshot.",
+        "version_revision": "1.0",
+        "svg_height": 1200,
+        "estructura": {
+          "layout": "flow",
+          "columns": 4,
+          "cards": [
+            {
+              "title": "Construir la solicitud",
+              "body": [
+                "GET /pedidos",
+                "params: fecha, página"
+              ],
+              "accent": "blue",
+              "tag": "método + endpoint",
+              "step": 1,
+              "code": [
+                "GET /pedidos?desde=2026-08-01"
+              ]
+            },
+            {
+              "title": "Agregar contexto",
+              "body": [
+                "Headers declaran formato; body se usa cuando corresponde."
+              ],
+              "accent": "blue",
+              "tag": "headers + body",
+              "step": 2
+            },
+            {
+              "title": "Autenticar",
+              "body": [
+                "Token fuera del notebook y permiso mínimo."
+              ],
+              "accent": "blue",
+              "tag": "identidad",
+              "step": 3
+            },
+            {
+              "title": "Respetar el límite",
+              "body": [
+                "Contar solicitudes y aplicar espera ante 429."
+              ],
+              "accent": "blue",
+              "tag": "rate limit",
+              "step": 4
+            },
+            {
+              "title": "Servicio y datos",
+              "body": [
+                "La API valida, consulta su base y arma la respuesta."
+              ],
+              "accent": "blue",
+              "tag": "servidor",
+              "step": 5
+            },
+            {
+              "title": "Interpretar el estado",
+              "body": [
+                "200 éxito · 400 formato · 401 identidad · 403 permiso",
+                "404 recurso · 429 límite · 500 servicio"
+              ],
+              "accent": "blue",
+              "tag": "respuesta",
+              "step": 6
+            },
+            {
+              "title": "Completar la colección",
+              "body": [
+                "Seguir next_page hasta que no queden páginas."
+              ],
+              "accent": "blue",
+              "tag": "paginación",
+              "step": 7,
+              "stats": [
+                "páginas",
+                "conteo"
+              ]
+            },
+            {
+              "title": "Validar y guardar",
+              "body": [
+                "Comprobar campos y tipos; registrar timestamp y hash."
+              ],
+              "accent": "blue",
+              "tag": "snapshot",
+              "step": 8,
+              "stats": [
+                "esquema",
+                "archivo raw"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u04-apis-mcp",
+        "unit": "C07",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u04-arquitectura-mcp.svg",
+        "base_generada": "theory/u04-arquitectura-mcp-base.webp",
+        "base_provisoria": "u04-mcp-architecture.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Cómo un host de IA descubre y ejecuta una capacidad MCP",
+        "pregunta_lectura": "¿Qué mensajes y decisiones separan el pedido del usuario de la operación ejecutada?",
+        "alt": "Diez etapas conectan usuario, host, modelo, cliente MCP y servidor MCP con una API, base o archivo; incluyen server discover, tools list, aprobación, tools call, resultado, trazabilidad, capa de datos y transportes stdio y Streamable HTTP.",
+        "epigrafe": "El host coordina la interacción y crea un cliente por servidor. El protocolo describe mensajes y capacidades; el transporte lleva esos mensajes por stdio local o Streamable HTTP remoto.",
+        "after_heading": "que-problema-organiza-model-context-protocol",
+        "interactivo": true,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "El host recibe la intención del usuario y mantiene separada cada conexión con un servidor.",
+          "server/discover y tools/list permiten conocer servidores y herramientas disponibles.",
+          "El modelo propone una llamada; el host aplica permisos y solicita aprobación cuando corresponde.",
+          "tools/call ejecuta la capacidad y el resultado vuelve con un registro de la operación."
+        ],
+        "fuentes": [
+          {
+            "label": "Model Context Protocol · Architecture (2026-07-28)",
+            "url": "https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture"
+          }
+        ],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A layered AI tool-use architecture with user, host, model, one client-per-server connections, a discovery phase, approval gate, tool execution into an API/database/file and a return trace; include separate local and remote transport motifs.",
+        "version_revision": "1.0",
+        "svg_height": 1300,
+        "estructura": {
+          "layout": "flow",
+          "columns": 5,
+          "cards": [
+            {
+              "title": "Usuario",
+              "body": [
+                "Formula una tarea y conserva la decisión final."
+              ],
+              "accent": "blue",
+              "tag": "intención",
+              "step": 1
+            },
+            {
+              "title": "Host",
+              "body": [
+                "Coordina interfaz, modelo, permisos y clientes."
+              ],
+              "accent": "blue",
+              "tag": "aplicación",
+              "step": 2
+            },
+            {
+              "title": "Modelo",
+              "body": [
+                "Interpreta el contexto y propone una capacidad."
+              ],
+              "accent": "blue",
+              "tag": "razonamiento",
+              "step": 3
+            },
+            {
+              "title": "Cliente MCP",
+              "body": [
+                "Una conexión aislada por servidor."
+              ],
+              "accent": "blue",
+              "tag": "sesión",
+              "step": 4
+            },
+            {
+              "title": "Descubrimiento",
+              "body": [
+                "server/discover → tools/list"
+              ],
+              "accent": "blue",
+              "tag": "qué existe",
+              "step": 5,
+              "code": [
+                "server/discover",
+                "tools/list"
+              ]
+            },
+            {
+              "title": "Capacidades",
+              "body": [
+                "tools ejecutan; resources aportan datos; prompts ofrecen plantillas."
+              ],
+              "accent": "blue",
+              "tag": "capa de datos",
+              "step": 6
+            },
+            {
+              "title": "Aprobación",
+              "body": [
+                "El host revisa permisos, argumentos e impacto."
+              ],
+              "accent": "blue",
+              "tag": "control humano",
+              "step": 7
+            },
+            {
+              "title": "Ejecución",
+              "body": [
+                "tools/call llega al servidor y luego a API, base o archivo."
+              ],
+              "accent": "blue",
+              "tag": "operación",
+              "step": 8,
+              "code": [
+                "tools/call"
+              ]
+            },
+            {
+              "title": "Transporte",
+              "body": [
+                "stdio para proceso local; Streamable HTTP para conexión remota."
+              ],
+              "accent": "blue",
+              "tag": "mensajes",
+              "step": 9
+            },
+            {
+              "title": "Resultado y registro",
+              "body": [
+                "Contenido, error, tiempo, servidor y decisión quedan trazables."
+              ],
+              "accent": "blue",
+              "tag": "retorno",
+              "step": 10
+            }
+          ]
+        }
+      }
     ]
   }
 }

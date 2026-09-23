@@ -1,0 +1,16 @@
+flowchart LR
+    U["Usuario"] --> H["Aplicación de IA<br/>MCP Host"]
+    H --> C1["MCP Client A"]
+    H --> C2["MCP Client B"]
+    C1 <--> S1["MCP Server<br/>datos"]
+    C2 <--> S2["MCP Server<br/>herramientas"]
+    S1 --> DB[("Base de datos")]
+    S2 --> API["API externa"]
+    API --> SNAP["Snapshot<br/>fecha · parámetros<br/>respuesta"]
+    G["Permisos<br/>y registro"] -.-> H
+    G -.-> S1
+    G -.-> S2
+    classDef accent fill:#FFFF33,color:#151616,stroke:#1F497D,stroke-width:2px;
+    classDef dark fill:#1F497D,color:#FFFFFF,stroke:#1F497D,stroke-width:2px;
+    class H,SNAP accent;
+    class G dark;
