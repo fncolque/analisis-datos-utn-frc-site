@@ -12,10 +12,10 @@ export async function startLive(mode) {
   let code = (query.get('sala') || '').toUpperCase(), credential = '', secret = '';
   let state, socket, heartbeat, reconnect, timer, answerRetry, stopped = false, connected = false;
   let busy = false, pendingAnswer = null, pendingCommand = null, createId = crypto.randomUUID();
-  let questionView = '', rosterView = '', participantsView = '', rankingView = '', offset = 0, retry = 0;
+  let questionView = '', rosterView = '', participantsView = '', rankingView = '', summaryView = '', offset = 0, retry = 0;
   const status = text => { $('live-status').textContent = text; $('live-status').hidden = !text; };
   $('join-form').hidden = role !== 'player';
-  $('host-form').hidden = role !== 'host';
+  $('host-form').hidden = true;
   $('live-room').hidden = true;
   $('room-code').value = code;
   $('host-room-code').value = code;
@@ -34,6 +34,16 @@ export async function startLive(mode) {
     api = (await response.json()).liveApiUrl;
     if (!api) throw new Error('El juego en vivo todavía no está habilitado. Podés utilizar la autoevaluación.');
     api = api.replace(/\/$/, '');
+    if (role === 'host') {
+      const catalog = await fetch('../data/repaso.json', { cache: 'no-store', signal: abort.signal });
+      if (!catalog.ok) throw new Error('No se pudo cargar el catálogo de cuestionarios. Recargá para intentar nuevamente.');
+      const presets = (await catalog.json()).presets;
+      $('host-preset').replaceChildren(...presets.map(p => {
+        const option = element('option', `${p.title} · Versión ${p.version} · ${p.questionCount} preguntas`);
+        option.value = p.id; return option;
+      }));
+      $('host-form').hidden = false;
+    }
   } catch (error) {
     status(error.message); $('join-form').hidden = true; $('host-form').hidden = true; return stop;
   }
@@ -79,6 +89,10 @@ export async function startLive(mode) {
     $('live-participants').textContent = `${state.participantCount} / ${state.capacity} participantes`;
     $('connection-state').textContent = connected ? 'Conectado' : 'Reconectando…';
     $('live-title').textContent = state.title;
+    const questionnaire = state.questionnaire;
+    $('live-questionnaire').textContent = questionnaire.version == null
+      ? `Revisión del banco ${questionnaire.bankVersion} · ${state.total} preguntas`
+      : `${questionnaire.id} · Versión ${questionnaire.version} · ${state.total} preguntas`;
     $('host-controls').hidden = role !== 'host';
     $('host-participants').hidden = role !== 'host';
     $('host-finish').hidden = state.phase === 'finished';
@@ -108,7 +122,7 @@ export async function startLive(mode) {
         if (changedQuestion) title.focus();
       }
       $('live-progress').textContent = `Pregunta ${state.index + 1} de ${state.total}`;
-      $('live-phase').textContent = state.phase === 'reading' ? 'Leé el enunciado · sin reloj' : state.phase === 'answering' ? `${state.answeredCount} respuestas recibidas` : 'Tiempo cerrado';
+      $('live-phase').textContent = state.phase === 'reading' ? 'Leé el enunciado · sin reloj' : state.phase === 'answering' ? `${state.answeredCount} de ${state.participantCount} respuestas recibidas` : state.closeReason === 'all_answered' ? 'Todos respondieron' : 'Tiempo agotado';
       $('answer-status').textContent = role !== 'player' ? '' : answer ? (state.phase === 'feedback' ? `${answer.correct ? 'Acierto' : 'Respuesta incorrecta'} · ${answer.points} puntos` : 'Respuesta recibida y guardada.') : pendingAnswer?.questionId === q.id ? 'Verificando la recepción de tu respuesta…' : state.phase === 'feedback' ? 'No quedó registrada una respuesta para esta pregunta.' : '';
       $('live-feedback').hidden = !q.explanation;
       if (q.explanation) renderExplanation($('live-feedback'), q, answer?.correct);
@@ -128,6 +142,12 @@ export async function startLive(mode) {
         item.append(element('b', `${row.position}.`), renderCharacter(row.character), element('span', `${row.score.toLocaleString('es-AR')} puntos · ${row.correct} aciertos`)); return item;
       }));
     }
+    $('session-summary').hidden = state.phase !== 'finished';
+    const nextSummary = JSON.stringify(state.summary || []);
+    if (nextSummary !== summaryView) {
+      summaryView = nextSummary;
+      renderSummary(state.summary || []);
+    }
     const nextParticipants = JSON.stringify([state.participants, state.phase === 'finished', busy, connected]);
     if (role === 'host' && nextParticipants !== participantsView) {
       participantsView = nextParticipants;
@@ -142,6 +162,35 @@ export async function startLive(mode) {
       }));
     }
     tick();
+  }
+
+  function renderSummary(questions) {
+    const percent = value => `${(value * 100).toLocaleString('es-AR', { maximumFractionDigits: 1 })} %`;
+    const distributionRow = (label, count, proportion, correct = false) => {
+      const row = element('div', null, `summary-option${correct ? ' correct-option' : ''}`);
+      row.append(element('span', label), element('b', `${count} · ${percent(proportion)}`));
+      const bar = element('meter'); bar.min = 0; bar.max = 1; bar.value = proportion;
+      bar.setAttribute('aria-label', `${label}: ${count} respuestas, ${percent(proportion)} del grupo`);
+      row.append(bar); return row;
+    };
+    $('session-question-list').replaceChildren(...questions.map(q => {
+      const details = element('details', null, 'summary-question');
+      const heading = element('summary');
+      heading.append(element('span', `Pregunta ${q.order}`, 'overline'), element('span', q.prompt, 'summary-prompt'),
+        element('span', `${q.incorrect} incorrectas · ${q.correct} aciertos · ${q.unanswered} sin respuesta`, 'summary-counts'));
+      const body = element('div', null, 'summary-body');
+      body.append(element('p', `Tasa de acierto: ${q.successRate == null ? 'Sin respuestas' : percent(q.successRate)} · Participación: ${percent(q.participationRate)}`, 'summary-rates'),
+        element('p', `Porcentajes de opciones sobre ${q.total} participantes. La tasa de acierto considera las ${q.answered} respuestas recibidas.`, 'summary-caption'));
+      for (const [index, option] of q.distribution.entries()) {
+        const correct = option.id === q.correctOptionId;
+        body.append(distributionRow(`${'ABCD'[index]}. ${option.text}${correct ? ' · Correcta' : ''}`, option.count, option.proportion, correct));
+      }
+      body.append(distributionRow('Sin respuesta', q.unanswered, q.total ? q.unanswered / q.total : 0));
+      const explanation = element('div', null, 'feedback-panel');
+      renderExplanation(explanation, q); body.append(explanation);
+      details.append(heading, body); return details;
+    }));
+    $('summary-empty').hidden = questions.length > 0;
   }
   function tick() {
     const seconds = state?.phase === 'answering' ? Math.max(0, Math.ceil((state.closesAt - Date.now() - offset) / 1000)) : null;
@@ -225,7 +274,8 @@ export async function startLive(mode) {
   for (const button of document.querySelectorAll('[data-export]')) listen(button, 'click', async () => {
     button.disabled = true;
     try {
-      const response = await request(`/rooms/${code}/results.csv?scope=${button.dataset.export}`);
+      const endpoint = button.dataset.export === 'answers' ? 'answers.csv' : `results.csv?scope=${button.dataset.export}`;
+      const response = await request(`/rooms/${code}/${endpoint}`);
       const url = URL.createObjectURL(await response.blob()); const a = element('a');
       a.href = url; a.download = `repaso-${code}-${button.dataset.export}.csv`; a.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (error) { status(error.message); } finally { button.disabled = false; }
@@ -248,13 +298,16 @@ export async function startLive(mode) {
     secret = $('host-secret').value; code = $('host-room-code').value.trim().toUpperCase();
     try {
       if (!code) {
-        const room = await (await request('/rooms', { requestId: createId, presetId: 'repaso-inicial' })).json();
+        const room = await (await request('/rooms', { requestId: createId, presetId: $('host-preset').value })).json();
         code = room.code; $('host-room-code').value = code;
       }
       await enter(); $('host-secret').value = '';
     } catch (error) { status(error.message); }
     finally { busy = false; render(); }
   });
+  listen($('host-preset'), 'change', () => { createId = crypto.randomUUID(); });
+  listen($('host-room-code'), 'input', () => { $('host-preset').disabled = !!$('host-room-code').value.trim(); });
+  $('host-preset').disabled = !!code;
   timer = setInterval(tick, 200);
   if (code && role !== 'host') {
     if (role === 'player') restore();
