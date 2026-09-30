@@ -1,0 +1,8 @@
+flowchart LR
+    A["API<br/>o archivo"] --> B["Snapshot<br/>versionado"]
+    B --> C["RAW:<br/>respuesta + metadatos"]
+    C --> D["STAGING:<br/>tipos + estructura"]
+    D --> E["MART:<br/>grano + reglas<br/>de negocio"]
+    E --> F["Control:<br/>filas + claves<br/>métricas"]
+    F --> G["Decisión"]
+    F -. "diferencia" .-> D

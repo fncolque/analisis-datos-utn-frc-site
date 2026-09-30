@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Formatos, contratos y ETL/ELT. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Formatos, contratos y ETL/ELT · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 4 · CAPÍTULO 2</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 4 · CAPÍTULO 2</span></div>
+        <h1 id="reading-title">Formatos, contratos y ETL/ELT</h1>
+        <p class="hero-lede">Los datos externos llegan en formatos y estructuras que pueden cambiar entre ejecuciones. El capítulo explica cómo conservar una captura versionada, declarar un contrato de fuente y transformar la información por capas para que cada cambio de estructura o significado pueda repetirse y controlarse.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Cómo convertimos una respuesta externa en un dato reproducible y utilizable?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_C_v1.0_estudiantes.zip" download>Descargar Paquete C <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u04-etl-elt-contratos">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u04-etl-elt-contratos">De una fuente externa a un mart controlado</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u04-etl-capasm.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u04-etl-capasm.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u04-etl-capasm.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u04-etl-capasm.svg?v=20260825b" alt="Pipeline desde una API o archivo hasta snapshot, raw, staging, mart, control y decisión." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>Cada capa cambia estructura o significado y deja un conteo que permite reconciliar el resultado.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#elegir-un-formato-tambien-define-controles">Elegir un formato también define controles</a><a href="#como-leer-la-anatomia-de-un-json">Cómo leer la anatomía de un JSON</a><a href="#del-servicio-vivo-a-un-snapshot-reproducible">Del servicio vivo a un snapshot reproducible</a><a href="#el-contrato-de-fuente-vuelve-explicitas-las-expectativas">El contrato de fuente vuelve explícitas las expectativas</a><a href="#etl-y-elt-ubican-la-transformacion-en-momentos-diferentes">ETL y ELT ubican la transformación en momentos diferentes</a><a href="#las-capas-separan-responsabilidades">Las capas separan responsabilidades</a><a href="#cada-transformacion-modifica-estructura-o-significado">Cada transformación modifica estructura o significado</a><a href="#idempotencia-y-reejecucion-segura">Idempotencia y reejecución segura</a><a href="#detectar-un-esquema-cambiante">Detectar un esquema cambiante</a><a href="#normalizar-el-tracking-de-faro-sur">Normalizar el tracking de Faro Sur</a><a href="#los-archivos-recurrentes-forman-un-pipeline-por-lote">Los archivos recurrentes forman un pipeline por lote</a><a href="#controles-que-acompanan-la-publicacion">Controles que acompañan la publicación</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#referencias">Referencias</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="elegir-un-formato-tambien-define-controles">Elegir un formato también define controles</h2>
+<p>Un formato establece cómo se representan los datos cuando salen de un sistema, se guardan en un archivo o cruzan una interfaz. La elección influye en los tipos que pueden conservarse, en el espacio ocupado y en la facilidad con la que otra herramienta puede leer el contenido. Dos archivos pueden describir los mismos pedidos y, aun así, exigir controles distintos porque uno expresa su estructura de manera explícita y el otro depende de convenciones externas.</p>
+<p>CSV representa una tabla como líneas separadas por un delimitador. Resulta fácil de abrir y transferir, pero el archivo suele decir poco acerca de los tipos, las claves o el significado de cada columna. Un separador decimal, una coma dentro de un texto o una codificación diferente pueden desplazar valores sin que el problema sea evidente a simple vista. Por eso conviene acompañarlo con un diccionario y comprobar nombres, cantidad de columnas, tipos y conteos al recibirlo.</p>
+<p>JSON organiza la información mediante objetos, pares clave-valor y listas. Es habitual en APIs porque puede expresar estructuras jerárquicas, como un despacho que contiene varios eventos. Esa flexibilidad permite transportar respuestas complejas, aunque el análisis tabular requiere decidir qué lista se convertirá en filas y qué datos del nivel superior se repetirán en cada una.</p>
+<p>Parquet almacena datos por columnas, conserva tipos y aplica compresión. Suele reducir el volumen leído cuando una consulta necesita pocas columnas de un conjunto grande. A cambio, requiere una herramienta para inspeccionarlo y resulta menos cómodo para una revisión manual rápida. La siguiente comparación resume diferencias operativas; la calidad final dependerá del contrato y de los controles aplicados al contenido.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Formato</th>
+<th>Estructura habitual</th>
+<th>Ventaja práctica</th>
+<th>Control que merece atención</th>
+</tr></thead><tbody>
+<tr><td>CSV</td><td>tabla plana</td><td>intercambio simple entre herramientas</td><td>delimitador, codificación, comillas y tipos</td></tr>
+<tr><td>JSON</td><td>objetos y listas anidadas</td><td>representa respuestas jerárquicas</td><td>nivel de registro, campos opcionales y arrays</td></tr>
+<tr><td>Parquet</td><td>columnas tipadas y comprimidas</td><td>lectura analítica eficiente</td><td>compatibilidad de esquema y particiones</td></tr>
+</tbody></table></div>
+<h2 id="como-leer-la-anatomia-de-un-json">Cómo leer la anatomía de un JSON</h2>
+<p>Consideremos una respuesta de tracking simplificada:</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u04-cambios-contrato-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u04-cambios-contrato-title">Qué ocurre cuando cambia el contrato de una fuente</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué cambios pueden aceptarse y cuáles deben detener la publicación?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u04-json-flatten.webp')">
+        <div class="atlas-board atlas-tree"><div class="atlas-tree-level" data-level="1" style="--atlas-cols:1"><article class="atlas-card is-blue is-row-end" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">comparar</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Contrato de entrada</h5>
+      <div class="atlas-card-copy"><p>hash · versión · campos obligatorios · tipos · grano</p></div>
+
+    </article></div><div class="atlas-tree-level" data-level="2" style="--atlas-cols:4"><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Campo opcional nuevo</h5>
+      <div class="atlas-card-copy"><p>El núcleo requerido permanece.</p></div>
+
+    </article><article class="atlas-card is-danger" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Clave ausente</h5>
+      <div class="atlas-card-copy"><p>No puede identificar o relacionar.</p></div>
+
+    </article><article class="atlas-card is-danger" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Tipo incompatible</h5>
+      <div class="atlas-card-copy"><p>Texto donde se esperaba número.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Archivo repetido</h5>
+      <div class="atlas-card-copy"><p>El hash ya fue procesado.</p></div>
+
+    </article></div><div class="atlas-tree-level" data-level="3" style="--atlas-cols:4"><article class="atlas-card is-success">
+      <div class="atlas-card-top"></div>
+      <h5>Aceptar</h5>
+      <div class="atlas-card-copy"><p>Registrar versión y continuar.</p></div>
+      <div class="atlas-stats"><span>compatible</span></div>
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"></div>
+      <h5>Detener</h5>
+      <div class="atlas-card-copy"><p>Bloquear publicación y pedir corrección.</p></div>
+      <div class="atlas-stats"><span>contrato roto</span></div>
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"></div>
+      <h5>Cuarentena</h5>
+      <div class="atlas-card-copy"><p>Aislar archivo y conservar evidencia.</p></div>
+      <div class="atlas-stats"><span>investigar</span></div>
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Advertir</h5>
+      <div class="atlas-card-copy"><p>Omitir reejecución y registrar intento.</p></div>
+      <div class="atlas-stats"><span>idempotente</span></div>
+    </article></div></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u04-cambios-contrato.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El contrato convierte un cambio de archivo en una decisión observable. Cada clase de cambio tiene un tratamiento, una evidencia y una condición para volver al flujo.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La entrada se identifica con hash y versión; el contrato declara campos, tipos y grano.</p></li><li><span>02</span><p>Un campo opcional nuevo puede aceptarse si los consumidores toleran la extensión.</p></li><li><span>03</span><p>Una clave ausente o un tipo incompatible impiden sostener relaciones o cálculos.</p></li><li><span>04</span><p>Un hash repetido activa idempotencia: se registra el intento y se evita procesar dos veces.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<pre><code class="language-json">{
+  &quot;extracted_at&quot;: &quot;2026-09-23T22:00:00Z&quot;,
+  &quot;shipments&quot;: [
+    {
+      &quot;shipment_id&quot;: &quot;S000001&quot;,
+      &quot;status&quot;: &quot;delivered&quot;,
+      &quot;events&quot;: [
+        {&quot;type&quot;: &quot;dispatched&quot;, &quot;timestamp&quot;: &quot;2026-09-20T12:00:00Z&quot;}
+      ]
+    }
+  ]
+}</code></pre>
+<p>Las llaves delimitan objetos y los corchetes delimitan listas. En el nivel raíz aparecen extracted_at y shipments. El primero describe la extracción completa; el segundo contiene una lista que puede repetirse una vez por despacho. Dentro de cada despacho hay otra lista, events, con cero, uno o varios acontecimientos. Si queremos analizar el tiempo entre eventos, el grano útil será una fila por evento y shipment_id deberá repetirse para conservar el vínculo con su despacho.</p>
+<p>Antes de normalizar conviene responder preguntas concretas: qué elemento identifica a cada despacho, qué zona horaria usan los timestamps, si el estado del nivel superior coincide con el último evento y qué significa que una clave falte. Una ausencia puede representar “todavía no ocurrió”, “el proveedor no lo informa” o “la captura falló”. Esas interpretaciones producen tratamientos diferentes y deben quedar en el contrato.</p>
+<h2 id="del-servicio-vivo-a-un-snapshot-reproducible">Del servicio vivo a un snapshot reproducible</h2>
+<p>Una API puede cambiar entre dos ejecuciones. También puede responder con demora, aplicar límites de consumo o quedar temporalmente inaccesible. Guardar una copia de la respuesta permite trabajar sobre una entrada estable y reconstruir qué información estaba disponible cuando se calculó un resultado. Esa copia se denomina snapshot.</p>
+<p>El snapshot incluye el cuerpo recibido y metadatos suficientes para repetir o auditar la extracción. En el caso de tracking registraríamos la URL, los parámetros, la fecha y hora, el código HTTP, el conteo de despachos, una huella digital del archivo y la versión del proceso que lo interpretó. Si la respuesta llega paginada, también conservamos la cantidad de páginas y el criterio usado para recorrerlas.</p>
+<p>Esta práctica separa dos problemas. Primero verificamos si la captura externa funcionó. Después evaluamos si la transformación aplicada a la copia produce la tabla esperada. Cuando un proveedor cambia una respuesta, podemos comparar snapshots y localizar la diferencia sin depender de que el servicio conserve su estado anterior.</p>
+<h2 id="el-contrato-de-fuente-vuelve-explicitas-las-expectativas">El contrato de fuente vuelve explícitas las expectativas</h2>
+<p>Un contrato de fuente documenta qué promete el productor y qué necesita el consumidor. Puede comenzar como un archivo versionado dentro del proyecto. Lo importante es que permita distinguir un cambio aceptable de una ruptura que exige intervención.</p>
+<p>Para la fuente de tracking, el contrato debería declarar el grano, las claves, los campos obligatorios, los tipos y unidades, la frecuencia esperada, la latencia tolerable, el responsable y las restricciones de acceso. También debe indicar cómo se comunican los cambios. Por ejemplo, agregar un campo opcional puede ser compatible; omitir shipment_id impide identificar los registros y requiere detener la publicación.</p>
+<p>El contrato orienta tanto el código como la conversación entre áreas. Si el pipeline rechaza una respuesta por un tipo inesperado, el equipo puede mostrar qué condición se incumplió y quién debe resolverla. Sin esa referencia, una corrección rápida corre el riesgo de convertir una excepción en una regla silenciosa.</p>
+<h2 id="etl-y-elt-ubican-la-transformacion-en-momentos-diferentes">ETL y ELT ubican la transformación en momentos diferentes</h2>
+<p>ETL ordena el proceso como extracción, transformación y carga. Los datos se limpian o adaptan antes de ingresar al repositorio de consumo. Puede ser adecuado cuando el destino tiene capacidad limitada, cuando ciertos campos sensibles no deben almacenarse allí o cuando existe una transformación estable en el sistema de integración. El diseño necesita conservar una copia autorizada de la entrada si se prevé reprocesar con reglas nuevas.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u04-etl-elt-herramientas-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u04-etl-elt-herramientas-title">ETL y ELT sobre una misma fuente de Faro Sur</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Dónde ocurre la transformación y qué conserva cada recorrido antes de publicar el mart?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u04-etl-vs-elt.webp')">
+        <div class="atlas-board atlas-lanes"><section class="atlas-lane">
+              <header><span>ETL</span><h4>Extraer → transformar → cargar</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:5"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Fuente</h5>
+      <div class="atlas-card-copy"><p>Cloud Storage</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Transformar</h5>
+      <div class="atlas-card-copy"><p>Dataflow limpia y controla</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Cargar</h5>
+      <div class="atlas-card-copy"><p>BigQuery curado</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Consumir</h5>
+      <div class="atlas-card-copy"><p>Power BI</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Ejemplo cercano</h5>
+      <div class="atlas-card-copy"><p>Power Query en Excel o Power BI</p></div>
+
+    </article></div>
+            </section><section class="atlas-lane">
+              <header><span>ELT</span><h4>Extraer → cargar → transformar</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:5"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Fuente</h5>
+      <div class="atlas-card-copy"><p>Cloud Storage o Pub/Sub</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Cargar raw</h5>
+      <div class="atlas-card-copy"><p>BigQuery conserva el original</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Transformar</h5>
+      <div class="atlas-card-copy"><p>Dataform ejecuta SQL y pruebas</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Publicar</h5>
+      <div class="atlas-card-copy"><p>marts en BigQuery</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Consumir</h5>
+      <div class="atlas-card-copy"><p>Power BI</p></div>
+
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u04-etl-elt-herramientas.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>ETL transforma antes de cargar el conjunto analítico. ELT conserva primero una copia raw en el warehouse y transforma allí. Ambos necesitan contratos, controles y una salida curada.</p>
+        <div class="atlas-controls" aria-label="Pasos de lectura"><button type="button" data-atlas-control="1" aria-pressed="false"><span>01</span>En ETL, Dataflow limpia y controla antes de cargar la tabla curada en BigQuery.</button><button type="button" data-atlas-control="2" aria-pressed="false"><span>02</span>En ELT, BigQuery recibe raw y Dataform ejecuta transformaciones y pruebas dentro del warehouse.</button><button type="button" data-atlas-control="3" aria-pressed="false"><span>03</span>Power Query ofrece una experiencia ETL accesible en Excel y Power BI; Dataflow Gen2 traslada esa experiencia a un servicio cloud de Microsoft.</button><button type="button" data-atlas-control="4" aria-pressed="false"><span>04</span>La elección considera volumen, reejecución, gobierno, costo y herramientas del equipo.</button></div>
+        <small>Fuentes técnicas: <a href="https://docs.cloud.google.com/dataflow/docs/overview" target="_blank" rel="noopener noreferrer">Google Cloud · Dataflow overview</a>, <a href="https://docs.cloud.google.com/dataform/docs/overview" target="_blank" rel="noopener noreferrer">Google Cloud · Dataform overview</a>, <a href="https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query" target="_blank" rel="noopener noreferrer">Microsoft Learn · ¿Qué es Power Query?</a>.</small>
+      </figcaption>
+    </figure>
+
+<figure class="sourced-visual sourced-visual-inline sourced-visual-generated">
+      <img src="../assets/images/generated/u04-etl-elt-contemporary.webp" alt="Comparación visual en dos carriles: ETL transforma antes de cargar el almacén analítico, mientras ELT carga primero los datos raw y transforma dentro del almacén." width="1536" height="1024" loading="lazy" decoding="async">
+      <div class="generated-visual-labels" aria-label="Secuencias en español"><section><h4>ETL</h4><ol><li>Fuente</li><li>Extraer</li><li>Transformar y controlar</li><li>Cargar curado</li><li>Consumir</li></ol></section><section><h4>ELT</h4><ol><li>Fuente</li><li>Extraer y cargar raw</li><li>Transformar en el warehouse</li><li>Publicar mart</li><li>Consumir</li></ol></section></div>
+      <figcaption>
+        <span>Los dos recorridos parten de la misma fuente y terminan en datos listos para análisis. ETL transforma antes de cargar el destino analítico; ELT conserva primero una copia raw y transforma dentro del warehouse.</span>
+        <small>Ilustración generada con ChatGPT · OpenAI Images.</small>
+      </figcaption>
+    </figure>
+
+<p>ELT ordena extracción, carga y transformación. Primero preserva una versión cercana a la fuente y luego utiliza la capacidad del repositorio para construir tablas derivadas. Esta secuencia facilita volver a procesar datos históricos y crear nuevos productos sin solicitar otra extracción. También exige permisos, retención y controles claros, porque la zona inicial puede contener campos sucios o sensibles.</p>
+<p>La elección depende del contexto. Un archivo con datos personales puede requerir eliminar columnas antes de llegar a un entorno compartido. Una respuesta operacional sin esos campos puede cargarse en una zona restringida y transformarse allí varias veces. En ambos casos deben conocerse la entrada, la regla, la salida y la evidencia que permite reconciliarlas.</p>
+<h2 id="las-capas-separan-responsabilidades">Las capas separan responsabilidades</h2>
+<p>La capa raw conserva una copia cercana a la fuente y agrega metadatos de ingesta. Cada release permanece identificable y una corrección posterior genera una nueva versión. Esta decisión permite regresar al dato recibido y evita que una modificación silenciosa borre la causa de un problema.</p>
+<p>Staging convierte la estructura recibida en una forma estable para trabajar. Allí se normalizan nombres y tipos, se expanden listas, se tratan duplicados técnicos y se crean indicadores de calidad. Una fila en staging debe poder rastrearse al snapshot del que provino.</p>
+<p>El mart organiza los datos para una decisión o familia de análisis. Declara un grano, aplica reglas de negocio y ofrece métricas consistentes a SQL, Python o Power BI. Una tabla de eventos y un mart de desempeño de entregas pueden provenir del mismo snapshot, pero responden preguntas distintas y por eso tienen granos diferentes.</p>
+<h2 id="cada-transformacion-modifica-estructura-o-significado">Cada transformación modifica estructura o significado</h2>
+<p>Las transformaciones técnicas corrigen codificación, tipos o nombres. Las estructurales convierten listas en filas, pivotan columnas o integran tablas. Las reglas de negocio derivan estados como OTIF, margen o banda de demora. Los tratamientos de calidad excluyen, marcan o corrigen observaciones según una política. Las transformaciones de seguridad reducen el acceso mediante anonimización, seudonimización o eliminación de campos.</p>
+<p>Para revisar una transformación conviene registrar cinco datos: entrada, salida, regla, cambio de conteo y riesgo introducido. Supongamos que events se expande. El número de filas crecerá porque un despacho puede contener varios eventos; esa diferencia es esperada. Si luego elegimos el último evento por despacho, el conteo deberá volver a una fila por shipment_id. Los controles muestran por qué cambió el grano en cada paso.</p>
+<h2 id="idempotencia-y-reejecucion-segura">Idempotencia y reejecución segura</h2>
+<p>Un proceso idempotente produce el mismo resultado cuando se ejecuta otra vez con la misma entrada y la misma versión de reglas. Esta propiedad evita que una recuperación después de un fallo duplique pedidos, eventos o importes. En un pipeline por lotes puede lograrse reemplazando la partición del período, identificando cada ingesta, deduplicando por clave y versión, o verificando la huella digital de los archivos ya procesados.</p>
+<p>La estrategia debe verse en la evidencia. Si el archivo movimientos_2026_09.csv se recibe dos veces, el registro de ejecución puede reconocer el mismo hash y evitar una segunda carga. Si el contenido cambia con el mismo nombre, la nueva huella revela que existe otra versión y obliga a decidir cuál conservar.</p>
+<h2 id="detectar-un-esquema-cambiante">Detectar un esquema cambiante</h2>
+<p>Una fuente puede agregar campos, modificar un tipo, omitir una clave o cambiar su paginación. El pipeline compara la respuesta con el contrato y clasifica el cambio. Un campo opcional nuevo puede registrarse y continuar; una clave obligatoria ausente debe detener la tabla afectada o generar una alerta antes de publicar.</p>
+<p>La detección temprana evita que un cambio se propague hasta el reporte. Si timestamp comienza a llegar sin zona horaria, convertirlo de manera automática podría desplazar eventos y alterar la demora calculada. El control debería preservar el valor recibido, marcar la incompatibilidad y solicitar una definición antes de transformar.</p>
+<h2 id="normalizar-el-tracking-de-faro-sur">Normalizar el tracking de Faro Sur</h2>
+<p>El snapshot de Faro Sur contiene despachos y eventos anidados. La primera tabla conserva una fila por despacho; la segunda expande events a una fila por acontecimiento y repite shipment_id como clave de vínculo. A partir de esa historia puede derivarse el último estado, el tiempo transcurrido entre despacho y entrega y la presencia de secuencias incompletas.</p>
+<p>Una diferencia por transportista puede orientar una investigación operacional, aunque el registro por sí solo no identifica la causa. Distancia, disponibilidad, promesas comerciales y prácticas de captura pueden explicar parte del patrón. El análisis debe presentar la asociación observada y señalar qué información adicional permitiría evaluar una explicación.</p>
+<h2 id="los-archivos-recurrentes-forman-un-pipeline-por-lote">Los archivos recurrentes forman un pipeline por lote</h2>
+<p>El caso complementario recibe cinco archivos de movimientos. Cuatro cumplen el esquema esperado y aportan 32 filas; el quinto carece de movimiento_id y queda registrado como archivo rechazado. Power Query combina los archivos válidos, conserva el nombre de origen, asigna tipos y ejecuta las mismas reglas sobre cada lote.</p>
+<p>La secuencia comienza al conservar el adjunto y su fecha de recepción. Luego verifica nombres de columnas y tipos, anexa los archivos compatibles, deduplica por movimiento_id y versión, separa la tabla curada del registro de rechazos y reconcilia archivos, filas e importe antes de publicar. Cada estudiante o equipo puede reproducir el recorrido y explicar en qué punto se decide el destino de una observación.</p>
+<p>Actualizar vuelve a ejecutar la consulta sobre la carpeta. El resultado puede consumirse en Excel o Power BI y sigue siendo observable cuando aparece un archivo, cambia el esquema o una fila incumple una regla. La automatización futura deberá conservar la misma evidencia aun cuando la recepción deje de ser manual.</p>
+<h2 id="controles-que-acompanan-la-publicacion">Controles que acompañan la publicación</h2>
+<p>Los controles se eligen según el grano de cada etapa. En el JSON original contamos elementos de shipments y events. En staging verificamos claves nulas, timestamps válidos y la relación entre eventos y despachos. En el mart comprobamos que exista un único último evento por envío y reconciliamos los totales con la tabla shipments.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Etapa</th>
+<th>Control</th>
+<th>Qué permite detectar</th>
+</tr></thead><tbody>
+<tr><td>snapshot</td><td>código HTTP, hash y conteo</td><td>respuesta incompleta o repetida</td></tr>
+<tr><td>staging de eventos</td><td>claves, timestamps y referencias</td><td>registros imposibles de vincular</td></tr>
+<tr><td>último estado</td><td>una fila por shipment_id</td><td>empate o regla de orden ambigua</td></tr>
+<tr><td>mart</td><td>conteos y métricas contra fuente</td><td>pérdida o duplicación durante el proceso</td></tr>
+</tbody></table></div>
+<p>Un control aporta valor cuando tiene umbral, responsable y acción. El conteo puede detener una publicación, producir una advertencia o documentar una diferencia esperada. Esa respuesta debe decidirse antes de que aparezca el incidente.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Qué información se pierde si se conserva únicamente el mart?</li><li>¿Qué metadatos permiten repetir una extracción?</li><li>¿En qué situación transformar antes de cargar reduce un riesgo?</li><li>¿Qué grano tiene la tabla de eventos?</li><li>¿Cómo distinguir un cambio compatible de una ruptura de contrato?</li><li>¿Qué control demostraría que una reejecución no duplicó datos?</li><li>¿Cómo rastrear una fila consolidada hasta el archivo recibido?</li></ol>
+<h2 id="referencias">Referencias</h2>
+<ul class="theory-list"><li><a href="https://duckdb.org/docs/stable/data/json/overview.html" target="_blank" rel="noopener noreferrer">DuckDB: trabajo con JSON</a></li><li><a href="https://www.json.org/json-es.html" target="_blank" rel="noopener noreferrer">JSON.org: introducción al formato</a></li><li>Contrato de fuente de la materia.</li></ul>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo cambia el seguimiento de entregas entre capas</h2></div>
+      <div class="applied-prose"><p>El archivo raw conserva la respuesta, el momento de extracción y las claves originales. Staging produce una fila por evento con timestamps tipados. El mart selecciona el último evento por despacho y expone campos orientados a cumplimiento.</p><p>La cantidad de eventos supera la cantidad de despachos porque el grano cambió. El control registra ambas cifras, despachos únicos, claves nulas y correspondencia con la tabla de envíos. Una reejecución sobre el mismo snapshot debe producir los mismos resultados.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">4.2</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Normalizar el seguimiento de entregas de Faro Sur</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>El Paquete C conserva un snapshot JSON con despachos y eventos anidados. El notebook identifica el grano, normaliza eventos, crea staging tipado y deriva un mart de estado de entrega. Los conteos explican cada cambio de población.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_C_v1.0_estudiantes.zip" download>Descargar Paquete C <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u04-etl-elt-contratos">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u04-etl-elt-contratos">Formatos, contratos y pipelines reproducibles</h2></div>
+        <p>La selección permite revisar formatos semiestructurados, lectura de JSON, acceso desde DuckDB y principios de diseño para pipelines por capas.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Documentación</span><small>Inglés</small></div>
+          <h3><a href="https://duckdb.org/docs/stable/data/json/overview.html" target="_blank" rel="noopener noreferrer">Working with JSON</a></h3>
+          <p>Explica lectura, tipos y transformación de JSON con el motor utilizado en los notebooks.</p>
+          <footer><span>DuckDB</span><small>Consulta técnica · 20 min</small><a href="https://duckdb.org/docs/stable/data/json/overview.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir Working with JSON">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Guía web</span><small>Inglés · traducciones disponibles</small></div>
+          <h3><a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer">Introducing JSON</a></h3>
+          <p>Referencia compacta de objetos, arrays, pares clave-valor y tipos básicos.</p>
+          <footer><span>JSON.org</span><small>Lectura breve · 10 min</small><a href="https://www.json.org/json-en.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir Introducing JSON">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Libro abierto</span><small>Inglés</small></div>
+          <h3><a href="https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/" target="_blank" rel="noopener noreferrer">Fundamentals of Data Engineering</a></h3>
+          <p>Ubica generación, ingestión, almacenamiento, transformación y servicio dentro del ciclo de vida de datos.</p>
+          <footer><span>Joe Reis y Matt Housley · material complementario</span><small>Vista previa y consulta</small><a href="https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Fundamentals of Data Engineering">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+    <section class="resources section-pad" aria-labelledby="project-resources-u04-etl-elt-contratos">
+      <div class="section-heading"><div class="section-kicker">Transferencia al proyecto</div><h2 id="project-resources-u04-etl-elt-contratos">Aplicar el patrón a archivos recurrentes</h2></div>
+      <div class="resource-list"><a href="../recursos/caso-archivos-recurrentes.html" data-release-key="u04-etl-elt-contratos"><span class="resource-type">HTML</span><span><b>Caso aplicado · Archivos recurrentes</b><small>Excel, Power Query, controles y alternativas de automatización</small></span><i aria-hidden="true">→</i></a><a href="../downloads/Caso_Archivos_Recurrentes_Power_Query_v1.0_estudiantes.zip" download><span class="resource-type">ZIP</span><span><b>Archivos recurrentes y Power Query</b><small>Datos, consultas M, plantilla y guía paso a paso</small></span><i aria-hidden="true">↓</i></a><a href="../downloads/Protocolo de uso de IA y trazabilidad.md" download><span class="resource-type">MD</span><span><b>Protocolo de IA y trazabilidad</b><small>Registro de asistencia, ejecución y control</small></span><i aria-hidden="true">↓</i></a></div>
+    </section>
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u04-apis-mcp.html"><span>ANTERIOR</span><b>Unidad 4 · APIs y MCP</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 4 · Calidad y trazabilidad</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

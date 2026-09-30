@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+<title id="title">Qué ocurre cuando cambia el contrato de una fuente</title>
+<desc id="desc">Un árbol parte de hash, versión, campos obligatorios, tipos y grano; clasifica un campo opcional nuevo, una clave ausente, un tipo incompatible y un archivo repetido, y asigna aceptar, advertir, cuarentena o detener.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9aabb9" stroke-width="1" opacity=".32"/></pattern><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0,0 L12,6 L0,12 z" fill="#1f497d"/></marker></defs>
+<style>.atlas-step{outline:none;cursor:pointer}.atlas-step .card-bg{transition:stroke .16s ease,filter .16s ease}.atlas-step:hover .card-bg,.atlas-step:focus .card-bg{stroke:#ffff33;stroke-width:7px}</style>
+<rect x="0" y="0" width="1600" height="1200" fill="#f7f2e8"/>
+<image href="../../images/generated/u04-json-flatten.webp" x="0" y="0" width="1600" height="1200" opacity="0.055" preserveAspectRatio="xMidYMid slice"/>
+<rect x="0" y="0" width="1600" height="1200" fill="url(#grid)" opacity=".36"/>
+<rect x="52" y="38" width="250" height="42" rx="21" fill="#143254"/>
+<text x="177.0" y="66.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="850" text-anchor="middle" letter-spacing="1">ATLAS TEÓRICO · C08</text>
+<text x="52.0" y="118.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="850" text-anchor="start">¿Qué cambios pueden aceptarse y cuáles deben detener la publicación?</text>
+<g class="atlas-step" data-step="1" tabindex="0" role="group" aria-label="Paso 1: Contrato de entrada">
+<rect class="card-bg" x="520.0" y="190.0" width="560.0" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="520.0" y="190.0" width="10" height="293.3" rx="5" fill="#1f497d"/>
+<rect x="548.0" y="212.0" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="562.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">COMPARAR</text>
+<circle cx="1046.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1046.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">01</text>
+<text x="550.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Contrato de entrada</text>
+<text x="550.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• hash · versión · campos obligatorios · tipos</text>
+<text x="550.0" y="337.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">· grano</text>
+</g>
+<path d="M800.0,483.3 L800.0,500.3" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="2" tabindex="0" role="group" aria-label="Paso 2: Campo opcional nuevo">
+<rect class="card-bg" x="52.0" y="507.3" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="507.3" width="10" height="293.3" rx="5" fill="#1f497d"/>
+<circle cx="375.5" cy="541.3" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="375.5" y="548.3" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">02</text>
+<text x="82.0" y="555.3" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Campo opcional nuevo</text>
+<text x="82.0" y="592.4" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• El núcleo requerido</text>
+<text x="82.0" y="616.8" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">permanece.</text>
+</g>
+<g class="atlas-step" data-step="3" tabindex="0" role="group" aria-label="Paso 3: Clave ausente">
+<rect class="card-bg" x="431.5" y="507.3" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="431.5" y="507.3" width="10" height="293.3" rx="5" fill="#8d2f23"/>
+<circle cx="755.0" cy="541.3" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="755.0" y="548.3" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">03</text>
+<text x="461.5" y="555.3" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Clave ausente</text>
+<text x="461.5" y="592.4" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• No puede identificar o</text>
+<text x="461.5" y="616.8" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">relacionar.</text>
+</g>
+<g class="atlas-step" data-step="4" tabindex="0" role="group" aria-label="Paso 4: Tipo incompatible">
+<rect class="card-bg" x="811.0" y="507.3" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="507.3" width="10" height="293.3" rx="5" fill="#8d2f23"/>
+<circle cx="1134.5" cy="541.3" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1134.5" y="548.3" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">04</text>
+<text x="841.0" y="555.3" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Tipo incompatible</text>
+<text x="841.0" y="592.4" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Texto donde se esperaba</text>
+<text x="841.0" y="616.8" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">número.</text>
+</g>
+<g class="atlas-step" data-step="5" tabindex="0" role="group" aria-label="Paso 5: Archivo repetido">
+<rect class="card-bg" x="1190.5" y="507.3" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1190.5" y="507.3" width="10" height="293.3" rx="5" fill="#1f497d"/>
+<circle cx="1514.0" cy="541.3" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="548.3" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">05</text>
+<text x="1220.5" y="555.3" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Archivo repetido</text>
+<text x="1220.5" y="592.4" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• El hash ya fue procesado.</text>
+</g>
+<path d="M800.0,800.7 L800.0,817.7" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g>
+<rect class="card-bg" x="52.0" y="824.7" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="824.7" width="10" height="293.3" rx="5" fill="#245a44"/>
+<text x="82.0" y="872.7" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Aceptar</text>
+<text x="82.0" y="909.7" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Registrar versión y</text>
+<text x="82.0" y="934.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">continuar.</text>
+<rect x="80.0" y="1045.0" width="124.0" height="32" rx="4" fill="#ffff33"/>
+<text x="92.0" y="1067.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">compatible</text>
+</g>
+<g>
+<rect class="card-bg" x="431.5" y="824.7" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="431.5" y="824.7" width="10" height="293.3" rx="5" fill="#8d2f23"/>
+<text x="461.5" y="872.7" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Detener</text>
+<text x="461.5" y="909.7" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Bloquear publicación y</text>
+<text x="461.5" y="934.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">pedir corrección.</text>
+<rect x="459.5" y="1045.0" width="154.0" height="32" rx="4" fill="#ffff33"/>
+<text x="471.5" y="1067.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">contrato roto</text>
+</g>
+<g>
+<rect class="card-bg" x="811.0" y="824.7" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="824.7" width="10" height="293.3" rx="5" fill="#8d2f23"/>
+<text x="841.0" y="872.7" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Cuarentena</text>
+<text x="841.0" y="909.7" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Aislar archivo y</text>
+<text x="841.0" y="934.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">conservar evidencia.</text>
+<rect x="839.0" y="1045.0" width="124.0" height="32" rx="4" fill="#ffff33"/>
+<text x="851.0" y="1067.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">investigar</text>
+</g>
+<g>
+<rect class="card-bg" x="1190.5" y="824.7" width="357.5" height="293.3" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1190.5" y="824.7" width="10" height="293.3" rx="5" fill="#1f497d"/>
+<text x="1220.5" y="872.7" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Advertir</text>
+<text x="1220.5" y="909.7" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Omitir reejecución y</text>
+<text x="1220.5" y="934.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">registrar intento.</text>
+<rect x="1218.5" y="1045.0" width="134.0" height="32" rx="4" fill="#ffff33"/>
+<text x="1230.5" y="1067.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">idempotente</text>
+</g>
+<line x1="52" y1="1152" x2="1548" y2="1152" stroke="#9aabb9" stroke-width="2"/>
+<text x="52.0" y="1182.0" fill="#1f497d" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="start">Análisis de Datos · UTN FRC · lectura guiada</text>
+<text x="1548.0" y="1182.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" text-anchor="end">Abrir a tamaño completo para revisar rótulos y relaciones</text>
+</svg>

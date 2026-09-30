@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Caso aplicado de archivos Excel recurrentes, Power Query y alternativas de automatización para Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Archivos recurrentes y Power Query · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260824a">
+  <script src="../assets/app.js" defer></script>
+</head>
+<body data-page="workcase">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#caso">Caso</a>
+      <a href="#flujo">Flujo</a>
+      <a href="#herramientas">Herramientas</a>
+      <a href="#programa">Programa</a>
+      <a href="#practica">Práctica</a>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="workcase-hero" id="caso" aria-labelledby="workcase-title">
+      <div class="workcase-hero-copy">
+        <a class="workcase-breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de contenidos</a>
+        <div class="eyebrow"><span>RUTA LABORAL</span><span>UNIDAD 4</span></div>
+        <h1 id="workcase-title">De adjuntos a una <em>tabla controlada.</em></h1>
+        <p class="hero-lede">Un caso para consolidar archivos Excel que llegan con frecuencia, conservar el origen y producir una salida lista para análisis mediante Power Query.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="../downloads/Caso_Archivos_Recurrentes_Power_Query_v1.0_estudiantes.zip" download>Descargar el caso <span aria-hidden="true">↓</span></a>
+          <a class="button button-ghost" href="#flujo">Recorrer el pipeline</a>
+        </div>
+        <p class="workcase-question"><span>Pregunta de trabajo</span>¿Cómo repetimos una consolidación sin perder archivos, defectos ni criterios de aceptación?</p>
+      </div>
+
+      <aside class="workcase-console" aria-label="Resultado esperado del caso">
+        <div class="console-label">Control de ejecución</div>
+        <dl class="console-metrics">
+          <div><dt>Archivos detectados</dt><dd>5</dd></div>
+          <div><dt>Archivos válidos</dt><dd>4</dd></div>
+          <div><dt>Archivo rechazado</dt><dd>1</dd></div>
+          <div><dt>Filas curadas</dt><dd>28</dd></div>
+        </dl>
+        <p class="console-result"><b>Control final:</b> 32 filas leídas, 4 rechazos documentados y $1.752.710 reconciliados.</p>
+      </aside>
+    </section>
+
+    <section class="workcase-section" aria-labelledby="problem-title">
+      <div class="workcase-intro">
+        <div>
+          <div class="section-kicker">Situación de trabajo</div>
+          <h2 id="problem-title">El archivo siguiente debe entrar sin rehacer el proceso.</h2>
+        </div>
+        <div class="workcase-intro-copy">
+          <p>El área de mantenimiento recibe consumos de materiales en libros Excel. Cada entrega puede cambiar mayúsculas, espacios, tipos o columnas. También puede repetir un movimiento ya informado.</p>
+          <p>El equipo necesita una política estable para aceptar archivos, elegir versiones, separar rechazos y actualizar el resultado.</p>
+          <ul class="workcase-contract" aria-label="Contrato del caso">
+            <li><span>Fuente</span><b>Libros Excel depositados en una carpeta raw.</b></li>
+            <li><span>Grano</span><b>Un consumo de material imputado a una orden de trabajo.</b></li>
+            <li><span>Clave</span><b><code>movimiento_id</code> identifica el evento informado.</b></li>
+            <li><span>Salida</span><b>Consumos aceptados, rechazos y controles de ejecución.</b></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="workcase-flow-section workcase-section" id="flujo" aria-labelledby="flow-title">
+      <div class="section-kicker">Pipeline del caso</div>
+      <h2 id="flow-title">La recurrencia se resuelve con capas y controles observables.</h2>
+      <ol class="workcase-flow" aria-label="Etapas del procesamiento de archivos recurrentes">
+        <li><span>01</span><b>Recibir</b><small>Adjunto o carga controlada.</small></li>
+        <li><span>02</span><b>Conservar raw</b><small>Archivo original y momento de recepción.</small></li>
+        <li><span>03</span><b>Validar contrato</b><small>Tabla, columnas requeridas y estructura.</small></li>
+        <li><span>04</span><b>Transformar</b><small>Tipos, textos, clave y versión.</small></li>
+        <li><span>05</span><b>Controlar</b><small>Archivos, filas, duplicados e importe.</small></li>
+        <li><span>06</span><b>Publicar</b><small>Tabla curada y registro de rechazos.</small></li>
+      </ol>
+      <div class="workcase-branches" aria-label="Alternativas de entrada y consumo">
+        <p><b>Correo + Power Automate:</b> guarda adjuntos y registra la recepción.</p>
+        <p><b>Power Apps:</b> captura o aprueba datos cuando conviene restringir la entrada.</p>
+        <p><b>Excel o Power BI:</b> consumen la tabla aceptada después de los controles.</p>
+      </div>
+    </section>
+
+    <section class="workcase-section" id="herramientas" aria-labelledby="tools-title">
+      <div class="workcase-tools-heading">
+        <div>
+          <div class="section-kicker">Mapa de herramientas</div>
+          <h2 id="tools-title">Cada herramienta ocupa una parte distinta del flujo.</h2>
+        </div>
+        <p>La práctica concentra la ejecución en Power Query. Las demás opciones se comparan según el proceso, el entorno y los permisos disponibles.</p>
+      </div>
+
+      <div class="workcase-tool-grid">
+        <article class="workcase-tool is-core">
+          <span class="workcase-tool-number">NÚCLEO EJECUTABLE</span>
+          <h3>Power Query</h3>
+          <p>Lee una carpeta, aplica una función a cada libro, normaliza la estructura, elige la versión vigente y expone tablas de salida.</p>
+          <footer>Transformación repetible · mínimo del caso</footer>
+        </article>
+        <article class="workcase-tool">
+          <span class="workcase-tool-number">ENTRADA</span>
+          <h3>Power Automate</h3>
+          <p>Puede detectar un correo, guardar adjuntos en SharePoint o OneDrive y emitir una alerta ante una condición.</p>
+          <footer>Demostración o extensión</footer>
+        </article>
+        <article class="workcase-tool">
+          <span class="workcase-tool-number">CAPTURA</span>
+          <h3>Power Apps</h3>
+          <p>Conviene cuando el proceso requiere campos controlados, responsables identificados, aprobación o consulta desde distintos dispositivos.</p>
+          <footer>Prototipo conceptual</footer>
+        </article>
+        <article class="workcase-tool">
+          <span class="workcase-tool-number">SCRIPT EN LA NUBE</span>
+          <h3>Office Scripts</h3>
+          <p>Automatiza acciones dentro de Excel para la Web y puede formar parte de un flujo de Power Automate.</p>
+          <footer>Extensión condicionada a licencia</footer>
+        </article>
+        <article class="workcase-tool">
+          <span class="workcase-tool-number">LEGADO LOCAL</span>
+          <h3>VBA y macros</h3>
+          <p>Resultan útiles en libros locales ya instalados. La comparación considera mantenimiento, seguridad, portabilidad y dependencia del archivo.</p>
+          <footer>Comparación y desafío opcional</footer>
+        </article>
+      </div>
+    </section>
+
+    <section class="workcase-defects workcase-section" aria-labelledby="defects-title">
+      <div class="section-heading split-heading">
+        <div>
+          <div class="section-kicker">Defectos deliberados</div>
+          <h2 id="defects-title">El caso obliga a decidir qué entra y qué queda observado.</h2>
+        </div>
+        <p>Los archivos se conservan en raw. Las reglas determinan su incorporación a la tabla curada y explican cada exclusión.</p>
+      </div>
+      <div class="workcase-defect-grid">
+        <article class="workcase-defect is-rejected"><span class="workcase-defect-code">ARCHIVO</span><h3>Falta una columna requerida</h3><p>El libro usa <code>id_mov</code> y omite <code>movimiento_id</code>. Se registra el rechazo de estructura.</p></article>
+        <article class="workcase-defect"><span class="workcase-defect-code">VERSIÓN</span><h3>Un movimiento llega dos veces</h3><p>La política conserva la fila del archivo recibido más recientemente y documenta la versión desplazada.</p></article>
+        <article class="workcase-defect"><span class="workcase-defect-code">REGLA DE NEGOCIO</span><h3>La cantidad es negativa</h3><p>El registro queda fuera del conjunto aceptado hasta que la fuente confirme o corrija el movimiento.</p></article>
+        <article class="workcase-defect"><span class="workcase-defect-code">VALIDEZ</span><h3>La clave o la fecha fallan</h3><p>Una fila sin identificador y otra con fecha inválida quedan visibles en el registro de rechazos.</p></article>
+      </div>
+    </section>
+
+    <section class="workcase-program workcase-section" id="programa" aria-labelledby="program-title">
+      <div class="section-kicker">Ubicación en la materia</div>
+      <h2 id="program-title">El caso conecta arquitectura, transformación y consumo.</h2>
+      <div class="workcase-program-map">
+        <article>
+          <span>UNIDAD 2 · ANTICIPACIÓN</span>
+          <h3>Arquitectura proporcional</h3>
+          <p>Se dibujan correo, carpeta, responsables, almacenamiento y salida. El grupo identifica el primer punto de falla.</p>
+          <a href="../unidades/u02-ecosistema-arquitectura.html" data-release-key="u02-ecosistema-arquitectura">Abrir la unidad →</a>
+        </article>
+        <article>
+          <span>UNIDAD 4 · DESARROLLO</span>
+          <h3>Contrato, ETL y calidad</h3>
+          <p>Se ejecuta Power Query, se agregan archivos, se separan rechazos y se reconcilian conteos e importe.</p>
+          <a href="../unidades/u04-etl-elt-contratos.html" data-release-key="u04-etl-elt-contratos">Abrir la unidad →</a>
+        </article>
+        <article>
+          <span>UNIDAD 6 · REVISITA</span>
+          <h3>Integración y trade-offs</h3>
+          <p>Se compara actualización manual, flujo automatizado, app de captura, script y macro según el contexto laboral.</p>
+          <a href="../proximamente.html" data-release-key="u06-integracion-tradeoffs" aria-label="Contenido disponible próximamente" class="is-release-locked">Abrir la unidad →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="workcase-section" id="practica" aria-labelledby="practice-title">
+      <div class="workcase-practice">
+        <div class="workcase-package">
+          <span>PAQUETE PARA ESTUDIANTES · V1.0</span>
+          <h3 id="practice-title">Abrir, conectar y actualizar.</h3>
+          <p>El paquete contiene cinco archivos de entrada, una plantilla de control, ocho consultas M, la consigna y una guía paso a paso.</p>
+          <a class="button button-dark" href="../downloads/Caso_Archivos_Recurrentes_Power_Query_v1.0_estudiantes.zip" download>Descargar ZIP <span aria-hidden="true">↓</span></a>
+          <ul class="workcase-package-list">
+            <li><span>01</span>Archivos sintéticos con variaciones y defectos.</li>
+            <li><span>02</span>Consultas listas para copiar en Power Query.</li>
+            <li><span>03</span>Libro de control con resultados esperados.</li>
+            <li><span>04</span>Guía de recuperación ante errores frecuentes.</li>
+          </ul>
+        </div>
+        <div>
+          <div class="section-kicker">Evidencia mínima</div>
+          <h2>La actualización termina cuando los controles cierran.</h2>
+          <ol class="workcase-checklist">
+            <li><b>Contrato declarado</b><small>Fuente, tabla esperada, grano, clave y política de reentrega.</small></li>
+            <li><b>Archivos clasificados</b><small>Cinco detectados, cuatro válidos y uno rechazado.</small></li>
+            <li><b>Rechazos explicados</b><small>Un duplicado desplazado y tres defectos de fila.</small></li>
+            <li><b>Salida reconciliada</b><small>Veintiocho filas curadas y total de importe controlado.</small></li>
+            <li><b>Reejecución probada</b><small>Actualizar dos veces conserva el mismo resultado.</small></li>
+            <li><b>Alternativa defendida</b><small>Una mejora de automatización con condición, responsable y recuperación.</small></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="workcase-decision workcase-section" aria-labelledby="decision-title">
+      <div class="section-heading split-heading">
+        <div>
+          <div class="section-kicker">Criterio de selección</div>
+          <h2 id="decision-title">La herramienta cambia cuando cambia el problema operativo.</h2>
+        </div>
+        <p>La elección se justifica con volumen, frecuencia, permisos, trazabilidad, mantenimiento y modo de recuperación.</p>
+      </div>
+      <div class="workcase-decision-table" tabindex="0">
+        <table>
+          <thead><tr><th>Necesidad</th><th>Opción inicial</th><th>Condición de validez</th><th>Control mínimo</th></tr></thead>
+          <tbody>
+            <tr><td>Consolidar libros homogéneos</td><td>Power Query</td><td>Contrato de columnas y carpeta controlada</td><td>Archivos, filas, claves y total</td></tr>
+            <tr><td>Guardar adjuntos sin intervención</td><td>Power Automate</td><td>Cuenta autorizada y reglas de nombre</td><td>Registro de ejecución y alerta</td></tr>
+            <tr><td>Evitar cargas libres</td><td>Power Apps</td><td>Lista o base con permisos definidos</td><td>Validaciones y responsable de aprobación</td></tr>
+            <tr><td>Operar un libro web</td><td>Office Scripts</td><td>Microsoft 365 y acciones estables</td><td>Prueba sobre copia y log del flujo</td></tr>
+            <tr><td>Mantener un proceso local existente</td><td>VBA</td><td>Libro confiable y entorno controlado</td><td>Firma, copia de seguridad y manejo de errores</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="workcase-close" aria-labelledby="close-title">
+      <div class="section-kicker">Acción de trabajo</div>
+      <h2 id="close-title">Ejecutá el caso y diseñá la siguiente recepción.</h2>
+      <p>Después de reconciliar la salida, agregá un archivo nuevo o dibujá una alternativa con correo, Power Automate o Power Apps. Indicá quién controla, qué alerta se genera y cómo se recupera una falla.</p>
+      <div class="workcase-close-actions">
+        <a class="button button-dark" href="../downloads/Caso_Archivos_Recurrentes_Power_Query_v1.0_estudiantes.zip" download>Descargar el material <span aria-hidden="true">↓</span></a>
+        <a class="button button-ghost" href="../unidades/u04-etl-elt-contratos.html" data-release-key="u04-etl-elt-contratos">Continuar con ETL/ELT <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

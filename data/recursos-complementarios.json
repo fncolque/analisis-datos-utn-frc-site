@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-09-23",
+  "actualizado": "2026-09-30",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -397,6 +397,78 @@
           "idioma": "Inglés · subtítulos",
           "dedicacion": "1 h 38 min · requiere cuenta",
           "descripcion": "Curso práctico sobre arquitectura MCP, herramientas, recursos, prompts, servidores y clientes. El acceso gratuito depende de la etapa beta de la plataforma."
+        }
+      ]
+    },
+    "u04-etl-elt-contratos": {
+      "titulo": "Formatos, contratos y pipelines reproducibles",
+      "introduccion": "La selección permite revisar formatos semiestructurados, lectura de JSON, acceso desde DuckDB y principios de diseño para pipelines por capas.",
+      "diagrama": {
+        "archivo": "u04-etl-capasm.svg",
+        "fuente": "u04-etl-capasm.mmd",
+        "alt": "Pipeline desde una API o archivo hasta snapshot, raw, staging, mart, control y decisión.",
+        "titulo": "De una fuente externa a un mart controlado",
+        "epigrafe": "Cada capa cambia estructura o significado y deja un conteo que permite reconciliar el resultado.",
+        "base": "Elaboración propia a partir del Paquete C de Faro Sur."
+      },
+      "imagen": {
+        "archivo": "generated/u04-etl-elt-contemporary.webp",
+        "alt": "Comparación visual en dos carriles: ETL transforma antes de cargar el almacén analítico, mientras ELT carga primero los datos raw y transforma dentro del almacén.",
+        "epigrafe": "Los dos recorridos parten de la misma fuente y terminan en datos listos para análisis. ETL transforma antes de cargar el destino analítico; ELT conserva primero una copia raw y transforma dentro del warehouse.",
+        "generada": true,
+        "credito": "Ilustración generada con ChatGPT · OpenAI Images.",
+        "prompt": "Dos carriles paralelos que comparan ETL y ELT con fuentes, transformación, almacenamiento raw y curado, controles y salida analítica; estilo editorial técnico marfil, azul UTN y amarillo; sin texto ni logotipos.",
+        "rotulos": [
+          {
+            "titulo": "ETL",
+            "pasos": [
+              "Fuente",
+              "Extraer",
+              "Transformar y controlar",
+              "Cargar curado",
+              "Consumir"
+            ]
+          },
+          {
+            "titulo": "ELT",
+            "pasos": [
+              "Fuente",
+              "Extraer y cargar raw",
+              "Transformar en el warehouse",
+              "Publicar mart",
+              "Consumir"
+            ]
+          }
+        ],
+        "after_heading": "etl-y-elt-ubican-la-transformacion-en-momentos-diferentes"
+      },
+      "recursos": [
+        {
+          "tipo": "Documentación",
+          "titulo": "Working with JSON",
+          "institucion": "DuckDB",
+          "url": "https://duckdb.org/docs/stable/data/json/overview.html",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta técnica · 20 min",
+          "descripcion": "Explica lectura, tipos y transformación de JSON con el motor utilizado en los notebooks."
+        },
+        {
+          "tipo": "Guía web",
+          "titulo": "Introducing JSON",
+          "institucion": "JSON.org",
+          "url": "https://www.json.org/json-en.html",
+          "idioma": "Inglés · traducciones disponibles",
+          "dedicacion": "Lectura breve · 10 min",
+          "descripcion": "Referencia compacta de objetos, arrays, pares clave-valor y tipos básicos."
+        },
+        {
+          "tipo": "Libro abierto",
+          "titulo": "Fundamentals of Data Engineering",
+          "institucion": "Joe Reis y Matt Housley · material complementario",
+          "url": "https://www.oreilly.com/library/view/fundamentals-of-data/9781098108298/",
+          "idioma": "Inglés",
+          "dedicacion": "Vista previa y consulta",
+          "descripcion": "Ubica generación, ingestión, almacenamiento, transformación y servicio dentro del ciclo de vida de datos."
         }
       ]
     }

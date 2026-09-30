@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-09-23",
+  "actualizado": "2026-09-30",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -1493,6 +1493,272 @@
               "accent": "blue",
               "tag": "retorno",
               "step": 10
+            }
+          ]
+        }
+      }
+    ],
+    "u04-etl-elt-contratos": [
+      {
+        "page": "u04-etl-elt-contratos",
+        "unit": "C08",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u04-etl-elt-herramientas.svg",
+        "base_generada": "theory/u04-etl-elt-herramientas-base.webp",
+        "base_provisoria": "u04-etl-vs-elt.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "ETL y ELT sobre una misma fuente de Faro Sur",
+        "pregunta_lectura": "¿Dónde ocurre la transformación y qué conserva cada recorrido antes de publicar el mart?",
+        "alt": "Dos carriles comparan ETL con Cloud Storage, Dataflow, BigQuery curado y Power BI, y ELT con Cloud Storage o Pub Sub, BigQuery raw, Dataform, marts y Power BI, más un ejemplo accesible con Power Query.",
+        "epigrafe": "ETL transforma antes de cargar el conjunto analítico. ELT conserva primero una copia raw en el warehouse y transforma allí. Ambos necesitan contratos, controles y una salida curada.",
+        "after_heading": "etl-y-elt-ubican-la-transformacion-en-momentos-diferentes",
+        "interactivo": true,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "En ETL, Dataflow limpia y controla antes de cargar la tabla curada en BigQuery.",
+          "En ELT, BigQuery recibe raw y Dataform ejecuta transformaciones y pruebas dentro del warehouse.",
+          "Power Query ofrece una experiencia ETL accesible en Excel y Power BI; Dataflow Gen2 traslada esa experiencia a un servicio cloud de Microsoft.",
+          "La elección considera volumen, reejecución, gobierno, costo y herramientas del equipo."
+        ],
+        "fuentes": [
+          {
+            "label": "Google Cloud · Dataflow overview",
+            "url": "https://docs.cloud.google.com/dataflow/docs/overview"
+          },
+          {
+            "label": "Google Cloud · Dataform overview",
+            "url": "https://docs.cloud.google.com/dataform/docs/overview"
+          },
+          {
+            "label": "Microsoft Learn · ¿Qué es Power Query?",
+            "url": "https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query"
+          }
+        ],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Two parallel textless conveyor lanes from the same source to analytics: the upper transforms and checks before warehouse loading, the lower lands raw data first and transforms inside layered warehouse storage.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "lanes",
+          "lanes": [
+            {
+              "label": "ETL",
+              "title": "Extraer → transformar → cargar",
+              "cards": [
+                {
+                  "title": "Fuente",
+                  "body": [
+                    "Cloud Storage"
+                  ],
+                  "accent": "blue",
+                  "step": 1
+                },
+                {
+                  "title": "Transformar",
+                  "body": [
+                    "Dataflow limpia y controla"
+                  ],
+                  "accent": "blue",
+                  "step": 2
+                },
+                {
+                  "title": "Cargar",
+                  "body": [
+                    "BigQuery curado"
+                  ],
+                  "accent": "blue",
+                  "step": 3
+                },
+                {
+                  "title": "Consumir",
+                  "body": [
+                    "Power BI"
+                  ],
+                  "accent": "blue",
+                  "step": 4
+                },
+                {
+                  "title": "Ejemplo cercano",
+                  "body": [
+                    "Power Query en Excel o Power BI"
+                  ],
+                  "accent": "blue",
+                  "step": 5
+                }
+              ]
+            },
+            {
+              "label": "ELT",
+              "title": "Extraer → cargar → transformar",
+              "cards": [
+                {
+                  "title": "Fuente",
+                  "body": [
+                    "Cloud Storage o Pub/Sub"
+                  ],
+                  "accent": "blue",
+                  "step": 1
+                },
+                {
+                  "title": "Cargar raw",
+                  "body": [
+                    "BigQuery conserva el original"
+                  ],
+                  "accent": "blue",
+                  "step": 2
+                },
+                {
+                  "title": "Transformar",
+                  "body": [
+                    "Dataform ejecuta SQL y pruebas"
+                  ],
+                  "accent": "blue",
+                  "step": 3
+                },
+                {
+                  "title": "Publicar",
+                  "body": [
+                    "marts en BigQuery"
+                  ],
+                  "accent": "blue",
+                  "step": 4
+                },
+                {
+                  "title": "Consumir",
+                  "body": [
+                    "Power BI"
+                  ],
+                  "accent": "blue",
+                  "step": 5
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u04-etl-elt-contratos",
+        "unit": "C08",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u04-cambios-contrato.svg",
+        "base_generada": "theory/u04-cambios-contrato-base.webp",
+        "base_provisoria": "u04-json-flatten.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Qué ocurre cuando cambia el contrato de una fuente",
+        "pregunta_lectura": "¿Qué cambios pueden aceptarse y cuáles deben detener la publicación?",
+        "alt": "Un árbol parte de hash, versión, campos obligatorios, tipos y grano; clasifica un campo opcional nuevo, una clave ausente, un tipo incompatible y un archivo repetido, y asigna aceptar, advertir, cuarentena o detener.",
+        "epigrafe": "El contrato convierte un cambio de archivo en una decisión observable. Cada clase de cambio tiene un tratamiento, una evidencia y una condición para volver al flujo.",
+        "after_heading": "como-leer-la-anatomia-de-un-json",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La entrada se identifica con hash y versión; el contrato declara campos, tipos y grano.",
+          "Un campo opcional nuevo puede aceptarse si los consumidores toleran la extensión.",
+          "Una clave ausente o un tipo incompatible impiden sostener relaciones o cálculos.",
+          "Un hash repetido activa idempotencia: se registra el intento y se evita procesar dos veces."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A contract inspection gate branching into four visibly distinct schema-change cases, each routed toward accept, warn, quarantine or stop; include checksum, version and field-shape motifs without text.",
+        "version_revision": "1.0",
+        "svg_height": 1200,
+        "estructura": {
+          "layout": "tree",
+          "levels": [
+            {
+              "cards": [
+                {
+                  "title": "Contrato de entrada",
+                  "body": [
+                    "hash · versión · campos obligatorios · tipos · grano"
+                  ],
+                  "accent": "blue",
+                  "tag": "comparar",
+                  "step": 1
+                }
+              ]
+            },
+            {
+              "cards": [
+                {
+                  "title": "Campo opcional nuevo",
+                  "body": [
+                    "El núcleo requerido permanece."
+                  ],
+                  "accent": "blue",
+                  "step": 2
+                },
+                {
+                  "title": "Clave ausente",
+                  "body": [
+                    "No puede identificar o relacionar."
+                  ],
+                  "accent": "danger",
+                  "step": 3
+                },
+                {
+                  "title": "Tipo incompatible",
+                  "body": [
+                    "Texto donde se esperaba número."
+                  ],
+                  "accent": "danger",
+                  "step": 4
+                },
+                {
+                  "title": "Archivo repetido",
+                  "body": [
+                    "El hash ya fue procesado."
+                  ],
+                  "accent": "blue",
+                  "step": 5
+                }
+              ]
+            },
+            {
+              "cards": [
+                {
+                  "title": "Aceptar",
+                  "body": [
+                    "Registrar versión y continuar."
+                  ],
+                  "accent": "success",
+                  "stats": [
+                    "compatible"
+                  ]
+                },
+                {
+                  "title": "Detener",
+                  "body": [
+                    "Bloquear publicación y pedir corrección."
+                  ],
+                  "accent": "danger",
+                  "stats": [
+                    "contrato roto"
+                  ]
+                },
+                {
+                  "title": "Cuarentena",
+                  "body": [
+                    "Aislar archivo y conservar evidencia."
+                  ],
+                  "accent": "danger",
+                  "stats": [
+                    "investigar"
+                  ]
+                },
+                {
+                  "title": "Advertir",
+                  "body": [
+                    "Omitir reejecución y registrar intento."
+                  ],
+                  "accent": "blue",
+                  "stats": [
+                    "idempotente"
+                  ]
+                }
+              ]
             }
           ]
         }

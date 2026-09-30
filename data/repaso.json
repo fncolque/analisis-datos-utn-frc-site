@@ -28,6 +28,10 @@
     {
       "id": "u04-apis-mcp",
       "label": "Unidad 4 · APIs y Model Context Protocol"
+    },
+    {
+      "id": "u04-etl-elt-contratos",
+      "label": "Unidad 4.2 · Formatos, contratos y ETL/ELT"
     }
   ],
   "questions": [
@@ -4370,6 +4374,626 @@
         "path": "unidades/u04-apis-mcp.html#apis-y-mcp-dentro-del-pipeline",
         "label": "APIs y MCP dentro del pipeline"
       }
+    },
+    {
+      "id": "u04-etl-elt-contratos-01",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Elegir un formato también define controles",
+      "difficulty": "basica",
+      "prompt": "¿Qué formato conserva datos por columnas con tipos y compresión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Parquet."
+        },
+        {
+          "id": "b",
+          "text": "CSV sin diccionario."
+        },
+        {
+          "id": "c",
+          "text": "Texto de un correo."
+        },
+        {
+          "id": "d",
+          "text": "Una captura de pantalla."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Parquet está orientado al almacenamiento y la lectura analítica de columnas tipadas.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#elegir-un-formato-tambien-define-controles",
+        "label": "Elegir un formato también define controles"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-02",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Cómo leer la anatomía de un JSON",
+      "difficulty": "basica",
+      "prompt": "En un JSON, extracted_at aparece en la raíz y shipments contiene despachos. ¿Qué describe extracted_at según ese contrato?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La cantidad de bultos."
+        },
+        {
+          "id": "b",
+          "text": "La extracción completa."
+        },
+        {
+          "id": "c",
+          "text": "Necesariamente la entrega de cada despacho."
+        },
+        {
+          "id": "d",
+          "text": "La clave primaria de todos los eventos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El nivel donde está un atributo ayuda a interpretar qué objeto describe.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#como-leer-la-anatomia-de-un-json",
+        "label": "Cómo leer la anatomía de un JSON"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-03",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "ETL y ELT ubican la transformación en momentos diferentes",
+      "difficulty": "basica",
+      "prompt": "¿En qué orden básico se realiza un proceso ELT?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Transformar, cargar y extraer."
+        },
+        {
+          "id": "b",
+          "text": "Cargar, eliminar y transmitir."
+        },
+        {
+          "id": "c",
+          "text": "Extraer, cargar y transformar."
+        },
+        {
+          "id": "d",
+          "text": "Extraer, transformar y cargar."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "ELT lleva los datos al repositorio antes de realizar allí las transformaciones.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#etl-y-elt-ubican-la-transformacion-en-momentos-diferentes",
+        "label": "ETL y ELT ubican la transformación en momentos diferentes"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-04",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Las capas separan responsabilidades",
+      "difficulty": "basica",
+      "prompt": "¿Qué tarea corresponde a staging?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Presentar únicamente el gráfico final."
+        },
+        {
+          "id": "b",
+          "text": "Sobrescribir siempre la única copia original."
+        },
+        {
+          "id": "c",
+          "text": "Definir por sí sola la decisión gerencial."
+        },
+        {
+          "id": "d",
+          "text": "Estabilizar tipos y estructura de los datos recibidos."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Staging prepara una forma consistente conservando vínculo con la entrada.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#las-capas-separan-responsabilidades",
+        "label": "Las capas separan responsabilidades"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-05",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "El contrato de fuente vuelve explícitas las expectativas",
+      "difficulty": "basica",
+      "prompt": "¿Qué documenta un contrato de fuente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Grano, claves, campos, tipos y condiciones esperadas."
+        },
+        {
+          "id": "b",
+          "text": "Solo el nombre comercial del proveedor."
+        },
+        {
+          "id": "c",
+          "text": "Solo un ejemplo de gráfico."
+        },
+        {
+          "id": "d",
+          "text": "Una garantía de que nunca habrá cambios."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El contrato explicita expectativas del productor y del consumidor.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#el-contrato-de-fuente-vuelve-explicitas-las-expectativas",
+        "label": "El contrato de fuente vuelve explícitas las expectativas"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-06",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Idempotencia y reejecución segura",
+      "difficulty": "basica",
+      "prompt": "¿Qué propiedad evita duplicar resultados al repetir el mismo lote con las mismas reglas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Compresión."
+        },
+        {
+          "id": "b",
+          "text": "Idempotencia."
+        },
+        {
+          "id": "c",
+          "text": "Paginación."
+        },
+        {
+          "id": "d",
+          "text": "Orden descendente."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Una reejecución idempotente conserva el mismo resultado para la misma entrada y versión de reglas.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#idempotencia-y-reejecucion-segura",
+        "label": "Idempotencia y reejecución segura"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-07",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Cómo leer la anatomía de un JSON",
+      "difficulty": "intermedia",
+      "prompt": "Dos despachos contienen respectivamente dos y tres eventos. Al expandir todos los eventos, ¿cuántas filas se esperan?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Seis."
+        },
+        {
+          "id": "b",
+          "text": "Una."
+        },
+        {
+          "id": "c",
+          "text": "Cinco."
+        },
+        {
+          "id": "d",
+          "text": "Dos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La expansión genera una fila por evento, conservando el identificador del despacho padre.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#como-leer-la-anatomia-de-un-json",
+        "label": "Cómo leer la anatomía de un JSON"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-08",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Detectar un esquema cambiante",
+      "difficulty": "intermedia",
+      "prompt": "El proveedor deja de enviar shipment_id, declarado obligatorio. ¿Qué corresponde hacer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Asignar el mismo identificador a todos."
+        },
+        {
+          "id": "b",
+          "text": "Publicar omitiendo el control."
+        },
+        {
+          "id": "c",
+          "text": "Usar el número de fila como identidad sin acuerdo."
+        },
+        {
+          "id": "d",
+          "text": "Detener la publicación afectada y registrar la ruptura."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Sin la clave requerida no se puede garantizar identidad ni vinculación de registros.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#detectar-un-esquema-cambiante",
+        "label": "Detectar un esquema cambiante"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-09",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Detectar un esquema cambiante",
+      "difficulty": "intermedia",
+      "prompt": "Aparece un campo opcional nuevo que ningún consumidor requiere. ¿Qué acción puede ser compatible con el contrato?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Registrar el cambio y continuar si se cumplen las demás reglas."
+        },
+        {
+          "id": "b",
+          "text": "Eliminar toda la fuente automáticamente."
+        },
+        {
+          "id": "c",
+          "text": "Convertir todos los campos a texto."
+        },
+        {
+          "id": "d",
+          "text": "Inventar valores históricos para el campo."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La compatibilidad depende del contrato; un agregado opcional puede no romper a los consumidores.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#detectar-un-esquema-cambiante",
+        "label": "Detectar un esquema cambiante"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-10",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "ETL y ELT ubican la transformación en momentos diferentes",
+      "difficulty": "intermedia",
+      "prompt": "Un destino compartido no debe recibir identificadores personales. ¿Qué decisión reduce ese riesgo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cargar todo y confiar en que cada destinatario ignore esos campos."
+        },
+        {
+          "id": "b",
+          "text": "Aplicar la reducción autorizada de campos antes de cargar allí."
+        },
+        {
+          "id": "c",
+          "text": "Cargar todo y ocultar las columnas en un gráfico."
+        },
+        {
+          "id": "d",
+          "text": "Confiar en el cifrado en tránsito, aunque el destino reciba los identificadores."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Transformar antes de cargar puede impedir que datos no autorizados ingresen al destino.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#etl-y-elt-ubican-la-transformacion-en-momentos-diferentes",
+        "label": "ETL y ELT ubican la transformación en momentos diferentes"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-11",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Los archivos recurrentes forman un pipeline por lote",
+      "difficulty": "intermedia",
+      "prompt": "¿Qué columna ayuda a rastrear una fila consolidada hasta la planilla recibida?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La fecha de consolidación compartida por todos los archivos."
+        },
+        {
+          "id": "b",
+          "text": "El número de fila asignado después de combinar y reordenar."
+        },
+        {
+          "id": "c",
+          "text": "El identificador o nombre del archivo de origen."
+        },
+        {
+          "id": "d",
+          "text": "El nombre del responsable del reporte final."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La procedencia de cada registro debe sobrevivir a la combinación de archivos.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#los-archivos-recurrentes-forman-un-pipeline-por-lote",
+        "label": "Los archivos recurrentes forman un pipeline por lote"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-12",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Normalizar el tracking de Faro Sur",
+      "difficulty": "intermedia",
+      "prompt": "Querés una tabla de último estado con una fila por despacho. ¿Qué hay que hacer después de expandir eventos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Conservar todos los eventos y declarar grano de despacho."
+        },
+        {
+          "id": "b",
+          "text": "Sumar todos los códigos de estado."
+        },
+        {
+          "id": "c",
+          "text": "Ordenar por nombre del transportista solamente."
+        },
+        {
+          "id": "d",
+          "text": "Seleccionar un evento por despacho con una regla de orden definida."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La reducción al último estado debe retornar al grano de despacho mediante un criterio explícito.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#normalizar-el-tracking-de-faro-sur",
+        "label": "Normalizar el tracking de Faro Sur"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-13",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Del servicio vivo a un snapshot reproducible",
+      "difficulty": "intermedia",
+      "prompt": "La API cambió y un resultado anterior ya no puede obtenerse. ¿Qué entrada permite revisar la transformación original?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El snapshot conservado de aquella extracción."
+        },
+        {
+          "id": "b",
+          "text": "La respuesta actual sin metadatos."
+        },
+        {
+          "id": "c",
+          "text": "El gráfico sin datos subyacentes."
+        },
+        {
+          "id": "d",
+          "text": "El nombre de la herramienta usada."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La copia histórica preserva la evidencia que alimentó el cálculo anterior.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#del-servicio-vivo-a-un-snapshot-reproducible",
+        "label": "Del servicio vivo a un snapshot reproducible"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-14",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Cada transformación modifica estructura o significado",
+      "difficulty": "intermedia",
+      "prompt": "Una regla convierte eventos en una bandera OTIF. ¿Qué clase de transformación incorpora?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Únicamente un renombrado de archivo."
+        },
+        {
+          "id": "b",
+          "text": "Una definición de negocio."
+        },
+        {
+          "id": "c",
+          "text": "Solo un cambio de codificación."
+        },
+        {
+          "id": "d",
+          "text": "Solo una compresión física."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El indicador aplica criterios de cumplimiento que deben quedar definidos y controlados.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#cada-transformacion-modifica-estructura-o-significado",
+        "label": "Cada transformación modifica estructura o significado"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-15",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Idempotencia y reejecución segura",
+      "difficulty": "avanzada",
+      "prompt": "Llegan dos archivos con el mismo nombre pero distinto contenido. ¿Por qué comparar únicamente el nombre resulta insuficiente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Porque todo hash cambia en cada lectura idéntica."
+        },
+        {
+          "id": "b",
+          "text": "Porque los archivos de igual nombre siempre deben anexarse."
+        },
+        {
+          "id": "c",
+          "text": "Puede ocultar una versión corregida que un hash distinto revelaría."
+        },
+        {
+          "id": "d",
+          "text": "Porque el nombre garantiza igualdad de contenido."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La identidad del lote debe contemplar el contenido y una política de versiones.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#idempotencia-y-reejecucion-segura",
+        "label": "Idempotencia y reejecución segura"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-16",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Detectar un esquema cambiante",
+      "difficulty": "avanzada",
+      "prompt": "Los timestamps empiezan a llegar sin zona horaria. ¿Qué control evita alterar silenciosamente las demoras?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Asumir siempre la zona local del analista."
+        },
+        {
+          "id": "b",
+          "text": "Eliminar las horas de todos los registros."
+        },
+        {
+          "id": "c",
+          "text": "Sumar un día a los eventos nuevos."
+        },
+        {
+          "id": "d",
+          "text": "Preservar el valor y resolver la interpretación temporal antes de publicarlo."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una conversión con una zona supuesta puede desplazar instantes y cambiar métricas.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#detectar-un-esquema-cambiante",
+        "label": "Detectar un esquema cambiante"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-17",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Controles que acompañan la publicación",
+      "difficulty": "avanzada",
+      "prompt": "Dos eventos del mismo despacho empatan en timestamp. ¿Qué falta para elegir un único último estado reproducible?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un criterio de desempate acordado o un tratamiento explícito del conflicto."
+        },
+        {
+          "id": "b",
+          "text": "Tomar una fila al azar."
+        },
+        {
+          "id": "c",
+          "text": "Repetir ambos en el mart de una fila por despacho."
+        },
+        {
+          "id": "d",
+          "text": "Eliminar siempre el despacho sin registro."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La selección del último evento necesita un orden suficiente o un manejo del empate.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#controles-que-acompanan-la-publicacion",
+        "label": "Controles que acompañan la publicación"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-18",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Las capas separan responsabilidades",
+      "difficulty": "avanzada",
+      "prompt": "Se corrige una fecha y se reemplaza la única copia raw. ¿Qué capacidad se pierde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La posibilidad de agregar columnas nuevas."
+        },
+        {
+          "id": "b",
+          "text": "Comparar la corrección con lo que se recibió originalmente."
+        },
+        {
+          "id": "c",
+          "text": "La posibilidad de ordenar la tabla."
+        },
+        {
+          "id": "d",
+          "text": "La capacidad de sumar importes."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Preservar versiones de entrada permite auditar y reprocesar las reglas aplicadas.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#las-capas-separan-responsabilidades",
+        "label": "Las capas separan responsabilidades"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-19",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Controles que acompañan la publicación",
+      "difficulty": "avanzada",
+      "prompt": "Tras aplanar JSON hay más filas y el equipo lo declara error solo por ese aumento. ¿Qué debe revisar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Si el nombre del notebook es correcto."
+        },
+        {
+          "id": "b",
+          "text": "Que todo pipeline deba reducir filas."
+        },
+        {
+          "id": "c",
+          "text": "Si la expansión cambió legítimamente el grano a evento."
+        },
+        {
+          "id": "d",
+          "text": "Solo la extensión del archivo."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Los conteos esperados dependen del grano y de la transformación, no de una regla universal de conservación.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#controles-que-acompanan-la-publicacion",
+        "label": "Controles que acompañan la publicación"
+      }
+    },
+    {
+      "id": "u04-etl-elt-contratos-20",
+      "unit": "u04-etl-elt-contratos",
+      "topic": "Los archivos recurrentes forman un pipeline por lote",
+      "difficulty": "avanzada",
+      "prompt": "Una actualización vuelve a leer la carpeta completa y anexa todo al histórico. ¿Qué diseño previene la duplicación por relectura?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Renombrar el histórico cada vez sin controlar entradas."
+        },
+        {
+          "id": "b",
+          "text": "Ordenar alfabéticamente los archivos."
+        },
+        {
+          "id": "c",
+          "text": "Aplicar formato de moneda al total."
+        },
+        {
+          "id": "d",
+          "text": "Identificar lote y versión o reemplazar la partición con una regla idempotente."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La relectura debe reconocer entradas ya procesadas o reconstruir su partición de forma controlada.",
+      "reference": {
+        "path": "unidades/u04-etl-elt-contratos.html#los-archivos-recurrentes-forman-un-pipeline-por-lote",
+        "label": "Los archivos recurrentes forman un pipeline por lote"
+      }
     }
   ],
   "presets": [
@@ -4399,5 +5023,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "f4db1373a349683d"
+  "version": "74fe29a2c3c5b01f"
 }

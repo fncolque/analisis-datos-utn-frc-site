@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-09-23",
-  "generated_at_utc": "2026-09-23T21:52:04+00:00",
+  "as_of": "2026-09-30",
+  "generated_at_utc": "2026-09-30T16:51:19+00:00",
   "timezone": "America/Argentina/Buenos_Aires",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
@@ -9,7 +9,8 @@
     "Unidad 3.1 · Modelo relacional y granularidad",
     "Unidad 3.2 · SQL sobre una vista",
     "Unidad 3.3 · Joins y reconciliación",
-    "Unidad 4 · APIs y Model Context Protocol"
+    "Unidad 4 · APIs y Model Context Protocol",
+    "Unidad 4.2 · Formatos, contratos y ETL/ELT"
   ],
   "contact": "analisisdatosutnfrc@gmail.com"
 }
