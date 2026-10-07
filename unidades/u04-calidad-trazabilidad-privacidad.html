@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Calidad, trazabilidad y privacidad. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Calidad, trazabilidad y privacidad · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 4 · CAPÍTULO 3</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 4 · CAPÍTULO 3</span></div>
+        <h1 id="reading-title">Calidad, trazabilidad y privacidad</h1>
+        <p class="hero-lede">La calidad de datos se evalúa en relación con el uso que se hará de la información. Este capítulo conecta cada regla con una decisión, mide cuántos registros quedan afectados y establece qué persona debe corregir, marcar, excluir o escalar el defecto.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué controles necesita un dato antes de convertirse en evidencia?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_D_v1.0_estudiantes.zip" download>Descargar Paquete D <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u04-calidad-trazabilidad-privacidad">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u04-calidad-trazabilidad-privacidad">Un control conecta regla, impacto y acción</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u04-calidad-linaje.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u04-calidad-linaje.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u04-calidad-linaje.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u04-calidad-linaje.svg?v=20260825b" alt="Linaje desde la fuente hasta el KPI, con una prueba en staging y una acción asignada a un responsable." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>La detección produce evidencia cuando existe una decisión sobre el defecto y una persona responsable.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#la-calidad-se-define-para-un-uso-concreto">La calidad se define para un uso concreto</a><a href="#dimensiones-para-describir-un-defecto">Dimensiones para describir un defecto</a><a href="#las-reglas-tecnicas-y-de-negocio-se-complementan">Las reglas técnicas y de negocio se complementan</a><a href="#severidad-y-materialidad-orientan-la-prioridad">Severidad y materialidad orientan la prioridad</a><a href="#elegir-un-tratamiento-y-conservar-la-causa">Elegir un tratamiento y conservar la causa</a><a href="#linaje-seguir-dependencias-entre-productos">Linaje: seguir dependencias entre productos</a><a href="#trazabilidad-reconstruir-una-ejecucion">Trazabilidad: reconstruir una ejecución</a><a href="#seguridad-privacidad-y-gobierno-dentro-del-pipeline">Seguridad, privacidad y gobierno dentro del pipeline</a><a href="#anonimizacion-y-seudonimizacion">Anonimización y seudonimización</a><a href="#cuatro-defectos-de-faro-sur">Cuatro defectos de Faro Sur</a><a href="#que-muestra-el-registro-de-rechazos">Qué muestra el registro de rechazos</a><a href="#un-control-necesita-una-respuesta-operativa">Un control necesita una respuesta operativa</a><a href="#usar-ia-para-proponer-controles">Usar IA para proponer controles</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#referencias">Referencias</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="la-calidad-se-define-para-un-uso-concreto">La calidad se define para un uso concreto</h2>
+<p>Decir que un conjunto de datos “tiene calidad” deja una pregunta abierta: ¿calidad suficiente para qué decisión y en qué momento? Una dirección faltante puede tener poco impacto sobre el margen por producto y, al mismo tiempo, impedir que logística calcule una ruta de entrega. La evaluación debe relacionar cada defecto con el propósito del producto analítico.</p>
+<p>Una regla de calidad completa declara el campo o población que observa, el resultado esperado, el umbral aceptable, la severidad y la acción. También asigna una persona o rol responsable. Por ejemplo, “region no debe ser nula en clientes activos” puede medirse como proporción, tolerar un valor bajo durante una migración y generar una advertencia. Si la misma ausencia excluye pedidos de una decisión comercial, el umbral y la respuesta pueden ser más estrictos.</p>
+<p>Este enfoque evita tratar todos los errores como equivalentes. El equipo concentra su esfuerzo donde el defecto cambia una métrica, impide una operación o expone un riesgo que la organización decidió controlar.</p>
+<h2 id="dimensiones-para-describir-un-defecto">Dimensiones para describir un defecto</h2>
+<p>Las dimensiones de calidad ofrecen un vocabulario para formular reglas. Completitud pregunta si están presentes los campos y registros requeridos. Un cliente sin región incumple esta dimensión cuando la segmentación regional forma parte del análisis.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u04-regla-calidad-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u04-regla-calidad-title">Anatomía de una regla de calidad operable</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué falta cuando una regla detecta un problema pero no indica qué hacer?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u04-quality-gates.webp')">
+        <div class="atlas-board atlas-flow" style="--atlas-cols:4"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">alcance</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Población</h5>
+      <div class="atlas-card-copy"><p>Clientes con estado = activo.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">propiedad</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Dimensión</h5>
+      <div class="atlas-card-copy"><p>Completitud del campo región.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">métrica</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Cálculo</h5>
+      <div class="atlas-card-copy"><p>región presente / clientes activos</p></div>
+      <div class="atlas-code-lines"><code>completitud = presentes / activos</code></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">criterio</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Umbral</h5>
+      <div class="atlas-card-copy"><p>≥ 99 % aprueba; 97–99 % advierte; &lt; 97 % rechaza.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">consecuencia</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Severidad</h5>
+      <div class="atlas-card-copy"><p>Impacta segmentación regional y reportes.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">propietario</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>Responsable</h5>
+      <div class="atlas-card-copy"><p>Dueño de clientes revisa registros faltantes.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="7" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">tratamiento</span><span class="atlas-step-number" aria-hidden="true">07</span></div>
+      <h5>Acción</h5>
+      <div class="atlas-card-copy"><p>Corregir origen o documentar excepción.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="8" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">registro</span><span class="atlas-step-number" aria-hidden="true">08</span></div>
+      <h5>Evidencia</h5>
+      <div class="atlas-card-copy"><p>Resultado, fecha, versión, filas afectadas y decisión.</p></div>
+      <div class="atlas-stats"><span>aprobar</span><span>advertir</span><span>rechazar</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u04-regla-calidad.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Una regla operable define qué observa, cómo lo calcula, qué resultado acepta y quién responde. La salida conserva el tratamiento aplicado y la evidencia de la ejecución.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La población delimita clientes activos; la dimensión observada es completitud.</p></li><li><span>02</span><p>El cálculo divide registros con región por el total de la población.</p></li><li><span>03</span><p>El umbral y la severidad convierten el porcentaje en aprobar, advertir o rechazar.</p></li><li><span>04</span><p>La persona responsable ejecuta una acción y conserva la evidencia del tratamiento.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>Unicidad evalúa si una entidad o evento aparece una sola vez según la clave declarada. La repetición exacta de un despacho por una reingesta puede duplicar cantidades y modificar indicadores. La revisión siempre necesita conocer el grano: dos líneas con el mismo pedido pueden ser válidas si representan productos distintos.</p>
+<p>Validez compara un valor con su dominio, tipo o formato. Una cantidad negativa, un código de estado desconocido o una fecha que no puede interpretarse son ejemplos. Consistencia revisa relaciones entre valores que deberían concordar, como una entrega que debe ocurrir después del despacho.</p>
+<p>Integridad referencial comprueba que una clave foránea encuentre la entidad a la que hace referencia. Un pago sin pedido asociado puede existir en la fuente, pero el ciclo de cobranza queda incompleto hasta resolver el vínculo. Oportunidad agrega la dimensión temporal: un dato exacto que llega después de la decisión puede perder utilidad operacional.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Dimensión</th>
+<th>Pregunta de control</th>
+<th>Ejemplo en Faro Sur</th>
+</tr></thead><tbody>
+<tr><td>completitud</td><td>¿está presente lo que la decisión necesita?</td><td>cliente activo sin región</td></tr>
+<tr><td>unicidad</td><td>¿la clave identifica una sola observación?</td><td>despacho repetido por reingesta</td></tr>
+<tr><td>validez</td><td>¿el valor pertenece al dominio esperado?</td><td>cantidad negativa</td></tr>
+<tr><td>consistencia</td><td>¿los campos relacionados concuerdan?</td><td>entrega anterior al despacho</td></tr>
+<tr><td>integridad referencial</td><td>¿la referencia encuentra su entidad?</td><td>pago sin pedido</td></tr>
+<tr><td>oportunidad</td><td>¿el dato llega antes de actuar?</td><td>tracking recibido después de prometer la entrega</td></tr>
+</tbody></table></div>
+<h2 id="las-reglas-tecnicas-y-de-negocio-se-complementan">Las reglas técnicas y de negocio se complementan</h2>
+<p>Una regla técnica puede verificar tipos, formatos, nulos, duplicados exactos y referencias. Suele implementarse con poca información del proceso. Comprobar que order_date sea una fecha válida ayuda a cualquier consumidor del dato.</p>
+<p>Una regla de negocio expresa cómo funciona la operación. “La cantidad despachada no supera la cantidad solicitada” requiere comprender pedidos, parciales y posibles sustituciones. “OTIF sigue la definición acordada” depende de elegibilidad, fecha prometida y criterio de entrega completa. Estas reglas necesitan un dueño que pueda explicar excepciones y autorizar cambios.</p>
+<p>La automatización ejecuta ambas clases de regla, pero su gobierno difiere. Un formato inválido puede detenerse con una condición estable. Una excepción comercial quizá deba marcarse y escalarse para que el área responsable decida si corresponde corregir la fuente o actualizar la definición.</p>
+<h2 id="severidad-y-materialidad-orientan-la-prioridad">Severidad y materialidad orientan la prioridad</h2>
+<p>El número de errores aporta una señal, aunque no determina por sí solo la prioridad. Un único pago asignado al pedido equivocado puede alterar una decisión financiera relevante, mientras que cien regiones faltantes podrían afectar un análisis exploratorio de menor alcance.</p>
+<p>Para clasificar la severidad observamos el KPI afectado, el valor monetario, la cantidad de usuarios, la propagación a otros productos, la posibilidad de revertir la decisión y el tiempo disponible para actuar. También consideramos obligaciones de privacidad y acceso cuando existen datos sobre personas.</p>
+<p>La materialidad debe registrarse junto con la regla. Así puede explicarse por qué un lote se publicó con una advertencia menor y por qué otro quedó detenido aunque presentara menos defectos.</p>
+<h2 id="elegir-un-tratamiento-y-conservar-la-causa">Elegir un tratamiento y conservar la causa</h2>
+<p>Un defecto puede corregirse cuando existe una fuente autorizada; excluirse cuando no puede utilizarse; marcarse para mantenerlo visible; imputarse mediante una regla explícita; aceptarse si el riesgo es menor; o escalarse cuando requiere una decisión del dueño. La elección depende del impacto y del uso posterior.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Tratamiento</th>
+<th>Cuándo puede aplicarse</th>
+<th>Evidencia que debe conservarse</th>
+</tr></thead><tbody>
+<tr><td>corregir</td><td>existe un valor autorizado y verificable</td><td>valor recibido, fuente de corrección y responsable</td></tr>
+<tr><td>excluir</td><td>la observación contaminaría el producto</td><td>regla, motivo y conteo excluido</td></tr>
+<tr><td>marcar</td><td>el dato sigue siendo útil con una advertencia</td><td>indicador y alcance del defecto</td></tr>
+<tr><td>imputar</td><td>una estimación está permitida y se evalúa sensibilidad</td><td>método, versión y comparación con el dato original</td></tr>
+<tr><td>aceptar</td><td>el riesgo queda dentro del umbral acordado</td><td>aprobación y período de vigencia</td></tr>
+<tr><td>escalar</td><td>falta autoridad o contexto para decidir</td><td>caso, impacto y destinatario</td></tr>
+</tbody></table></div>
+<p>La zona raw conserva el dato recibido. Una corrección se aplica en una capa posterior y deja rastros que permiten comparar ambos valores. De esa manera se puede resolver el problema sin borrar la observación que lo originó.</p>
+<h2 id="linaje-seguir-dependencias-entre-productos">Linaje: seguir dependencias entre productos</h2>
+<p>El linaje describe de dónde provino un dato, qué transformaciones recibió y qué productos dependen de él. Puede documentarse desde el inicio con nombres consistentes, repositorios, consultas SQL, notebooks, manifiestos y diagramas. Una plataforma especializada puede agregarse cuando crecen la cantidad de activos y las dependencias.</p>
+<p>Imaginemos que OTIF cambia inesperadamente. El linaje permite recorrer la medida del reporte hacia el mart de entregas, la regla que construye otif_flag, la tabla de eventos y el snapshot de tracking. También muestra qué otros reportes utilizan el mismo mart y podrían estar afectados. Esa visión reduce el tiempo de diagnóstico y evita corregir un resultado aislado mientras la causa sigue activa.</p>
+<h2 id="trazabilidad-reconstruir-una-ejecucion">Trazabilidad: reconstruir una ejecución</h2>
+<p>La trazabilidad registra lo que ocurrió en una ejecución concreta. Incluye origen, parámetros, versión del código, resultado de los controles, actor y fecha. Mientras el linaje representa relaciones relativamente estables, la trazabilidad aporta la evidencia de un recorrido particular.</p>
+<p>Cuando interviene inteligencia artificial, el registro distingue la sugerencia recibida, la ejecución realizada y la corrección humana. Si un asistente propone excluir outliers, el notebook debe mostrar qué observaciones identificó, qué criterio aplicó el equipo y cómo cambian las métricas con y sin ellas. La conversación por sí sola no demuestra el efecto sobre los datos.</p>
+<h2 id="seguridad-privacidad-y-gobierno-dentro-del-pipeline">Seguridad, privacidad y gobierno dentro del pipeline</h2>
+<p>La seguridad protege la confidencialidad, integridad y disponibilidad mediante autenticación, autorización, cifrado, copias, monitoreo y separación de responsabilidades. Cada control responde a una amenaza concreta. Un secreto de API debe almacenarse fuera del notebook; una tabla curada necesita permisos compatibles con su contenido.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u04-linaje-trazabilidad-privacidad-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u04-linaje-trazabilidad-privacidad-title">Linaje, trazabilidad y privacidad sobre el mismo KPI</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué pregunta responde cada concepto cuando revisamos OTIF?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u04-lineage-privacy.webp')">
+        <div class="atlas-board atlas-compare" style="--atlas-cols:3"><section class="atlas-compare-group">
+              <header><h4>LINAJE · ¿DE QUÉ DEPENDE?</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">productos</span></div>
+      <h5>Cadena OTIF</h5>
+      <div class="atlas-card-copy"><p>snapshot → staging → mart_entregas → medida</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">metadatos</span></div>
+      <h5>Catálogo</h5>
+      <div class="atlas-card-copy"><p>Knowledge Catalog registra activos y relaciones.</p></div>
+      <div class="atlas-stats"><span>impacto aguas abajo</span></div>
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>TRAZABILIDAD · ¿QUÉ OCURRIÓ?</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">identidad</span></div>
+      <h5>Ejecución</h5>
+      <div class="atlas-card-copy"><p>run_20260824_01 · código v1.4 · período agosto</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">evidencia</span></div>
+      <h5>Controles</h5>
+      <div class="atlas-card-copy"><p>filas, claves, totales, reglas y decisión.</p></div>
+      <div class="atlas-stats"><span>reproducible</span></div>
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>PRIVACIDAD · ¿QUIÉN PUEDE VER?</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">origen</span></div>
+      <h5>Zona protegida</h5>
+      <div class="atlas-card-copy"><p>Identidad directa accesible solo a roles autorizados.</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">exposición</span></div>
+      <h5>Zona analítica</h5>
+      <div class="atlas-card-copy"><p>cliente_sk seudónimo y atributos mínimos.</p></div>
+      <div class="atlas-stats"><span>uso permitido</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u04-linaje-trazabilidad-privacidad.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El linaje explica dependencias entre productos. La trazabilidad reconstruye una ejecución concreta. La privacidad limita identidades, atributos y usos permitidos en cada capa.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>El linaje sigue snapshot → staging → mart_entregas → medida OTIF.</p></li><li><span>02</span><p>La trazabilidad identifica una ejecución con versión de código, parámetros y resultados de control.</p></li><li><span>03</span><p>La privacidad sustituye identificadores directos y restringe los campos expuestos al consumo.</p></li><li><span>04</span><p>Knowledge Catalog puede documentar activos, metadatos y linaje administrado.</p></li></ol>
+        <small>Fuentes técnicas: <a href="https://docs.cloud.google.com/dataplex/docs/catalog-overview" target="_blank" rel="noopener noreferrer">Google Cloud · Knowledge Catalog</a>.</small>
+      </figcaption>
+    </figure>
+
+<p>La privacidad evalúa el propósito y la proporcionalidad del uso de datos sobre personas. El equipo limita los campos a los necesarios, define acceso y retención, y considera el riesgo de reidentificación. Quitar un nombre puede resultar insuficiente si una combinación de ubicación, fecha y comportamiento permite reconocer a alguien.</p>
+<p>El gobierno asigna responsables, mantiene definiciones y decide qué productos están autorizados para el consumo. En el proyecto se representa de manera proporcional mediante dueño de KPI, contrato de fuente, política de acceso y registro de cambios. Estas decisiones acompañan la arquitectura desde el diseño.</p>
+<h2 id="anonimizacion-y-seudonimizacion">Anonimización y seudonimización</h2>
+<p>Eliminar identificadores directos reduce exposición, pero el resultado debe revisarse en contexto. Reemplazar customer_id por un código diferente es seudonimización si todavía existe una tabla que permite recuperar la identidad. Puede ser una medida útil de acceso, aunque no convierte automáticamente el conjunto en anónimo.</p>
+<p>Otras técnicas generalizan fechas o ubicaciones, agrupan categorías raras, limitan columnas o producen datos sintéticos para pruebas. Cada técnica reduce algún detalle y puede afectar el análisis. Agrupar localidades protege mejor a grupos pequeños, pero impide estudiar variaciones finas. La decisión debe relacionar ese costo con el propósito y documentar qué riesgo permanece.</p>
+<h2 id="cuatro-defectos-de-faro-sur">Cuatro defectos de Faro Sur</h2>
+<p>Faro Sur contiene despachos duplicados, clientes sin región, cantidades despachadas superiores a las solicitadas y pagos sin pedido asociado. Cada problema altera una parte distinta del sistema. El duplicado puede inflar cantidades; la región faltante excluye clientes de la segmentación; la cantidad imposible incumple una regla operacional; el pago huérfano impide medir el ciclo de cobranza.</p>
+<p>El equipo aplica una regla específica y elige un tratamiento para cada caso. El resultado esperado incluye la tabla curada y un registro de observaciones que explique qué ocurrió. La calidad deja así de ser una limpieza invisible y se convierte en evidencia que otro analista puede revisar.</p>
+<h2 id="que-muestra-el-registro-de-rechazos">Qué muestra el registro de rechazos</h2>
+<p>El caso de archivos recurrentes produce cuatro observaciones: un archivo sin movimiento_id, la versión anterior del duplicado MOV-0012, la cantidad negativa de MOV-0025 y la fecha inválida de MOV-0027. La tabla curada conserva 28 movimientos.</p>
+<p>Cada rechazo incluye archivo de origen, identificador disponible, regla incumplida y tratamiento. El archivo inválido se detiene en el control de esquema. El duplicado se resuelve mediante una regla de versión. La cantidad y la fecha quedan fuera del conjunto curado hasta que el responsable confirme una corrección.</p>
+<p>Los conteos conectan esas decisiones: cinco archivos detectados, cuatro archivos válidos, 32 filas recibidas, cuatro registros rechazados y 28 movimientos curados. Una actualización posterior debe reconciliar los mismos estados antes de publicar.</p>
+<h2 id="un-control-necesita-una-respuesta-operativa">Un control necesita una respuesta operativa</h2>
+<p>Una consulta que devuelve cero filas puede implementar una prueba, pero el proceso también necesita frecuencia, umbral, alerta, dueño y acción. Si la prueba detecta pagos huérfanos, debe saberse si bloquea el mart, si publica con advertencia o si abre una revisión.</p>
+<p>Los controles como código facilitan repetir la evaluación. Los controles como proceso aseguran que el resultado llegue a una persona con autoridad. Ambas partes deben estar conectadas: una alerta sin consulta verificable genera discusión; una consulta que nadie observa no protege la decisión.</p>
+<h2 id="usar-ia-para-proponer-controles">Usar IA para proponer controles</h2>
+<p>Un asistente puede sugerir reglas, explicar un mensaje de error o agrupar anomalías. La propuesta debe compararse con el contrato y con el proceso real. Un valor atípico puede ser un evento raro válido, y una corrección plausible puede carecer de una fuente autorizada.</p>
+<p>La revisión humana comprueba columnas, grano, umbral, materialidad y exposición de datos. Después registra qué parte de la sugerencia se usó y qué cambió. Así la IA acelera la exploración sin tomar decisiones silenciosas sobre el conjunto curado.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Cuándo un valor nulo constituye un defecto?</li><li>¿Cuál de los defectos de Faro Sur puede cambiar OTIF?</li><li>¿Qué información debe conservarse al corregir en staging?</li><li>¿Cómo se rastrea una medida del reporte hasta su snapshot?</li><li>¿Qué campos del proyecto requieren acceso restringido?</li><li>¿Qué diferencia hay entre linaje y trazabilidad?</li><li>¿Quién recibe la alerta cuando una fila queda fuera del conjunto curado?</li></ol>
+<h2 id="referencias">Referencias</h2>
+<ul class="theory-list"><li>Ley argentina 25.326 y lineamientos institucionales aplicables.</li><li>Programa académico 2026.</li><li>Guía de anonimización de la materia.</li></ul>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Qué decisión tomar ante cada problema de calidad</h2></div>
+      <div class="applied-prose"><p>Los despachos duplicados prueban unicidad; la región faltante prueba completitud; una cantidad enviada superior a la solicitada expresa una regla de negocio; un pago sin pedido evidencia una falla de integridad referencial.</p><p>El registro de calidad conserva la observación raw, el indicador aplicado en staging y la población utilizada por el mart. Severidad, materialidad y permisos determinan si el equipo corrige, marca, excluye o escala.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">4.3</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Investigar cuatro problemas de calidad en Faro Sur</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>El Paquete D incorpora duplicados, faltantes, una regla de negocio incumplida y una clave huérfana. Cada control mide filas afectadas, vincula el defecto con un KPI y propone una acción con responsable.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_D_v1.0_estudiantes.zip" download>Descargar Paquete D <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u04-calidad-trazabilidad-privacidad">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u04-calidad-trazabilidad-privacidad">Calidad, linaje y protección de datos</h2></div>
+        <p>Los materiales conectan pruebas de calidad, metadatos de linaje y principios de privacidad aplicables a proyectos analíticos.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Marco de referencia</span><small>Inglés</small></div>
+          <h3><a href="https://www.gov.uk/government/news/meet-the-data-quality-dimensions" target="_blank" rel="noopener noreferrer">Data quality dimensions</a></h3>
+          <p>Presenta dimensiones de calidad con preguntas y ejemplos de aplicación.</p>
+          <footer><span>Government Data Quality Hub · Reino Unido</span><small>Lectura · 15 min</small><a href="https://www.gov.uk/government/news/meet-the-data-quality-dimensions" target="_blank" rel="noopener noreferrer" aria-label="Abrir Data quality dimensions">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Guía oficial</span><small>Español</small></div>
+          <h3><a href="https://www.argentina.gob.ar/aaip/datospersonales" target="_blank" rel="noopener noreferrer">Protección de datos personales</a></h3>
+          <p>Punto de entrada a normativa, derechos y recomendaciones argentinas sobre datos personales.</p>
+          <footer><span>Agencia de Acceso a la Información Pública</span><small>Consulta por tema</small><a href="https://www.argentina.gob.ar/aaip/datospersonales" target="_blank" rel="noopener noreferrer" aria-label="Abrir Protección de datos personales">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Estándar web</span><small>Inglés</small></div>
+          <h3><a href="https://openlineage.io/docs/" target="_blank" rel="noopener noreferrer">OpenLineage documentation</a></h3>
+          <p>Muestra cómo representar eventos, jobs y datasets para conservar linaje entre sistemas.</p>
+          <footer><span>OpenLineage</span><small>Exploración · 20 min</small><a href="https://openlineage.io/docs/" target="_blank" rel="noopener noreferrer" aria-label="Abrir OpenLineage documentation">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+    <section class="resources section-pad" aria-labelledby="project-resources-u04-calidad-trazabilidad-privacidad">
+      <div class="section-heading"><div class="section-kicker">Transferencia al proyecto</div><h2 id="project-resources-u04-calidad-trazabilidad-privacidad">Revisar calidad y protección del caso</h2></div>
+      <div class="resource-list"><a href="../recursos/caso-archivos-recurrentes.html" data-release-key="u04-etl-elt-contratos"><span class="resource-type">HTML</span><span><b>Caso aplicado · Archivos recurrentes</b><small>Archivo inválido, duplicado y reglas de aceptación</small></span><i aria-hidden="true">→</i></a><a href="../downloads/Rúbrica del proyecto final.md" download><span class="resource-type">MD</span><span><b>Rúbrica del proyecto final</b><small>Criterios de calidad, seguridad y trazabilidad</small></span><i aria-hidden="true">↓</i></a></div>
+    </section>
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u04-etl-elt-contratos.html"><span>ANTERIOR</span><b>Unidad 4 · Formatos y ETL/ELT</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 5 · Python y EDA</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

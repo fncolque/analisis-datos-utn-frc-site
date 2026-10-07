@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-09-30",
+  "actualizado": "2026-10-07",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -1756,6 +1756,232 @@
                   "accent": "blue",
                   "stats": [
                     "idempotente"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "u04-calidad-trazabilidad-privacidad": [
+      {
+        "page": "u04-calidad-trazabilidad-privacidad",
+        "unit": "C09",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u04-regla-calidad.svg",
+        "base_generada": "theory/u04-regla-calidad-base.webp",
+        "base_provisoria": "u04-quality-gates.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Anatomía de una regla de calidad operable",
+        "pregunta_lectura": "¿Qué falta cuando una regla detecta un problema pero no indica qué hacer?",
+        "alt": "Siete tarjetas descomponen la regla región presente en clientes activos en población, dimensión, cálculo, umbral, severidad, responsable y acción, con salidas aprobar, advertir y rechazar.",
+        "epigrafe": "Una regla operable define qué observa, cómo lo calcula, qué resultado acepta y quién responde. La salida conserva el tratamiento aplicado y la evidencia de la ejecución.",
+        "after_heading": "dimensiones-para-describir-un-defecto",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La población delimita clientes activos; la dimensión observada es completitud.",
+          "El cálculo divide registros con región por el total de la población.",
+          "El umbral y la severidad convierten el porcentaje en aprobar, advertir o rechazar.",
+          "La persona responsable ejecuta una acción y conserva la evidencia del tratamiento."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A quality rule assembly line where population, measured property, calculation, threshold, severity, owner and action snap together, ending in three controlled outcomes with an evidence record.",
+        "version_revision": "1.0",
+        "svg_height": 1150,
+        "estructura": {
+          "layout": "flow",
+          "columns": 4,
+          "cards": [
+            {
+              "title": "Población",
+              "body": [
+                "Clientes con estado = activo."
+              ],
+              "accent": "blue",
+              "tag": "alcance",
+              "step": 1
+            },
+            {
+              "title": "Dimensión",
+              "body": [
+                "Completitud del campo región."
+              ],
+              "accent": "blue",
+              "tag": "propiedad",
+              "step": 2
+            },
+            {
+              "title": "Cálculo",
+              "body": [
+                "región presente / clientes activos"
+              ],
+              "accent": "blue",
+              "tag": "métrica",
+              "step": 3,
+              "code": [
+                "completitud = presentes / activos"
+              ]
+            },
+            {
+              "title": "Umbral",
+              "body": [
+                "≥ 99 % aprueba; 97–99 % advierte; < 97 % rechaza."
+              ],
+              "accent": "blue",
+              "tag": "criterio",
+              "step": 4
+            },
+            {
+              "title": "Severidad",
+              "body": [
+                "Impacta segmentación regional y reportes."
+              ],
+              "accent": "blue",
+              "tag": "consecuencia",
+              "step": 5
+            },
+            {
+              "title": "Responsable",
+              "body": [
+                "Dueño de clientes revisa registros faltantes."
+              ],
+              "accent": "blue",
+              "tag": "propietario",
+              "step": 6
+            },
+            {
+              "title": "Acción",
+              "body": [
+                "Corregir origen o documentar excepción."
+              ],
+              "accent": "blue",
+              "tag": "tratamiento",
+              "step": 7
+            },
+            {
+              "title": "Evidencia",
+              "body": [
+                "Resultado, fecha, versión, filas afectadas y decisión."
+              ],
+              "accent": "blue",
+              "tag": "registro",
+              "step": 8,
+              "stats": [
+                "aprobar",
+                "advertir",
+                "rechazar"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u04-calidad-trazabilidad-privacidad",
+        "unit": "C09",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u04-linaje-trazabilidad-privacidad.svg",
+        "base_generada": "theory/u04-linaje-trazabilidad-privacidad-base.webp",
+        "base_provisoria": "u04-lineage-privacy.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Linaje, trazabilidad y privacidad sobre el mismo KPI",
+        "pregunta_lectura": "¿Qué pregunta responde cada concepto cuando revisamos OTIF?",
+        "alt": "Tres columnas muestran las dependencias del KPI OTIF desde el snapshot, una ejecución con versión, parámetros y controles, y zonas de acceso con seudonimización y campos permitidos.",
+        "epigrafe": "El linaje explica dependencias entre productos. La trazabilidad reconstruye una ejecución concreta. La privacidad limita identidades, atributos y usos permitidos en cada capa.",
+        "after_heading": "seguridad-privacidad-y-gobierno-dentro-del-pipeline",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "El linaje sigue snapshot → staging → mart_entregas → medida OTIF.",
+          "La trazabilidad identifica una ejecución con versión de código, parámetros y resultados de control.",
+          "La privacidad sustituye identificadores directos y restringe los campos expuestos al consumo.",
+          "Knowledge Catalog puede documentar activos, metadatos y linaje administrado."
+        ],
+        "fuentes": [
+          {
+            "label": "Google Cloud · Knowledge Catalog",
+            "url": "https://docs.cloud.google.com/dataplex/docs/catalog-overview"
+          }
+        ],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Three coordinated layers around one KPI: dependency lineage, a timestamped execution trace and progressively restricted privacy zones with pseudonymous tokens; restrained catalog motif.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "compare",
+          "groups": [
+            {
+              "title": "LINAJE · ¿DE QUÉ DEPENDE?",
+              "cards": [
+                {
+                  "title": "Cadena OTIF",
+                  "body": [
+                    "snapshot → staging → mart_entregas → medida"
+                  ],
+                  "accent": "blue",
+                  "tag": "productos"
+                },
+                {
+                  "title": "Catálogo",
+                  "body": [
+                    "Knowledge Catalog registra activos y relaciones."
+                  ],
+                  "accent": "blue",
+                  "tag": "metadatos",
+                  "stats": [
+                    "impacto aguas abajo"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "TRAZABILIDAD · ¿QUÉ OCURRIÓ?",
+              "cards": [
+                {
+                  "title": "Ejecución",
+                  "body": [
+                    "run_20260824_01 · código v1.4 · período agosto"
+                  ],
+                  "accent": "blue",
+                  "tag": "identidad"
+                },
+                {
+                  "title": "Controles",
+                  "body": [
+                    "filas, claves, totales, reglas y decisión."
+                  ],
+                  "accent": "blue",
+                  "tag": "evidencia",
+                  "stats": [
+                    "reproducible"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "PRIVACIDAD · ¿QUIÉN PUEDE VER?",
+              "cards": [
+                {
+                  "title": "Zona protegida",
+                  "body": [
+                    "Identidad directa accesible solo a roles autorizados."
+                  ],
+                  "accent": "blue",
+                  "tag": "origen"
+                },
+                {
+                  "title": "Zona analítica",
+                  "body": [
+                    "cliente_sk seudónimo y atributos mínimos."
+                  ],
+                  "accent": "blue",
+                  "tag": "exposición",
+                  "stats": [
+                    "uso permitido"
                   ]
                 }
               ]

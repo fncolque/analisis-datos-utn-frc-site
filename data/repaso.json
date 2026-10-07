@@ -32,6 +32,10 @@
     {
       "id": "u04-etl-elt-contratos",
       "label": "Unidad 4.2 · Formatos, contratos y ETL/ELT"
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad",
+      "label": "Unidad 4.3 · Calidad, trazabilidad y privacidad"
     }
   ],
   "questions": [
@@ -4994,6 +4998,626 @@
         "path": "unidades/u04-etl-elt-contratos.html#los-archivos-recurrentes-forman-un-pipeline-por-lote",
         "label": "Los archivos recurrentes forman un pipeline por lote"
       }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-01",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Dimensiones para describir un defecto",
+      "difficulty": "basica",
+      "prompt": "Un campo obligatorio de región está vacío. ¿Qué dimensión de calidad se afecta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Completitud."
+        },
+        {
+          "id": "b",
+          "text": "Compresión."
+        },
+        {
+          "id": "c",
+          "text": "Elasticidad."
+        },
+        {
+          "id": "d",
+          "text": "Ordenamiento."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La completitud comprueba la presencia de los datos requeridos para el uso.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#dimensiones-para-describir-un-defecto",
+        "label": "Dimensiones para describir un defecto"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-02",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Dimensiones para describir un defecto",
+      "difficulty": "basica",
+      "prompt": "El mismo despacho se carga dos veces por una reingesta. ¿Qué dimensión evalúa ese defecto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Latencia de la consulta."
+        },
+        {
+          "id": "b",
+          "text": "Unicidad."
+        },
+        {
+          "id": "c",
+          "text": "Oportunidad."
+        },
+        {
+          "id": "d",
+          "text": "Legibilidad del gráfico."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La clave del evento debe identificar una sola observación según el grano.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#dimensiones-para-describir-un-defecto",
+        "label": "Dimensiones para describir un defecto"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-03",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Linaje: seguir dependencias entre productos",
+      "difficulty": "basica",
+      "prompt": "¿Qué muestra el linaje de un KPI?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo el tamaño del archivo final."
+        },
+        {
+          "id": "b",
+          "text": "El orden alfabético de los clientes."
+        },
+        {
+          "id": "c",
+          "text": "Fuentes, transformaciones y productos dependientes."
+        },
+        {
+          "id": "d",
+          "text": "Solo el usuario que abrió el tablero ayer."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El linaje representa el recorrido y las dependencias del dato.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#linaje-seguir-dependencias-entre-productos",
+        "label": "Linaje: seguir dependencias entre productos"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-04",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Trazabilidad: reconstruir una ejecución",
+      "difficulty": "basica",
+      "prompt": "¿Qué registro ayuda a reconstruir una ejecución concreta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El diagrama del proceso, sin registrar la ejecución."
+        },
+        {
+          "id": "b",
+          "text": "La definición del indicador, sin identificar las entradas usadas."
+        },
+        {
+          "id": "c",
+          "text": "El total final obtenido, sin parámetros ni versión de código."
+        },
+        {
+          "id": "d",
+          "text": "Versión de código, parámetros, entrada y resultados de controles."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La trazabilidad conserva evidencia de qué ocurrió en una corrida particular.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#trazabilidad-reconstruir-una-ejecucion",
+        "label": "Trazabilidad: reconstruir una ejecución"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-05",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Anonimización y seudonimización",
+      "difficulty": "basica",
+      "prompt": "Se reemplaza un identificador por un código y se conserva una tabla para recuperar la identidad. ¿Qué técnica es?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Seudonimización."
+        },
+        {
+          "id": "b",
+          "text": "Anonimización irreversible garantizada."
+        },
+        {
+          "id": "c",
+          "text": "Compresión."
+        },
+        {
+          "id": "d",
+          "text": "Agregación temporal."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Si existe una correspondencia que permite recuperar identidades, el conjunto está seudonimizado.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#anonimizacion-y-seudonimizacion",
+        "label": "Anonimización y seudonimización"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-06",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Dimensiones para describir un defecto",
+      "difficulty": "basica",
+      "prompt": "Un dato correcto llega después de que debía tomarse la decisión. ¿Qué dimensión falla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Formato de la clave primaria."
+        },
+        {
+          "id": "b",
+          "text": "Oportunidad."
+        },
+        {
+          "id": "c",
+          "text": "Unicidad necesariamente."
+        },
+        {
+          "id": "d",
+          "text": "Integridad referencial necesariamente."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La utilidad depende de que el dato llegue dentro del plazo requerido.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#dimensiones-para-describir-un-defecto",
+        "label": "Dimensiones para describir un defecto"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-07",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "La calidad se define para un uso concreto",
+      "difficulty": "intermedia",
+      "prompt": "Una dirección ausente impide planificar una entrega pero no calcular margen por producto. ¿Qué demuestra?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El margen necesita siempre dirección postal."
+        },
+        {
+          "id": "b",
+          "text": "La dirección no requiere nunca control."
+        },
+        {
+          "id": "c",
+          "text": "El impacto de calidad depende del uso."
+        },
+        {
+          "id": "d",
+          "text": "Todo nulo invalida cualquier análisis."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Una regla debe relacionarse con la decisión y los campos que esa decisión necesita.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#la-calidad-se-define-para-un-uso-concreto",
+        "label": "La calidad se define para un uso concreto"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-08",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Las reglas técnicas y de negocio se complementan",
+      "difficulty": "intermedia",
+      "prompt": "¿Qué regla requiere comprender el proceso de pedidos y despachos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El archivo debe poder leerse como UTF-8."
+        },
+        {
+          "id": "b",
+          "text": "Una columna temporal debe admitir conversión."
+        },
+        {
+          "id": "c",
+          "text": "El archivo debe contener un encabezado."
+        },
+        {
+          "id": "d",
+          "text": "La cantidad despachada no debe exceder la solicitada, salvo excepciones acordadas."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La regla operacional necesita contexto y un responsable que explique excepciones.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#las-reglas-tecnicas-y-de-negocio-se-complementan",
+        "label": "Las reglas técnicas y de negocio se complementan"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-09",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Elegir un tratamiento y conservar la causa",
+      "difficulty": "intermedia",
+      "prompt": "Se corrige una región con un maestro autorizado. ¿Qué evidencia debe conservarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Valor recibido, fuente de corrección y responsable."
+        },
+        {
+          "id": "b",
+          "text": "Solo el valor final."
+        },
+        {
+          "id": "c",
+          "text": "El total de regiones distintas después de la corrección."
+        },
+        {
+          "id": "d",
+          "text": "La fecha del reporte, sin identificar la fuente del cambio."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La corrección debe poder compararse con el dato original y su fuente autorizada.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#elegir-un-tratamiento-y-conservar-la-causa",
+        "label": "Elegir un tratamiento y conservar la causa"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-10",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Qué muestra el registro de rechazos",
+      "difficulty": "intermedia",
+      "prompt": "Se excluyen filas con fecha inválida de una tabla curada. ¿Qué debe registrarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un promedio de las filas rechazadas sin identificarlas."
+        },
+        {
+          "id": "b",
+          "text": "Origen, regla incumplida, tratamiento y conteo."
+        },
+        {
+          "id": "c",
+          "text": "Solo que la tabla final abre."
+        },
+        {
+          "id": "d",
+          "text": "La eliminación del archivo original."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El registro de rechazos hace visible el efecto de la limpieza.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#que-muestra-el-registro-de-rechazos",
+        "label": "Qué muestra el registro de rechazos"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-11",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Un control necesita una respuesta operativa",
+      "difficulty": "intermedia",
+      "prompt": "Una prueba detecta pagos huérfanos. ¿Qué falta si nadie recibe ni atiende el resultado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un nombre más corto para la columna."
+        },
+        {
+          "id": "b",
+          "text": "Más decimales en el conteo."
+        },
+        {
+          "id": "c",
+          "text": "Una acción y un responsable definidos."
+        },
+        {
+          "id": "d",
+          "text": "Una segunda herramienta de gráficos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La consulta de control necesita una respuesta operativa para proteger el consumo.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#un-control-necesita-una-respuesta-operativa",
+        "label": "Un control necesita una respuesta operativa"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-12",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Dimensiones para describir un defecto",
+      "difficulty": "intermedia",
+      "prompt": "Una entrega figura antes del despacho que la originó. ¿Qué control corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo contar filas."
+        },
+        {
+          "id": "b",
+          "text": "Solo verificar la extensión del archivo."
+        },
+        {
+          "id": "c",
+          "text": "Solo ordenar clientes por nombre."
+        },
+        {
+          "id": "d",
+          "text": "Consistencia entre los instantes relacionados."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Ambas fechas pueden tener formato válido y aun así contradecir la secuencia del proceso.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#dimensiones-para-describir-un-defecto",
+        "label": "Dimensiones para describir un defecto"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-13",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Seguridad, privacidad y gobierno dentro del pipeline",
+      "difficulty": "intermedia",
+      "prompt": "Un análisis regional requiere totales por zona, pero no nombres de clientes. ¿Qué elección aplica minimización?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Publicar solo los campos necesarios para ese propósito."
+        },
+        {
+          "id": "b",
+          "text": "Agregar nombres por si sirven después."
+        },
+        {
+          "id": "c",
+          "text": "Publicar todos los registros con columnas ocultas."
+        },
+        {
+          "id": "d",
+          "text": "Guardar contraseñas junto a la tabla."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Reducir campos al propósito limita exposición sin quitar información necesaria.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#seguridad-privacidad-y-gobierno-dentro-del-pipeline",
+        "label": "Seguridad, privacidad y gobierno dentro del pipeline"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-14",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Cuatro defectos de Faro Sur",
+      "difficulty": "intermedia",
+      "prompt": "Un pago referencia un pedido inexistente. ¿Qué debe comprobarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La unicidad de la clave del pago como único control."
+        },
+        {
+          "id": "b",
+          "text": "La integridad referencial del vínculo."
+        },
+        {
+          "id": "c",
+          "text": "La validez del tipo numérico del identificador como único control."
+        },
+        {
+          "id": "d",
+          "text": "La coincidencia de cantidades de filas entre pagos y pedidos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El pago huérfano no puede integrarse correctamente hasta resolver la referencia.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#cuatro-defectos-de-faro-sur",
+        "label": "Cuatro defectos de Faro Sur"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-15",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Severidad y materialidad orientan la prioridad",
+      "difficulty": "avanzada",
+      "prompt": "Hay cien errores menores y un pago grande atribuido al cliente equivocado. ¿Cómo priorizar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Siempre por el orden de llegada."
+        },
+        {
+          "id": "b",
+          "text": "Siempre por la tabla con más columnas."
+        },
+        {
+          "id": "c",
+          "text": "Por impacto material, propagación y decisión afectada, además del conteo."
+        },
+        {
+          "id": "d",
+          "text": "Siempre por la cantidad de errores."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La cantidad de defectos no expresa por sí sola su consecuencia económica u operativa.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#severidad-y-materialidad-orientan-la-prioridad",
+        "label": "Severidad y materialidad orientan la prioridad"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-16",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Anonimización y seudonimización",
+      "difficulty": "avanzada",
+      "prompt": "Se quitan nombres, pero ubicación exacta y fecha permiten identificar a una persona. ¿Qué conclusión corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El conjunto es anónimo por definición."
+        },
+        {
+          "id": "b",
+          "text": "La información dejó de referirse a personas automáticamente."
+        },
+        {
+          "id": "c",
+          "text": "El formato Parquet resuelve ese riesgo."
+        },
+        {
+          "id": "d",
+          "text": "Persiste riesgo de reidentificación."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Las combinaciones de atributos pueden identificar personas aunque no haya identificadores directos.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#anonimizacion-y-seudonimizacion",
+        "label": "Anonimización y seudonimización"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-17",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Usar IA para proponer controles",
+      "difficulty": "avanzada",
+      "prompt": "La IA propone borrar todas las ventas atípicas. ¿Qué revisión debe preceder esa acción?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Investigar si son eventos válidos y medir la sensibilidad de las métricas."
+        },
+        {
+          "id": "b",
+          "text": "Aplicar la propuesta porque reduce dispersión."
+        },
+        {
+          "id": "c",
+          "text": "Eliminar también las fuentes originales."
+        },
+        {
+          "id": "d",
+          "text": "Convertirlas en ceros sin documentar."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Un valor extremo puede ser una operación real; el tratamiento requiere evidencia y registro.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#usar-ia-para-proponer-controles",
+        "label": "Usar IA para proponer controles"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-18",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Elegir un tratamiento y conservar la causa",
+      "difficulty": "avanzada",
+      "prompt": "Se imputa una fecha desconocida para calcular demoras. ¿Qué hace revisable esa decisión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar la columna original."
+        },
+        {
+          "id": "b",
+          "text": "Documentar método, versión y efecto frente al dato sin imputar."
+        },
+        {
+          "id": "c",
+          "text": "Ocultar qué filas fueron imputadas."
+        },
+        {
+          "id": "d",
+          "text": "Presentar la estimación como observación original."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La imputación introduce una estimación y debe conservarse su distinción y sensibilidad.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#elegir-un-tratamiento-y-conservar-la-causa",
+        "label": "Elegir un tratamiento y conservar la causa"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-19",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Linaje: seguir dependencias entre productos",
+      "difficulty": "avanzada",
+      "prompt": "Se descubre un error en un mart compartido por tres tableros. ¿Qué ayuda a delimitar el alcance de la corrección?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cambiar el nombre del mart."
+        },
+        {
+          "id": "b",
+          "text": "Eliminar el historial de ejecuciones."
+        },
+        {
+          "id": "c",
+          "text": "Consultar qué productos dependen del mart."
+        },
+        {
+          "id": "d",
+          "text": "Corregir solo el gráfico donde se vio primero."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El linaje permite identificar consumidores afectados por una causa común.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#linaje-seguir-dependencias-entre-productos",
+        "label": "Linaje: seguir dependencias entre productos"
+      }
+    },
+    {
+      "id": "u04-calidad-trazabilidad-privacidad-20",
+      "unit": "u04-calidad-trazabilidad-privacidad",
+      "topic": "Trazabilidad: reconstruir una ejecución",
+      "difficulty": "avanzada",
+      "prompt": "Un equipo guarda el prompt de IA, pero no el SQL ejecutado ni sus controles. ¿Qué sigue faltando?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La prueba de que existió una conversación."
+        },
+        {
+          "id": "b",
+          "text": "Un título más claro para el prompt."
+        },
+        {
+          "id": "c",
+          "text": "La marca del navegador."
+        },
+        {
+          "id": "d",
+          "text": "Evidencia de la ejecución y de la verificación humana."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La sugerencia recibida y el trabajo finalmente ejecutado pueden diferir; deben distinguirse.",
+      "reference": {
+        "path": "unidades/u04-calidad-trazabilidad-privacidad.html#trazabilidad-reconstruir-una-ejecucion",
+        "label": "Trazabilidad: reconstruir una ejecución"
+      }
     }
   ],
   "presets": [
@@ -5023,5 +5647,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "74fe29a2c3c5b01f"
+  "version": "75f96b6122d3b9aa"
 }

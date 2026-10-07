@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-09-30",
+  "actualizado": "2026-10-07",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -469,6 +469,47 @@
           "idioma": "Inglés",
           "dedicacion": "Vista previa y consulta",
           "descripcion": "Ubica generación, ingestión, almacenamiento, transformación y servicio dentro del ciclo de vida de datos."
+        }
+      ]
+    },
+    "u04-calidad-trazabilidad-privacidad": {
+      "titulo": "Calidad, linaje y protección de datos",
+      "introduccion": "Los materiales conectan pruebas de calidad, metadatos de linaje y principios de privacidad aplicables a proyectos analíticos.",
+      "diagrama": {
+        "archivo": "u04-calidad-linaje.svg",
+        "fuente": "u04-calidad-linaje.mmd",
+        "alt": "Linaje desde la fuente hasta el KPI, con una prueba en staging y una acción asignada a un responsable.",
+        "titulo": "Un control conecta regla, impacto y acción",
+        "epigrafe": "La detección produce evidencia cuando existe una decisión sobre el defecto y una persona responsable.",
+        "base": "Elaboración propia a partir del Paquete D de Faro Sur."
+      },
+      "recursos": [
+        {
+          "tipo": "Marco de referencia",
+          "titulo": "Data quality dimensions",
+          "institucion": "Government Data Quality Hub · Reino Unido",
+          "url": "https://www.gov.uk/government/news/meet-the-data-quality-dimensions",
+          "idioma": "Inglés",
+          "dedicacion": "Lectura · 15 min",
+          "descripcion": "Presenta dimensiones de calidad con preguntas y ejemplos de aplicación."
+        },
+        {
+          "tipo": "Guía oficial",
+          "titulo": "Protección de datos personales",
+          "institucion": "Agencia de Acceso a la Información Pública",
+          "url": "https://www.argentina.gob.ar/aaip/datospersonales",
+          "idioma": "Español",
+          "dedicacion": "Consulta por tema",
+          "descripcion": "Punto de entrada a normativa, derechos y recomendaciones argentinas sobre datos personales."
+        },
+        {
+          "tipo": "Estándar web",
+          "titulo": "OpenLineage documentation",
+          "institucion": "OpenLineage",
+          "url": "https://openlineage.io/docs/",
+          "idioma": "Inglés",
+          "dedicacion": "Exploración · 20 min",
+          "descripcion": "Muestra cómo representar eventos, jobs y datasets para conservar linaje entre sistemas."
         }
       ]
     }

@@ -1,0 +1,8 @@
+flowchart LR
+    A["Fuente:<br/>tracking + pedidos"] --> B["Raw:<br/>observación recibida"]
+    B --> C["Staging:<br/>regla + indicador"]
+    C --> D["Mart:<br/>población apta"]
+    D --> E["KPI:<br/>OTIF y demora"]
+    E --> F["Acción:<br/>corregir · marcar<br/>escalar"]
+    T["Prueba"] -.-> C
+    R["Responsable"] -.-> F

@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1150" viewBox="0 0 1600 1150" role="img" aria-labelledby="title desc">
+<title id="title">Anatomía de una regla de calidad operable</title>
+<desc id="desc">Siete tarjetas descomponen la regla región presente en clientes activos en población, dimensión, cálculo, umbral, severidad, responsable y acción, con salidas aprobar, advertir y rechazar.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9aabb9" stroke-width="1" opacity=".32"/></pattern><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0,0 L12,6 L0,12 z" fill="#1f497d"/></marker></defs>
+<style>.atlas-step{outline:none;cursor:pointer}.atlas-step .card-bg{transition:stroke .16s ease,filter .16s ease}.atlas-step:hover .card-bg,.atlas-step:focus .card-bg{stroke:#ffff33;stroke-width:7px}</style>
+<rect x="0" y="0" width="1600" height="1150" fill="#f7f2e8"/>
+<image href="../../images/generated/u04-quality-gates.webp" x="0" y="0" width="1600" height="1150" opacity="0.055" preserveAspectRatio="xMidYMid slice"/>
+<rect x="0" y="0" width="1600" height="1150" fill="url(#grid)" opacity=".36"/>
+<rect x="52" y="38" width="250" height="42" rx="21" fill="#143254"/>
+<text x="177.0" y="66.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="850" text-anchor="middle" letter-spacing="1">ATLAS TEÓRICO · C09</text>
+<text x="52.0" y="118.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="850" text-anchor="start">¿Qué falta cuando una regla detecta un problema pero no indica qué hacer?</text>
+<g class="atlas-step" data-step="1" tabindex="0" role="group" aria-label="Paso 1: Población">
+<rect class="card-bg" x="52.0" y="190.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="190.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="212.0" width="95.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">ALCANCE</text>
+<circle cx="374.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="374.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">01</text>
+<text x="82.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Población</text>
+<text x="82.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Clientes con estado =</text>
+<text x="82.0" y="337.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">activo.</text>
+</g>
+<path d="M412.0,403.5 L427.0,403.5" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="2" tabindex="0" role="group" aria-label="Paso 2: Dimensión">
+<rect class="card-bg" x="432.0" y="190.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="432.0" y="190.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="460.0" y="212.0" width="115.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="474.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">PROPIEDAD</text>
+<circle cx="754.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="754.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">02</text>
+<text x="462.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Dimensión</text>
+<text x="462.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Completitud del campo</text>
+<text x="462.0" y="337.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">región.</text>
+</g>
+<path d="M792.0,403.5 L807.0,403.5" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="3" tabindex="0" role="group" aria-label="Paso 3: Cálculo">
+<rect class="card-bg" x="812.0" y="190.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="812.0" y="190.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="840.0" y="212.0" width="95.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="854.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">MÉTRICA</text>
+<circle cx="1134.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1134.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">03</text>
+<text x="842.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Cálculo</text>
+<text x="842.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• región presente /</text>
+<text x="842.0" y="337.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">clientes activos</text>
+<rect x="840.0" y="346.9" width="300.0" height="34" rx="5" fill="#143254"/>
+<text x="852.0" y="369.9" fill="#ffffff" font-family="Consolas, 'Courier New', monospace" font-size="18" font-weight="600" text-anchor="start">completitud = presentes / activos</text>
+</g>
+<path d="M1172.0,403.5 L1187.0,403.5" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="4" tabindex="0" role="group" aria-label="Paso 4: Umbral">
+<rect class="card-bg" x="1192.0" y="190.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1192.0" y="190.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="1220.0" y="212.0" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="1234.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CRITERIO</text>
+<circle cx="1514.0" cy="224.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="231.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">04</text>
+<text x="1222.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Umbral</text>
+<text x="1222.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• ≥ 99 % aprueba; 97–99 %</text>
+<text x="1222.0" y="337.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">advierte; &lt; 97 % rechaza.</text>
+</g>
+<g class="atlas-step" data-step="5" tabindex="0" role="group" aria-label="Paso 5: Severidad">
+<rect class="card-bg" x="52.0" y="641.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="641.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="80.0" y="663.0" width="145.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="687.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CONSECUENCIA</text>
+<circle cx="374.0" cy="675.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="374.0" y="682.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">05</text>
+<text x="82.0" y="727.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Severidad</text>
+<text x="82.0" y="764.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Impacta segmentación</text>
+<text x="82.0" y="788.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">regional y reportes.</text>
+</g>
+<path d="M412.0,854.5 L427.0,854.5" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="6" tabindex="0" role="group" aria-label="Paso 6: Responsable">
+<rect class="card-bg" x="432.0" y="641.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="432.0" y="641.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="460.0" y="663.0" width="135.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="474.0" y="687.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">PROPIETARIO</text>
+<circle cx="754.0" cy="675.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="754.0" y="682.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">06</text>
+<text x="462.0" y="727.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Responsable</text>
+<text x="462.0" y="764.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Dueño de clientes revisa</text>
+<text x="462.0" y="788.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">registros faltantes.</text>
+</g>
+<path d="M792.0,854.5 L807.0,854.5" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="7" tabindex="0" role="group" aria-label="Paso 7: Acción">
+<rect class="card-bg" x="812.0" y="641.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="812.0" y="641.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="840.0" y="663.0" width="135.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="854.0" y="687.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">TRATAMIENTO</text>
+<circle cx="1134.0" cy="675.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1134.0" y="682.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">07</text>
+<text x="842.0" y="727.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Acción</text>
+<text x="842.0" y="764.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Corregir origen o</text>
+<text x="842.0" y="788.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">documentar excepción.</text>
+</g>
+<path d="M1172.0,854.5 L1187.0,854.5" fill="none" stroke="#1f497d" stroke-width="4" marker-end="url(#arrow)"/>
+<g class="atlas-step" data-step="8" tabindex="0" role="group" aria-label="Paso 8: Evidencia">
+<rect class="card-bg" x="1192.0" y="641.0" width="356.0" height="427.0" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="1192.0" y="641.0" width="10" height="427.0" rx="5" fill="#1f497d"/>
+<rect x="1220.0" y="663.0" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="1234.0" y="687.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">REGISTRO</text>
+<circle cx="1514.0" cy="675.0" r="19" fill="#ffff33" stroke="#143254" stroke-width="2"/>
+<text x="1514.0" y="682.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="16" font-weight="900" text-anchor="middle">08</text>
+<text x="1222.0" y="727.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Evidencia</text>
+<text x="1222.0" y="764.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Resultado, fecha,</text>
+<text x="1222.0" y="788.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">versión, filas afectadas y</text>
+<text x="1222.0" y="812.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">decisión.</text>
+<rect x="1220.0" y="995.0" width="94.0" height="32" rx="4" fill="#ffff33"/>
+<text x="1232.0" y="1017.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">aprobar</text>
+<rect x="1324.0" y="995.0" width="104.0" height="32" rx="4" fill="#ffff33"/>
+<text x="1336.0" y="1017.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">advertir</text>
+</g>
+<line x1="52" y1="1102" x2="1548" y2="1102" stroke="#9aabb9" stroke-width="2"/>
+<text x="52.0" y="1132.0" fill="#1f497d" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="start">Análisis de Datos · UTN FRC · lectura guiada</text>
+<text x="1548.0" y="1132.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" text-anchor="end">Abrir a tamaño completo para revisar rótulos y relaciones</text>
+</svg>
