@@ -36,6 +36,10 @@
     {
       "id": "u04-calidad-trazabilidad-privacidad",
       "label": "Unidad 4.3 · Calidad, trazabilidad y privacidad"
+    },
+    {
+      "id": "u05-python-pandas-eda",
+      "label": "Unidad 5.1 · Python, Pandas y EDA"
     }
   ],
   "questions": [
@@ -5618,6 +5622,626 @@
         "path": "unidades/u04-calidad-trazabilidad-privacidad.html#trazabilidad-reconstruir-una-ejecucion",
         "label": "Trazabilidad: reconstruir una ejecución"
       }
+    },
+    {
+      "id": "u05-python-pandas-eda-01",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Variables, valores y tipos",
+      "difficulty": "basica",
+      "prompt": "En Python, ¿qué tipo expresa True o False?",
+      "options": [
+        {
+          "id": "a",
+          "text": "bool."
+        },
+        {
+          "id": "b",
+          "text": "str."
+        },
+        {
+          "id": "c",
+          "text": "int como categoría de texto."
+        },
+        {
+          "id": "d",
+          "text": "datetime."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Los booleanos representan condiciones verdaderas o falsas.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#variables-valores-y-tipos",
+        "label": "Variables, valores y tipos"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-02",
+      "unit": "u05-python-pandas-eda",
+      "topic": "La tabla de Pandas se llama DataFrame",
+      "difficulty": "basica",
+      "prompt": "¿Qué estructura de Pandas organiza datos en filas y columnas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una ruta de archivo."
+        },
+        {
+          "id": "b",
+          "text": "DataFrame."
+        },
+        {
+          "id": "c",
+          "text": "Una única cadena."
+        },
+        {
+          "id": "d",
+          "text": "Un comentario."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El DataFrame permite seleccionar, transformar y resumir datos tabulares.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#la-tabla-de-pandas-se-llama-dataframe",
+        "label": "La tabla de Pandas se llama DataFrame"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-03",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Inspeccionar antes de transformar",
+      "difficulty": "basica",
+      "prompt": "df.shape devuelve (120, 8). ¿Cómo se interpreta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "120 clientes necesariamente."
+        },
+        {
+          "id": "b",
+          "text": "8 pedidos distintos."
+        },
+        {
+          "id": "c",
+          "text": "120 filas y 8 columnas."
+        },
+        {
+          "id": "d",
+          "text": "120 columnas y 8 filas."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "shape informa dimensiones físicas; la entidad de cada fila requiere conocer el grano.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#inspeccionar-antes-de-transformar",
+        "label": "Inspeccionar antes de transformar"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-04",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Funciones, métodos y argumentos",
+      "difficulty": "basica",
+      "prompt": "¿Qué muestra df.head(5)?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Las cinco ventas mayores automáticamente."
+        },
+        {
+          "id": "b",
+          "text": "Una muestra aleatoria de cinco clientes."
+        },
+        {
+          "id": "c",
+          "text": "Cinco columnas elegidas al azar."
+        },
+        {
+          "id": "d",
+          "text": "Las primeras cinco filas."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "head inspecciona las primeras filas; no ordena por una métrica.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#funciones-metodos-y-argumentos",
+        "label": "Funciones, métodos y argumentos"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-05",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Seleccionar columnas y filtrar filas",
+      "difficulty": "basica",
+      "prompt": "¿Qué produce df['region'] == 'Norte'?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una serie booleana que indica coincidencias por fila."
+        },
+        {
+          "id": "b",
+          "text": "Una suma de ventas regionales."
+        },
+        {
+          "id": "c",
+          "text": "Un cambio automático de todas las regiones."
+        },
+        {
+          "id": "d",
+          "text": "Una nueva clave primaria."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La comparación genera una máscara que puede usarse para filtrar.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#seleccionar-columnas-y-filtrar-filas",
+        "label": "Seleccionar columnas y filtrar filas"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-06",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Inspeccionar antes de transformar",
+      "difficulty": "basica",
+      "prompt": "¿Qué permite revisar df.isna().sum()?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El rango de fechas sin conversión."
+        },
+        {
+          "id": "b",
+          "text": "La cantidad de valores ausentes por columna."
+        },
+        {
+          "id": "c",
+          "text": "La cantidad de claves únicas por tabla."
+        },
+        {
+          "id": "d",
+          "text": "El total monetario de ventas."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "isna identifica faltantes y sum cuenta los indicadores verdaderos por columna.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#inspeccionar-antes-de-transformar",
+        "label": "Inspeccionar antes de transformar"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-07",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Seleccionar columnas y filtrar filas",
+      "difficulty": "intermedia",
+      "prompt": "Para filtrar Norte y venta positiva en Pandas, ¿qué expresión combina las comparaciones?",
+      "options": [
+        {
+          "id": "a",
+          "text": "(df['region'] == 'Norte') | (df['venta'] > 0)."
+        },
+        {
+          "id": "b",
+          "text": "df['region'] + df['venta']."
+        },
+        {
+          "id": "c",
+          "text": "(df['region'] == 'Norte') & (df['venta'] > 0)."
+        },
+        {
+          "id": "d",
+          "text": "df['region'] = 'Norte' & df['venta'] > 0."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "& combina máscaras con AND; los paréntesis delimitan cada comparación.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#seleccionar-columnas-y-filtrar-filas",
+        "label": "Seleccionar columnas y filtrar filas"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-08",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Crear una columna derivada",
+      "difficulty": "intermedia",
+      "prompt": "Venta neta y costo total están en dólares y al mismo grano. ¿Cómo obtener margen bruto?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dividir cantidad por precio."
+        },
+        {
+          "id": "b",
+          "text": "Sumar venta y costo."
+        },
+        {
+          "id": "c",
+          "text": "Restar cantidad a fecha."
+        },
+        {
+          "id": "d",
+          "text": "Restar costo total a venta neta."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una columna derivada debe respetar unidades y nivel de observación.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#crear-una-columna-derivada",
+        "label": "Crear una columna derivada"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-09",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Agrupar cambia el grano de salida",
+      "difficulty": "intermedia",
+      "prompt": "df.groupby('region')['venta'].sum() genera…",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un total de venta por región."
+        },
+        {
+          "id": "b",
+          "text": "Una fila por línea original necesariamente."
+        },
+        {
+          "id": "c",
+          "text": "El total de pedidos únicos sin indicarlo."
+        },
+        {
+          "id": "d",
+          "text": "Una tabla con cada región repetida por cada producto."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La agrupación cambia el grano de salida a región.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#agrupar-cambia-el-grano-de-salida",
+        "label": "Agrupar cambia el grano de salida"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-10",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Agrupar cambia el grano de salida",
+      "difficulty": "intermedia",
+      "prompt": "order_id se repite por línea. ¿Qué agregación cuenta pedidos distintos dentro de un grupo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "count sin revisar repeticiones."
+        },
+        {
+          "id": "b",
+          "text": "nunique."
+        },
+        {
+          "id": "c",
+          "text": "sum."
+        },
+        {
+          "id": "d",
+          "text": "mean."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "nunique cuenta identificadores distintos; count contaría valores presentes por fila.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#agrupar-cambia-el-grano-de-salida",
+        "label": "Agrupar cambia el grano de salida"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-11",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Funciones, métodos y argumentos",
+      "difficulty": "intermedia",
+      "prompt": "Se ejecuta df.sort_values('venta') sin asignar su resultado ni usar inplace. ¿Qué debe tenerse presente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El CSV original se reescribe."
+        },
+        {
+          "id": "b",
+          "text": "Se eliminan ventas repetidas."
+        },
+        {
+          "id": "c",
+          "text": "El resultado ordenado se devuelve como otro objeto."
+        },
+        {
+          "id": "d",
+          "text": "df queda siempre reordenado en memoria."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Muchas operaciones devuelven una tabla y requieren conservar ese resultado si se usará después.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#funciones-metodos-y-argumentos",
+        "label": "Funciones, métodos y argumentos"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-12",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Variables, valores y tipos",
+      "difficulty": "intermedia",
+      "prompt": "Una columna contiene fechas como texto y se necesita calcular duraciones. ¿Qué paso corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Restar las cadenas directamente."
+        },
+        {
+          "id": "b",
+          "text": "Eliminar todos los separadores y sumar."
+        },
+        {
+          "id": "c",
+          "text": "Ordenar por longitud del texto."
+        },
+        {
+          "id": "d",
+          "text": "Convertirla a tipo temporal y controlar conversiones inválidas."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El tipo temporal permite operar con fechas e identificar valores que no pueden interpretarse.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#variables-valores-y-tipos",
+        "label": "Variables, valores y tipos"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-13",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Condiciones y bucles",
+      "difficulty": "intermedia",
+      "prompt": "Un bucle recorre [0.24, 0.18, 0.31] e imprime 'revisar' si margen < 0.20. ¿Cuántas veces imprime esa palabra?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una."
+        },
+        {
+          "id": "b",
+          "text": "Dos."
+        },
+        {
+          "id": "c",
+          "text": "Tres."
+        },
+        {
+          "id": "d",
+          "text": "Ninguna."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Solo 0,18 cumple la condición de ser menor que 0,20.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#condiciones-y-bucles",
+        "label": "Condiciones y bucles"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-14",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Separar pasos para poder controlarlos",
+      "difficulty": "intermedia",
+      "prompt": "Una secuencia separa filtrado, resumen y ordenado en variables. ¿Qué facilita?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reemplazar el diccionario de datos."
+        },
+        {
+          "id": "b",
+          "text": "Observar en qué etapa cambió la población o el resultado."
+        },
+        {
+          "id": "c",
+          "text": "Evitar cualquier error por definición."
+        },
+        {
+          "id": "d",
+          "text": "Convertir automáticamente todos los tipos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Los estados intermedios permiten inspeccionar transformaciones y sus conteos.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#separar-pasos-para-poder-controlarlos",
+        "label": "Separar pasos para poder controlarlos"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-15",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Reconciliar Python con SQL",
+      "difficulty": "avanzada",
+      "prompt": "SQL y Pandas coinciden en el ratio de margen. ¿Qué control adicional evita aceptar una coincidencia casual?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Comparar solo el ratio redondeado a un decimal."
+        },
+        {
+          "id": "b",
+          "text": "Aceptar la coincidencia porque se usaron dos herramientas."
+        },
+        {
+          "id": "c",
+          "text": "Comparar numerador y denominador por separado."
+        },
+        {
+          "id": "d",
+          "text": "Comprobar únicamente que ambas salidas tengan igual cantidad de filas."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Dos cocientes pueden coincidir aunque provengan de importes diferentes.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#reconciliar-python-con-sql",
+        "label": "Reconciliar Python con SQL"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-16",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Interpretar faltantes y valores extremos",
+      "difficulty": "avanzada",
+      "prompt": "Un costo faltante se reemplaza por cero antes de restarlo a la venta. ¿Qué riesgo produce?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Garantizar el margen real."
+        },
+        {
+          "id": "b",
+          "text": "Reducir todas las ventas a cero."
+        },
+        {
+          "id": "c",
+          "text": "Resolver automáticamente la causa del faltante."
+        },
+        {
+          "id": "d",
+          "text": "Sobreestimar margen al confundir costo desconocido con costo nulo."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La sustitución altera la métrica y requiere una regla autorizada y una evaluación de su efecto.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#interpretar-faltantes-y-valores-extremos",
+        "label": "Interpretar faltantes y valores extremos"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-17",
+      "unit": "u05-python-pandas-eda",
+      "topic": "El notebook como documento ejecutable",
+      "difficulty": "avanzada",
+      "prompt": "El notebook funciona al ejecutar celdas sueltas, pero falla con reinicio y ejecución completa. ¿Qué indica?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una dependencia de estado u orden que debe hacerse explícita."
+        },
+        {
+          "id": "b",
+          "text": "Que la salida guardada demuestra reproducibilidad."
+        },
+        {
+          "id": "c",
+          "text": "Que Pandas no admite notebooks."
+        },
+        {
+          "id": "d",
+          "text": "Que el archivo original siempre es incorrecto."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La ejecución desde un entorno limpio revela dependencias ocultas.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#el-notebook-como-documento-ejecutable",
+        "label": "El notebook como documento ejecutable"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-18",
+      "unit": "u05-python-pandas-eda",
+      "topic": "El análisis exploratorio formula mejores preguntas",
+      "difficulty": "avanzada",
+      "prompt": "Se exploran decenas de segmentos y se presenta solo la diferencia más llamativa. ¿Qué revisión limita conclusiones selectivas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aumentar el tamaño del título."
+        },
+        {
+          "id": "b",
+          "text": "Registrar las exploraciones, población y filtros, y contrastar el hallazgo."
+        },
+        {
+          "id": "c",
+          "text": "Eliminar los resultados que no apoyen el relato."
+        },
+        {
+          "id": "d",
+          "text": "Dar por causal la diferencia extrema."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La selección entre muchas comparaciones puede privilegiar coincidencias que requieren verificación.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#el-analisis-exploratorio-formula-mejores-preguntas",
+        "label": "El análisis exploratorio formula mejores preguntas"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-19",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Leer un error como información",
+      "difficulty": "avanzada",
+      "prompt": "El código corre sin excepción, pero promedia porcentajes de operaciones de tamaños diferentes para obtener el margen global. ¿Qué tipo de problema puede haber?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una falta obligatoria de importación."
+        },
+        {
+          "id": "b",
+          "text": "Una desconexión del kernel."
+        },
+        {
+          "id": "c",
+          "text": "Un error semántico de definición y ponderación."
+        },
+        {
+          "id": "d",
+          "text": "Solo un error de sintaxis."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Una ejecución válida puede producir una métrica que no corresponde a la pregunta.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#leer-un-error-como-informacion",
+        "label": "Leer un error como información"
+      }
+    },
+    {
+      "id": "u05-python-pandas-eda-20",
+      "unit": "u05-python-pandas-eda",
+      "topic": "Revisar código sugerido por inteligencia artificial",
+      "difficulty": "avanzada",
+      "prompt": "La IA propone filtrar por una columna inexistente y renombrar varias otras. ¿Qué revisión inicial es más útil?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Crear la columna vacía para que deje de fallar."
+        },
+        {
+          "id": "b",
+          "text": "Aceptar todos los renombrados sin revisar consumidores."
+        },
+        {
+          "id": "c",
+          "text": "Ocultar los mensajes de error."
+        },
+        {
+          "id": "d",
+          "text": "Comparar nombres, tipos y grano con el contrato antes de aplicar cambios."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La propuesta debe verificarse contra la estructura real y con un cambio acotado.",
+      "reference": {
+        "path": "unidades/u05-python-pandas-eda.html#revisar-codigo-sugerido-por-inteligencia-artificial",
+        "label": "Revisar código sugerido por inteligencia artificial"
+      }
     }
   ],
   "presets": [
@@ -5647,5 +6271,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "75f96b6122d3b9aa"
+  "version": "e99ca4c8f9b9d3c6"
 }

@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Python, Pandas y análisis exploratorio. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Python, Pandas y análisis exploratorio · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 5 · CAPÍTULO 1</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 5 · CAPÍTULO 1</span></div>
+        <h1 id="reading-title">Python, Pandas y análisis exploratorio</h1>
+        <p class="hero-lede">Leer código implica anticipar qué entrada utiliza una instrucción, qué transformación aplica y qué salida debería producir. El capítulo retoma los notebooks con mayor profundidad y utiliza Python y Pandas para inspeccionar tablas, crear columnas, filtrar poblaciones y reconciliar resultados con SQL.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Cómo leemos y adaptamos un análisis reproducible?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_D_v1.0_estudiantes.zip" download>Descargar notebook y datos <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u05-python-pandas-eda">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u05-python-pandas-eda">Una celda se comprende mediante predicción y control</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u05-python-eda.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u05-python-eda.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u05-python-eda.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u05-python-eda.svg?v=20260825b" alt="Ciclo para leer una celda, anticipar la salida, ejecutar, explicar, modificar y reconciliar con SQL." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>La ejecución confirma una hipótesis sobre tipos, condiciones y grano; la reconciliación verifica la métrica.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#para-que-usamos-python-en-esta-materia">Para qué usamos Python en esta materia</a><a href="#el-notebook-como-documento-ejecutable">El notebook como documento ejecutable</a><a href="#variables-valores-y-tipos">Variables, valores y tipos</a><a href="#funciones-metodos-y-argumentos">Funciones, métodos y argumentos</a><a href="#condiciones-y-bucles">Condiciones y bucles</a><a href="#la-tabla-de-pandas-se-llama-dataframe">La tabla de Pandas se llama DataFrame</a><a href="#inspeccionar-antes-de-transformar">Inspeccionar antes de transformar</a><a href="#seleccionar-columnas-y-filtrar-filas">Seleccionar columnas y filtrar filas</a><a href="#crear-una-columna-derivada">Crear una columna derivada</a><a href="#agrupar-cambia-el-grano-de-salida">Agrupar cambia el grano de salida</a><a href="#separar-pasos-para-poder-controlarlos">Separar pasos para poder controlarlos</a><a href="#el-analisis-exploratorio-formula-mejores-preguntas">El análisis exploratorio formula mejores preguntas</a><a href="#interpretar-faltantes-y-valores-extremos">Interpretar faltantes y valores extremos</a><a href="#reconciliar-python-con-sql">Reconciliar Python con SQL</a><a href="#leer-un-error-como-informacion">Leer un error como información</a><a href="#revisar-codigo-sugerido-por-inteligencia-artificial">Revisar código sugerido por inteligencia artificial</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="para-que-usamos-python-en-esta-materia">Para qué usamos Python en esta materia</h2>
+<p>Python permite leer datos, transformar tablas y dejar una secuencia de operaciones que otra persona puede ejecutar. En esta unidad retomamos las nociones introducidas en el primer laboratorio y las aplicamos de forma sistemática con Pandas. El objetivo consiste en comprender qué hace cada celda, anticipar su salida y verificar que la transformación preserve el significado de los datos.</p>
+<p>El lenguaje ofrece muchas posibilidades fuera del análisis tabular. Aquí trabajaremos con el subconjunto necesario para inspeccionar un DataFrame, filtrar observaciones, crear columnas, agrupar y reconciliar resultados. Cuando aparezca una estructura nueva, la explicación se vinculará con la pregunta analítica que permite responder.</p>
+<h2 id="el-notebook-como-documento-ejecutable">El notebook como documento ejecutable</h2>
+<p>Un notebook reúne texto, código y resultados en celdas. Las celdas de texto explican propósito, supuestos y conclusiones. Las de código leen archivos o realizan operaciones. La salida queda debajo de la celda y puede contener un valor, una tabla, un gráfico o un mensaje de error.</p>
+<p>La sesión mantiene variables y archivos en memoria mientras el entorno permanece activo. Ese estado hace posible avanzar paso a paso, pero también puede ocultar dependencias. Una celda puede funcionar porque otra se ejecutó antes, aunque aparezca más abajo. Para comprobar reproducibilidad conviene reiniciar el entorno y utilizar “Ejecutar todas”. Si el recorrido falla desde una sesión limpia, falta una entrada, una instrucción o una dependencia explícita.</p>
+<p>Antes de compartir, el notebook debe evitar secretos y datos que excedan el propósito de la actividad. También debe distinguir una salida guardada de una ejecución reciente: la presencia de una tabla en pantalla no garantiza que el código actual la produzca.</p>
+<h2 id="variables-valores-y-tipos">Variables, valores y tipos</h2>
+<p>Una variable asigna un nombre a un valor para reutilizarlo. El signo igual guarda el valor de la derecha bajo el nombre de la izquierda.</p>
+<pre><code class="language-python">region_objetivo = &quot;Patagonia&quot;
+umbral_demora = 5
+tasa_otif = 0.82
+incluir_parciales = True</code></pre>
+<p>Los tipos determinan qué operaciones tienen sentido. region_objetivo es texto; umbral_demora es un entero; tasa_otif es un número decimal; incluir_parciales expresa una condición booleana. Python distingue mayúsculas y minúsculas, por lo que Region_objetivo sería otro nombre.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Tipo</th>
+<th>Ejemplo</th>
+<th>Uso habitual</th>
+</tr></thead><tbody>
+<tr><td>str</td><td>"Patagonia"</td><td>categorías, nombres y códigos</td></tr>
+<tr><td>int</td><td>5</td><td>conteos o cantidades enteras</td></tr>
+<tr><td>float</td><td>0.82</td><td>tasas e importes con decimales</td></tr>
+<tr><td>bool</td><td>True</td><td>condiciones que pueden cumplirse o no</td></tr>
+<tr><td>datetime</td><td>2026-09-23</td><td>fechas y horas luego de convertirlas</td></tr>
+</tbody></table></div>
+<p>Una fecha recibida como texto conserva caracteres, pero todavía no permite calcular duraciones de manera confiable. El paso de conversión debe ser visible y controlar valores que no puedan interpretarse.</p>
+<h2 id="funciones-metodos-y-argumentos">Funciones, métodos y argumentos</h2>
+<p>Una función recibe datos, ejecuta una operación y puede devolver un resultado. len(df) cuenta elementos del objeto entregado entre paréntesis. Un método es una función asociada a un objeto: df.head() le pide al DataFrame que muestre sus primeras filas.</p>
+<pre><code class="language-python">cantidad_filas = len(df)
+primeras_filas = df.head(5)
+venta_total = df[&quot;net_sales_usd&quot;].sum()</code></pre>
+<p>Los valores entre paréntesis son argumentos. En head(5), el número indica cuántas filas mostrar. Algunos argumentos tienen nombre y permiten leer la intención, como ascending=False al ordenar de mayor a menor.</p>
+<p>Una llamada puede devolver un valor sin modificar la tabla original. Por eso asignamos el resultado a una variable cuando queremos conservarlo. Leer la documentación ayuda a reconocer qué recibe una función, qué devuelve y si modifica el objeto.</p>
+<h2 id="condiciones-y-bucles">Condiciones y bucles</h2>
+<p>Una <strong>condición</strong> es una expresión que Python evalúa como verdadera o falsa. La palabra <code>if</code> permite ejecutar un bloque únicamente cuando la condición se cumple. Un <strong>bucle</strong> repite un bloque: <code>for</code> toma, de a uno, los elementos de una colección como una lista. La sangría indica qué instrucciones pertenecen al bloque, por lo que los espacios iniciales forman parte de la estructura del programa.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u05-componentes-python-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u05-componentes-python-title">Los componentes básicos de un programa en Python</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué función cumple cada parte del código y cómo se conectan entre sí?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u05-dataframe-pipeline.webp')">
+        <div class="atlas-board atlas-code-map">
+          <div class="atlas-program"><span>UN PROGRAMA BREVE, LÍNEA POR LÍNEA</span><pre><code>01  import pandas as pd
+02  margenes = [0.24, 0.18, 0.31]
+03  def clasificar(valor):
+04      if valor &lt; 0.20:
+05          return &#x27;revisar&#x27;
+06      return &#x27;ok&#x27;
+07  for margen in margenes:
+08      estado = clasificar(margen)
+09      print(estado)
+10  ventas = pd.DataFrame({&#x27;margen&#x27;: margenes})
+11  ventas[&#x27;estado&#x27;] = ventas[&#x27;margen&#x27;].apply(clasificar)</code></pre></div>
+          <div class="atlas-code-concepts" style="--atlas-cols:2"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">línea 02</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Valor y tipo</h5>
+      <div class="atlas-card-copy"><p>0.24 es un número decimal: float.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">línea 02</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Variable y lista</h5>
+      <div class="atlas-card-copy"><p>margenes nombra una colección ordenada.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">línea 03</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Función</h5>
+      <div class="atlas-card-copy"><p>def agrupa instrucciones reutilizables.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">línea 08</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Argumento</h5>
+      <div class="atlas-card-copy"><p>margen ocupa el parámetro valor al llamar.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">línea 04</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Condición y expresión</h5>
+      <div class="atlas-card-copy"><p>valor &lt; 0.20 produce True o False.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">líneas 05–06</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>return</h5>
+      <div class="atlas-card-copy"><p>Devuelve revisar u ok a quien llamó.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="7" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">líneas 07–09</span><span class="atlas-step-number" aria-hidden="true">07</span></div>
+      <h5>Bucle for</h5>
+      <div class="atlas-card-copy"><p>Repite el bloque una vez por elemento.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="8" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">línea 01</span><span class="atlas-step-number" aria-hidden="true">08</span></div>
+      <h5>Módulo y librería</h5>
+      <div class="atlas-card-copy"><p>pandas se importa con el alias pd.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="9" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">líneas 10–11</span><span class="atlas-step-number" aria-hidden="true">09</span></div>
+      <h5>Objeto y método</h5>
+      <div class="atlas-card-copy"><p>ventas es un DataFrame; apply es un método.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="10" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">resultado</span><span class="atlas-step-number" aria-hidden="true">10</span></div>
+      <h5>Salida observable</h5>
+      <div class="atlas-card-copy"><p>print muestra revisar para 0.18.</p></div>
+      <div class="atlas-stats"><span>ok</span><span>revisar</span><span>ok</span></div>
+    </article></div>
+        </div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u05-componentes-python.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El programa guarda datos, aplica una regla y produce una salida. Los nombres técnicos permiten describir cada pieza sin exigir todavía una formación completa en programación.</p>
+        <div class="atlas-controls" aria-label="Pasos de lectura"><button type="button" data-atlas-control="1" aria-pressed="false"><span>01</span>Leé primero el programa de arriba hacia abajo y localizá los datos de entrada.</button><button type="button" data-atlas-control="2" aria-pressed="false"><span>02</span>Seguí la llamada a clasificar: el argumento entra, la condición se evalúa y return entrega un valor.</button><button type="button" data-atlas-control="3" aria-pressed="false"><span>03</span>Observá cómo for repite la misma acción para cada margen de la lista.</button><button type="button" data-atlas-control="4" aria-pressed="false"><span>04</span>La última línea aplica la misma función a una columna de un objeto DataFrame.</button></div>
+
+      </figcaption>
+    </figure>
+
+<pre><code class="language-python">margenes = [0.24, 0.18, 0.31]
+
+for margen in margenes:
+    if margen &lt; 0.20:
+        print(&quot;revisar&quot;)
+    else:
+        print(&quot;ok&quot;)</code></pre>
+<p>La variable <code>margen</code> recibe un valor distinto en cada iteración. El bucle resulta útil para comprender la repetición y para resolver tareas que dependen del estado de cada paso. En una tabla, Pandas suele expresar filtros, columnas derivadas y agrupaciones como operaciones sobre el DataFrame completo. Esa forma tabular reduce el código que la persona debe administrar y vuelve más visible la transformación aplicada.</p>
+<h2 id="la-tabla-de-pandas-se-llama-dataframe">La tabla de Pandas se llama DataFrame</h2>
+<p>Un DataFrame representa datos tabulares mediante filas, columnas, un índice y un tipo por columna. Se parece a una hoja de cálculo, aunque sus operaciones se expresan como instrucciones reproducibles. El índice identifica la posición interna y no reemplaza las claves del negocio.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u05-estados-dataframe-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u05-estados-dataframe-title">Cómo cambia un DataFrame durante el análisis</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué cambia en filas, columnas y grano después de cada instrucción?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u05-dataframe-pipeline.webp')">
+        <div class="atlas-board atlas-flow" style="--atlas-cols:4"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">estado 0</span></div>
+      <h5>Carga</h5>
+      <div class="atlas-card-copy"><p>pd.read_csv crea ventas.</p></div>
+      <div class="atlas-code-lines"><code>pd.read_csv(ruta)</code></div><div class="atlas-stats"><span>shape 6 × 5</span><span>grano: línea</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">estado 1</span></div>
+      <h5>Inspección</h5>
+      <div class="atlas-card-copy"><p>head, info y isna revelan estructura.</p></div>
+      <div class="atlas-stats"><span>6 × 5</span><span>control: DESCRIBE</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">estado 2</span></div>
+      <h5>Selección</h5>
+      <div class="atlas-card-copy"><p>Conserva pedido, región, cantidad y precio.</p></div>
+      <div class="atlas-stats"><span>6 × 4</span><span>mismo grano</span></div>
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"><span class="atlas-card-tag">estado 3</span></div>
+      <h5>Filtro</h5>
+      <div class="atlas-card-copy"><p>Elimina una línea anulada.</p></div>
+      <div class="atlas-stats"><span>5 × 4</span><span>SQL: WHERE</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">estado 4</span></div>
+      <h5>Columna derivada</h5>
+      <div class="atlas-card-copy"><p>venta = cantidad × precio</p></div>
+      <div class="atlas-code-lines"><code>assign(venta=...)</code></div><div class="atlas-stats"><span>5 × 5</span><span>por línea</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">estado 5</span></div>
+      <h5>Agrupación</h5>
+      <div class="atlas-card-copy"><p>Suma venta por región.</p></div>
+      <div class="atlas-stats"><span>2 × 2</span><span>SQL: GROUP BY</span></div>
+    </article><article class="atlas-card is-success">
+      <div class="atlas-card-top"><span class="atlas-card-tag">control</span></div>
+      <h5>Reconciliación</h5>
+      <div class="atlas-card-copy"><p>Filas, pedidos distintos y total coinciden.</p></div>
+      <div class="atlas-stats"><span>5 filas</span><span>3 pedidos</span><span>$ 2.800</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u05-estados-dataframe.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Nombrar los estados intermedios permite localizar una diferencia. Cada paso declara la forma del DataFrame, el significado de una fila y el control que debería coincidir en SQL.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>El ejemplo mínimo comienza con seis líneas y cinco columnas.</p></li><li><span>02</span><p>Seleccionar columnas cambia la forma; filtrar reduce filas y mantiene el grano.</p></li><li><span>03</span><p>La columna derivada agrega un cálculo por línea; groupby cambia el grano a región.</p></li><li><span>04</span><p>La reconciliación compara conteos, pedidos distintos y venta total con SQL.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>Pandas tampoco decide el grano por nosotros. Un DataFrame puede contener una fila por línea de pedido, por pedido o por cliente. Antes de sumar o contar debemos escribir qué representa una fila y qué columnas identifican esa observación.</p>
+<p>Cuando leemos un CSV, Pandas infiere tipos a partir del contenido. Esa inferencia es un punto de partida. El notebook debe convertir fechas, importes o códigos según el contrato y registrar los valores que no cumplen la expectativa.</p>
+<h2 id="inspeccionar-antes-de-transformar">Inspeccionar antes de transformar</h2>
+<p>La primera lectura busca orientación. shape devuelve la cantidad de filas y columnas; head muestra ejemplos; info resume tipos y valores presentes; dtypes lista el tipo de cada columna; isna().sum() cuenta faltantes.</p>
+<pre><code class="language-python">print(df.shape)
+display(df.head())
+df.info()
+display(df.isna().sum().sort_values(ascending=False))</code></pre>
+<p>Estas salidas se leen en conjunto. Un archivo puede tener 900 filas y 15 columnas, pero necesitamos confirmar el grano, el rango temporal y las categorías antes de interpretar esa dimensión. Una columna numérica cargada como texto suele indicar símbolos, separadores o valores inválidos. Un faltante merece contexto: puede ser defecto, ausencia legítima o dato todavía no disponible.</p>
+<p>Una inspección breve debería responder cuántas observaciones hay, qué representa cada una, qué tipos se infirieron, qué campos faltan y qué período cubre la fuente. Las respuestas forman la línea de base contra la que se compararán los pasos posteriores.</p>
+<h2 id="seleccionar-columnas-y-filtrar-filas">Seleccionar columnas y filtrar filas</h2>
+<p>Seleccionar columnas reduce el DataFrame a los campos necesarios para una pregunta. Los corchetes externos acceden a la tabla y la lista interna contiene los nombres elegidos.</p>
+<pre><code class="language-python">columnas = [&quot;order_date&quot;, &quot;region&quot;, &quot;net_sales_usd&quot;]
+vista = df[columnas]</code></pre>
+<p>Un filtro construye una serie de valores True y False y conserva las filas donde la condición es verdadera.</p>
+<pre><code class="language-python">es_patagonia = df[&quot;region&quot;] == &quot;Patagonia&quot;
+patagonia = df[es_patagonia]</code></pre>
+<p>Al combinar condiciones, Pandas utiliza &amp; para “y” y | para “o”. Cada comparación debe ir entre paréntesis. Después de filtrar conviene contar filas, revisar el rango temporal y confirmar categorías. El resultado representa una población nueva, por lo que la descripción del análisis debe señalar qué quedó incluido.</p>
+<h2 id="crear-una-columna-derivada">Crear una columna derivada</h2>
+<p>Una columna derivada expresa una regla mediante campos existentes. En Faro Sur, el margen bruto en dólares se obtiene al restar el costo total de la venta neta.</p>
+<pre><code class="language-python">df[&quot;gross_margin_usd&quot;] = (
+    df[&quot;net_sales_usd&quot;] - df[&quot;total_cost_usd&quot;]
+)</code></pre>
+<p>Antes de aceptar la salida comprobamos unidades y tipos. Ambos importes deben representar la misma moneda y el mismo grano. También revisamos faltantes y rangos inesperados. Si un costo falta, la resta producirá un valor ausente; reemplazarlo por cero cambiaría el significado y requiere una regla autorizada.</p>
+<p>Una columna de porcentaje agrega otro riesgo: división por cero. La celda debe definir qué ocurre cuando el denominador es nulo o vale cero y comparar el resultado con casos conocidos.</p>
+<h2 id="agrupar-cambia-el-grano-de-salida">Agrupar cambia el grano de salida</h2>
+<p>groupby reúne filas que comparten una o varias categorías. agg declara las métricas calculadas en cada grupo.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u05-bucle-vs-groupby-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u05-bucle-vs-groupby-title">Bucle y operación tabular: dos formas de responder la misma pregunta</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué pasos debe administrar una persona con for y cuáles expresa directamente groupby?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u05-eda-loop.webp')">
+        <div class="atlas-board atlas-compare" style="--atlas-cols:2"><section class="atlas-compare-group">
+              <header><h4>FOR · CONTROL EXPLÍCITO DE CADA ITERACIÓN</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">acumulador</span></div>
+      <h5>Preparar</h5>
+      <div class="atlas-card-copy"><p>totales = {}</p></div>
+      <div class="atlas-code-lines"><code>for fila in ventas:</code></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">cinco vueltas</span></div>
+      <h5>Iterar</h5>
+      <div class="atlas-card-copy"><p>Centro: 800 → 1.300</p><p>Norte: 1.200 → 1.500</p></div>
+      <div class="atlas-stats"><span>estado intermedio visible</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">diccionario</span></div>
+      <h5>Salida</h5>
+      <div class="atlas-card-copy"><p>{&#x27;Centro&#x27;: 1300, &#x27;Norte&#x27;: 1500}</p></div>
+      <div class="atlas-stats"><span>total = 2.800</span></div>
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>PANDAS · TRANSFORMACIÓN TABULAR</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">columnas</span></div>
+      <h5>Seleccionar</h5>
+      <div class="atlas-card-copy"><p>ventas[[&#x27;region&#x27;, &#x27;importe&#x27;]]</p></div>
+      <div class="atlas-code-lines"><code>ventas.groupby(&#x27;region&#x27;)</code></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">operación</span></div>
+      <h5>Agrupar y sumar</h5>
+      <div class="atlas-card-copy"><p>.agg(venta_total=(&#x27;importe&#x27;, &#x27;sum&#x27;))</p></div>
+      <div class="atlas-code-lines"><code>.reset_index()</code></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">DataFrame</span></div>
+      <h5>Salida</h5>
+      <div class="atlas-card-copy"><p>Centro 1.300 · Norte 1.500</p></div>
+      <div class="atlas-stats"><span>2 × 2</span><span>total = 2.800</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u05-bucle-vs-groupby.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El bucle vuelve visible cada actualización del acumulador. La operación tabular declara la transformación sobre columnas y grupos, una forma más directa de trabajar con un DataFrame.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>El bucle toma una fila, obtiene su región y actualiza un acumulador.</p></li><li><span>02</span><p>La persona debe inicializar claves y controlar cada iteración.</p></li><li><span>03</span><p>groupby declara la clave de agrupación y sum declara la medida agregada.</p></li><li><span>04</span><p>Ambos recorridos deben producir las mismas regiones, filas de salida y suma total.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<pre><code class="language-python">resumen = (
+    df.groupby(&quot;region&quot;, as_index=False)
+      .agg(
+          venta_neta=(&quot;net_sales_usd&quot;, &quot;sum&quot;),
+          pedidos=(&quot;order_id&quot;, &quot;nunique&quot;)
+      )
+)</code></pre>
+<p>La fuente puede tener una fila por línea de pedido, mientras que resumen tendrá una fila por región. La venta es aditiva y se suma; los pedidos se cuentan de manera distinta porque order_id se repite en varias líneas. Usar count sobre esa columna contaría líneas, no pedidos.</p>
+<p>Una lectura clara sigue cuatro preguntas: cuál es la fuente, qué columnas forman los grupos, cómo se calcula cada métrica y qué representa una fila de salida. Este contrato permite comparar el resultado con una consulta SQL equivalente.</p>
+<h2 id="separar-pasos-para-poder-controlarlos">Separar pasos para poder controlarlos</h2>
+<p>Un pipeline puede escribirse como varias asignaciones legibles. Cada variable representa un estado intermedio y facilita observar conteos.</p>
+<pre><code class="language-python">filtrado = df[df[&quot;order_date&quot;] &gt;= &quot;2026-01-01&quot;]
+
+resumen = (
+    filtrado.groupby(&quot;region&quot;, as_index=False)[&quot;net_sales_usd&quot;]
+            .sum()
+)
+
+ordenado = resumen.sort_values(&quot;net_sales_usd&quot;, ascending=False)</code></pre>
+<p>El encadenamiento reduce líneas, pero una secuencia demasiado compacta puede esconder el punto donde cambió la población. Durante el aprendizaje conviene separar filtros, agrupaciones y ordenamientos. Después de comprenderlos, pueden combinarse manteniendo nombres y controles que hagan visible la intención.</p>
+<h2 id="el-analisis-exploratorio-formula-mejores-preguntas">El análisis exploratorio formula mejores preguntas</h2>
+<p>El análisis exploratorio de datos, o EDA, examina estructura, calidad, distribución, segmentos, anomalías y relaciones antes de construir una conclusión. Su propósito es conocer qué puede sostener la fuente y detectar supuestos que deben revisarse.</p>
+<p>Una exploración de demora puede comenzar con conteos y faltantes, continuar con mediana y percentiles, comparar regiones y observar valores extremos. Cada salida abre una pregunta. Si Patagonia muestra una demora mayor, podemos revisar distancia, transportista, disponibilidad o composición de pedidos. La observación todavía no demuestra cuál de esos factores explica el patrón.</p>
+<p>El notebook debe registrar el período, la población y los filtros de cada resultado. Explorar muchas combinaciones sin documentarlas aumenta el riesgo de elegir una coincidencia atractiva. La pregunta de decisión mantiene el foco y ayuda a diferenciar hallazgos útiles de curiosidades.</p>
+<h2 id="interpretar-faltantes-y-valores-extremos">Interpretar faltantes y valores extremos</h2>
+<p>Un faltante puede indicar un error de captura, una condición que no aplica, información todavía no disponible o un dato oculto por política. El tratamiento comienza por conocer la causa. Excluir, completar o marcar producen poblaciones diferentes y deben compararse.</p>
+<p>Un valor extremo también admite varias interpretaciones. Puede ser una unidad equivocada, un evento raro válido o un cambio real del proceso. Por ejemplo, una demora de 120 días merece revisar pedido, fechas y fuente; eliminarla automáticamente borraría evidencia de un caso potencialmente relevante.</p>
+<p>La exploración puede mostrar resultados con y sin casos extremos para evaluar sensibilidad. La decisión final conserva el registro original y explica el criterio aplicado.</p>
+<h2 id="reconciliar-python-con-sql">Reconciliar Python con SQL</h2>
+<p>Si SQL y Pandas aplican la misma fuente, población y definición, deberían producir resultados compatibles. Una diferencia orienta la depuración hacia tipos de fecha, valores nulos, duplicados, redondeo, filtros o grano.</p>
+<p>La comparación comienza con conteos simples: filas, claves distintas y rango temporal. Luego revisa totales aditivos y finalmente ratios. Para un porcentaje, conviene reconciliar numerador y denominador por separado. Dos ratios pueden coincidir por casualidad aunque ambas partes sean incorrectas.</p>
+<p>La coincidencia demuestra consistencia de implementación dentro del alcance revisado. La interpretación del resultado sigue necesitando contexto y no convierte una asociación en causa.</p>
+<h2 id="leer-un-error-como-informacion">Leer un error como información</h2>
+<p>Un mensaje de error identifica el tipo de problema y suele señalar la línea que lo produjo. Comparar una fecha de texto con un datetime, escribir = donde corresponde == o usar un nombre de columna inexistente son errores frecuentes durante las primeras prácticas.</p>
+<p>El procedimiento consiste en leer el último mensaje, ubicar la operación, observar los tipos y aplicar el cambio mínimo. Luego se ejecuta la celda y se comprueba la salida. Cambiar varias líneas al mismo tiempo dificulta saber qué corrección resolvió el problema.</p>
+<p>Algunos errores no detienen la ejecución. Promediar porcentajes o sumar una columna cargada como texto puede producir una salida plausible. Los controles de grano, tipo y rango ayudan a detectar estos problemas semánticos.</p>
+<h2 id="revisar-codigo-sugerido-por-inteligencia-artificial">Revisar código sugerido por inteligencia artificial</h2>
+<p>Un asistente puede explicar una función, proponer una transformación o ayudar a interpretar un error. Una respuesta útil identifica la línea, explica los tipos y el grano, propone un cambio acotado y anticipa una forma de control.</p>
+<p>El estudiante o equipo ejecuta la propuesta sobre su propia copia y compara la salida con el contrato. También revisa que los nombres de columnas existan y que ningún dato sensible se haya enviado a un servicio externo. El registro distingue la sugerencia de la decisión adoptada.</p>
+<p>Pedir una solución completa sin comprenderla reduce la capacidad de depurar. Pedir que el asistente explique una expresión y luego modificar un filtro conocido convierte la interacción en una oportunidad de aprendizaje verificable.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Qué diferencia existe entre el archivo del notebook y la sesión que lo ejecuta?</li><li>¿Qué tipo necesita una fecha para calcular duraciones?</li><li>¿Qué representa la serie booleana creada por un filtro?</li><li>¿Qué grano produce la agrupación por región?</li><li>¿Por qué conviene reconciliar el numerador y el denominador de un ratio?</li><li>¿Qué evidencia permite decidir si un outlier es un error?</li><li>¿Cómo comprobar que el notebook funciona desde una sesión limpia?</li></ol>
+<h2 id="alcance-de-la-unidad">Alcance de la unidad</h2>
+<p>La unidad trabaja variables, tipos, llamadas, DataFrame, inspección, selección, filtros, columnas derivadas, agrupación y reconciliación. Estructuras generales del lenguaje, orientación a objetos y diseño de módulos se introducen únicamente cuando una celda del análisis las necesita.</p>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo leer una transformación tabular en Pandas</h2></div>
+      <div class="applied-prose"><p>El DataFrame de entregas conserva una fila por pedido. Un filtro regional mantiene ese grano; un <code>groupby</code> por región lo cambia a una fila por región. La frase de grano se escribe antes de interpretar cada salida.</p><p>La venta y el OTIF calculados en Pandas se comparan con consultas equivalentes. Las diferencias guían la revisión de tipos de fecha, nulos, duplicados, filtros y denominadores.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">5.1</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Leer y adaptar el notebook de entregas</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>El notebook del Paquete D recorre inspección, filtros, columnas derivadas y agregaciones. Quien realiza la práctica modifica una condición, anticipa la salida y reconcilia una métrica con SQL antes de escribir su interpretación.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_D_v1.0_estudiantes.zip" download>Descargar notebook y datos <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u05-python-pandas-eda">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u05-python-pandas-eda">Lectura y adaptación de análisis con Python y Pandas</h2></div>
+        <p>La ruta comienza con notebooks y continúa con operaciones tabulares aplicadas. Los ejercicios permiten repetir filtros, columnas derivadas y agrupaciones.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Curso gratuito</span><small>Inglés</small></div>
+          <h3><a href="https://www.py4e.com/" target="_blank" rel="noopener noreferrer">Python for Everybody</a></h3>
+          <p>Curso abierto para ampliar sintaxis, tipos, funciones y lectura de programas.</p>
+          <footer><span>University of Michigan</span><small>Autoguiado</small><a href="https://www.py4e.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Python for Everybody">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Tutorial oficial</span><small>Inglés</small></div>
+          <h3><a href="https://pandas.pydata.org/docs/user_guide/10min.html" target="_blank" rel="noopener noreferrer">10 minutes to pandas</a></h3>
+          <p>Recorrido por selección, faltantes, operaciones, agrupación y combinación de tablas.</p>
+          <footer><span>pandas</span><small>30–45 min</small><a href="https://pandas.pydata.org/docs/user_guide/10min.html" target="_blank" rel="noopener noreferrer" aria-label="Abrir 10 minutes to pandas">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Notebooks gratuitos</span><small>Inglés</small></div>
+          <h3><a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank" rel="noopener noreferrer">Colab welcome notebook</a></h3>
+          <p>Introduce celdas, ejecución, archivos y recursos del entorno utilizado en la materia.</p>
+          <footer><span>Google Colab</span><small>Exploración · 15 min</small><a href="https://colab.research.google.com/notebooks/welcome.ipynb" target="_blank" rel="noopener noreferrer" aria-label="Abrir Colab welcome notebook">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u04-calidad-trazabilidad-privacidad.html"><span>ANTERIOR</span><b>Unidad 4 · Calidad y trazabilidad</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 5 · Incertidumbre y visualización</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-10-07",
+  "actualizado": "2026-10-14",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -1984,6 +1984,387 @@
                     "uso permitido"
                   ]
                 }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "u05-python-pandas-eda": [
+      {
+        "page": "u05-python-pandas-eda",
+        "unit": "C10",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u05-componentes-python.svg",
+        "base_generada": "theory/u05-componentes-python-base.webp",
+        "base_provisoria": "u05-dataframe-pipeline.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Los componentes básicos de un programa en Python",
+        "pregunta_lectura": "¿Qué función cumple cada parte del código y cómo se conectan entre sí?",
+        "alt": "Un programa breve clasifica márgenes y crea un DataFrame; doce tarjetas identifican valores, variables, tipos, listas, expresiones, condiciones, bucles, funciones, argumentos, retorno, módulos, objetos y métodos.",
+        "epigrafe": "El programa guarda datos, aplica una regla y produce una salida. Los nombres técnicos permiten describir cada pieza sin exigir todavía una formación completa en programación.",
+        "after_heading": "condiciones-y-bucles",
+        "interactivo": true,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "Leé primero el programa de arriba hacia abajo y localizá los datos de entrada.",
+          "Seguí la llamada a clasificar: el argumento entra, la condición se evalúa y return entrega un valor.",
+          "Observá cómo for repite la misma acción para cada margen de la lista.",
+          "La última línea aplica la misma función a una columna de un objeto DataFrame."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A code-learning composition with an abstract notebook sheet, a small collection of values, repeated loop motion, a reusable function block and a tabular object; all elements textless.",
+        "version_revision": "1.0",
+        "svg_height": 1300,
+        "estructura": {
+          "layout": "code",
+          "code_title": "UN PROGRAMA BREVE, LÍNEA POR LÍNEA",
+          "code": [
+            "import pandas as pd",
+            "margenes = [0.24, 0.18, 0.31]",
+            "def clasificar(valor):",
+            "    if valor < 0.20:",
+            "        return 'revisar'",
+            "    return 'ok'",
+            "for margen in margenes:",
+            "    estado = clasificar(margen)",
+            "    print(estado)",
+            "ventas = pd.DataFrame({'margen': margenes})",
+            "ventas['estado'] = ventas['margen'].apply(clasificar)"
+          ],
+          "columns": 2,
+          "cards": [
+            {
+              "title": "Valor y tipo",
+              "body": [
+                "0.24 es un número decimal: float."
+              ],
+              "accent": "blue",
+              "tag": "línea 02",
+              "step": 1
+            },
+            {
+              "title": "Variable y lista",
+              "body": [
+                "margenes nombra una colección ordenada."
+              ],
+              "accent": "blue",
+              "tag": "línea 02",
+              "step": 2
+            },
+            {
+              "title": "Función",
+              "body": [
+                "def agrupa instrucciones reutilizables."
+              ],
+              "accent": "blue",
+              "tag": "línea 03",
+              "step": 3
+            },
+            {
+              "title": "Argumento",
+              "body": [
+                "margen ocupa el parámetro valor al llamar."
+              ],
+              "accent": "blue",
+              "tag": "línea 08",
+              "step": 4
+            },
+            {
+              "title": "Condición y expresión",
+              "body": [
+                "valor < 0.20 produce True o False."
+              ],
+              "accent": "blue",
+              "tag": "línea 04",
+              "step": 5
+            },
+            {
+              "title": "return",
+              "body": [
+                "Devuelve revisar u ok a quien llamó."
+              ],
+              "accent": "blue",
+              "tag": "líneas 05–06",
+              "step": 6
+            },
+            {
+              "title": "Bucle for",
+              "body": [
+                "Repite el bloque una vez por elemento."
+              ],
+              "accent": "blue",
+              "tag": "líneas 07–09",
+              "step": 7
+            },
+            {
+              "title": "Módulo y librería",
+              "body": [
+                "pandas se importa con el alias pd."
+              ],
+              "accent": "blue",
+              "tag": "línea 01",
+              "step": 8
+            },
+            {
+              "title": "Objeto y método",
+              "body": [
+                "ventas es un DataFrame; apply es un método."
+              ],
+              "accent": "blue",
+              "tag": "líneas 10–11",
+              "step": 9
+            },
+            {
+              "title": "Salida observable",
+              "body": [
+                "print muestra revisar para 0.18."
+              ],
+              "accent": "blue",
+              "tag": "resultado",
+              "step": 10,
+              "stats": [
+                "ok",
+                "revisar",
+                "ok"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u05-python-pandas-eda",
+        "unit": "C10",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u05-bucle-vs-groupby.svg",
+        "base_generada": "theory/u05-bucle-vs-groupby-base.webp",
+        "base_provisoria": "u05-eda-loop.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Bucle y operación tabular: dos formas de responder la misma pregunta",
+        "pregunta_lectura": "¿Qué pasos debe administrar una persona con for y cuáles expresa directamente groupby?",
+        "alt": "Dos columnas calculan ventas por región: una recorre cinco filas con un bucle y actualiza un diccionario; la otra filtra, agrupa y suma con Pandas, mostrando la misma salida reconciliada.",
+        "epigrafe": "El bucle vuelve visible cada actualización del acumulador. La operación tabular declara la transformación sobre columnas y grupos, una forma más directa de trabajar con un DataFrame.",
+        "after_heading": "agrupar-cambia-el-grano-de-salida",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "El bucle toma una fila, obtiene su región y actualiza un acumulador.",
+          "La persona debe inicializar claves y controlar cada iteración.",
+          "groupby declara la clave de agrupación y sum declara la medida agregada.",
+          "Ambos recorridos deben producir las mismas regiones, filas de salida y suma total."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A split teaching composition: on one side repeated tokens enter a loop and update an accumulator; on the other a rectangular table folds cleanly by category into a grouped summary, converging on the same totals.",
+        "version_revision": "1.0",
+        "svg_height": 1150,
+        "estructura": {
+          "layout": "compare",
+          "groups": [
+            {
+              "title": "FOR · CONTROL EXPLÍCITO DE CADA ITERACIÓN",
+              "cards": [
+                {
+                  "title": "Preparar",
+                  "body": [
+                    "totales = {}"
+                  ],
+                  "accent": "blue",
+                  "tag": "acumulador",
+                  "code": [
+                    "for fila in ventas:"
+                  ]
+                },
+                {
+                  "title": "Iterar",
+                  "body": [
+                    "Centro: 800 → 1.300",
+                    "Norte: 1.200 → 1.500"
+                  ],
+                  "accent": "blue",
+                  "tag": "cinco vueltas",
+                  "stats": [
+                    "estado intermedio visible"
+                  ]
+                },
+                {
+                  "title": "Salida",
+                  "body": [
+                    "{'Centro': 1300, 'Norte': 1500}"
+                  ],
+                  "accent": "blue",
+                  "tag": "diccionario",
+                  "stats": [
+                    "total = 2.800"
+                  ]
+                }
+              ]
+            },
+            {
+              "title": "PANDAS · TRANSFORMACIÓN TABULAR",
+              "cards": [
+                {
+                  "title": "Seleccionar",
+                  "body": [
+                    "ventas[['region', 'importe']]"
+                  ],
+                  "accent": "blue",
+                  "tag": "columnas",
+                  "code": [
+                    "ventas.groupby('region')"
+                  ]
+                },
+                {
+                  "title": "Agrupar y sumar",
+                  "body": [
+                    ".agg(venta_total=('importe', 'sum'))"
+                  ],
+                  "accent": "blue",
+                  "tag": "operación",
+                  "code": [
+                    ".reset_index()"
+                  ]
+                },
+                {
+                  "title": "Salida",
+                  "body": [
+                    "Centro 1.300 · Norte 1.500"
+                  ],
+                  "accent": "blue",
+                  "tag": "DataFrame",
+                  "stats": [
+                    "2 × 2",
+                    "total = 2.800"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u05-python-pandas-eda",
+        "unit": "C10",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u05-estados-dataframe.svg",
+        "base_generada": "theory/u05-estados-dataframe-base.webp",
+        "base_provisoria": "u05-dataframe-pipeline.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Cómo cambia un DataFrame durante el análisis",
+        "pregunta_lectura": "¿Qué cambia en filas, columnas y grano después de cada instrucción?",
+        "alt": "Siete etapas transforman un DataFrame de ejemplo desde la carga y la inspección hasta selección, filtro, columna derivada, agrupación y reconciliación; cada estado muestra shape, grano y control SQL equivalente.",
+        "epigrafe": "Nombrar los estados intermedios permite localizar una diferencia. Cada paso declara la forma del DataFrame, el significado de una fila y el control que debería coincidir en SQL.",
+        "after_heading": "la-tabla-de-pandas-se-llama-dataframe",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "El ejemplo mínimo comienza con seis líneas y cinco columnas.",
+          "Seleccionar columnas cambia la forma; filtrar reduce filas y mantiene el grano.",
+          "La columna derivada agrega un cálculo por línea; groupby cambia el grano a región.",
+          "La reconciliación compara conteos, pedidos distintos y venta total con SQL."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A DataFrame evolving through seven clean states: load, inspect, select, filter, derive a column, group and reconcile, with visible row and column counts but no rendered text.",
+        "version_revision": "1.0",
+        "svg_height": 1150,
+        "estructura": {
+          "layout": "flow",
+          "columns": 4,
+          "cards": [
+            {
+              "title": "Carga",
+              "body": [
+                "pd.read_csv crea ventas."
+              ],
+              "accent": "blue",
+              "tag": "estado 0",
+              "code": [
+                "pd.read_csv(ruta)"
+              ],
+              "stats": [
+                "shape 6 × 5",
+                "grano: línea"
+              ]
+            },
+            {
+              "title": "Inspección",
+              "body": [
+                "head, info y isna revelan estructura."
+              ],
+              "accent": "blue",
+              "tag": "estado 1",
+              "stats": [
+                "6 × 5",
+                "control: DESCRIBE"
+              ]
+            },
+            {
+              "title": "Selección",
+              "body": [
+                "Conserva pedido, región, cantidad y precio."
+              ],
+              "accent": "blue",
+              "tag": "estado 2",
+              "stats": [
+                "6 × 4",
+                "mismo grano"
+              ]
+            },
+            {
+              "title": "Filtro",
+              "body": [
+                "Elimina una línea anulada."
+              ],
+              "accent": "blue",
+              "tag": "estado 3",
+              "stats": [
+                "5 × 4",
+                "SQL: WHERE"
+              ]
+            },
+            {
+              "title": "Columna derivada",
+              "body": [
+                "venta = cantidad × precio"
+              ],
+              "accent": "blue",
+              "tag": "estado 4",
+              "code": [
+                "assign(venta=...)"
+              ],
+              "stats": [
+                "5 × 5",
+                "por línea"
+              ]
+            },
+            {
+              "title": "Agrupación",
+              "body": [
+                "Suma venta por región."
+              ],
+              "accent": "blue",
+              "tag": "estado 5",
+              "stats": [
+                "2 × 2",
+                "SQL: GROUP BY"
+              ]
+            },
+            {
+              "title": "Reconciliación",
+              "body": [
+                "Filas, pedidos distintos y total coinciden."
+              ],
+              "accent": "success",
+              "tag": "control",
+              "stats": [
+                "5 filas",
+                "3 pedidos",
+                "$ 2.800"
               ]
             }
           ]

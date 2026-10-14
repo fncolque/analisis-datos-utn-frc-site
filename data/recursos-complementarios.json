@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-10-07",
+  "actualizado": "2026-10-14",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -510,6 +510,47 @@
           "idioma": "Inglés",
           "dedicacion": "Exploración · 20 min",
           "descripcion": "Muestra cómo representar eventos, jobs y datasets para conservar linaje entre sistemas."
+        }
+      ]
+    },
+    "u05-python-pandas-eda": {
+      "titulo": "Lectura y adaptación de análisis con Python y Pandas",
+      "introduccion": "La ruta comienza con notebooks y continúa con operaciones tabulares aplicadas. Los ejercicios permiten repetir filtros, columnas derivadas y agrupaciones.",
+      "diagrama": {
+        "archivo": "u05-python-eda.svg",
+        "fuente": "u05-python-eda.mmd",
+        "alt": "Ciclo para leer una celda, anticipar la salida, ejecutar, explicar, modificar y reconciliar con SQL.",
+        "titulo": "Una celda se comprende mediante predicción y control",
+        "epigrafe": "La ejecución confirma una hipótesis sobre tipos, condiciones y grano; la reconciliación verifica la métrica.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Curso gratuito",
+          "titulo": "Python for Everybody",
+          "institucion": "University of Michigan",
+          "url": "https://www.py4e.com/",
+          "idioma": "Inglés",
+          "dedicacion": "Autoguiado",
+          "descripcion": "Curso abierto para ampliar sintaxis, tipos, funciones y lectura de programas."
+        },
+        {
+          "tipo": "Tutorial oficial",
+          "titulo": "10 minutes to pandas",
+          "institucion": "pandas",
+          "url": "https://pandas.pydata.org/docs/user_guide/10min.html",
+          "idioma": "Inglés",
+          "dedicacion": "30–45 min",
+          "descripcion": "Recorrido por selección, faltantes, operaciones, agrupación y combinación de tablas."
+        },
+        {
+          "tipo": "Notebooks gratuitos",
+          "titulo": "Colab welcome notebook",
+          "institucion": "Google Colab",
+          "url": "https://colab.research.google.com/notebooks/welcome.ipynb",
+          "idioma": "Inglés",
+          "dedicacion": "Exploración · 15 min",
+          "descripcion": "Introduce celdas, ejecución, archivos y recursos del entorno utilizado en la materia."
         }
       ]
     }

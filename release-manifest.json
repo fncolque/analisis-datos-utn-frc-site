@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-07",
-  "generated_at_utc": "2026-10-07T17:51:13+00:00",
+  "as_of": "2026-10-14",
+  "generated_at_utc": "2026-10-14T15:51:16+00:00",
   "timezone": "America/Argentina/Buenos_Aires",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
@@ -11,7 +11,8 @@
     "Unidad 3.3 · Joins y reconciliación",
     "Unidad 4 · APIs y Model Context Protocol",
     "Unidad 4.2 · Formatos, contratos y ETL/ELT",
-    "Unidad 4.3 · Calidad, trazabilidad y privacidad"
+    "Unidad 4.3 · Calidad, trazabilidad y privacidad",
+    "Unidad 5.1 · Python, Pandas y EDA"
   ],
   "contact": "analisisdatosutnfrc@gmail.com"
 }
