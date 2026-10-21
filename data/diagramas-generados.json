@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-10-14",
+  "actualizado": "2026-10-21",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -2365,6 +2365,238 @@
                 "5 filas",
                 "3 pedidos",
                 "$ 2.800"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "u05-descriptiva-incertidumbre-visualizacion": [
+      {
+        "page": "u05-descriptiva-incertidumbre-visualizacion",
+        "unit": "C11",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u05-selector-visual.svg",
+        "base_generada": "theory/u05-selector-visual-base.webp",
+        "base_provisoria": "u05-distribution-anatomy.webp",
+        "estado_base": "generada-openai-images-integrada",
+        "modelo_base": "OpenAI Images · modo integrado de ChatGPT",
+        "titulo": "Cómo seleccionar una visualización según la pregunta",
+        "pregunta_lectura": "¿Qué relación queremos mostrar y qué condiciones debe cumplir el dato?",
+        "alt": "Ocho rutas parten de comparar, evolucionar en el tiempo, distribuir, relacionar, componer, ubicar, comunicar un KPI o consultar detalle y recomiendan barras, línea, histograma, boxplot, dispersión, barras apiladas, mapa, tarjeta o tabla.",
+        "epigrafe": "La elección comienza con la pregunta. El tipo de variable, la cantidad de categorías, la continuidad temporal y el número de observaciones permiten descartar gráficos que ocultarían la comparación.",
+        "after_heading": "medir-la-dispersion",
+        "interactivo": true,
+        "mostrar_base": true,
+        "alt_base": "Galería simbólica de ocho familias visuales: barras, línea, histograma y boxplot, dispersión, barras apiladas, mapa, tarjeta de KPI y tabla.",
+        "lectura": [
+          "Comparar categorías pide barras; si hay muchas, conviene ordenar y usar orientación horizontal.",
+          "Una serie temporal continua suele leerse con línea; una distribución requiere histograma o boxplot.",
+          "Relación, composición y ubicación necesitan datos compatibles con dispersión, apilado o mapa.",
+          "Una tarjeta resume un KPI; una tabla conserva detalle para consulta y auditoría."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A balanced four-by-two gallery of eight spacious chart scenes: bars for comparison, a line for time, histogram and boxplot for distribution, scatter for relationship, stacked bars for composition, a simplified Argentina map for location, a KPI card and a detailed table; no rendered text.",
+        "version_revision": "1.0",
+        "svg_height": 1200,
+        "estructura": {
+          "layout": "grid",
+          "columns": 4,
+          "cards": [
+            {
+              "title": "Comparar",
+              "body": [
+                "¿Cuántas categorías? ¿El nombre es largo?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 1,
+              "stats": [
+                "barras verticales u horizontales"
+              ]
+            },
+            {
+              "title": "Evolucionar",
+              "body": [
+                "¿El tiempo es continuo y ordenado?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 2,
+              "stats": [
+                "línea"
+              ]
+            },
+            {
+              "title": "Distribuir",
+              "body": [
+                "¿Hay muchas observaciones de una variable?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 3,
+              "stats": [
+                "histograma",
+                "boxplot"
+              ]
+            },
+            {
+              "title": "Relacionar",
+              "body": [
+                "¿Son dos variables numéricas?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 4,
+              "stats": [
+                "dispersión"
+              ]
+            },
+            {
+              "title": "Componer",
+              "body": [
+                "¿Las partes comparten un total significativo?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 5,
+              "stats": [
+                "barras apiladas"
+              ]
+            },
+            {
+              "title": "Ubicar",
+              "body": [
+                "¿Existe una geometría o coordenada válida?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 6,
+              "stats": [
+                "mapa"
+              ]
+            },
+            {
+              "title": "Comunicar un KPI",
+              "body": [
+                "¿Una cifra y su referencia responden la decisión?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 7,
+              "stats": [
+                "tarjeta + meta"
+              ]
+            },
+            {
+              "title": "Consultar detalle",
+              "body": [
+                "¿La persona necesita buscar casos concretos?"
+              ],
+              "accent": "blue",
+              "tag": "pregunta",
+              "step": 8,
+              "stats": [
+                "tabla"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u05-descriptiva-incertidumbre-visualizacion",
+        "unit": "C11",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u05-visual-verificable.svg",
+        "base_generada": "theory/u05-visual-verificable-base.webp",
+        "base_provisoria": "u05-uncertainty-visual.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Anatomía de una visualización verificable",
+        "pregunta_lectura": "¿Qué información necesita una persona para interpretar y comprobar el gráfico?",
+        "alt": "Dos columnas comparan un gráfico problemático con uno corregido para margen por región, señalando escala, cero en barras, período, unidad, denominador, cobertura, fuente, actualización, incertidumbre, etiquetas y color accesible.",
+        "epigrafe": "La versión corregida declara qué mide, sobre qué población y con qué escala. La fuente, la fecha de actualización y la incertidumbre permiten comprobar el alcance del hallazgo.",
+        "after_heading": "comunicar-incertidumbre-sin-paralizar-la-decision",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La versión problemática recorta el eje, omite período y mezcla colores sin una función explicada.",
+          "La versión corregida parte de cero en barras y declara porcentaje, período y población.",
+          "El denominador, la cobertura y la incertidumbre evitan presentar la cifra como universal.",
+          "Etiquetas directas y contraste accesible reducen la dependencia de una leyenda por color."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A before-and-after editorial chart anatomy: one distorted and context-free bar chart versus one honest accessible chart with baseline, annotations, uncertainty band and source footer, all without text.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "compare",
+          "groups": [
+            {
+              "title": "VERSIÓN PROBLEMÁTICA",
+              "cards": [
+                {
+                  "title": "Escala recortada",
+                  "body": [
+                    "El eje comienza en 17 % y amplifica una diferencia pequeña."
+                  ],
+                  "accent": "danger",
+                  "tag": "lectura sesgada"
+                },
+                {
+                  "title": "Contexto ausente",
+                  "body": [
+                    "Sin período, unidad, denominador ni cobertura."
+                  ],
+                  "accent": "danger",
+                  "tag": "ambigüedad"
+                },
+                {
+                  "title": "Color sin respaldo",
+                  "body": [
+                    "La leyenda depende solo de tonos parecidos."
+                  ],
+                  "accent": "danger",
+                  "tag": "accesibilidad"
+                }
+              ]
+            },
+            {
+              "title": "VERSIÓN CORREGIDA",
+              "cards": [
+                {
+                  "title": "Comparación honesta",
+                  "body": [
+                    "Barras desde cero; margen % rotulado en cada región."
+                  ],
+                  "accent": "success",
+                  "tag": "escala"
+                },
+                {
+                  "title": "Alcance declarado",
+                  "body": [
+                    "Agosto 2026 · pedidos completados · n = 3.574"
+                  ],
+                  "accent": "blue",
+                  "tag": "población",
+                  "stats": [
+                    "unidad",
+                    "denominador",
+                    "cobertura"
+                  ]
+                },
+                {
+                  "title": "Evidencia visible",
+                  "body": [
+                    "Fuente, actualización, intervalo y etiquetas directas."
+                  ],
+                  "accent": "blue",
+                  "tag": "comprobación",
+                  "stats": [
+                    "contraste AA"
+                  ]
+                }
               ]
             }
           ]

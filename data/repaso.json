@@ -40,6 +40,10 @@
     {
       "id": "u05-python-pandas-eda",
       "label": "Unidad 5.1 · Python, Pandas y EDA"
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion",
+      "label": "Unidad 5.2 · Descriptiva, incertidumbre y visualización"
     }
   ],
   "questions": [
@@ -6242,6 +6246,626 @@
         "path": "unidades/u05-python-pandas-eda.html#revisar-codigo-sugerido-por-inteligencia-artificial",
         "label": "Revisar código sugerido por inteligencia artificial"
       }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-01",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Medidas de tendencia central",
+      "difficulty": "basica",
+      "prompt": "¿Qué medida identifica el valor central de observaciones ordenadas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La mediana."
+        },
+        {
+          "id": "b",
+          "text": "La suma."
+        },
+        {
+          "id": "c",
+          "text": "El rango."
+        },
+        {
+          "id": "d",
+          "text": "La varianza."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La mediana se basa en la posición central y resiste mejor algunos extremos que la media.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#medidas-de-tendencia-central",
+        "label": "Medidas de tendencia central"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-02",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Conteos, proporciones y tasas",
+      "difficulty": "basica",
+      "prompt": "Hubo 12 entregas tardías sobre 60 elegibles. ¿Cuál es la proporción de tardanza?",
+      "options": [
+        {
+          "id": "a",
+          "text": "5 %."
+        },
+        {
+          "id": "b",
+          "text": "20 %."
+        },
+        {
+          "id": "c",
+          "text": "12 %."
+        },
+        {
+          "id": "d",
+          "text": "60 %."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La proporción es 12 / 60 = 0,20; el denominador debe declarar elegibilidad.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#conteos-proporciones-y-tasas",
+        "label": "Conteos, proporciones y tasas"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-03",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Medir la dispersión",
+      "difficulty": "basica",
+      "prompt": "¿Qué mide el rango intercuartílico?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La distancia entre media y cero."
+        },
+        {
+          "id": "b",
+          "text": "La cantidad de categorías."
+        },
+        {
+          "id": "c",
+          "text": "La distancia entre el tercer y el primer cuartil."
+        },
+        {
+          "id": "d",
+          "text": "La suma de todos los valores."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El IQR describe la amplitud del 50 % central de la distribución.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#medir-la-dispersion",
+        "label": "Medir la dispersión"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-04",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Elegir el visual según la tarea",
+      "difficulty": "basica",
+      "prompt": "¿Qué visual permite explorar la relación entre dos variables numéricas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un único número sin referencia."
+        },
+        {
+          "id": "b",
+          "text": "Una lista de archivos."
+        },
+        {
+          "id": "c",
+          "text": "Un gráfico circular con una sola categoría."
+        },
+        {
+          "id": "d",
+          "text": "Un diagrama de dispersión."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La dispersión permite observar forma, dirección, grupos y extremos.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#elegir-el-visual-segun-la-tarea",
+        "label": "Elegir el visual según la tarea"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-05",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Medidas de tendencia central",
+      "difficulty": "basica",
+      "prompt": "¿Qué medida identifica la categoría o valor más frecuente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La moda."
+        },
+        {
+          "id": "b",
+          "text": "La mediana siempre."
+        },
+        {
+          "id": "c",
+          "text": "El percentil 90."
+        },
+        {
+          "id": "d",
+          "text": "El desvío estándar."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La moda representa frecuencia máxima y puede haber más de una.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#medidas-de-tendencia-central",
+        "label": "Medidas de tendencia central"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-06",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Elegir el visual según la tarea",
+      "difficulty": "basica",
+      "prompt": "¿Qué visual es un punto de partida para seguir una métrica a través de meses consecutivos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una tabla sin orden temporal."
+        },
+        {
+          "id": "b",
+          "text": "Un gráfico de líneas."
+        },
+        {
+          "id": "c",
+          "text": "Un gráfico circular por archivo."
+        },
+        {
+          "id": "d",
+          "text": "Una nube de palabras."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La línea conserva la secuencia temporal y facilita observar evolución.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#elegir-el-visual-segun-la-tarea",
+        "label": "Elegir el visual según la tarea"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-07",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Medidas de tendencia central",
+      "difficulty": "intermedia",
+      "prompt": "Las demoras son 2, 3, 3, 4 y 100 días. ¿Qué medida describe mejor el centro típico sin quedar dominada por el extremo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La suma de 112 días."
+        },
+        {
+          "id": "b",
+          "text": "El rango de 98 días."
+        },
+        {
+          "id": "c",
+          "text": "La mediana de 3 días."
+        },
+        {
+          "id": "d",
+          "text": "El máximo de 100 días."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La mediana conserva la posición central; el valor de 100 eleva mucho la media.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#medidas-de-tendencia-central",
+        "label": "Medidas de tendencia central"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-08",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Percentiles y niveles de servicio",
+      "difficulty": "intermedia",
+      "prompt": "El P90 de demora es 7 días. ¿Qué lectura aproxima su significado?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La demora promedio es 90 días."
+        },
+        {
+          "id": "b",
+          "text": "El 7 % demora 90 días."
+        },
+        {
+          "id": "c",
+          "text": "Todas las entregas demoran exactamente 7 días."
+        },
+        {
+          "id": "d",
+          "text": "Alrededor del 90 % de las observaciones demora 7 días o menos."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Un percentil ubica un umbral de la distribución, según la convención usada.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#percentiles-y-niveles-de-servicio",
+        "label": "Percentiles y niveles de servicio"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-09",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Cómo leer un boxplot",
+      "difficulty": "intermedia",
+      "prompt": "Un punto aparece fuera de los bigotes de un boxplot. ¿Qué corresponde inferir inicialmente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Es una observación que merece revisión."
+        },
+        {
+          "id": "b",
+          "text": "Es necesariamente un error de carga."
+        },
+        {
+          "id": "c",
+          "text": "Debe borrarse siempre."
+        },
+        {
+          "id": "d",
+          "text": "Demuestra una causa logística."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Los puntos extremos pueden ser errores o eventos válidos; el gráfico no decide su tratamiento.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#como-leer-un-boxplot",
+        "label": "Cómo leer un boxplot"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-10",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Medir la dispersión",
+      "difficulty": "intermedia",
+      "prompt": "Dos regiones tienen media de 4 días, pero una muestra mucha más dispersión. ¿Qué diferencia importa?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La media de una está mal calculada obligatoriamente."
+        },
+        {
+          "id": "b",
+          "text": "La variabilidad y el riesgo de resultados alejados del promedio."
+        },
+        {
+          "id": "c",
+          "text": "Ambas tienen necesariamente el mismo servicio."
+        },
+        {
+          "id": "d",
+          "text": "Una región debe tener datos duplicados."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El centro no describe por sí solo la estabilidad del proceso.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#medir-la-dispersion",
+        "label": "Medir la dispersión"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-11",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Conteos, proporciones y tasas",
+      "difficulty": "intermedia",
+      "prompt": "Una región registra 8 tardanzas de 10 entregas y otra 20 de 200. ¿Cuál tiene mayor proporción de tardanza?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ambas porque hay tardanzas."
+        },
+        {
+          "id": "b",
+          "text": "No puede calcularse con esos datos."
+        },
+        {
+          "id": "c",
+          "text": "La primera: 80 % frente a 10 %."
+        },
+        {
+          "id": "d",
+          "text": "La segunda porque tiene 20 casos."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Los conteos absolutos y las proporciones responden preguntas diferentes.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#conteos-proporciones-y-tasas",
+        "label": "Conteos, proporciones y tasas"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-12",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Reconocer fuentes de sesgo",
+      "difficulty": "intermedia",
+      "prompt": "Un sistema guarda ventas realizadas pero no solicitudes rechazadas por falta de stock. ¿Qué queda fuera al estudiar demanda?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Las ventas registradas."
+        },
+        {
+          "id": "b",
+          "text": "La cantidad de filas existentes."
+        },
+        {
+          "id": "c",
+          "text": "El precio de las operaciones guardadas."
+        },
+        {
+          "id": "d",
+          "text": "La demanda no atendida."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La cobertura del registro limita qué parte del proceso puede describirse.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#reconocer-fuentes-de-sesgo",
+        "label": "Reconocer fuentes de sesgo"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-13",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Diseñar para que el dato pueda verificarse",
+      "difficulty": "intermedia",
+      "prompt": "Un gráfico distingue cumplimiento solo mediante rojo y verde. ¿Qué mejora su accesibilidad?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Agregar etiquetas o símbolos con significado equivalente."
+        },
+        {
+          "id": "b",
+          "text": "Agregar más tonos similares."
+        },
+        {
+          "id": "c",
+          "text": "Eliminar todos los textos."
+        },
+        {
+          "id": "d",
+          "text": "Usar colores más saturados únicamente."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El mensaje debe poder interpretarse sin depender exclusivamente del color.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#disenar-para-que-el-dato-pueda-verificarse",
+        "label": "Diseñar para que el dato pueda verificarse"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-14",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Comunicar incertidumbre sin paralizar la decisión",
+      "difficulty": "intermedia",
+      "prompt": "El 8 % de los clientes carece de región. ¿Qué agrega utilidad a declarar ese faltante?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Afirmar que el efecto es necesariamente cero."
+        },
+        {
+          "id": "b",
+          "text": "Explicar cómo puede afectar la comparación regional."
+        },
+        {
+          "id": "c",
+          "text": "Ocultar el porcentaje."
+        },
+        {
+          "id": "d",
+          "text": "Asignar toda ausencia a la región mayor."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Un límite resulta operativo al indicar su consecuencia sobre el análisis o la decisión.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#comunicar-incertidumbre-sin-paralizar-la-decision",
+        "label": "Comunicar incertidumbre sin paralizar la decisión"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-15",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Asociación y correlación",
+      "difficulty": "avanzada",
+      "prompt": "Pearson es cercano a cero, pero el gráfico muestra una curva marcada. ¿Qué conclusión es adecuada?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El gráfico debe estar equivocado."
+        },
+        {
+          "id": "b",
+          "text": "Todo coeficiente cercano a cero impide investigar."
+        },
+        {
+          "id": "c",
+          "text": "La asociación lineal es baja; puede existir una relación no lineal."
+        },
+        {
+          "id": "d",
+          "text": "Las variables son necesariamente independientes."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Pearson resume relación lineal y puede omitir formas no lineales.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#asociacion-y-correlacion",
+        "label": "Asociación y correlación"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-16",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Qué hace falta para hablar de causalidad",
+      "difficulty": "avanzada",
+      "prompt": "La región más lejana tiene más demora y usa otro transportista. ¿Qué dificulta atribuir el efecto solo a distancia?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La presencia de dos variables siempre demuestra causa."
+        },
+        {
+          "id": "b",
+          "text": "El cálculo de la mediana."
+        },
+        {
+          "id": "c",
+          "text": "La existencia de registros temporales."
+        },
+        {
+          "id": "d",
+          "text": "La posible confusión con transportista y otros factores."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Factores asociados pueden explicar parte del patrón y requieren un diseño de comparación adecuado.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#que-hace-falta-para-hablar-de-causalidad",
+        "label": "Qué hace falta para hablar de causalidad"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-17",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Cómo detectar un gráfico engañoso",
+      "difficulty": "avanzada",
+      "prompt": "Barras para 98 y 100 comienzan en 97 y parecen muy diferentes. ¿Qué debe revisarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La escala truncada que exagera diferencias de longitud."
+        },
+        {
+          "id": "b",
+          "text": "La existencia de etiquetas numéricas solamente."
+        },
+        {
+          "id": "c",
+          "text": "El orden alfabético de categorías."
+        },
+        {
+          "id": "d",
+          "text": "La cantidad de filas del archivo original."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Cuando longitud codifica magnitud, una base alejada de cero puede distorsionar la comparación.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#como-detectar-un-grafico-enganoso",
+        "label": "Cómo detectar un gráfico engañoso"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-18",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Percentiles y niveles de servicio",
+      "difficulty": "avanzada",
+      "prompt": "Dos transportistas comparten mediana, pero uno tiene P90 mucho mayor. ¿Qué revela?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que el transportista con menor P90 perdió registros."
+        },
+        {
+          "id": "b",
+          "text": "Una cola de demoras más alta en ese transportista."
+        },
+        {
+          "id": "c",
+          "text": "El mismo comportamiento en toda la distribución."
+        },
+        {
+          "id": "d",
+          "text": "Una media obligatoriamente idéntica."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Los percentiles superiores permiten distinguir niveles de servicio ocultos por el centro.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#percentiles-y-niveles-de-servicio",
+        "label": "Percentiles y niveles de servicio"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-19",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Comunicar incertidumbre sin paralizar la decisión",
+      "difficulty": "avanzada",
+      "prompt": "Una recomendación cambia al excluir tres casos extremos válidos. ¿Qué debe comunicarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que los tres casos son errores por cambiar la conclusión."
+        },
+        {
+          "id": "b",
+          "text": "Que la incertidumbre desapareció."
+        },
+        {
+          "id": "c",
+          "text": "Que la conclusión es sensible a esos casos y bajo qué escenarios se mantiene."
+        },
+        {
+          "id": "d",
+          "text": "Solo el escenario más favorable."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El análisis de sensibilidad muestra cuánto depende la decisión de elecciones o casos específicos.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#comunicar-incertidumbre-sin-paralizar-la-decision",
+        "label": "Comunicar incertidumbre sin paralizar la decisión"
+      }
+    },
+    {
+      "id": "u05-descriptiva-incertidumbre-visualizacion-20",
+      "unit": "u05-descriptiva-incertidumbre-visualizacion",
+      "topic": "Cómo detectar un gráfico engañoso",
+      "difficulty": "avanzada",
+      "prompt": "Un gráfico compara ventas de enero completo con febrero hasta el día 10 sin aclararlo. ¿Qué problema introduce?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un error inevitable de suma."
+        },
+        {
+          "id": "b",
+          "text": "Un cambio en la clave primaria."
+        },
+        {
+          "id": "c",
+          "text": "Una prueba de caída de demanda."
+        },
+        {
+          "id": "d",
+          "text": "Compara poblaciones temporales diferentes como si fueran equivalentes."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Los períodos y la cobertura deben explicitarse antes de atribuir una diferencia a desempeño.",
+      "reference": {
+        "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#como-detectar-un-grafico-enganoso",
+        "label": "Cómo detectar un gráfico engañoso"
+      }
     }
   ],
   "presets": [
@@ -6271,5 +6895,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "e99ca4c8f9b9d3c6"
+  "version": "5fb6b8e88ed05944"
 }

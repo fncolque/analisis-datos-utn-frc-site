@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-10-14",
+  "actualizado": "2026-10-21",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -551,6 +551,56 @@
           "idioma": "Inglés",
           "dedicacion": "Exploración · 15 min",
           "descripcion": "Introduce celdas, ejecución, archivos y recursos del entorno utilizado en la materia."
+        }
+      ]
+    },
+    "u05-descriptiva-incertidumbre-visualizacion": {
+      "titulo": "Describir distribuciones y comunicar incertidumbre",
+      "introduccion": "La biblioteca combina un libro abierto de visualización, una referencia estadística y ejemplos para revisar correlación, causalidad y selección de gráficos.",
+      "diagrama": {
+        "archivo": "u05-incertidumbre-visual.svg",
+        "fuente": "u05-incertidumbre-visual.mmd",
+        "alt": "Secuencia desde población y medidas descriptivas hasta visual, observación, hipótesis, límite y recomendación.",
+        "titulo": "Del resumen a una recomendación revisable",
+        "epigrafe": "La visualización conserva población, denominador y límites para sostener una lectura prudente.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "imagen": {
+        "archivo": "box-plot.svg",
+        "alt": "Esquema de un boxplot con mínimo, cuartiles, mediana, máximo y rango intercuartílico identificados.",
+        "epigrafe": "El boxplot resume posición y dispersión mediante cuartiles. Sus marcas permiten comparar distribuciones sin confundir un valor aislado con el comportamiento del conjunto.",
+        "autor": "Roman Tworkowski y Szombara88",
+        "licencia": "Dominio público",
+        "url": "https://commons.wikimedia.org/wiki/File:Box_plot.svg",
+        "after_heading": "como-leer-un-boxplot"
+      },
+      "recursos": [
+        {
+          "tipo": "Libro abierto",
+          "titulo": "Fundamentals of Data Visualization",
+          "institucion": "Claus O. Wilke",
+          "url": "https://clauswilke.com/dataviz/",
+          "idioma": "Inglés",
+          "dedicacion": "Lectura selectiva",
+          "descripcion": "Guía completa sobre codificación visual, distribuciones, proporciones, color y errores frecuentes."
+        },
+        {
+          "tipo": "Libro abierto",
+          "titulo": "OpenIntro Statistics",
+          "institucion": "OpenIntro",
+          "url": "https://www.openintro.org/book/os/",
+          "idioma": "Inglés",
+          "dedicacion": "Capítulos selectivos",
+          "descripcion": "Texto y PDF gratuitos para revisar medidas descriptivas, distribuciones y asociación."
+        },
+        {
+          "tipo": "Artículo educativo",
+          "titulo": "Correlation and causation",
+          "institucion": "Australian Bureau of Statistics",
+          "url": "https://www.abs.gov.au/websitedbs/D3310114.nsf/Home/Statistical+Language+-+correlation+and+causation",
+          "idioma": "Inglés",
+          "dedicacion": "Lectura · 15 min",
+          "descripcion": "Ejemplos breves para separar asociación, causalidad y variables de confusión."
         }
       ]
     }

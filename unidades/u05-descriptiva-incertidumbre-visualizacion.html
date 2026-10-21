@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Descriptiva, incertidumbre y visualización. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Descriptiva, incertidumbre y visualización · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 5 · CAPÍTULO 2</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 5 · CAPÍTULO 2</span></div>
+        <h1 id="reading-title">Descriptiva, incertidumbre y visualización</h1>
+        <p class="hero-lede">Una medida descriptiva resume una población observada, pero ningún resumen cuenta por sí solo toda la historia. El capítulo explica cómo leer centro, dispersión, percentiles y segmentos, y cómo elegir una visualización que haga visibles el denominador, la variabilidad y los límites de la conclusión.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué podemos concluir sin exagerar la evidencia y cómo lo mostramos?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_D_v1.0_estudiantes.zip" download>Descargar Paquete D <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u05-descriptiva-incertidumbre-visualizacion">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u05-descriptiva-incertidumbre-visualizacion">Del resumen a una recomendación revisable</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u05-incertidumbre-visual.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u05-incertidumbre-visual.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u05-incertidumbre-visual.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u05-incertidumbre-visual.svg?v=20260825b" alt="Secuencia desde población y medidas descriptivas hasta visual, observación, hipótesis, límite y recomendación." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>La visualización conserva población, denominador y límites para sostener una lectura prudente.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#describir-lo-observado-antes-de-buscar-explicaciones">Describir lo observado antes de buscar explicaciones</a><a href="#conteos-proporciones-y-tasas">Conteos, proporciones y tasas</a><a href="#medidas-de-tendencia-central">Medidas de tendencia central</a><a href="#percentiles-y-niveles-de-servicio">Percentiles y niveles de servicio</a><a href="#medir-la-dispersion">Medir la dispersión</a><a href="#como-leer-un-boxplot">Cómo leer un boxplot</a><a href="#reconocer-fuentes-de-sesgo">Reconocer fuentes de sesgo</a><a href="#asociacion-y-correlacion">Asociación y correlación</a><a href="#que-hace-falta-para-hablar-de-causalidad">Qué hace falta para hablar de causalidad</a><a href="#comunicar-incertidumbre-sin-paralizar-la-decision">Comunicar incertidumbre sin paralizar la decisión</a><a href="#elegir-el-visual-segun-la-tarea">Elegir el visual según la tarea</a><a href="#disenar-para-que-el-dato-pueda-verificarse">Diseñar para que el dato pueda verificarse</a><a href="#como-detectar-un-grafico-enganoso">Cómo detectar un gráfico engañoso</a><a href="#ordenar-la-explicacion-mediante-un-storyboard">Ordenar la explicación mediante un storyboard</a><a href="#hipotesis-para-explorar-en-faro-sur">Hipótesis para explorar en Faro Sur</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="describir-lo-observado-antes-de-buscar-explicaciones">Describir lo observado antes de buscar explicaciones</h2>
+<p>La estadística descriptiva organiza lo que aparece en un conjunto de datos. Resume cantidades, posiciones, dispersión y relaciones dentro de una población definida. Una media o un porcentaje adquieren sentido cuando se conoce el período, la unidad de análisis, la cantidad de observaciones y los filtros aplicados.</p>
+<p>Un resumen descriptivo no demuestra por sí mismo qué ocurrirá fuera del período ni qué causa produjo un patrón. Si Faro Sur observa más demoras en una región, el dato orienta una investigación. La composición de pedidos, la distancia, el transportista o la disponibilidad pueden intervenir. La descripción debe conservar esa frontera.</p>
+<p>Antes de interpretar una medida conviene declarar población, unidad, tamaño, segmentación, faltantes y distribución. Esa información permite saber qué representa el número y qué observaciones quedaron fuera.</p>
+<h2 id="conteos-proporciones-y-tasas">Conteos, proporciones y tasas</h2>
+<p>El conteo responde cuántos casos cumplen una condición. Decir que hubo 42 pedidos tardíos describe un volumen, aunque no informa si el total de pedidos fue 50 o 5.000. La proporción relaciona esos casos con una población y la tasa agrega una definición operativa del denominador.</p>
+<p>Para calcular tardanza, el denominador podría incluir pedidos entregados con fecha prometida válida. Los pedidos cancelados o todavía abiertos requieren una regla. Dos equipos pueden obtener porcentajes distintos a partir del mismo archivo si definen de otra manera la elegibilidad.</p>
+<p>Una comunicación clara muestra numerador y denominador. “42 de 310 pedidos elegibles llegaron tarde” permite revisar el cálculo y evita que un porcentaje oculte el tamaño real de la población.</p>
+<h2 id="medidas-de-tendencia-central">Medidas de tendencia central</h2>
+<p>La media suma los valores y divide por la cantidad de observaciones. Resulta útil para importes o cantidades aditivas, pero puede desplazarse cuando existen extremos. Si la mayoría de las entregas demora entre dos y cinco días y una tarda 120, la media incorporará ese caso de manera visible.</p>
+<p>La mediana ordena los valores y toma la posición central. Responde por el caso que queda en el medio y resiste mejor el efecto de unos pocos extremos. La moda identifica el valor o categoría que aparece con mayor frecuencia y puede haber más de una.</p>
+<p>La pregunta decide qué medida conviene. Para estimar carga total, la media puede relacionarse con suma y cantidad. Para describir la experiencia habitual ante una distribución asimétrica, la mediana suele ofrecer una lectura más representativa. Mostrar ambas ayuda a reconocer el sesgo.</p>
+<h2 id="percentiles-y-niveles-de-servicio">Percentiles y niveles de servicio</h2>
+<p>Un percentil ubica una observación dentro de la distribución ordenada. Si el percentil 90 de demora es siete días, el 90 % de las observaciones tiene una demora igual o menor, según la convención de cálculo utilizada. El 10 % restante forma la cola superior.</p>
+<p>Los percentiles permiten describir niveles de servicio que una media puede esconder. Dos transportistas podrían compartir la misma mediana y diferir en su percentil 90; uno presenta casos extremos mucho más demorados. La elección del percentil debe relacionarse con el riesgo y explicarse junto con la población.</p>
+<p>Un percentil expresa posición, mientras que un porcentaje expresa una parte de un total. La similitud de los nombres no vuelve intercambiables ambos conceptos.</p>
+<h2 id="medir-la-dispersion">Medir la dispersión</h2>
+<p>El rango resta el mínimo al máximo y muestra la amplitud completa. Es fácil de leer, pero depende de dos valores y cambia mucho ante un extremo. El rango intercuartílico, o IQR, resta el primer cuartil al tercero y describe la mitad central de la distribución.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u05-selector-visual-title" data-atlas-diagram data-base-status="final">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u05-selector-visual-title">Cómo seleccionar una visualización según la pregunta</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué relación queremos mostrar y qué condiciones debe cumplir el dato?</p>
+      <div class="atlas-generated-plate"><img src="../assets/images/generated/theory/u05-selector-visual-base.webp" alt="Galería simbólica de ocho familias visuales: barras, línea, histograma y boxplot, dispersión, barras apiladas, mapa, tarjeta de KPI y tabla." width="1536" height="1024" loading="lazy" decoding="async"></div>
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/theory/u05-selector-visual-base.webp')">
+        <div class="atlas-board atlas-grid" style="--atlas-cols:4"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Comparar</h5>
+      <div class="atlas-card-copy"><p>¿Cuántas categorías? ¿El nombre es largo?</p></div>
+      <div class="atlas-stats"><span>barras verticales u horizontales</span></div>
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Evolucionar</h5>
+      <div class="atlas-card-copy"><p>¿El tiempo es continuo y ordenado?</p></div>
+      <div class="atlas-stats"><span>línea</span></div>
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Distribuir</h5>
+      <div class="atlas-card-copy"><p>¿Hay muchas observaciones de una variable?</p></div>
+      <div class="atlas-stats"><span>histograma</span><span>boxplot</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Relacionar</h5>
+      <div class="atlas-card-copy"><p>¿Son dos variables numéricas?</p></div>
+      <div class="atlas-stats"><span>dispersión</span></div>
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Componer</h5>
+      <div class="atlas-card-copy"><p>¿Las partes comparten un total significativo?</p></div>
+      <div class="atlas-stats"><span>barras apiladas</span></div>
+    </article><article class="atlas-card is-blue" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>Ubicar</h5>
+      <div class="atlas-card-copy"><p>¿Existe una geometría o coordenada válida?</p></div>
+      <div class="atlas-stats"><span>mapa</span></div>
+    </article><article class="atlas-card is-blue" data-step="7" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">07</span></div>
+      <h5>Comunicar un KPI</h5>
+      <div class="atlas-card-copy"><p>¿Una cifra y su referencia responden la decisión?</p></div>
+      <div class="atlas-stats"><span>tarjeta + meta</span></div>
+    </article><article class="atlas-card is-blue is-row-end" data-step="8" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pregunta</span><span class="atlas-step-number" aria-hidden="true">08</span></div>
+      <h5>Consultar detalle</h5>
+      <div class="atlas-card-copy"><p>¿La persona necesita buscar casos concretos?</p></div>
+      <div class="atlas-stats"><span>tabla</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u05-selector-visual.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>La elección comienza con la pregunta. El tipo de variable, la cantidad de categorías, la continuidad temporal y el número de observaciones permiten descartar gráficos que ocultarían la comparación.</p>
+        <div class="atlas-controls" aria-label="Pasos de lectura"><button type="button" data-atlas-control="1" aria-pressed="false"><span>01</span>Comparar categorías pide barras; si hay muchas, conviene ordenar y usar orientación horizontal.</button><button type="button" data-atlas-control="2" aria-pressed="false"><span>02</span>Una serie temporal continua suele leerse con línea; una distribución requiere histograma o boxplot.</button><button type="button" data-atlas-control="3" aria-pressed="false"><span>03</span>Relación, composición y ubicación necesitan datos compatibles con dispersión, apilado o mapa.</button><button type="button" data-atlas-control="4" aria-pressed="false"><span>04</span>Una tarjeta resume un KPI; una tabla conserva detalle para consulta y auditoría.</button></div>
+        <small>Base visual generada con ChatGPT · OpenAI Images.</small>
+      </figcaption>
+    </figure>
+
+<p>La varianza calcula la dispersión mediante distancias cuadradas respecto de la media. Sus unidades quedan elevadas al cuadrado, por lo que suele interpretarse mediante el desvío estándar, que vuelve a la unidad original. Ambas medidas son sensibles a extremos y conviene acompañarlas con una visualización.</p>
+<p>Centro y dispersión deben leerse juntos. Dos regiones pueden tener la misma demora media y niveles de variabilidad muy diferentes. La región menos estable presenta un riesgo operacional que el promedio aislado no muestra.</p>
+<h2 id="como-leer-un-boxplot">Cómo leer un boxplot</h2>
+<p>Un boxplot representa el primer cuartil, la mediana y el tercer cuartil dentro de una caja. Los bigotes se extienden según una convención, habitualmente relacionada con 1,5 veces el IQR, y los puntos que quedan fuera se muestran de forma separada.</p>
+<figure class="sourced-visual sourced-visual-inline">
+      <img src="../assets/images/box-plot.svg" alt="Esquema de un boxplot con mínimo, cuartiles, mediana, máximo y rango intercuartílico identificados." width="1536" height="1024" loading="lazy" decoding="async">
+
+      <figcaption>
+        <span>El boxplot resume posición y dispersión mediante cuartiles. Sus marcas permiten comparar distribuciones sin confundir un valor aislado con el comportamiento del conjunto.</span>
+        <small>Fuente: <a href="https://commons.wikimedia.org/wiki/File:Box_plot.svg" target="_blank" rel="noopener noreferrer">Roman Tworkowski y Szombara88</a> · Dominio público</small>
+      </figcaption>
+    </figure>
+
+<p>La figura comprime mucha información y facilita comparar grupos. Una caja más alta indica mayor dispersión central; una mediana desplazada sugiere asimetría; los puntos aislados señalan observaciones que conviene revisar. El gráfico no explica por qué existe esa forma.</p>
+<p>Un punto fuera de los bigotes conserva su condición de observación hasta que la fuente y el contexto indiquen otra cosa. Puede revelar una captura incorrecta, un evento raro o una unidad diferente. El tratamiento debe documentarse y evaluar cómo cambia el resumen.</p>
+<h2 id="reconocer-fuentes-de-sesgo">Reconocer fuentes de sesgo</h2>
+<p>El sesgo puede surgir en la selección de casos, la cobertura temporal, la medición, los faltantes o la propia definición. También aparece cuando solo sobreviven en la base los eventos exitosos o cuando un cambio de sistema altera la forma de registrar.</p>
+<p>El archivo de pedidos de Faro Sur representa operaciones registradas. No contiene necesariamente la demanda que la empresa no pudo atender, las consultas abandonadas o las ventas realizadas fuera del sistema. Una conclusión sobre “preferencias de los clientes” excedería esa cobertura.</p>
+<p>Para evaluar un patrón preguntamos quién o qué puede faltar, cómo se generó el registro y si el proceso cambió durante el período. Declarar esas condiciones permite utilizar el análisis sin otorgarle un alcance que la fuente no sostiene.</p>
+<h2 id="asociacion-y-correlacion">Asociación y correlación</h2>
+<p>Un diagrama de dispersión ubica dos variables numéricas y permite observar dirección, forma, intensidad, grupos y valores extremos. Antes de calcular una correlación conviene mirar esa forma. Una relación curva o varios segmentos pueden quedar ocultos por un único coeficiente.</p>
+<p>La correlación de Pearson resume la relación lineal. Un valor cercano a cero puede coexistir con una relación no lineal, y un extremo puede desplazar el coeficiente. Además, mezclar grupos con comportamientos distintos puede producir una asociación que desaparece al segmentar.</p>
+<p>Los umbrales de “fuerte” o “débil” dependen del dominio y del propósito. En operaciones, una asociación moderada puede justificar una alerta si el impacto es alto; en otro contexto puede resultar insuficiente para actuar. El coeficiente debe acompañarse con visual, tamaño de población y alcance.</p>
+<h2 id="que-hace-falta-para-hablar-de-causalidad">Qué hace falta para hablar de causalidad</h2>
+<p>Afirmar que una variable causa otra requiere un diseño que descarte explicaciones alternativas. Una asociación entre distancia y demora puede estar confundida por transportista, tipo de producto, nivel de inventario o prioridad de pedido. También puede existir causalidad inversa, selección o una tendencia temporal compartida.</p>
+<p>En esta materia utilizamos lenguaje acorde con la evidencia: “se asocia con”, “coincide con” o “merece investigar”. Una hipótesis causal puede formularse, pero debe distinguirse del resultado observado y señalar qué experimento, comparación o dato adicional permitiría evaluarla.</p>
+<p>Esta prudencia mejora la decisión. La organización puede investigar un segmento sin presentar como certeza una explicación que todavía admite alternativas.</p>
+<h2 id="comunicar-incertidumbre-sin-paralizar-la-decision">Comunicar incertidumbre sin paralizar la decisión</h2>
+<p>La incertidumbre aparece por medición imperfecta, variabilidad, cobertura incompleta, supuestos y cambios futuros. Aunque la unidad no desarrolla inferencia formal, el análisis debe mostrar qué aspectos podrían modificar la conclusión.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u05-visual-verificable-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u05-visual-verificable-title">Anatomía de una visualización verificable</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué información necesita una persona para interpretar y comprobar el gráfico?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u05-uncertainty-visual.webp')">
+        <div class="atlas-board atlas-compare" style="--atlas-cols:2"><section class="atlas-compare-group">
+              <header><h4>VERSIÓN PROBLEMÁTICA</h4></header>
+              <div><article class="atlas-card is-danger">
+      <div class="atlas-card-top"><span class="atlas-card-tag">lectura sesgada</span></div>
+      <h5>Escala recortada</h5>
+      <div class="atlas-card-copy"><p>El eje comienza en 17 % y amplifica una diferencia pequeña.</p></div>
+
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"><span class="atlas-card-tag">ambigüedad</span></div>
+      <h5>Contexto ausente</h5>
+      <div class="atlas-card-copy"><p>Sin período, unidad, denominador ni cobertura.</p></div>
+
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"><span class="atlas-card-tag">accesibilidad</span></div>
+      <h5>Color sin respaldo</h5>
+      <div class="atlas-card-copy"><p>La leyenda depende solo de tonos parecidos.</p></div>
+
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>VERSIÓN CORREGIDA</h4></header>
+              <div><article class="atlas-card is-success">
+      <div class="atlas-card-top"><span class="atlas-card-tag">escala</span></div>
+      <h5>Comparación honesta</h5>
+      <div class="atlas-card-copy"><p>Barras desde cero; margen % rotulado en cada región.</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">población</span></div>
+      <h5>Alcance declarado</h5>
+      <div class="atlas-card-copy"><p>Agosto 2026 · pedidos completados · n = 3.574</p></div>
+      <div class="atlas-stats"><span>unidad</span><span>denominador</span><span>cobertura</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">comprobación</span></div>
+      <h5>Evidencia visible</h5>
+      <div class="atlas-card-copy"><p>Fuente, actualización, intervalo y etiquetas directas.</p></div>
+      <div class="atlas-stats"><span>contraste AA</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u05-visual-verificable.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>La versión corregida declara qué mide, sobre qué población y con qué escala. La fuente, la fecha de actualización y la incertidumbre permiten comprobar el alcance del hallazgo.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La versión problemática recorta el eje, omite período y mezcla colores sin una función explicada.</p></li><li><span>02</span><p>La versión corregida parte de cero en barras y declara porcentaje, período y población.</p></li><li><span>03</span><p>El denominador, la cobertura y la incertidumbre evitan presentar la cifra como universal.</p></li><li><span>04</span><p>Etiquetas directas y contraste accesible reducen la dependencia de una leyenda por color.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>Podemos comunicarla mediante rangos, percentiles, escenarios y análisis de sensibilidad. Comparar una métrica con y sin casos extremos revela cuánto depende de ellos. Mostrar cobertura y faltantes permite juzgar la representatividad. Un escenario de costos alternativo indica cuándo una recomendación deja de ser conveniente.</p>
+<p>El límite se redacta junto con su consecuencia. “La región falta en el 8 % de los clientes” gana utilidad si se agrega qué segmentos quedan subrepresentados y qué decisión necesita confirmación.</p>
+<h2 id="elegir-el-visual-segun-la-tarea">Elegir el visual según la tarea</h2>
+<p>La forma del gráfico depende de lo que la audiencia necesita comparar. Las barras muestran diferencias entre categorías; una línea conserva el orden temporal; el histograma y el boxplot describen distribuciones; la dispersión explora relaciones; una tabla ofrece detalle.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Tarea</th>
+<th>Visual de partida</th>
+<th>Pregunta de revisión</th>
+</tr></thead><tbody>
+<tr><td>comparar categorías</td><td>barras</td><td>¿la escala permite comparar longitudes?</td></tr>
+<tr><td>seguir una tendencia</td><td>línea</td><td>¿los intervalos temporales son consistentes?</td></tr>
+<tr><td>observar una distribución</td><td>histograma o boxplot</td><td>¿se ven centro, dispersión y extremos?</td></tr>
+<tr><td>relacionar dos variables</td><td>dispersión</td><td>¿hay grupos o formas no lineales?</td></tr>
+<tr><td>mostrar composición</td><td>barras apiladas</td><td>¿pueden compararse las partes relevantes?</td></tr>
+<tr><td>comunicar un KPI</td><td>número con referencia</td><td>¿se conoce meta, período y denominador?</td></tr>
+<tr><td>consultar detalle</td><td>tabla</td><td>¿las columnas necesarias pueden leerse?</td></tr>
+</tbody></table></div>
+<p>La herramienta ofrece muchas variantes, pero la tarea reduce el conjunto de opciones. Un gráfico adicional debe aportar una comparación nueva o una evidencia necesaria.</p>
+<h2 id="disenar-para-que-el-dato-pueda-verificarse">Diseñar para que el dato pueda verificarse</h2>
+<p>Las escalas deben ser coherentes con la codificación visual. Cuando la longitud de una barra representa magnitud, comenzar lejos de cero puede exagerar diferencias. El color necesita una función: separar grupos, señalar estado o dirigir la atención. Agregar colores sin significado aumenta el esfuerzo de lectura.</p>
+<p>El título puede expresar la observación principal y el subtítulo completar población o período. Las unidades, fuente y actualización se ubican cerca del gráfico. Etiquetas y contraste deben permitir leer la figura sin depender solo del color.</p>
+<p>La accesibilidad forma parte de la interpretación. Un estudiante que amplía la página o una persona con dificultad para distinguir colores debe conservar la relación entre categorías, valores y mensaje.</p>
+<h2 id="como-detectar-un-grafico-enganoso">Cómo detectar un gráfico engañoso</h2>
+<p>Un eje truncado, un doble eje sin justificación o un área desproporcionada pueden magnificar una diferencia. Omitir categorías, mezclar intervalos temporales o comparar un acumulado con un período completo modifica la población sin hacerlo visible.</p>
+<p>Un promedio sin distribución puede esconder extremos y un denominador ausente puede hacer que una tasa parezca mayor. Los colores también comunican juicio: marcar una categoría en rojo sugiere alerta aunque la regla no lo haya establecido.</p>
+<p>La revisión intenta reconstruir los datos detrás del gráfico. Si la audiencia no puede reconocer población, escala y definición, la visual necesita contexto adicional o una forma más simple.</p>
+<h2 id="ordenar-la-explicacion-mediante-un-storyboard">Ordenar la explicación mediante un storyboard</h2>
+<p>Un storyboard organiza la comunicación antes de elegir el formato final. Comienza con la decisión, presenta la tensión que merece atención, muestra evidencia controlada, propone una acción y declara el límite o siguiente paso.</p>
+<p>Los títulos de esas escenas deberían permitir reconstruir el argumento sin ver aún los gráficos. “Patagonia concentra la demora más alta” aporta una observación; el gráfico posterior permite verificarla y conocer magnitud, período y dispersión.</p>
+<p>Preparar el storyboard también ayuda a quitar resultados interesantes que no cambian la decisión. El detalle puede quedar disponible como respaldo sin interrumpir el recorrido principal.</p>
+<h2 id="hipotesis-para-explorar-en-faro-sur">Hipótesis para explorar en Faro Sur</h2>
+<p>Faro Sur ofrece patrones que deben comprobarse. Patagonia podría presentar una demora mediana mayor, pero esa diferencia puede mezclar distancia y disponibilidad. Los pedidos parciales pueden requerir más tiempo total. Los kits pueden combinar margen alto con riesgo de quiebre, y los clientes de gran volumen pueden recibir descuentos que alteran el margen porcentual.</p>
+<p>Cada afirmación comienza como una hipótesis. El notebook define población y medida, la visual muestra la distribución, y la interpretación identifica explicaciones alternativas. El resultado final separa lo observado de lo que todavía necesita investigación.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Qué medida de centro conviene para una demora asimétrica?</li><li>¿Qué pedidos forman el denominador de OTIF?</li><li>¿Qué información se revisa antes de excluir un valor extremo?</li><li>¿Qué variables podrían confundir la relación entre región y demora?</li><li>¿Qué visual permite comparar dispersión entre transportistas?</li><li>¿Qué límite debe acompañar el hallazgo principal?</li><li>¿Cómo cambiaría la conclusión si se excluyeran los casos sin región?</li></ol>
+<h2 id="alcance-de-la-unidad">Alcance de la unidad</h2>
+<p>La unidad desarrolla descripción, distribución, asociación, incertidumbre y selección visual. Regresión, pruebas de hipótesis, intervalos formales y diseño experimental quedan reservados para la asignatura correlativa.</p>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Qué información queda fuera del promedio de demora</h2></div>
+      <div class="applied-prose"><p>La media y la mediana de demora describen centros distintos. El percentil 90 muestra la cola que enfrenta una promesa de servicio. La comparación por región conserva el tamaño de cada población y el porcentaje de pedidos elegibles.</p><p>Una asociación entre Patagonia y demora puede reflejar distancia, disponibilidad o mezcla de productos. El análisis declara esa hipótesis y propone datos adicionales antes de atribuir una causa.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">5.2</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Comparar distribuciones y corregir una visualización</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>La segunda parte del notebook calcula media, mediana, percentiles y dispersión de demoras. La actividad segmenta un patrón, corrige un gráfico engañoso y escribe observación, hipótesis, límite y recomendación.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_D_v1.0_estudiantes.zip" download>Descargar Paquete D <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u05-descriptiva-incertidumbre-visualizacion">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u05-descriptiva-incertidumbre-visualizacion">Describir distribuciones y comunicar incertidumbre</h2></div>
+        <p>La biblioteca combina un libro abierto de visualización, una referencia estadística y ejemplos para revisar correlación, causalidad y selección de gráficos.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Libro abierto</span><small>Inglés</small></div>
+          <h3><a href="https://clauswilke.com/dataviz/" target="_blank" rel="noopener noreferrer">Fundamentals of Data Visualization</a></h3>
+          <p>Guía completa sobre codificación visual, distribuciones, proporciones, color y errores frecuentes.</p>
+          <footer><span>Claus O. Wilke</span><small>Lectura selectiva</small><a href="https://clauswilke.com/dataviz/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Fundamentals of Data Visualization">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Libro abierto</span><small>Inglés</small></div>
+          <h3><a href="https://www.openintro.org/book/os/" target="_blank" rel="noopener noreferrer">OpenIntro Statistics</a></h3>
+          <p>Texto y PDF gratuitos para revisar medidas descriptivas, distribuciones y asociación.</p>
+          <footer><span>OpenIntro</span><small>Capítulos selectivos</small><a href="https://www.openintro.org/book/os/" target="_blank" rel="noopener noreferrer" aria-label="Abrir OpenIntro Statistics">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Artículo educativo</span><small>Inglés</small></div>
+          <h3><a href="https://www.abs.gov.au/websitedbs/D3310114.nsf/Home/Statistical+Language+-+correlation+and+causation" target="_blank" rel="noopener noreferrer">Correlation and causation</a></h3>
+          <p>Ejemplos breves para separar asociación, causalidad y variables de confusión.</p>
+          <footer><span>Australian Bureau of Statistics</span><small>Lectura · 15 min</small><a href="https://www.abs.gov.au/websitedbs/D3310114.nsf/Home/Statistical+Language+-+correlation+and+causation" target="_blank" rel="noopener noreferrer" aria-label="Abrir Correlation and causation">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u05-python-pandas-eda.html"><span>ANTERIOR</span><b>Unidad 5 · Python y EDA</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 5 · Storytelling e Hito 2</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>
