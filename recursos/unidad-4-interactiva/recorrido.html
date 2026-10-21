@@ -1,0 +1,789 @@
+<!doctype html><html lang="es"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>Captura y transformación · Recorrido interactivo</title>
+
+
+<style>/* Lienzo 1920×1080 escalado al viewport; estilo del sitio: gris claro, casi negro, azul institucional y amarillo resaltador. */
+:root{--ink:#151616;--ink2:#1E2021;--ink3:#2A2D2F;--paper:#F2F2F2;--white:#FFFFFF;--blue:#1F497D;--pale:#DCE6F1;--yel:#FFFF33;--mut:#62686D;--mutd:#BFC3C4;--frame:#0B0C0C;color-scheme:dark}
+html,body{height:100%;margin:0;background:var(--frame);overflow:hidden}
+body{font-family:Inter,"Helvetica Neue",Arial,sans-serif;color:var(--paper)}
+#viewport{position:relative;width:100%;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform:translate(-50%,-50%) scale(var(--s,.5))}
+.slide{position:absolute;left:0;top:0;width:1920px;height:1080px;box-sizing:border-box;overflow:hidden;visibility:hidden;opacity:0;transition:opacity .35s ease}
+.slide.active{visibility:visible;opacity:1}
+.slide *{box-sizing:border-box}
+.slide h1,.slide h2,.slide h3,.slide p{margin:0}
+.slide canvas{display:block}
+.slide > :is(p,h1,h2,h3,div):not([style*="position:absolute"]):not(.bar):not(.hz):not(.chips){position:relative;z-index:1}
+.bar,.hz,.detail{z-index:2}
+.hz{position:absolute;cursor:pointer}
+.hz:focus{outline:none}
+.slide.dark .hz.on,.slide.dark .hz:focus-visible{outline:6px solid var(--yel);outline-offset:4px}
+.slide.light .hz.on,.slide.light .hz:focus-visible{outline:6px solid var(--blue);outline-offset:4px}
+[data-hz][tabindex]:not(.hz){cursor:help}
+.slide.light p[data-hz]:hover,.slide.light p[data-hz]:focus-visible{background:var(--blue);color:var(--white)!important;outline:none}
+.detail{position:absolute;right:128px;top:32px;height:56px;padding:0 26px;display:flex;align-items:center;font:800 24px/1 Inter,Arial,sans-serif;text-decoration:none;letter-spacing:-.2px}
+.slide.light .detail{background:var(--blue);color:var(--white)}
+.slide.dark .detail{background:var(--yel);color:var(--ink)}
+.detail:hover{filter:brightness(1.1)}
+.detail:focus-visible,.act:focus-visible{outline:4px solid var(--yel);outline-offset:4px}
+.bar{position:absolute;left:128px;top:960px;width:1664px;height:64px;display:flex;align-items:center;gap:20px}
+.hint{flex:1;min-width:0;font:500 26px/1.25 Inter,Arial,sans-serif;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hint::before{content:"";display:inline-block;width:12px;height:12px;margin-right:14px;vertical-align:middle}
+.slide.light .hint{color:var(--mut)}.slide.light .hint::before{background:var(--blue)}
+.slide.dark .hint{color:var(--mutd)}.slide.dark .hint::before{background:var(--yel)}
+.hint.on{font-weight:700;white-space:normal;font-size:24px}
+.slide.light .hint.on{color:var(--ink)}.slide.dark .hint.on{color:var(--paper)}
+.acts{display:flex;gap:12px;align-items:center;flex:none}
+.act{font:700 24px/1 Inter,Arial,sans-serif;height:56px;padding:0 22px;cursor:pointer;background:transparent;border:2px solid;border-radius:0}
+.slide.light .act{color:var(--ink);border-color:var(--ink)}.slide.light .act:hover{background:var(--ink);color:var(--white)}
+.slide.dark .act{color:var(--paper);border-color:#5A5F62}.slide.dark .act:hover{border-color:var(--paper)}
+.act.on,.act[data-act=allow]{background:var(--yel)!important;color:var(--ink)!important;border-color:var(--yel)!important}
+.act[data-act=deny]{background:#8A352F!important;color:var(--white)!important;border-color:#8A352F!important}
+.act:disabled{opacity:.35;cursor:default}
+.steplab{font:700 24px Inter,Arial,sans-serif;color:var(--yel);margin-right:8px;white-space:nowrap}
+/* respuestas HTTP del slide API: tarjetas sobrias con marcador de familia */
+.chips{position:absolute;left:128px;top:842px;width:1664px;display:flex;gap:12px}
+.chip{flex:1;height:76px;display:flex;align-items:center;gap:14px;padding:0 18px;cursor:pointer;background:var(--white);border:1px solid #C9CED3;border-radius:0;color:var(--ink);font-family:Inter,Arial,sans-serif;text-align:left;transition:border-color .15s,box-shadow .15s,transform .15s,background .15s}
+.chip::before{content:"";width:12px;height:12px;flex:none;background:var(--fam);box-shadow:0 0 0 1px rgba(21,22,22,.25)}
+.chip b{font:700 26px/1 "JetBrains Mono",monospace;letter-spacing:-.5px}
+.chip span{font:500 20px/1.1 Inter,Arial,sans-serif;color:var(--mut)}
+.chip.ok{--fam:var(--blue)}.chip.cli{--fam:var(--yel)}.chip.srv{--fam:#8A352F}
+.chip:hover{border-color:var(--ink);transform:translateY(-2px);box-shadow:0 6px 14px rgba(21,22,22,.10)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:var(--white);box-shadow:inset 0 -5px 0 var(--fam)}
+.chip.on span{color:var(--mutd)}
+.chip:focus-visible{outline:3px solid var(--blue)!important;outline-offset:3px}
+.chipfam{position:absolute;top:812px;font:800 16px/1 Inter,Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--mut)}
+#nav{position:fixed;left:0;right:0;bottom:0;height:52px;display:flex;align-items:center;gap:10px;background:var(--frame);border-top:1px solid #222526;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));font-size:14px}
+#nav button{font:600 14px Inter,Arial,sans-serif;color:var(--paper);background:transparent;border:1px solid #3A3D3F;height:34px;padding:0 12px;cursor:pointer;border-radius:0;white-space:nowrap}
+#nav button:hover{border-color:var(--paper)}#nav button[aria-pressed=true]{background:var(--yel);color:var(--ink);border-color:var(--yel)}
+#nav button:focus-visible{outline:3px solid var(--yel);outline-offset:2px}
+#count{min-width:58px;text-align:center;font-variant-numeric:tabular-nums;color:var(--mutd)}
+.prog{flex:1;height:6px;background:#2A2D2F;min-width:40px}#prog{height:100%;background:var(--yel);transition:width .3s}
+#notes{position:fixed;right:0;top:0;bottom:52px;width:min(460px,100%);background:#1C1E1F;border-left:4px solid var(--yel);overflow:auto;padding:20px 22px;font:400 15px/1.55 Inter,Arial,sans-serif;color:var(--paper);box-sizing:border-box}
+#notes h4{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--yel);margin:18px 0 6px}#notes p{margin:0 0 8px}#notes ol,#notes ul{margin:0 0 8px;padding-left:20px}#notes li{margin-bottom:6px}
+#notes .nh{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;white-space:normal;margin-bottom:12px}
+#notes .nh b{font-size:17px}#notes-close{background:transparent;border:1px solid #3A3D3F;color:var(--paper);font-size:20px;width:34px;height:34px;cursor:pointer}
+@media (max-width:640px){#bfull{display:none}#nav{gap:6px}}
+@media (prefers-reduced-motion:reduce){.slide{transition:none}}
+/* pantalla completa: sin indicaciones de uso ni panel de notas sobre el slide */
+body.fs .hint:not(.on){visibility:hidden}
+body.fs #notes{display:none}
+#notes details{margin:0 0 10px}#notes summary{cursor:pointer;color:var(--yel);font-size:14px}#notes details p{margin:6px 0 0;color:var(--mutd)}
+</style>
+<link rel="stylesheet" href="simulaciones.css"></head><body><p class="simulation-context">Simulación · datos ficticios <a href="index.html">Lectura adaptable a móvil →</a></p><noscript><p>La simulación requiere JavaScript. <a href="index.html">Leer el contenido completo</a>.</p></noscript><div id="viewport"><div id="stage">
+<section class="slide dark" data-id="cover" data-title="Captura y transformación de datos." aria-label="Captura y transformación de datos." style="background:#151616;color:#F2F2F2;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;justify-content:center;gap:32px">
+
+<div style="position:absolute;left:0;top:0;width:1920px;height:1080px;background:linear-gradient(90deg, rgba(21,22,22,0.96) 0%, rgba(21,22,22,0.82) 45%, rgba(21,22,22,0.25) 100%)"></div>
+<canvas data-fx="cover" data-w="1920" data-h="1080" aria-hidden="true" style="position:absolute;left:0;top:0;width:1920px;height:1080px;pointer-events:none"></canvas>
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark light" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#F2F2F2">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#BFC3C4">Ingeniería Industrial · 2026</p></div>
+
+<div style="position:absolute;left:92px;top:356px;width:12px;height:340px;background:#FFFF33"></div>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFFF33">Unidad 4 · Ingesta, captura y transformación</p>
+<h1 style="font-family:'Inter', Arial, sans-serif;font-size:120px;font-weight:800;line-height:0.98;letter-spacing:-4.2px;color:#F2F2F2;width:1150px">Captura y transformación <span style="color:#FFFF33">de datos.</span></h1>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:44px;font-weight:500;color:#A9C1E0">APIs · MCP · ETL/ELT</p>
+<p style="position:absolute;left:128px;bottom:150px;width:1100px;font-size:32px;line-height:1.35;color:#BFC3C4"><i>¿Cómo entra un dato al sistema… y cómo lo volvemos confiable?</i></p>
+
+<div class="bar" data-s="cover"><p class="hint" data-hint="Usá → o la barra espaciadora para avanzar · N: notas de repaso · F: pantalla completa.">Usá → o la barra espaciadora para avanzar · N: notas de repaso · F: pantalla completa.</p><div class="acts"></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>La pregunta que guía toda la unidad: cómo entra un dato al sistema y cómo lo volvemos confiable.</p><h4>Cómo explorar esta escena</h4><ol><li>En el panel de la derecha, piezas de datos desordenadas pasan por un contrato y se acomodan en una tabla. Las que no cumplen se rechazan.</li><li>Avanzá con la flecha →, la barra espaciadora o el botón ▸. N abre estas notas y F pone pantalla completa.</li></ol><h4>Ideas clave</h4><ul><li>Hasta ahora trabajamos con datos que ya estaban disponibles: la tabla de Faro Sur, la vista vw_ventas, los CSV de los paquetes. En esta unidad vamos un paso atrás (de dónde salen esos datos) y un paso adelante (cómo se transforman en algo confiable).</li><li>La unidad tiene tres bloques: captura (archivos, consultas SQL, descargas, eventos y APIs), MCP (cómo una IA se conecta con datos y herramientas) y transformación (ETL, ELT y capas raw → staging → mart).</li><li>La respuesta a la pregunta de la portada se resume en tres palabras: contrato, capas y controles.</li></ul><h4>Preguntas para reflexionar</h4><p><b>¿De dónde salen los datos que ves en la app de tu banco o de tu billetera virtual?</b></p><details><summary>Ver una respuesta posible</summary><p>Pensá en qué sistema registra cada movimiento y cómo llega a tu pantalla.</p></details><h4>Dudas frecuentes</h4><p><b>¿Qué representa la animación de la portada?</b> El recorrido de la unidad: datos que llegan desordenados, pasan un control (el contrato) y terminan como filas de una tabla.</p><h4>Conexión con lo que sigue</h4><p>Ubicamos esta unidad en el mapa del curso: el pipeline de seis etapas.</p></template></section>
+
+<section class="slide light" data-id="mapa" data-title="Dónde estamos en el pipeline" aria-label="Dónde estamos en el pipeline" style="background:#F2F2F2;color:#151616;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark blue" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#151616">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#62686D">Ingeniería Industrial · 2026</p></div>
+<p style="position:absolute;left:1392px;top:50px;width:400px;text-align:right;font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1F497D">Unidad 4</p>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1F497D">El mapa del curso</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#151616">Dónde estamos en el <span style="color:#1F497D">pipeline</span></h2>
+<p style="position:absolute;left:128px;top:290px;width:254px;font-size:24px;font-weight:700;letter-spacing:3px;color:#1F497D">EN ESTA UNIDAD</p>
+<p style="position:absolute;left:692px;top:290px;width:254px;font-size:24px;font-weight:700;letter-spacing:3px;color:#1F497D">EN ESTA UNIDAD</p>
+<div style="position:absolute;left:128px;top:330px;width:254px;height:214px;background:#1F497D;border-radius:0px;padding:20px;display:flex;flex-direction:column;gap:8px;border-top:10px solid #FFFF33">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#FFFF33">01</p>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:700;color:#F2F2F2">Capturar</p>
+<p style="font-size:24px;line-height:1.3;color:#DCE6F1">Sistemas, archivos, APIs</p>
+</div>
+<div style="position:absolute;left:410px;top:330px;width:254px;height:214px;background:#FFFFFF;border:2px solid #C9CED3;border-radius:0px;padding:20px;display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#62686D">02</p>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:700;color:#151616">Almacenar</p>
+<p style="font-size:24px;line-height:1.3;color:#62686D">Base, warehouse, cloud</p>
+</div>
+<div style="position:absolute;left:692px;top:330px;width:254px;height:214px;background:#1F497D;border-radius:0px;padding:20px;display:flex;flex-direction:column;gap:8px;border-top:10px solid #FFFF33">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#FFFF33">03</p>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:700;color:#F2F2F2">Transformar</p>
+<p style="font-size:24px;line-height:1.3;color:#DCE6F1">SQL, Python, Power Query</p>
+</div>
+<div style="position:absolute;left:974px;top:330px;width:254px;height:214px;background:#FFFFFF;border:2px solid #C9CED3;border-radius:0px;padding:20px;display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#62686D">04</p>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:700;color:#151616">Analizar</p>
+<p style="font-size:24px;line-height:1.3;color:#62686D">Métricas, calidad, hipótesis</p>
+</div>
+<div style="position:absolute;left:1256px;top:330px;width:254px;height:214px;background:#FFFFFF;border:2px solid #C9CED3;border-radius:0px;padding:20px;display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#62686D">05</p>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:700;color:#151616">Comunicar</p>
+<p style="font-size:24px;line-height:1.3;color:#62686D">Visual, narrativa, límite</p>
+</div>
+<div style="position:absolute;left:1538px;top:330px;width:254px;height:214px;background:#FFFFFF;border:2px solid #C9CED3;border-radius:0px;padding:20px;display:flex;flex-direction:column;gap:8px">
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#62686D">06</p>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:700;color:#151616">Decidir</p>
+<p style="font-size:24px;line-height:1.3;color:#62686D">Acción, aprendizaje, control</p>
+</div>
+<canvas data-fx="mapa" data-w="1664" data-h="80" aria-hidden="true" style="position:absolute;left:128px;top:568px;width:1664px;height:80px;pointer-events:none"></canvas>
+<p style="position:absolute;left:128px;top:690px;width:818px;height:56px;padding:0 24px;line-height:56px;font-size:26px;font-weight:600;background:#FFFF33;color:#151616;border-radius:0px">Unidad 4 · captura y transformación</p>
+<p style="position:absolute;left:128px;top:770px;width:1100px;height:56px;padding:0 24px;line-height:56px;font-size:26px;font-weight:600;background:#1F497D;color:#F2F2F2;border-radius:0px">SQL · extraer, transformar, controlar y consultar</p>
+<p style="position:absolute;left:128px;top:850px;width:1664px;height:56px;padding:0 24px;line-height:52px;font-size:26px;font-weight:600;border:2px dashed #1F497D;color:#1F497D;border-radius:0px">IA · asiste en cada etapa; la persona verifica y decide</p>
+
+<div class="hz" data-s="mapa" data-hz="0" tabindex="0" role="button" aria-label="Capturar" style="left:128px;top:330px;width:254px;height:214px"></div><div class="hz" data-s="mapa" data-hz="1" tabindex="0" role="button" aria-label="Almacenar" style="left:410px;top:330px;width:254px;height:214px"></div><div class="hz" data-s="mapa" data-hz="2" tabindex="0" role="button" aria-label="Transformar" style="left:692px;top:330px;width:254px;height:214px"></div><div class="hz" data-s="mapa" data-hz="3" tabindex="0" role="button" aria-label="Analizar" style="left:974px;top:330px;width:254px;height:214px"></div><div class="hz" data-s="mapa" data-hz="4" tabindex="0" role="button" aria-label="Comunicar" style="left:1256px;top:330px;width:254px;height:214px"></div><div class="hz" data-s="mapa" data-hz="5" tabindex="0" role="button" aria-label="Decidir" style="left:1538px;top:330px;width:254px;height:214px"></div><div class="hz" data-s="mapa" data-hz="u4" tabindex="0" role="button" aria-label="Unidad 4" style="left:128px;top:690px;width:818px;height:56px"></div><div class="hz" data-s="mapa" data-hz="sql" tabindex="0" role="button" aria-label="SQL" style="left:128px;top:770px;width:1100px;height:56px"></div><div class="hz" data-s="mapa" data-hz="ia" tabindex="0" role="button" aria-label="IA" style="left:128px;top:850px;width:1664px;height:56px"></div><div class="bar" data-s="mapa"><p class="hint" data-hint="Pasá el cursor por una etapa o por una banda para ver qué unidad la cubre. Clic para fijar.">Pasá el cursor por una etapa o por una banda para ver qué unidad la cubre. Clic para fijar.</p><div class="acts"></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>En qué etapas del pipeline trabaja esta unidad y por qué SQL y la IA aparecen en todo el recorrido.</p><h4>Cómo explorar esta escena</h4><ol><li>Pasá el cursor por cada etapa: un dato viaja desde la etapa anterior y la guía de abajo dice qué unidad del curso la cubre.</li><li>Capturar y Transformar están destacadas: son las dos etapas de esta unidad.</li><li>Pasá el cursor por las tres bandas: “Unidad 4” ilumina Capturar, Almacenar y Transformar; “SQL” va de Capturar a Analizar; “IA” abarca todas.</li><li>Un clic deja fija una etapa o banda; otro clic la suelta.</li></ol><h4>Ideas clave</h4><ul><li>Un pipeline es la secuencia de pasos que sigue un dato desde el sistema que lo registró hasta la persona que lo usa (Unidad 1).</li><li>La Unidad 2 dibujó la arquitectura y la Unidad 3 enseñó a consultar con SQL. Esta unidad trabaja el principio de la tubería (cómo llega el dato) y el medio (cómo se transforma).</li><li>SQL aparece en todas las etapas: al extraer (un SELECT a la base transaccional ya es captura), al transformar (en estos ejemplos de ELT se utiliza SQL), al controlar (una prueba es una consulta que debería devolver cero filas) y al analizar.</li><li>La IA puede asistir en cada etapa, pero la persona ejecuta, compara con una referencia y declara los límites (protocolo de IA de la materia).</li></ul><h4>Preguntas para reflexionar</h4><p><b>Si recibís un Excel por mail, lo copiás a otro y armás un reporte, ¿qué etapas del pipeline estás recorriendo?</b></p><details><summary>Ver una respuesta posible</summary><p>Captura (el adjunto), almacenamiento (tu carpeta), transformación (copiar y corregir), análisis y comunicación.</p></details><h4>Dudas frecuentes</h4><p><b>¿Por qué Almacenar no dice EN ESTA UNIDAD?</b> Se trabajó en la Unidad 2. Acá aparece solo su primer escalón: la zona raw donde aterriza lo capturado.</p><h4>Conexión con lo que sigue</h4><p>La primera estación: ¿por qué puertas puede entrar un dato?</p></template></section>
+
+<section class="slide dark" data-id="puertas" data-title="Las puertas de entrada de un dato" aria-label="Las puertas de entrada de un dato" style="background:#151616;color:#F2F2F2;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark light" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#F2F2F2">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#BFC3C4">Ingeniería Industrial · 2026</p></div>
+<p style="position:absolute;left:1392px;top:50px;width:400px;text-align:right;font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFFF33">Unidad 4</p>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFFF33">01 · Capturar</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#F2F2F2">Las puertas de entrada <span style="color:#FFFF33">de un dato</span></h2>
+<div style="position:absolute;left:128px;top:300px;width:500px;height:88px;background:#1E2021;border:1px solid #3A3D3F;border-radius:0px;padding:0 24px;display:flex;flex-direction:row;align-items:center;gap:20px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;flex:none;fill:none;stroke:#A9C1E0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4z"/><path d="M20 4h-6a3 3 0 0 0-3 3v13a2 2 0 0 1 2-2h7z"/></svg>
+<div style="display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.2;color:#F2F2F2">Archivos CSV / Excel</p><p style="font-size:24px;line-height:1.2;color:#BFC3C4">lote · diario o semanal</p></div>
+</div>
+<div style="position:absolute;left:128px;top:404px;width:500px;height:88px;background:#1E2021;border:1px solid #3A3D3F;border-radius:0px;padding:0 24px;display:flex;flex-direction:row;align-items:center;gap:20px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;flex:none;fill:none;stroke:#A9C1E0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/></svg>
+<div style="display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.2;color:#F2F2F2">Descargas del sistema</p><p style="font-size:24px;line-height:1.2;color:#BFC3C4">lote · exportación</p></div>
+</div>
+<div style="position:absolute;left:128px;top:508px;width:500px;height:88px;background:#1E2021;border:1px solid #3A3D3F;border-radius:0px;padding:0 24px;display:flex;flex-direction:row;align-items:center;gap:20px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;flex:none;fill:none;stroke:#A9C1E0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+<div style="display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.2;color:#F2F2F2">Consulta SQL a la base</p><p style="font-size:24px;line-height:1.2;color:#BFC3C4">lote o incremental</p></div>
+</div>
+<div style="position:absolute;left:128px;top:612px;width:500px;height:88px;background:#1E2021;border:1px solid #3A3D3F;border-radius:0px;padding:0 24px;display:flex;flex-direction:row;align-items:center;gap:20px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;flex:none;fill:none;stroke:#FFFF33;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z"/></svg>
+<div style="display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.2;color:#F2F2F2">API web · JSON</p><p style="font-size:24px;line-height:1.2;color:#BFC3C4">a demanda · solicitud</p></div>
+</div>
+<div style="position:absolute;left:128px;top:716px;width:500px;height:88px;background:#1E2021;border:1px solid #3A3D3F;border-radius:0px;padding:0 24px;display:flex;flex-direction:row;align-items:center;gap:20px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;flex:none;fill:none;stroke:#E9877B;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>
+<div style="display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.2;color:#F2F2F2">Eventos · CDC</p><p style="font-size:24px;line-height:1.2;color:#BFC3C4">continuo · cada cambio</p></div>
+</div>
+<div style="position:absolute;left:128px;top:820px;width:500px;height:88px;background:#1E2021;border:1px solid #3A3D3F;border-radius:0px;padding:0 24px;display:flex;flex-direction:row;align-items:center;gap:20px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:40px;height:40px;flex:none;fill:none;stroke:#A9C1E0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="9" cy="8" r="4"/><path d="M2 21v-1a6 6 0 0 1 12 0v1"/><path d="M16 4a4 4 0 0 1 0 8"/><path d="M22 21v-1a6 6 0 0 0-4-5.6"/></svg>
+<div style="display:flex;flex-direction:column"><p style="font-size:28px;font-weight:600;line-height:1.2;color:#F2F2F2">Formularios y apps</p><p style="font-size:24px;line-height:1.2;color:#BFC3C4">registro a registro</p></div>
+</div>
+<canvas data-fx="puertas" data-w="772" data-h="608" aria-hidden="true" style="position:absolute;left:628px;top:300px;width:772px;height:608px;pointer-events:none"></canvas>
+<div style="position:absolute;left:1400px;top:300px;width:392px;height:608px;background:#1E2021;border:3px solid #FFFF33;border-radius:0px;padding:40px;display:flex;flex-direction:column;gap:16px">
+<p style="font-family:'Inter', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1;color:#FFFF33">RAW</p>
+<p style="font-size:28px;line-height:1.3;color:#F2F2F2">Zona de aterrizaje: copia fiel de lo recibido</p>
+<div style="flex:1"></div>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.6;color:#BFC3C4">+ origen<br>+ fecha y hora<br>+ versión · hash</p>
+</div>
+<canvas data-fx="rawstack" data-w="306" data-h="170" aria-hidden="true" style="position:absolute;left:1443px;top:540px;width:306px;height:170px;pointer-events:none"></canvas>
+
+<div class="hz" data-s="puertas" data-hz="0" tabindex="0" role="button" aria-label="Archivos" style="left:128px;top:300px;width:500px;height:88px"></div><div class="hz" data-s="puertas" data-hz="1" tabindex="0" role="button" aria-label="Descargas" style="left:128px;top:404px;width:500px;height:88px"></div><div class="hz" data-s="puertas" data-hz="2" tabindex="0" role="button" aria-label="Consulta SQL" style="left:128px;top:508px;width:500px;height:88px"></div><div class="hz" data-s="puertas" data-hz="3" tabindex="0" role="button" aria-label="API" style="left:128px;top:612px;width:500px;height:88px"></div><div class="hz" data-s="puertas" data-hz="4" tabindex="0" role="button" aria-label="Eventos" style="left:128px;top:716px;width:500px;height:88px"></div><div class="hz" data-s="puertas" data-hz="5" tabindex="0" role="button" aria-label="Formularios" style="left:128px;top:820px;width:500px;height:88px"></div><div class="bar" data-s="puertas"><p class="hint" data-hint="Pasá el cursor por una fuente para ver cómo llegan sus datos a raw. Clic para fijarla.">Pasá el cursor por una fuente para ver cómo llegan sus datos a raw. Clic para fijarla.</p><div class="acts"></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>Las seis formas de capturar datos, su ritmo (lote, a demanda o continuo) y por qué todas terminan en la capa raw.</p><h4>Cómo explorar esta escena</h4><ol><li>Al entrar al slide no se mueve nada, para que no haya seis flujos a la vez.</li><li>Pasá el cursor por cada fuente de la izquierda: solo esa envía datos hacia RAW, con su ritmo, y dentro de RAW se apila lo recibido.</li><li>Un clic deja fija una fuente; otro clic la suelta.</li><li>En “API web · JSON”, primero sale un círculo hueco (la solicitud) y después vuelven los datos.</li></ol><h4>Ideas clave</h4><ul><li>Archivos CSV/Excel · lote: llegan en paquetes, como los Excel de consumos del caso laboral del sitio.</li><li>Descargas del sistema · lote: alguien exporta desde el ERP. Depende de una persona y cada exportación puede salir distinta.</li><li>Consulta SQL a la base · lote o incremental: un SELECT ya es captura. Incremental significa traer solo lo nuevo. Como la base transaccional está para operar, se copia a un entorno analítico en lugar de consultarla para cada reporte.</li><li>API web · a demanda: se pide y se recibe una respuesta.</li><li>Eventos/CDC · continuo: cada cambio en la base emite un evento. Solo conviene si la decisión necesita segundos (arquitectura proporcional, Unidad 2).</li><li>Formularios y apps · registro a registro: los datos se validan al cargarlos, por ejemplo con Power Apps.</li><li>Todo aterriza en RAW: la copia fiel de lo recibido más tres metadatos (origen, fecha y hora, versión o hash). raw no se corrige; las correcciones van en capas posteriores.</li></ul><h4>Preguntas para reflexionar</h4><p><b>Si una decisión se revisa una vez por mes, ¿qué puerta elegirías?</b></p><details><summary>Ver una respuesta posible</summary><p>Un lote mensual alcanza; los eventos en tiempo real serían sobredimensionar.</p></details><h4>Dudas frecuentes</h4><p><b>¿Qué es CDC?</b> Change Data Capture: leer el registro de cambios de una base y emitir un evento por cada alta, modificación o baja.</p><p><b>¿Qué es una base transaccional?</b> La que usa un sistema para operar día a día: registrar ventas, pedidos o pagos.</p><h4>Conexión con lo que sigue</h4><p>Abrimos la puerta de la API para ver qué pasa adentro de una solicitud.</p></template></section>
+
+<section class="slide light" data-id="api" data-title="Una API es un contrato entre sistemas" aria-label="Una API es un contrato entre sistemas" style="background:#F2F2F2;color:#151616;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark blue" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#151616">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#62686D">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="api" href="detalle-api.html#paso-1~api">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1F497D">API · Application Programming Interface</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#151616">Una API es un <span style="color:#1F497D">contrato</span> entre sistemas</h2>
+<div style="position:absolute;left:128px;top:300px;width:280px;height:150px;background:#DCE6F1;border-left:6px solid #1F497D;border-radius:0px;padding:24px;display:flex;flex-direction:column;gap:6px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:36px;height:36px;flex:none;fill:none;stroke:#1F497D;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:30px;font-weight:700;color:#151616">Cliente</p>
+<p style="font-size:24px;color:#62686D">notebook o app</p>
+</div>
+<div style="position:absolute;left:474px;top:300px;width:280px;height:150px;background:#DCE6F1;border-left:6px solid #1F497D;border-radius:0px;padding:24px;display:flex;flex-direction:column;gap:6px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:36px;height:36px;flex:none;fill:none;stroke:#1F497D;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m11.5 11.5 9-9"/><path d="m16 7 3 3"/></svg>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:30px;font-weight:700;color:#151616">Identidad</p>
+<p style="font-size:24px;color:#62686D">token · permisos</p>
+</div>
+<div style="position:absolute;left:820px;top:300px;width:280px;height:150px;background:#DCE6F1;border-left:6px solid #1F497D;border-radius:0px;padding:24px;display:flex;flex-direction:column;gap:6px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:36px;height:36px;flex:none;fill:none;stroke:#1F497D;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/></svg>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:30px;font-weight:700;color:#151616">Endpoint</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;color:#62686D">/v1/eventos</p>
+</div>
+<div style="position:absolute;left:1166px;top:300px;width:280px;height:150px;background:#DCE6F1;border-left:6px solid #1F497D;border-radius:0px;padding:24px;display:flex;flex-direction:column;gap:6px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:36px;height:36px;flex:none;fill:none;stroke:#1F497D;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:30px;font-weight:700;color:#151616">Servicio</p>
+<p style="font-size:24px;color:#62686D">valida y responde</p>
+</div>
+<div style="position:absolute;left:1512px;top:300px;width:280px;height:150px;background:#DCE6F1;border-left:6px solid #1F497D;border-radius:0px;padding:24px;display:flex;flex-direction:column;gap:6px">
+<svg viewBox="0 0 24 24" aria-hidden="true" style="width:36px;height:36px;flex:none;fill:none;stroke:#1F497D;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:30px;font-weight:700;color:#151616">Datos</p>
+<p style="font-size:24px;color:#62686D">base del proveedor</p>
+</div>
+<canvas data-fx="api" data-w="1664" data-h="236" aria-hidden="true" style="position:absolute;left:128px;top:466px;width:1664px;height:236px;pointer-events:none"></canvas>
+<p style="position:absolute;left:128px;top:730px;width:1664px;padding:20px 32px;background:#151616;border-left:8px solid #FFFF33;border-radius:0px;font-family:'JetBrains Mono', monospace;font-size:28px;color:#F2F2F2"><span style="color:#FFFF33">GET</span> <span style="color:#9AA3AA">https://api.ejemplo.com</span>/v1/eventos<span style="color:#A9C1E0">?desde=2026-09-01&amp;pagina=1</span></p>
+<p class="chipfam" style="position:absolute;left:128px">2xx · éxito</p><p class="chipfam" style="position:absolute;left:367px">4xx · error en el pedido</p><p class="chipfam" style="position:absolute;left:1565px">5xx · error del servidor</p><div class="chips">
+<button type="button" class="chip ok" data-s="api" data-act="200" aria-label="Respuesta 200: éxito"><b>200</b><span>éxito</span></button>
+<button type="button" class="chip cli" data-s="api" data-act="400" aria-label="Respuesta 400: formato"><b>400</b><span>formato</span></button>
+<button type="button" class="chip cli" data-s="api" data-act="401" aria-label="Respuesta 401: identidad"><b>401</b><span>identidad</span></button>
+<button type="button" class="chip cli" data-s="api" data-act="403" aria-label="Respuesta 403: permiso"><b>403</b><span>permiso</span></button>
+<button type="button" class="chip cli" data-s="api" data-act="404" aria-label="Respuesta 404: recurso"><b>404</b><span>recurso</span></button>
+<button type="button" class="chip cli" data-s="api" data-act="429" aria-label="Respuesta 429: límite"><b>429</b><span>límite</span></button>
+<button type="button" class="chip srv" data-s="api" data-act="500" aria-label="Respuesta 500: servicio"><b>500</b><span>servicio</span></button>
+</div>
+
+<div class="bar" data-s="api"><p class="hint" data-hint="Elegí una respuesta del servidor: la solicitud viaja y muestra hasta dónde llega.">Elegí una respuesta del servidor: la solicitud viaja y muestra hasta dónde llega.</p><div class="acts"></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>Cómo es una solicitud HTTP, qué significan los códigos de estado y por qué un 200 no garantiza datos correctos.</p><h4>Cómo explorar esta escena</h4><ol><li>Los botones de abajo representan las respuestas que puede dar el servidor. Elegí una para enviar la solicitud.</li><li>Empezá por “200 éxito”: la solicitud (GET) recorre todo el camino hasta Datos y vuelve con JSON.</li><li>Después probá 401 (se frena en Identidad), 403 y 404 (en Endpoint), 429 (límite de uso), 400 (llega al Servicio, que rechaza los parámetros) y 500 (falla el Servicio).</li><li>Debajo de los carriles aparece la explicación de cada respuesta, y en “Respuestas recibidas” se acumulan las que ya probaste.</li></ol><h4>Ideas clave</h4><ul><li>Una API funciona como un mozo con la carta: no entrás a la cocina (la base del proveedor), pedís algo de la carta y como la carta indica. La carta es el contrato.</li><li>Piezas: el Cliente (un notebook, un script o una app); la Identidad (un token que nunca se escribe en el notebook, sino que se lee de una variable de entorno); el Endpoint (la dirección de una capacidad, como GET /v1/eventos); y el Servicio y los Datos, del otro lado.</li><li>En la línea de código, GET es el método (leer) y lo que va después del ? son parámetros que filtran: desde una fecha, página 1.</li><li>Códigos: 2xx éxito; 4xx hay algo mal en lo que pedí; 5xx falló el servidor.</li><li>Un 200 confirma que el servidor procesó la solicitud, no que los datos estén bien: puede llegar una lista vacía, un esquema nuevo o una página parcial.</li></ul><h4>Preguntas para reflexionar</h4><p><b>Si recibís un 200 con cero registros, ¿está todo bien?</b></p><details><summary>Ver una respuesta posible</summary><p>No necesariamente: hay que controlar conteos, esquema y páginas.</p></details><p><b>¿Qué diferencia hay entre un 401 y un 403?</b></p><details><summary>Ver una respuesta posible</summary><p>401: el servidor no sabe quién sos. 403: sabe quién sos, pero no tenés permiso.</p></details><h4>Dudas frecuentes</h4><p><b>¿Qué es un servidor?</b> Una computadora (o un programa) que espera pedidos y los responde.</p><p><b>¿Qué diferencia hay entre una página web y una API?</b> La página devuelve algo para que lo lea una persona; la API devuelve datos para que los lea un programa.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → Llamada a una API · paso 1.</p><h4>Conexión con lo que sigue</h4><p>La API respondió. ¿Cómo hacemos para poder repetir el análisis la semana que viene?</p></template></section>
+
+<section class="slide dark" data-id="snapshot" data-title="De la API viva al snapshot" aria-label="De la API viva al snapshot" style="background:#151616;color:#F2F2F2;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark light" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#F2F2F2">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#BFC3C4">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="snapshot" href="detalle-api.html#paso-9~snapshot">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFFF33">Captura reproducible</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#F2F2F2">De la API viva <span style="color:#FFFF33">al snapshot</span></h2>
+<canvas data-fx="snapshot" data-w="1664" data-h="570" aria-hidden="true" style="position:absolute;left:128px;top:290px;width:1664px;height:570px;pointer-events:none"></canvas>
+<p style="position:absolute;left:128px;top:886px;width:1664px;font-family:'Inter', Arial, sans-serif;font-size:40px;font-weight:500;color:#F2F2F2">Primero, una copia trazable. <span style="color:#FFFF33">Después, el análisis.</span></p>
+
+<div class="bar" data-s="snapshot"><p class="hint" data-hint="Capturá la API y después re-ejecutá el análisis.">Capturá la API y después re-ejecutá el análisis.</p><div class="acts"><button type="button" class="act" data-s="snapshot" data-act="cap">1 · Capturar</button><button type="button" class="act" data-s="snapshot" data-act="run">2 · Re-ejecutar análisis</button><button type="button" class="act" data-s="snapshot" data-act="reset">Reiniciar</button></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>Por qué conviene separar la captura del análisis: primero una copia trazable, después el análisis.</p><h4>Cómo explorar esta escena</h4><ol><li>A la izquierda, la “API viva” cambia sola: los estados que se iluminan acaban de cambiar.</li><li>“1 · Capturar”: viajan las tres páginas, se escriben los metadatos y el archivo queda sellado como SNAPSHOT de solo lectura.</li><li>“2 · Re-ejecutar análisis”, dos o tres veces: siempre da 300 filas, aunque la API siga cambiando. “Reiniciar” vuelve al principio.</li></ol><h4>Ideas clave</h4><ul><li>Si cada persona corre el análisis contra la API en vivo en días distintos, obtiene números distintos y nadie puede reconstruir qué datos había.</li><li>Un snapshot guarda la respuesta y sus metadatos: fecha y hora de extracción, endpoint y parámetros, estado, cantidad de registros y páginas, versión o hash y límites conocidos.</li><li>El hash es la huella digital del archivo: si cambia un carácter, cambia la huella. Sirve para no procesar dos veces el mismo archivo y para detectar versiones distintas con el mismo nombre.</li><li>El Paquete C trae un snapshot JSON, así que la práctica no depende de que una API externa funcione ni de credenciales personales.</li></ul><h4>Preguntas para reflexionar</h4><p><b>¿Qué necesitás conservar para repetir el análisis dentro de seis meses?</b></p><details><summary>Ver una respuesta posible</summary><p>La copia de los datos y sus metadatos, junto con el código y sus versiones. Endpoint y parámetros por sí solos no reconstruyen el estado pasado de una API.</p></details><h4>Dudas frecuentes</h4><p><b>¿Un snapshot es lo mismo que un backup?</b> Se parecen, pero el snapshot es la copia de lo recibido en un momento, con su contexto, para analizar y auditar.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → Llamada a una API · paso 9.</p><h4>Conexión con lo que sigue</h4><p>Miramos qué hay adentro de ese archivo: casi siempre es JSON, y JSON puede contener objetos y listas anidadas.</p></template></section>
+
+<section class="slide light" data-id="json" data-title="Del árbol a la tabla" aria-label="Del árbol a la tabla" style="background:#F2F2F2;color:#151616;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark blue" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#151616">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#62686D">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="json" href="detalle-api.html#paso-6~json">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1F497D">Formatos · JSON</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#151616">Del árbol <span style="color:#1F497D">a la tabla</span></h2>
+<canvas data-fx="json" data-w="1664" data-h="560" aria-hidden="true" style="position:absolute;left:128px;top:282px;width:1664px;height:560px;pointer-events:none"></canvas>
+<p style="position:absolute;left:128px;top:870px;width:1664px;padding:16px 28px;background:#DCE6F1;border-left:6px solid #1F497D;border-radius:0px;font-family:'JetBrains Mono', monospace;font-size:26px;color:#151616"><span style="color:#1F497D;font-weight:600">SELECT</span> s.shipment_id, e.type, e.timestamp <span style="color:#1F497D;font-weight:600">FROM</span> snapshot, <span style="color:#1F497D;font-weight:600">UNNEST</span>(shipments) s, <span style="color:#1F497D;font-weight:600">UNNEST</span>(s.events) e</p>
+
+<div class="hz" data-s="json" data-hz="2" tabindex="0" role="button" aria-label="línea 2" style="left:136px;top:372px;width:924px;height:37px"></div><div class="hz" data-s="json" data-hz="4" tabindex="0" role="button" aria-label="línea 4" style="left:136px;top:446px;width:924px;height:37px"></div><div class="hz" data-s="json" data-hz="6" tabindex="0" role="button" aria-label="línea 6" style="left:136px;top:520px;width:924px;height:37px"></div><div class="hz" data-s="json" data-hz="7" tabindex="0" role="button" aria-label="línea 7" style="left:136px;top:557px;width:924px;height:37px"></div><div class="hz" data-s="json" data-hz="8" tabindex="0" role="button" aria-label="línea 8" style="left:136px;top:594px;width:924px;height:37px"></div><div class="hz" data-s="json" data-hz="9" tabindex="0" role="button" aria-label="línea 9" style="left:136px;top:631px;width:924px;height:37px"></div><div class="bar" data-s="json"><p class="hint" data-hint="Expandí la lista events y pasá el cursor por las líneas del JSON.">Expandí la lista events y pasá el cursor por las líneas del JSON.</p><div class="acts"><button type="button" class="act" data-s="json" data-act="exp">1 · Expandir events</button><button type="button" class="act" data-s="json" data-act="last">2 · Último evento por despacho</button><button type="button" class="act" data-s="json" data-act="reset">Reiniciar</button></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>Cómo leer JSON (objetos y listas) y por qué expandir una lista cambia el grano.</p><h4>Cómo explorar esta escena</h4><ol><li>Pasá el cursor por las líneas del JSON: “shipments” (lista de despachos), “shipment_id” (la clave) y “events” (lista anidada). La guía de abajo explica cada una.</li><li>“1 · Expandir events”: cada evento se convierte en una fila de la tabla y shipment_id se repite.</li><li>Con la tabla armada, pasá el cursor por cada evento del JSON para ver su fila.</li><li>“2 · Último evento por despacho”: queda una sola fila por despacho.</li></ol><h4>Ideas clave</h4><ul><li>Llaves { } = objeto (pares clave–valor, como una ficha). Corchetes [ ] = lista (cero, uno o muchos elementos).</li><li>Convertir una lista en filas cambia el grano: antes una fila era un despacho y ahora es un evento. Es lo mismo que un join uno-a-muchos (Unidad 3): si después sumás una medida del despacho, la contás varias veces.</li><li>Antes de normalizar conviene preguntarse qué identifica a cada despacho, en qué zona horaria están las fechas (Z = UTC) y qué significa que falte una clave.</li><li>SQL también trabaja sobre JSON: UNNEST genera una fila por elemento de una lista. En Python, el equivalente es pandas.json_normalize.</li></ul><h4>Preguntas para reflexionar</h4><p><b>Si expandís la lista packages del ejemplo del sitio, ¿qué grano obtenés?</b></p><details><summary>Ver una respuesta posible</summary><p>Una fila por bulto.</p></details><h4>Dudas frecuentes</h4><p><b>¿JSON es un lenguaje de programación?</b> No. Es un formato de texto para guardar e intercambiar datos.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → Llamada a una API · paso 6.</p><h4>Conexión con lo que sigue</h4><p>Hasta acá, un script pedía datos a una API. ¿Qué pasa cuando el que pide es una IA?</p></template></section>
+
+<section class="slide dark" data-id="mcp" data-title="Un puerto común entre la IA y los datos" aria-label="Un puerto común entre la IA y los datos" style="background:#151616;color:#F2F2F2;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark light" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#F2F2F2">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#BFC3C4">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="mcp" href="detalle-mcp.html#paso-1~mcp">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFFF33">MCP · Model Context Protocol</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#F2F2F2">Un puerto común entre <span style="color:#FFFF33">la IA y los datos</span></h2>
+<canvas data-fx="mcp" data-w="1664" data-h="590" aria-hidden="true" style="position:absolute;left:128px;top:276px;width:1664px;height:590px;pointer-events:none"></canvas>
+<div style="position:absolute;left:128px;top:884px;width:1664px;display:flex;flex-direction:row;gap:16px">
+<p style="flex:1;height:56px;line-height:52px;padding:0 24px;font-size:26px;border:2px solid #A9C1E0;color:#F2F2F2;border-radius:0px"><b>Tool</b> · ejecuta una acción</p>
+<p style="flex:1;height:56px;line-height:52px;padding:0 24px;font-size:26px;border:2px solid #A9C1E0;color:#F2F2F2;border-radius:0px"><b>Resource</b> · aporta contexto</p>
+<p style="flex:1;height:56px;line-height:52px;padding:0 24px;font-size:26px;border:2px solid #A9C1E0;color:#F2F2F2;border-radius:0px"><b>Prompt</b> · plantilla reutilizable</p>
+</div>
+
+<div class="bar" data-s="mcp"><p class="hint" data-hint="Avanzá paso a paso; en la aprobación, decidí vos.">Avanzá paso a paso; en la aprobación, decidí vos.</p><div class="acts"><span class="steplab" data-mcp-step></span><button type="button" class="act" data-s="mcp" data-act="next">Siguiente paso ▸</button><button type="button" class="act" data-s="mcp" data-act="allow" data-grp="ap" hidden>Permitir</button><button type="button" class="act" data-s="mcp" data-act="deny" data-grp="ap" hidden>Rechazar</button><button type="button" class="act" data-s="mcp" data-act="reset">Reiniciar</button></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>Cómo una aplicación de IA descubre herramientas, propone usarlas, pide permiso, las ejecuta y deja registro.</p><h4>Cómo explorar esta escena</h4><ol><li>Avanzá con “Siguiente paso ▸”; al lado de los botones se ve en qué paso estás.</li><li>Paso 1 · Descubrir: cada cliente pregunta a su servidor qué ofrece. Paso 2 · Catálogo: aparecen la tool, el resource y el prompt.</li><li>Paso 3 · Proponer: el modelo sugiere usar ventas_por_familia con mes = &quot;2026-08&quot;.</li><li>Paso 4 · Aprobar: elegí Permitir o Rechazar. Probá los dos caminos (con “Reiniciar” volvés al inicio).</li><li>Paso 5 · Ejecutar y paso 6 · Responder: la consulta se ejecuta en solo lectura, el modelo responde citando la fuente y queda el registro.</li></ol><h4>Ideas clave</h4><ul><li>MCP (Model Context Protocol) es como un USB-C para la IA: un enchufe común en lugar de una integración distinta para cada par de aplicación y sistema.</li><li>Un servidor MCP declara las capacidades disponibles. El host conecta esas capacidades con la aplicación de IA y aplica su política de acceso.</li><li>Piezas: el host (la aplicación de IA), el modelo, un cliente por cada servidor y los servidores, que exponen tools (acciones), resources (contexto) y prompts (plantillas).</li><li>El modelo propone una llamada y el host gestiona su ejecución. En este ejemplo, el host solicita confirmación; cada aplicación define su política de autorización.</li><li>Riesgos: herramientas que pueden escribir datos, instrucciones maliciosas escondidas en contenido externo (prompt injection) y exposición de datos. Controles: mínimo privilegio, lectura separada de escritura, confirmación y registro.</li></ul><h4>Preguntas para reflexionar</h4><p><b>¿Qué riesgo nuevo aparece si se habilita una herramienta que puede escribir en la base?</b></p><details><summary>Ver una respuesta posible</summary><p>Que la IA modifique o borre datos: hace falta confirmación humana y permisos mínimos.</p></details><p><b>Cuando elegiste Rechazar, ¿quién tuvo la última palabra?</b></p><details><summary>Ver una respuesta posible</summary><p>La persona, no el modelo.</p></details><h4>Dudas frecuentes</h4><p><b>¿MCP es una IA?</b> No. Es un protocolo: un enchufe. La IA es el host y su modelo; MCP define cómo se conecta con herramientas y datos.</p><p><b>¿La IA ve mis datos?</b> El modelo puede recibir la conversación y el contexto que le envía el host, incluidos resultados de herramientas. Los permisos y la selección del contexto delimitan los datos expuestos.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → MCP e IA · paso 1.</p><h4>Conexión con lo que sigue</h4><p>El servidor consultaba un mart. ¿De dónde sale ese mart? De la transformación.</p></template></section>
+
+<section class="slide light" data-id="etl" data-title="ETL y ELT: ¿dónde se transforma?" aria-label="ETL y ELT: ¿dónde se transforma?" style="background:#F2F2F2;color:#151616;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark blue" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#151616">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#62686D">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="etl" href="detalle-etl.html#paso-1~etl">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1F497D">03 · Transformar</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#151616">ETL y ELT: <span style="color:#1F497D">¿dónde se transforma?</span></h2>
+<canvas data-fx="etl" data-w="1664" data-h="566" aria-hidden="true" style="position:absolute;left:128px;top:282px;width:1664px;height:566px;pointer-events:none"></canvas>
+<p style="position:absolute;left:128px;top:880px;width:1664px;font-family:'Inter', Arial, sans-serif;font-size:36px;font-weight:500;color:#151616">Ambos necesitan contrato, controles y una salida curada.</p>
+
+<div class="hz" data-s="etl" data-hz="etl" tabindex="0" role="button" aria-label="Recorrido ETL" style="left:128px;top:296px;width:1664px;height:260px"></div><div class="hz" data-s="etl" data-hz="elt" tabindex="0" role="button" aria-label="Recorrido ELT" style="left:128px;top:566px;width:1664px;height:270px"></div><div class="bar" data-s="etl"><p class="hint" data-hint="Pasá el cursor por ETL o por ELT para ver dónde se transforma. Clic para fijar.">Pasá el cursor por ETL o por ELT para ver dónde se transforma. Clic para fijar.</p><div class="acts"></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>La diferencia entre ETL y ELT: dónde y cuándo se transforman los datos.</p><h4>Cómo explorar esta escena</h4><ol><li>Pasá el cursor por el carril ETL y después por el carril ELT: solo se anima el que señalás. Un clic lo deja fijo.</li><li>Las formas de colores son los datos como llegan; los cuadrados azules, los datos transformados.</li></ol><h4>Ideas clave</h4><ul><li>ETL: la transformación ocurre afuera del warehouse y al warehouse llega solo lo curado. Conviene si el destino tiene poca capacidad, si hay datos sensibles que no deben entrar crudos o si ya existe una transformación estable (por ejemplo, Power Query). Para reprocesar, hay que haber guardado la entrada.</li><li>ELT: los datos entran tal cual a raw, adentro del warehouse, y se transforman ahí con SQL hasta llegar al mart.</li><li>ELT aprovecha el cómputo del destino para transformar. Su costo depende del volumen, las consultas y la plataforma (Unidad 2). Herramientas como dbt o Dataform organizan esas transformaciones como código con pruebas.</li><li>Ninguno es mejor en abstracto: los dos necesitan contrato, controles y una salida curada.</li></ul><h4>Preguntas para reflexionar</h4><p><b>Llega un archivo con DNI y teléfonos de clientes y el warehouse lo ve toda la empresa. ¿ETL o ELT?</b></p><details><summary>Ver una respuesta posible</summary><p>ETL para quitar o seudonimizar esos campos antes de cargar, o ELT con una zona raw muy restringida. Lo importante es justificarlo.</p></details><h4>Dudas frecuentes</h4><p><b>¿Power Query es ETL?</b> Sí: extrae, transforma y carga en el modelo de Excel o Power BI.</p><p><b>¿Qué es dbt?</b> Una herramienta que organiza transformaciones SQL dentro del warehouse como código: modelos, dependencias, pruebas y documentación.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → ETL y ELT · paso 1.</p><h4>Conexión con lo que sigue</h4><p>Adentro del warehouse: transformar por capas.</p></template></section>
+
+<section class="slide dark" data-id="capas" data-title="raw → staging → mart" aria-label="raw → staging → mart" style="background:#151616;color:#F2F2F2;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark light" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#F2F2F2">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#BFC3C4">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="capas" href="detalle-etl.html#paso-5~capas">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFFF33">Arquitectura por capas · SQL en cada paso</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#F2F2F2">raw → staging → <span style="color:#FFFF33">mart</span></h2>
+<div style="position:absolute;left:128px;top:282px;width:524px;height:470px;background:#1E2021;border:2px solid #3A3D3F;border-radius:0px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><p style="font-family:'Inter', Arial, sans-serif;font-size:44px;font-weight:700;color:#FFFF33">raw</p><p style="font-size:24px;color:#BFC3C4">bronze</p></div>
+<p style="font-size:26px;color:#F2F2F2">Copia fiel de lo recibido</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.5;padding:20px;background:#0E0F0F;border-radius:0px;color:#DCE6F1"><span style="color:#A9C1E0">SELECT</span> *, filename<br><span style="color:#A9C1E0">FROM</span> read_csv('raw/*.csv')</p>
+<div style="flex:1"></div>
+<p style="font-size:24px;line-height:1.35;color:#E9877B">1 archivo rechazado: falta la columna movimiento_id</p>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:600;color:#F2F2F2">5 archivos · 32 filas</p>
+</div>
+<div style="position:absolute;left:698px;top:282px;width:524px;height:470px;background:#1E2021;border:2px solid #3A3D3F;border-radius:0px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><p style="font-family:'Inter', Arial, sans-serif;font-size:44px;font-weight:700;color:#A9C1E0">staging</p><p style="font-size:24px;color:#BFC3C4">silver</p></div>
+<p style="font-size:26px;color:#F2F2F2">Tipos, nombres, clave, versión</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.5;padding:20px;background:#0E0F0F;border-radius:0px;color:#DCE6F1"><span style="color:#A9C1E0">SELECT</span> movimiento_id,<br>&#160;&#160;<span style="color:#A9C1E0">CAST</span>(fecha <span style="color:#A9C1E0">AS</span> DATE),<br>&#160;&#160;<span style="color:#A9C1E0">TRIM</span>(material)<br><span style="color:#A9C1E0">FROM</span> raw_movimientos</p>
+<div style="flex:1"></div>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:600;color:#F2F2F2">32 tipadas · 4 rechazos</p>
+</div>
+<div style="position:absolute;left:1268px;top:282px;width:524px;height:470px;background:#1E2021;border:2px solid #FFFF33;border-radius:0px;padding:32px;display:flex;flex-direction:column;gap:12px">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><p style="font-family:'Inter', Arial, sans-serif;font-size:44px;font-weight:700;color:#F2F2F2">mart</p><p style="font-size:24px;color:#BFC3C4">gold</p></div>
+<p style="font-size:26px;color:#F2F2F2">Listo para decidir</p>
+<p style="font-family:'JetBrains Mono', monospace;font-size:24px;line-height:1.5;padding:20px;background:#0E0F0F;border-radius:0px;color:#DCE6F1"><span style="color:#A9C1E0">SELECT</span> orden,<br>&#160;&#160;<span style="color:#A9C1E0">SUM</span>(importe)<br><span style="color:#A9C1E0">FROM</span> stg_movimientos<br><span style="color:#A9C1E0">GROUP BY</span> orden</p>
+<div style="flex:1"></div>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:32px;font-weight:600;color:#FFFF33">28 filas · $1.752.710</p>
+</div>
+<canvas data-fx="capas" data-w="1664" data-h="176" aria-hidden="true" style="position:absolute;left:128px;top:772px;width:1664px;height:176px;pointer-events:none"></canvas>
+
+<div class="hz" data-s="capas" data-hz="raw" tabindex="0" role="button" aria-label="capa raw" style="left:128px;top:282px;width:524px;height:470px"></div><div class="hz" data-s="capas" data-hz="stg" tabindex="0" role="button" aria-label="capa staging" style="left:698px;top:282px;width:524px;height:470px"></div><div class="hz" data-s="capas" data-hz="mart" tabindex="0" role="button" aria-label="capa mart" style="left:1268px;top:282px;width:524px;height:470px"></div><div class="hz" data-s="capas" data-hz="tray" tabindex="0" role="button" aria-label="bandeja de rechazos" style="left:778px;top:876px;width:220px;height:52px"></div><div class="bar" data-s="capas"><p class="hint" data-hint="Pasá el cursor por cada capa y por la bandeja de rechazos; después ejecutá el pipeline.">Pasá el cursor por cada capa y por la bandeja de rechazos; después ejecutá el pipeline.</p><div class="acts"><button type="button" class="act" data-s="capas" data-act="run">▶ Ejecutar pipeline</button><button type="button" class="act" data-s="capas" data-act="reset">Reiniciar</button></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>La arquitectura por capas, el SQL de cada paso y la reconciliación como control central.</p><h4>Cómo explorar esta escena</h4><ol><li>Pasá el cursor por cada tarjeta (raw, staging, mart): la guía de abajo cuenta qué pasó en esa capa con los números del caso de los Excel recurrentes.</li><li>“▶ Ejecutar pipeline”: las 32 filas avanzan, 4 caen en la bandeja de rechazos, 28 llegan al mart y aparece “32 = 28 + 4 ✓”.</li><li>Pasá el cursor por la bandeja de rechazos (el recuadro rojo) para ver los cuatro rechazos y su motivo.</li></ol><h4>Ideas clave</h4><ul><li>raw (zona de entrada): copia fiel más metadatos de ingesta; nunca se edita. En el caso: 5 archivos detectados, uno rechazado por esquema (trae id_mov en vez de movimiento_id) y 32 filas de los otros 4.</li><li>staging (preparación): tipos, textos, clave y versión. Quedan fuera 4 filas: la versión anterior de MOV-0012, una cantidad negativa en MOV-0025, una fecha inválida en MOV-0027 y una fila sin identificador.</li><li>mart (consumo): grano declarado para decidir: 28 movimientos y $1.752.710.</li><li>La reconciliación es el control central: 32 leídas = 28 curadas + 4 rechazadas. Si no cierra, se investiga la diferencia antes de publicar.</li><li>Los controles también pueden expresarse en SQL: una prueba de registros inválidos debería devolver cero filas, por ejemplo, buscar claves duplicadas en el mart.</li></ul><h4>Preguntas para reflexionar</h4><p><b>¿Qué información perdés si solo conservás el mart?</b></p><details><summary>Ver una respuesta posible</summary><p>No podés reprocesar con reglas nuevas, ni explicar por qué se excluyó una fila, ni volver al dato recibido.</p></details><h4>Dudas frecuentes</h4><p><b>¿Bronze, silver y gold son lo mismo que raw, staging y mart?</b> Son correspondencias orientativas. Bronze, silver y gold describen niveles de refinamiento; staging y mart dependen del diseño y pueden abarcar varias transformaciones.</p><p><b>¿Qué es una vista (VIEW)?</b> Una consulta guardada con nombre que se usa como una tabla y se recalcula cada vez.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → ETL y ELT · paso 5.</p><h4>Conexión con lo que sigue</h4><p>¿Cómo decide el pipeline qué entra y qué se rechaza? Con un contrato.</p></template></section>
+
+<section class="slide light" data-id="contrato" data-title="El contrato decide qué entra" aria-label="El contrato decide qué entra" style="background:#F2F2F2;color:#151616;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark blue" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#151616">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#62686D">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="contrato" href="detalle-etl.html#paso-7~contrato">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#1F497D">Contrato de fuente · calidad</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#151616">El contrato <span style="color:#1F497D">decide qué entra</span></h2>
+<canvas data-fx="contrato" data-w="1664" data-h="580" aria-hidden="true" style="position:absolute;left:128px;top:280px;width:1664px;height:580px;pointer-events:none"></canvas>
+<div style="position:absolute;left:128px;top:884px;width:1664px;display:flex;flex-direction:row;align-items:center;gap:12px">
+<p style="font-size:24px;font-weight:700;color:#1F497D;padding:0 8px 0 0">Calidad:</p>
+<p style="flex:auto;height:52px;line-height:48px;text-align:center;font-size:24px;border:2px solid #1F497D;color:#151616;border-radius:0px;cursor:help" data-s="contrato" data-hz="completitud" tabindex="0">completitud</p>
+<p style="flex:auto;height:52px;line-height:48px;text-align:center;font-size:24px;border:2px solid #1F497D;color:#151616;border-radius:0px;cursor:help" data-s="contrato" data-hz="unicidad" tabindex="0">unicidad</p>
+<p style="flex:auto;height:52px;line-height:48px;text-align:center;font-size:24px;border:2px solid #1F497D;color:#151616;border-radius:0px;cursor:help" data-s="contrato" data-hz="validez" tabindex="0">validez</p>
+<p style="flex:auto;height:52px;line-height:48px;text-align:center;font-size:24px;border:2px solid #1F497D;color:#151616;border-radius:0px;cursor:help" data-s="contrato" data-hz="consistencia" tabindex="0">consistencia</p>
+<p style="flex:auto;height:52px;line-height:48px;text-align:center;font-size:24px;border:2px solid #1F497D;color:#151616;border-radius:0px;cursor:help" data-s="contrato" data-hz="integridad" tabindex="0">integridad referencial</p>
+<p style="flex:auto;height:52px;line-height:48px;text-align:center;font-size:24px;border:2px solid #1F497D;color:#151616;border-radius:0px;cursor:help" data-s="contrato" data-hz="oportunidad" tabindex="0">oportunidad</p>
+</div>
+
+<div class="bar" data-s="contrato"><p class="hint" data-hint="Enviá un lote al contrato:">Enviá un lote al contrato:</p><div class="acts"><button type="button" class="act" data-s="contrato" data-act="1">1 · cumple</button><button type="button" class="act" data-s="contrato" data-act="2">2 · campo nuevo</button><button type="button" class="act" data-s="contrato" data-act="3">3 · sin clave</button><button type="button" class="act" data-s="contrato" data-act="4">4 · tipo erróneo</button><button type="button" class="act" data-s="contrato" data-act="5">5 · repetido</button><button type="button" class="act" data-s="contrato" data-act="reset">Reiniciar</button></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>Qué es un contrato de fuente, los cuatro tratamientos posibles, la idempotencia y las dimensiones de calidad.</p><h4>Cómo explorar esta escena</h4><ol><li>Los botones de abajo envían cada lote al contrato. Probalos del 1 al 5: el lote recorre la cinta, se revisan campos, tipos, grano y hash, y va a su salida.</li><li>En el contrato de este ejemplo se permiten campos adicionales: 1 · cumple y 2 · campo nuevo → Aceptar. 3 · sin clave → Detener. 4 · tipo erróneo → Cuarentena. 5 · repetido (hash ya procesado) → Advertir.</li><li>Los contadores de cada salida se acumulan; “Reiniciar” los pone en cero.</li><li>Pasá el cursor por las dimensiones de calidad para ver un ejemplo de Faro Sur.</li></ol><h4>Ideas clave</h4><ul><li>Un contrato de fuente es un acuerdo escrito entre quien produce el dato y quien lo usa: qué representa cada fila, qué campos son obligatorios, de qué tipo, cada cuánto llega, quién es responsable y cómo se avisan los cambios.</li><li>Un tipo incompatible va a cuarentena y no se convierte “a ojo”: por ejemplo, fechas que llegan sin zona horaria correrían todas las demoras.</li><li>Idempotencia: ejecutar dos veces con la misma entrada da el mismo resultado, no el doble de filas. Se logra con el hash, deduplicando por clave y versión, o reemplazando la partición del período.</li><li>Las seis dimensiones de calidad (completitud, unicidad, validez, consistencia, integridad referencial y oportunidad) corresponden a los defectos del Paquete D. Un control sirve cuando tiene umbral, responsable y acción.</li><li>Quitar el nombre no anonimiza un dato; reemplazar un ID por un código es seudonimización si existe una tabla para volver atrás.</li></ul><h4>Preguntas para reflexionar</h4><p><b>¿Qué control demostraría que una reejecución no duplicó datos?</b></p><details><summary>Ver una respuesta posible</summary><p>Comparar conteos y totales y verificar que no haya claves repetidas en el mart.</p></details><h4>Dudas frecuentes</h4><p><b>¿Quién escribe el contrato?</b> Se acuerda entre el área que produce el dato y el equipo que lo usa; el equipo de datos lo versiona junto al código.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → ETL y ELT · paso 7.</p><h4>Conexión con lo que sigue</h4><p>Para cerrar: cómo se aplica la IA en todo este recorrido.</p></template></section>
+
+<section class="slide dark" data-id="ia" data-title="La IA en el pipeline" aria-label="La IA en el pipeline" style="background:#151616;color:#F2F2F2;font-family:'Inter', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:16px">
+<div style="position:absolute;left:128px;top:40px;width:1000px;height:52px;display:flex;flex-direction:row;align-items:center;gap:16px"><span class="utn-mark light" role="img" aria-label="UTN"></span><p style="font-size:24px;font-weight:800;letter-spacing:-0.5px;color:#F2F2F2">Análisis de Datos</p><p style="font-size:24px;font-weight:400;color:#BFC3C4">Ingeniería Industrial · 2026</p></div>
+<a class="detail" data-from="ia" href="detalle-mcp.html#paso-5~ia">Explorar este tema en detalle →</a>
+<p style="font-size:24px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:#FFFF33">IA aplicada al pipeline</p>
+<h2 style="font-family:'Inter', Arial, sans-serif;font-size:76px;font-weight:800;line-height:1.02;letter-spacing:-2.6px;color:#F2F2F2;width:740px">La IA en <span style="color:#FFFF33">el pipeline</span></h2>
+<div style="width:740px;display:flex;flex-direction:column;gap:28px;padding:40px 0 0 0">
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:44px;height:44px;flex:none;fill:none;stroke:#A9C1E0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg><p style="font-size:30px;font-weight:500;line-height:1.25">Agentes que escriben SQL y modelos dbt</p></div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:44px;height:44px;flex:none;fill:none;stroke:#A9C1E0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg><p style="font-size:30px;font-weight:500;line-height:1.25">Servidores MCP en los warehouses</p></div>
+<div style="display:flex;flex-direction:row;align-items:center;gap:24px"><svg viewBox="0 0 24 24" aria-hidden="true" style="width:44px;height:44px;flex:none;fill:none;stroke:#A9C1E0;stroke-width:2;stroke-linecap:round;stroke-linejoin:round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20a15 15 0 0 1 0-20z"/></svg><p style="font-size:30px;font-weight:500;line-height:1.25">Lectura de APIs y documentos</p></div>
+</div>
+<div style="flex:1"></div>
+<p style="font-family:'Inter', Arial, sans-serif;font-size:48px;font-weight:800;line-height:1.1;letter-spacing:-1.5px;width:740px;padding:0 0 0 28px;border-left:10px solid #FFFF33">La IA propone.<br>El pipeline verifica.<br><span style="color:#FFFF33">La persona decide.</span></p>
+<canvas data-fx="ia" data-w="872" data-h="824" aria-hidden="true" style="position:absolute;left:920px;top:128px;width:872px;height:824px;pointer-events:none"></canvas>
+
+<div class="bar" data-s="ia"><p class="hint" data-hint="Preguntale al agente y después ejecutá los controles.">Preguntale al agente y después ejecutá los controles.</p><div class="acts"><button type="button" class="act" data-s="ia" data-act="ask">1 · Preguntar al agente</button><button type="button" class="act" data-s="ia" data-act="check">2 · Ejecutar controles</button><button type="button" class="act" data-s="ia" data-act="reset">Reiniciar</button></div></div><template class="notes"><h4>Qué vas a aprender</h4><p>Por qué la IA propone, el pipeline verifica y la persona decide.</p><h4>Cómo explorar esta escena</h4><ol><li>“1 · Preguntar al agente”: el agente escribe SQL y lo ejecuta por MCP en solo lectura. El resultado queda marcado como “todavía sin controlar”.</li><li>Antes de seguir, pensá si publicarías ese resultado.</li><li>“2 · Ejecutar controles”: el control de grano falla, el agente corrige la consulta y pasan los tres controles. Las barras son ilustrativas, sin valores reales.</li></ol><h4>Ideas clave</h4><ul><li>La consulta del agente tenía sintaxis válida y un error de grano (una fila por evento en lugar de una por despacho), el tipo de error que una respuesta convincente puede esconder. Lo detectó el pipeline, no la IA.</li><li>Los asistentes pueden proponer consultas SQL, modelos dbt o llamadas a herramientas. La revisión del resultado debe apoyarse en controles definidos para la tarea.</li><li>Riesgos: métricas inventadas, errores de grano, permisos excesivos, prompt injection y datos personales pegados en herramientas externas. El protocolo de la materia pide registrar tarea, herramienta, parte usada, control, corrección y responsable.</li><li>Respuesta a la pregunta de la portada: el dato entra por una de varias puertas y se guarda tal como llegó; se vuelve confiable con un contrato que define qué se acepta, capas que separan lo recibido de lo transformado y controles que reconcilian cada paso.</li></ul><h4>Preguntas para reflexionar</h4><p><b>¿Publicarías el primer resultado del agente? ¿Por qué?</b></p><details><summary>Ver una respuesta posible</summary><p>No: todavía no pasó los controles. El SQL parecía correcto, pero el grano estaba mal.</p></details><h4>Dudas frecuentes</h4><p><b>¿La IA va a reemplazar al analista?</b> Puede asistir en la escritura de consultas. El análisis requiere definir métricas, revisar los resultados y justificar decisiones con evidencia.</p><h4>Para ampliar</h4><p>Botón “Explorar este tema en detalle” → MCP e IA · paso 5.</p><h4>Conexión con lo que sigue</h4><p>Para practicar: Paquete C (snapshot JSON de tracking), caso de Excel recurrentes con Power Query (32 = 28 + 4) e Hito 1 del proyecto. Continuá con calidad, linaje y privacidad en el capítulo 4.3.</p></template></section>
+
+</div></div>
+<nav id="nav" aria-label="Navegación de la presentación"><a class="resource-back" href="index.html">← Lectura</a><button id="motion" type="button" aria-pressed="false">Pausar animación</button><button type="button" id="bprev" aria-label="Slide anterior">◂</button><span id="count" aria-live="polite"></span><button type="button" id="bnext" aria-label="Slide siguiente">▸</button><div class="prog"><div id="prog"></div></div><button type="button" id="bnotes" aria-pressed="false">Notas de repaso (N)</button><button type="button" id="bfull">Pantalla completa (F)</button></nav>
+<aside id="notes" hidden><div class="nh"><b id="notes-title"></b><button type="button" id="notes-close" aria-label="Cerrar notas">×</button></div><div id="notes-body"></div></aside>
+<script>
+// Kit de dibujo compartido (estilo del sitio de la materia).
+const W = 1920, H = 1080;
+let X = null; function useCtx(c) { X = c; }
+const K = {
+  paper: '#F2F2F2', paper2: '#E8EDF2', ink: '#151616', ink2: '#1E2021', ink3: '#2A2D2F', blue: '#1F497D', blueD: '#143254',
+  pale: '#DCE6F1', yel: '#FFFF33', line: '#C9CED3', mut: '#62686D', mutD: '#BFC3C4', ok: '#22644A', okD: '#8FD3AE',
+  bad: '#8A352F', badD: '#E9877B', lb: '#A9C1E0', white: '#FFFFFF'
+};
+const F = (w, s) => `${w} ${s}px Inter, Arial, sans-serif`;
+const M = (w, s) => `${w} ${s}px "JetBrains Mono", "DejaVu Sans Mono", monospace`;
+const cl = k => Math.max(0, Math.min(1, k));
+const ez = k => { k = cl(k); return k * k * (3 - 2 * k); };
+const seg = (t, a, b) => cl((t - a) / (b - a));
+const lerp = (a, b, k) => a + (b - a) * k;
+
+function R(x, y, w, h, f, s, lw) { if (f) { X.fillStyle = f; X.fillRect(x, y, w, h); } if (s) { X.strokeStyle = s; X.lineWidth = lw || 2; X.strokeRect(x + (lw || 2) / 2, y + (lw || 2) / 2, w - (lw || 2), h - (lw || 2)); } }
+function T(s, x, y, font, col, al, base) { X.font = font; X.fillStyle = col; X.textAlign = al || 'left'; X.textBaseline = base || 'middle'; X.fillText(s, x, y); return X.measureText(s).width; }
+function TW(s, font) { X.font = font; return X.measureText(s).width; }
+function wrap(s, x, y, maxW, font, col, lh, al) {
+  X.font = font; const words = s.split(' '); let line = '', yy = y;
+  for (const w of words) { const test = line ? line + ' ' + w : w; if (X.measureText(test).width > maxW && line) { T(line, x, yy, font, col, al, 'top'); line = w; yy += lh; } else line = test; }
+  if (line) T(line, x, yy, font, col, al, 'top'); return yy + lh - y;
+}
+function circle(x, y, r, f, s, lw) { X.beginPath(); X.arc(x, y, r, 0, 7); if (f) { X.fillStyle = f; X.fill(); } if (s) { X.strokeStyle = s; X.lineWidth = lw || 2; X.stroke(); } }
+function line(x1, y1, x2, y2, col, lw, dash) { X.strokeStyle = col; X.lineWidth = lw || 2; X.setLineDash(dash || []); X.beginPath(); X.moveTo(x1, y1); X.lineTo(x2, y2); X.stroke(); X.setLineDash([]); }
+function arrow(x1, y1, x2, y2, col, lw, dash) {
+  line(x1, y1, x2, y2, col, lw || 3, dash); const a = Math.atan2(y2 - y1, x2 - x1), s = 10 + (lw || 3) * 2;
+  X.fillStyle = col; X.beginPath(); X.moveTo(x2, y2); X.lineTo(x2 - s * Math.cos(a - 0.45), y2 - s * Math.sin(a - 0.45)); X.lineTo(x2 - s * Math.cos(a + 0.45), y2 - s * Math.sin(a + 0.45)); X.fill();
+}
+function tag(s, x, y, bg, fg, font, padX, h, al) { font = font || F(800, 24); padX = padX || 14; h = h || 40; const w = TW(s, font) + padX * 2; const x0 = al === 'center' ? x - w / 2 : al === 'right' ? x - w : x; R(x0, y - h / 2, w, h, bg); T(s, x0 + padX, y + 1, font, fg); return w; }
+function label(s, x, y, col) { T(s.toUpperCase(), x, y, F(800, 22), col || K.blue); }
+// Bloques de código con resaltado simple
+const KW = {
+  py: /^(import|from|def|return|if|else|elif|while|for|in|not|and|or|True|False|None|break|continue|with|as|open)$/,
+  sql: /^(SELECT|FROM|WHERE|GROUP|BY|ORDER|LIMIT|OFFSET|JOIN|USING|ON|AS|CREATE|TABLE|VIEW|OR|REPLACE|INSERT|INTO|DISTINCT|COUNT|SUM|CAST|TRIM|UPPER|HAVING|IS|NULL|NOT|AND|DECIMAL|DATE|now|strptime|read_csv|read_json|UNION|ALL|WITH|SCHEMA|VALUES|CASE|WHEN|THEN|END)$/,
+  http: /^(GET|POST|HTTP\/1\.1|Host:|Authorization:|Accept:|Content-Type:|Bearer|OK)$/,
+  json: /^$/
+};
+function codeTokens(s, lang) {
+  const out = []; const re = /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|#.*$|--.*$|\b\d+(?:[.,]\d+)?\b|[A-Za-z_][A-Za-z0-9_.\/:]*|\s+|.)/g; let m;
+  while ((m = re.exec(s))) { const tk = m[0]; let c = '#E6E8EA';
+    if (tk[0] === '#' && lang === 'py' || tk.startsWith('--') && lang === 'sql') c = '#8E969C';
+    else if (tk[0] === '"' || tk[0] === "'") c = lang === 'json' && /^\s*:/.test(s.slice(m.index + tk.length)) ? K.lb : '#FFFF8A';
+    else if (/^\d/.test(tk)) c = '#F2C7A5';
+    else if (KW[lang] && KW[lang].test(tk.replace(/\(.*/, ''))) c = K.lb;
+    out.push([tk, c]); }
+  return out;
+}
+// lines: array de strings; o: {size, lh, typed (n caracteres visibles), hl: {linea:color}, title}
+function code(x, y, w, lines, lang, o) {
+  o = o || {}; const size = o.size || 26, lh = o.lh || size * 1.55, pad = 26, th = o.title ? 46 : 0;
+  const h = o.h || (lines.length * lh + pad * 2 + th);
+  R(x, y, w, h, K.ink); R(x, y, 8, h, K.yel);
+  if (o.title) { R(x + 8, y, w - 8, th, K.ink3); T(o.title, x + 30, y + th / 2, M(600, 22), K.mutD); }
+  X.font = M(400, size); const cw = X.measureText('M').width; let left = o.typed === undefined ? Infinity : o.typed;
+  for (let i = 0; i < lines.length; i++) {
+    const ly = y + th + pad + i * lh + lh / 2;
+    if (o.hl && o.hl[i]) R(x + 8, ly - lh / 2, w - 8, lh, o.hl[i]);
+    if (left <= 0) break;
+    let xx = x + pad + 14; const s = lines[i].slice(0, Math.max(0, left)); left -= lines[i].length + 1;
+    for (const [tk, c] of codeTokens(s, lang)) { T(tk, xx, ly, M(o.bold && o.bold[i] ? 700 : 400, size), (o.dim && o.dim[i]) ? '#6E767C' : c); xx += cw * tk.length; }
+    if (o.cursor && left <= 0 && Math.floor(o.cursor * 2) % 2 === 0) R(xx + 2, ly - size * 0.6, cw * 0.6, size * 1.2, K.yel);
+  }
+  return h;
+}
+function chars(lines) { return lines.reduce((a, l) => a + l.length + 1, 0); }
+// Tabla: cols [{n, w}], rows [[..]], o: {size, rh, head, cell:(r,c)=>({bg,col,txt,font}), rowA:(r)=>alpha, dark}
+function table(x, y, cols, rows, o) {
+  o = o || {}; const size = o.size || 24, rh = o.rh || 46, dark = o.dark;
+  const tw = cols.reduce((a, c) => a + c.w, 0);
+  R(x, y, tw, rh, dark ? K.ink3 : K.ink);
+  let cx = x; for (const c of cols) { T(c.n, cx + 14, y + rh / 2, M(700, size - 2), K.yel); cx += c.w; }
+  for (let r = 0; r < rows.length; r++) {
+    const a = o.rowA ? o.rowA(r) : 1; if (a <= 0) continue; X.globalAlpha *= a; const yy = y + rh * (r + 1);
+    R(x, yy, tw, rh, dark ? (r % 2 ? K.ink2 : '#232628') : (r % 2 ? '#F7F8F9' : K.white)); cx = x;
+    for (let c = 0; c < cols.length; c++) {
+      const st = o.cell ? (o.cell(r, c) || {}) : {}; if (st.bg) R(cx, yy, cols[c].w, rh, st.bg);
+      const v = st.txt !== undefined ? st.txt : rows[r][c];
+      T(v === null ? 'NULL' : String(v), cx + 14, yy + rh / 2, st.font || M(v === null ? 700 : 400, size), st.col || (v === null ? K.bad : (dark ? '#E6E8EA' : K.ink)));
+      if (st.strike) line(cx + 10, yy + rh / 2, cx + cols[c].w - 10, yy + rh / 2, K.bad, 3);
+      cx += cols[c].w;
+    }
+    line(x, yy + rh, x + tw, yy + rh, dark ? K.ink3 : K.line, 1);
+    X.globalAlpha /= a;
+  }
+  return { w: tw, h: rh * (rows.length + 1) };
+}
+function db(x, y, w, h, col, lab) { // cilindro
+  const e = h * 0.14; X.fillStyle = col; X.beginPath(); X.ellipse(x + w / 2, y + e, w / 2, e, 0, 0, 7); X.fill(); X.fillRect(x, y + e, w, h - 2 * e);
+  X.beginPath(); X.ellipse(x + w / 2, y + h - e, w / 2, e, 0, 0, 7); X.fill();
+  X.strokeStyle = 'rgba(255,255,255,0.35)'; X.lineWidth = 2; X.beginPath(); X.ellipse(x + w / 2, y + e, w / 2, e, 0, 0, Math.PI); X.stroke();
+  if (lab) T(lab, x + w / 2, y + h / 2 + e / 2, F(800, 24), K.white, 'center');
+}
+function lock(x, y, s, col) { X.strokeStyle = col; X.lineWidth = s * 0.16; X.beginPath(); X.arc(x, y - s * 0.15, s * 0.32, Math.PI, 0); X.stroke(); R(x - s * 0.45, y - s * 0.15, s * 0.9, s * 0.7, col); }
+function check(x, y, ok, r) { circle(x, y, r || 18, ok ? K.ok : K.bad); T(ok ? '✓' : '✗', x, y + 1, F(800, (r || 18) * 1.2), K.white, 'center'); }
+function gear(x, y, r, a, col) { X.save(); X.translate(x, y); X.rotate(a); X.fillStyle = col; for (let i = 0; i < 8; i++) { X.rotate(Math.PI / 4); X.fillRect(-r * 0.22, -r - r * 0.3, r * 0.44, r * 0.5); } X.beginPath(); X.arc(0, 0, r, 0, 7); X.fill(); X.fillStyle = K.paper; X.beginPath(); X.arc(0, 0, r * 0.38, 0, 7); X.fill(); X.restore(); }
+function doc(x, y, w, h, col, txt) { X.fillStyle = K.white; X.strokeStyle = col; X.lineWidth = 3; X.beginPath(); X.moveTo(x, y); X.lineTo(x + w - 22, y); X.lineTo(x + w, y + 22); X.lineTo(x + w, y + h); X.lineTo(x, y + h); X.closePath(); X.fill(); X.stroke(); if (txt) T(txt, x + w / 2, y + h - 22, M(700, 20), col, 'center'); }
+
+
+// Presentación interactiva U4: navegación, escalado, notas y controladores por slide.
+const SANS = '"Inter","Helvetica Neue",Arial,sans-serif', MONO = '"JetBrains Mono","DejaVu Sans Mono",monospace';
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const stage = document.getElementById('stage'), slides = [...document.querySelectorAll('.slide')];
+let cur = 0, scale = 1, FS = false;
+let motionPaused = false;
+const CTL = {};
+// el foco en un botón no debe desplazar el lienzo del slide
+slides.forEach(s => s.addEventListener('scroll', () => { s.scrollTop = 0; s.scrollLeft = 0; }));
+const CV = {};
+document.querySelectorAll('canvas[data-fx]').forEach(c => { CV[c.dataset.fx] = { c, ctx: c.getContext('2d'), w: +c.dataset.w, h: +c.dataset.h, q: 1 }; });
+// pantalla completa (API o F11): se ocultan las indicaciones para quien presenta
+function checkFS() { FS = !!document.fullscreenElement || matchMedia('(display-mode: fullscreen)').matches || (innerHeight >= screen.height - 2 && innerWidth >= screen.width - 2); document.body.classList.toggle('fs', FS); }
+document.addEventListener('fullscreenchange', () => { checkFS(); fit(); });
+function fit() {
+  checkFS();
+  const vw = innerWidth, vh = innerHeight - document.getElementById('nav').offsetHeight;
+  scale = Math.min(vw / 1920, vh / 1080); stage.style.setProperty('--s', scale);
+  document.getElementById('viewport').style.height = vh + 'px';
+  const q = Math.min(2, Math.max(1, (devicePixelRatio || 1) * scale));
+  Object.values(CV).forEach(v => { v.q = q; v.c.width = Math.round(v.w * q); v.c.height = Math.round(v.h * q); });
+}
+function paint(id, fn) { const v = CV[id]; if (!v) return; v.ctx.setTransform(v.q, 0, 0, v.q, 0, 0); v.ctx.clearRect(0, 0, v.w, v.h); useCtx(v.ctx); fn(v.w, v.h); }
+// barra inferior: indicación por defecto o explicación al pasar el cursor
+function info(sid, txt) { const b = document.querySelector('.bar[data-s="' + sid + '"] .hint'); if (!b) return; if (txt) { b.textContent = txt; b.classList.add('on'); } else { b.textContent = b.dataset.hint; b.classList.remove('on'); } }
+function go(i) {
+  motionPaused = false; document.getElementById('motion').textContent = 'Pausar animación'; document.getElementById('motion').setAttribute('aria-pressed', 'false');
+  i = Math.max(0, Math.min(slides.length - 1, i)); if (slides[cur]) slides[cur].classList.remove('active');
+  cur = i; slides[cur].classList.add('active'); document.getElementById('count').textContent = (cur + 1) + ' / ' + slides.length;
+  document.getElementById('prog').style.width = ((cur + 1) / slides.length * 100) + '%';
+  const sid = slides[cur].dataset.id; const c = CTL[sid]; if (c && c.enter) c.enter();
+  document.getElementById('notes-body').innerHTML = slides[cur].querySelector('template.notes')?.innerHTML || '';
+  document.getElementById('notes-title').textContent = slides[cur].dataset.title || '';
+  try { history.replaceState(null, '', '#' + sid); } catch (e) {}
+}
+// eventos: zonas de hover/clic y botones de acción
+document.addEventListener('pointerover', e => { const z = e.target.closest('[data-hz]'); if (!z) return; const c = CTL[z.dataset.s]; if (c && c.hover) c.hover(z.dataset.hz, z); });
+document.addEventListener('pointerout', e => { const z = e.target.closest('[data-hz]'); if (!z || z.contains(e.relatedTarget)) return; const c = CTL[z.dataset.s]; if (c && c.hover) c.hover(null, z); });
+document.addEventListener('click', e => {
+  const a = e.target.closest('[data-act]'); if (a) { const c = CTL[a.dataset.s]; if (c && c.act) c.act(a.dataset.act, a); return; }
+  const z = e.target.closest('[data-hz]'); if (z) { const c = CTL[z.dataset.s]; if (c && c.pin) c.pin(z.dataset.hz, z); }
+});
+document.addEventListener('focusin', e => { const z = e.target.closest('[data-hz]'); if (z) { const c = CTL[z.dataset.s]; if (c && c.hover) c.hover(z.dataset.hz, z); } });
+addEventListener('keydown', e => {
+  if (e.target.closest && e.target.closest('button,a,[data-hz]') && (e.key === ' ' || e.key === 'Enter')) { if (e.target.dataset.hz !== undefined && (e.key === ' ' || e.key === 'Enter')) { e.preventDefault(); e.target.click(); } return; }
+  if (['ArrowRight', 'PageDown', ' '].includes(e.key)) { e.preventDefault(); go(cur + 1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); go(cur - 1); }
+  else if (e.key === 'Home') go(0); else if (e.key === 'End') go(slides.length - 1);
+  else if (e.key === 'n' || e.key === 'N') toggleNotes(); else if (e.key === 'f' || e.key === 'F') fullscreen();
+});
+function toggleNotes() { const n = document.getElementById('notes'); n.hidden = !n.hidden; document.getElementById('bnotes').setAttribute('aria-pressed', n.hidden ? 'false' : 'true'); }
+function fullscreen() { try { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); } catch (e) {} }
+document.getElementById('motion').onclick = () => { motionPaused = !motionPaused; const b = document.getElementById('motion'); b.textContent = motionPaused ? 'Reanudar animación' : 'Pausar animación'; b.setAttribute('aria-pressed', String(motionPaused)); };
+document.getElementById('bprev').onclick = () => go(cur - 1); document.getElementById('bnext').onclick = () => go(cur + 1);
+document.getElementById('bnotes').onclick = toggleNotes; document.getElementById('bfull').onclick = fullscreen;
+document.getElementById('notes-close').onclick = toggleNotes;
+function setZone(sid, k, on) { document.querySelectorAll('[data-s="' + sid + '"][data-hz]').forEach(z => z.classList.toggle('on', on && z.dataset.hz === String(k))); }
+function setPressed(sid, k) { document.querySelectorAll('[data-s="' + sid + '"][data-act]').forEach(b => b.classList.toggle('on', b.dataset.act === String(k))); }
+// patrón: hover muestra, clic fija
+function hoverPin(sid, onChange) {
+  const st = { hov: null, pin: null, since: 0 };
+  const apply = () => { const k = st.hov ?? st.pin; setZone(sid, k, k !== null); onChange(k); };
+  return { st, hover(k) { st.hov = k; if (k !== null) st.since = performance.now() / 1000; apply(); }, pin(k) { st.pin = st.pin === k ? null : k; st.since = performance.now() / 1000; apply(); }, active() { return st.hov ?? st.pin; } };
+}
+
+/* 1 · Portada: piezas desordenadas pasan por el contrato y se ordenan como filas */
+(() => { const GX0 = 1330, GX1 = 1830, GY = 420, TY = 490, RH = 34, ROWS = 10, CW = (GX1 - GX0) / 3, DT = 0.45, L = 24;
+  const hs = i => { const v = Math.sin(i * 127.1 + 311.7) * 43758.5453; return v - Math.floor(v); };
+  const MONTO = ['12.450,00', '8.300,00', '9.120,00', '21.000,50', '7.340,00', '15.600,00', '3.980,25', '11.200,00', '6.450,00', '18.730,00'];
+  const OK = [...Array(ROWS)].map((_, r) => ['A-' + (1042 + r), '2026-08-' + (14 + (r >> 1)), MONTO[r]]);
+  const RAW = OK.map(([id, f, m], r) => { const d = f.slice(8); return [[id.toLowerCase() + ' ', id.replace('-', ''), ' ' + id.toLowerCase().replace('-', ''), id.replace('-', ' ')][r % 4], [d + '/8/26', '2026/08/' + d, d + '-ago', d + '/08'][r % 4], [m.replace(/\./g, '').replace(',00', ',0'), '$' + m.replace(',00', ''), m.replace(/\./g, ' ').replace(',00', ''), m.replace(/\./g, '')][r % 4]]; });
+  const BADT = ['null', '#N/A', '??', '—', 'ERR', '"" ', 'N/D'];
+  const FR = []; let acc = 0, rej = 0;
+  for (let i = 0; i < 37; i++) { const bad = i % 5 === 4; const f = { t: i * DT, bad, x0: GX0 + 30 + hs(i) * (GX1 - GX0 - 160), r0: (hs(i + 9) - 0.5) * 0.9 };
+    if (bad) { f.txt = BADT[rej % BADT.length]; f.tx = f.x0; rej++; } else { const row = Math.floor(acc / 3), col = acc % 3; Object.assign(f, { row, col, txt: RAW[row][col], ok: OK[row][col], tx: GX0 + col * CW + CW / 2, ty: TY + 14 + row * RH + RH / 2 }); acc++; }
+    FR.push(f); }
+  const CHIP = [K.lb, K.paper, K.yel];
+  function chip(x, y, txt, rot, bg, fg, al) { X.save(); X.globalAlpha = al; X.translate(x, y); X.rotate(rot); X.font = M(600, 19); const w = X.measureText(txt).width + 22; R(-w / 2, -15, w, 30, bg); T(txt, 0, 1, M(600, 19), fg, 'center'); X.restore(); }
+  CTL.cover = { frame(tt) { const t = RM ? 22 : tt % L, fade = 1 - seg(t, L - 1.2, L - 0.2); paint('cover', () => {
+    // tabla destino
+    R(GX0 - 14, TY - 40, GX1 - GX0 + 28, ROWS * RH + 104, 'rgba(21,22,22,0.86)', '#2A2D2F', 2);
+    ['id', 'fecha', 'monto'].forEach((h, c) => T(h, GX0 + c * CW + 14, TY - 12, M(700, 20), K.yel));
+    line(GX0, TY + 4, GX1, TY + 4, '#3A3E41', 2);
+    for (let r = 0; r < ROWS; r++) line(GX0, TY + 14 + (r + 1) * RH, GX1, TY + 14 + (r + 1) * RH, 'rgba(255,255,255,0.05)', 1);
+    // contrato
+    line(GX0 - 14, GY, GX1 + 14, GY, K.yel, 3);
+    T('CONTRATO', GX0 - 14, GY - 22, F(800, 18), K.yel); let nOk = 0, nBad = 0;
+    for (const f of FR) { const lt = t - f.t; if (lt < 0) continue;
+      const A = 3.0, yA = lerp(40, GY, ez(lt / A));
+      if (f.bad) { if (lt < A) chip(f.x0 + Math.sin(lt * 3 + f.r0 * 9) * 18, yA, f.txt, f.r0 * (1 - 0.4 * lt / A), K.badD, K.ink, seg(lt, 0, 0.4) * fade);
+        else { const k = seg(lt, A, A + 0.9); nBad++; chip(f.x0 + Math.sin(lt * 40) * 6 * (1 - k), GY - 2, f.txt, 0, K.bad, K.white, (1 - k) * fade); if (k < 1) { X.globalAlpha = (1 - k) * fade; T('✗', f.x0, GY - 34, F(800, 26), K.badD, 'center'); X.globalAlpha = 1; } }
+        continue; }
+      if (lt < A) { const k = ez(lt / A); chip(lerp(f.x0, f.tx, k * k) + Math.sin(lt * 2.6 + f.r0 * 7) * 16 * (1 - k), yA, f.txt, f.r0 * (1 - k), CHIP[f.col], K.ink, seg(lt, 0, 0.4) * fade); continue; }
+      nOk++; const k = ez(seg(lt, A, A + 0.7)), y = lerp(GY, f.ty, k);
+      if (k < 1) { X.globalAlpha = (1 - k) * 0.6 * fade; R(f.tx - CW / 2 + 4, GY - 2, CW - 8, 4, K.yel); X.globalAlpha = 1; }
+      const fresh = 1 - seg(lt, A + 0.7, A + 2.2);
+      X.globalAlpha = fade; R(GX0 + f.col * CW + 4, y - RH / 2 + 3, CW - 8, RH - 6, fresh > 0 ? 'rgba(31,73,125,' + (0.45 + 0.4 * fresh) + ')' : 'rgba(31,73,125,0.38)');
+      if (k > 0.9) T(f.ok, GX0 + f.col * CW + 14, y + 1, M(600, 18), K.paper); X.globalAlpha = 1; }
+    X.globalAlpha = fade; T('✓ ' + nOk + ' aceptadas   ✗ ' + nBad + ' rechazadas', GX0, TY + ROWS * RH + 52, M(600, 18), K.mutD); X.globalAlpha = 1;
+  }); } };
+})();
+
+/* 2 · Mapa del pipeline */
+(() => { const CX = [127, 409, 691, 973, 1255, 1537], Y = 40, FOCUS = [1, 0, 1, 0, 0, 0];
+  const INFO = ['01 · Capturar — Unidad 4 (hoy): archivos, consultas SQL, descargas, eventos y APIs llevan el dato hasta raw.', '02 · Almacenar — Unidad 2: bases transaccionales, warehouse y nube. Dónde se conserva cada copia.',
+    '03 · Transformar — Unidades 3 y 4 (hoy): SQL, Python y Power Query limpian y modelan por capas.', '04 · Analizar — Unidades 3 y 5: consultas, métricas, calidad y análisis exploratorio.',
+    '05 · Comunicar — Unidades 5 y 6: visualización, storytelling y Power BI.', '06 · Decidir — Unidad 1: la decisión y el KPI que justifican todo el recorrido.'];
+  const BAND = { u4: [[0, 1, 2], 'Unidad 4 cubre la captura (con su aterrizaje en raw) y la transformación por capas.'], sql: [[0, 1, 2, 3], 'SQL aparece al extraer, al transformar, al controlar (pruebas que devuelven cero filas) y al consultar.'], ia: [[0, 1, 2, 3, 4, 5], 'La IA puede asistir en todas las etapas; la persona verifica y decide.'] };
+  const hp = hoverPin('mapa', k => info('mapa', k === null ? null : (BAND[k] ? BAND[k][1] : INFO[+k])));
+  CTL.mapa = { hover: hp.hover, pin: hp.pin, frame(t) { const k = hp.active(), lt = t - hp.st.since; paint('mapa', () => {
+    line(CX[0], Y, CX[5], Y, '#B4BBC2', 3, [2, 10]);
+    const lit = k === null ? [] : BAND[k] ? BAND[k][0] : [+k];
+    for (let i = 0; i < 6; i++) { const on = lit.includes(i), r = 12 + (on ? 4 + Math.sin(t * 5) * 2 : 0); if (on) circle(CX[i], Y, r + 16, FOCUS[i] ? 'rgba(255,255,51,0.5)' : 'rgba(31,73,125,0.18)'); circle(CX[i], Y, r, FOCUS[i] ? K.yel : K.white, FOCUS[i] ? K.ink : K.blue, 3); }
+    if (k !== null && !BAND[k]) { const tgt = CX[+k], from = +k ? CX[+k - 1] : 0, per = 1.1, ph = ((lt % (per + 0.7)) / per); if (ph <= 1) { const x = lerp(from, tgt, ez(ph)); for (let j = 0; j < 14; j++) { const xx = x - j * 8; if (xx < from) break; X.globalAlpha = 1 - j / 14; circle(xx, Y, j ? 3 : 8, K.ink); } X.globalAlpha = 1; } }
+  }); } };
+})();
+
+/* 3 · Puertas de entrada */
+(() => { const P = []; for (let i = 0; i < 6; i++) { const y0 = 44 + i * 104, y1 = 200 + i * 42; P.push([[0, y0], [310, y0], [480, y1], [772, y1]]); }
+  const pt = (p, t) => { const u = 1 - t, f = k => u * u * u * p[0][k] + 3 * u * u * t * p[1][k] + 3 * u * t * t * p[2][k] + t * t * t * p[3][k]; return [f(0), f(1)]; };
+  const burst = (t, per, n, sp, dur) => { const o = [], ph = (t % per) / dur; for (let j = 0; j < n; j++) { const k = ph - j * sp; if (k >= 0 && k <= 1) o.push(k); } return o; };
+  const COL = [K.lb, K.lb, K.lb, K.yel, K.badD, K.lb], NAME = ['Archivos CSV / Excel', 'Descargas del sistema', 'Consulta SQL a la base', 'API web · JSON', 'Eventos · CDC', 'Formularios y apps'];
+  const INFO = ['Archivos · lote: llegan en paquetes cada día o semana, como los Excel de consumos del caso laboral del sitio.', 'Descargas · lote: alguien exporta desde el ERP. Depende de una persona y cada exportación puede salir distinta.',
+    'Consulta SQL · lote o incremental: un SELECT a la base transaccional ya es captura. Incremental = solo lo nuevo desde la última vez.', 'API · a demanda: primero sale nuestra solicitud (círculo hueco) y después vuelven los datos.',
+    'Eventos/CDC · continuo: cada cambio en la base emite un evento. Solo vale si la decisión necesita segundos.', 'Formularios y apps · registro a registro: se valida en el momento de la carga (Power Apps, formularios).'];
+  const hp = hoverPin('puertas', k => info('puertas', k === null ? null : INFO[+k]));
+  function dot(p, k, col, r, hollow) { const q = pt(p, k); if (hollow) circle(q[0], q[1], r, null, col, 3); else { circle(q[0], q[1], r, col); if (k > 0.96) { X.globalAlpha = 0.35; circle(q[0], q[1], r * 3, col); X.globalAlpha = 1; } } }
+  CTL.puertas = { hover: hp.hover, pin: hp.pin, frame(t) { const k = hp.active(), lt = t - hp.st.since; paint('puertas', () => {
+    P.forEach((p, i) => { X.strokeStyle = k !== null && +k === i ? 'rgba(255,255,51,0.55)' : 'rgba(169,193,224,0.18)'; X.lineWidth = k !== null && +k === i ? 3 : 2; X.beginPath(); X.moveTo(p[0][0], p[0][1]); X.bezierCurveTo(p[1][0], p[1][1], p[2][0], p[2][1], p[3][0], p[3][1]); X.stroke(); });
+    if (k === null) return; const i = +k, p = P[i], c = COL[i];
+    if (i === 0) burst(lt, 4.5, 12, 0.035, 2.6).forEach(q => dot(p, q, c, 6)); else if (i === 1) burst(lt, 5, 9, 0.04, 2.8).forEach(q => dot(p, q, c, 6));
+    else if (i === 2) burst(lt, 2.6, 4, 0.05, 2.2).forEach(q => dot(p, q, c, 6));
+    else if (i === 3) { const a = lt % 4.2; if (a < 1.4) dot(p, 1 - a / 1.4, c, 9, true); else if (a > 1.7) burst(a - 1.7, 9, 6, 0.05, 1.9).forEach(q => dot(p, q, c, 6)); }
+    else if (i === 4) for (let j = 0; j < 14; j++) dot(p, ((lt / 3.4) + j / 14) % 1, c, 5);
+    else for (let j = 0; j < 2; j++) { const q = ((lt * 0.35) + j * 0.55) % 1.3; if (q <= 1) dot(p, q, c, 6); }
+  });
+  paint('rawstack', (w, h) => { if (k === null) { T('esperando datos…', w / 2, h / 2, F(400, 24), K.mutD, 'center'); return; }
+    const rate = [3, 2.2, 2, 1.4, 6, 0.8][+k], n = Math.min(12, Math.floor(lt * rate));
+        for (let i = 0; i < n; i++) { const y = h - 10 - (i + 1) * 11; R(4, y, w - 8 - ((i * 37) % 60), 8, COL[+k]); } }); } };
+})();
+
+/* 4 · API: un código por clic */
+(() => { const NX = [140, 486, 832, 1178, 1524], YR = 34, YS = 104;
+  const SC = { '200': [4, K.blue, '200 · OK: la solicitud pasó todos los controles y vuelven los datos en JSON.'], '400': [3, K.ink, '400 · el servicio rechaza los parámetros: por ejemplo, una fecha con formato inválido.'],
+    '401': [1, K.ink, '401 · no se pudo comprobar quién pide: token ausente, vencido o mal escrito.'], '403': [2, K.ink, '403 · la identidad es válida, pero no tiene permiso sobre este recurso.'],
+    '404': [2, K.ink, '404 · el recurso no existe: endpoint mal escrito o identificador inexistente.'], '429': [2, K.ink, '429 · demasiadas solicitudes: hay que esperar (Retry-After) y reintentar.'],
+    '500': [3, K.bad, '500 · el servicio falló al procesar: registrar el incidente y reintentar más tarde.'] };
+  const STOP = { '400': 'valida', '401': 'identidad', '403': 'permiso', '404': 'recurso', '429': 'límite', '500': 'falla' };
+  const st = { code: null, t0: 0, log: [] };
+  function pill(x, y, s, bg, fg) { X.font = M(700, 26); const w = X.measureText(s).width + 32; R(x - w / 2, y - 22, w, 44, bg); T(s, x, y + 1, M(700, 26), fg, 'center'); }
+  CTL.api = { act(c) { st.code = c; st.t0 = performance.now() / 1000; st.logged = false; setPressed('api', c); info('api', null); },
+    frame(t) { paint('api', () => {
+      for (const y of [YR, YS]) { line(NX[0], y, NX[4], y, '#B4BBC2', 3, [3, 10]); for (const x of NX) circle(x, y, 7, K.white, '#B4BBC2', 3); }
+      let x = NX[0] - 20 + T('Respuestas recibidas', NX[0] - 20, 214, F(700, 22), K.mut) + 20; if (!st.log.length) T('ninguna todavía', x, 214, F(400, 22), '#9AA0A5'); st.log.slice(-12).forEach(c => { X.font = M(700, 22); const w = X.measureText(c).width + 22; R(x, 197, w, 34, c === '200' ? K.blue : c === '500' ? K.bad : K.ink); T(c, x + w / 2, 215, M(700, 22), c === '200' || c === '500' ? K.white : K.yel, 'center'); x += w + 8; });
+      if (!st.code) return;
+      const s = SC[st.code], lt = t - st.t0, xT = NX[s[0]], go = (xT - NX[0]) / 520 + 0.2, hold = 1.0, bk = go, err = st.code !== '200';
+      if (lt < go) pill(NX[0] + (xT - NX[0]) * ez(lt / go), YR, 'GET', K.ink, K.yel);
+      else if (lt < go + hold) { const k = (lt - go) / hold; X.globalAlpha = 1 - k; circle(xT, YR, 14 + k * 50, null, err ? K.bad : K.blue, 4); X.globalAlpha = 1; pill(xT, YR, 'GET', K.ink, K.yel); if (err) T(STOP[st.code], xT, YR + 46, F(800, 24), K.bad, 'center'); }
+      else if (lt < go + hold + bk) pill(xT - (xT - NX[0]) * ez((lt - go - hold) / bk), YS, st.code + (err ? '' : ' JSON'), s[1], st.code === '400' || st.code === '401' || st.code === '403' || st.code === '404' || st.code === '429' ? K.yel : K.white);
+      else { pill(NX[0], YS, st.code + (err ? '' : ' JSON'), s[1], s[1] === K.ink ? K.yel : K.white); if (!st.logged) { st.logged = true; st.log.push(st.code); }
+        X.globalAlpha = seg(lt, go + hold + bk, go + hold + bk + 0.4); T(s[2], NX[0] - 20, 162, F(700, 26), st.code === '200' ? K.blue : st.code === '500' ? K.bad : K.ink); X.globalAlpha = 1; }
+    }); } };
+})();
+
+/* 5 · Snapshot */
+(() => { const ST = ['dispatched', 'in_transit', 'delivered', 'in_transit', 'delayed'];
+  const META = [['extraído', '2026-10-20 09:00 UTC'], ['endpoint', '/v1/eventos'], ['parámetros', 'desde=2026-09-01'], ['estado', '200 · 3 páginas'], ['registros', '300'], ['sha256', '9f2c…e1a7']], MT = [1.9, 2.5, 3.1, 4.9, 6.1, 6.7];
+  const st = { cap: null, runs: [] };
+  CTL.snapshot = { act(a) { const now = performance.now() / 1000;
+      if (a === 'cap') { st.cap = now; st.runs = []; info('snapshot', null); }
+      else if (a === 'run') { if (!st.cap || now - st.cap < 7.5) { info('snapshot', 'Primero capturá el snapshot: sin copia guardada no hay forma de repetir el análisis.'); return; } st.runs.push(now); info('snapshot', 'Ejecución ' + st.runs.length + ': mismo snapshot, mismas 300 filas. La API de la izquierda siguió cambiando, pero el análisis no.'); }
+      else { st.cap = null; st.runs = []; info('snapshot', null); } },
+    frame(t) { paint('snapshot', () => {
+      R(0, 40, 400, 450, K.ink2, K.ink3, 2); T('API viva', 28, 88, F(700, 30), K.paper);
+      const pu = (t % 1.2) / 1.2; X.globalAlpha = 1 - pu; circle(366, 88, 8 + pu * 14, K.yel); X.globalAlpha = 1; circle(366, 88, 8, K.yel);
+      for (let i = 0; i < 6; i++) { const y = 150 + i * 56, v = t * 0.6 + i * 1.7, s = ST[Math.floor(v) % 5], hot = (v % 1) < 0.3; T('S00' + (121 + i), 28, y, M(400, 24), K.mutD); T(s, 196, y, M(hot ? 700 : 400, 24), hot ? K.yel : K.lb); }
+      T('cambia con el tiempo', 200, 522, 'italic ' + F(400, 24), K.mutD, 'center');
+      X.strokeStyle = 'rgba(169,193,224,0.35)'; X.lineWidth = 3; X.setLineDash([4, 12]); X.beginPath(); X.moveTo(410, 245); X.quadraticCurveTo(690, 40, 970, 245); X.stroke(); X.setLineDash([]);
+      T('capturar y guardar', 690, 300, F(600, 26), K.lb, 'center');
+      if (!st.cap) { X.setLineDash([10, 10]); R(980, 40, 684, 450, null, '#5B6064', 3); X.setLineDash([]); T('todavía no hay snapshot', 1322, 250, F(600, 30), K.mutD, 'center'); T('usá “1 · Capturar” abajo', 1322, 296, F(400, 26), K.mutD, 'center'); return; }
+      const c = t - st.cap + 1.0;
+      for (let p = 0; p < 3; p++) { const k = (c - (1.2 + p * 1.25)) / 1.4; if (k >= 0 && k <= 1) { const e = ez(k), x = 400 + (980 - 140 - 400) * e, y = 200 - Math.sin(k * Math.PI) * 110; R(x, y, 140, 90, K.blue, K.lb, 2); T('pág ' + (p + 1), x + 70, y + 45, M(700, 24), K.paper, 'center'); } }
+      const frz = c > 7.3; R(980, 40, 684, 450, K.white, frz ? K.yel : '#5B6064', frz ? 5 : 2); T('eventos_2026-10-20.json', 1012, 88, M(700, 26), K.ink); R(1012, 116, 620, 2, K.line);
+      for (let j = 0; j < 6; j++) { const k = (c - MT[j]) / 0.5; if (k > 0) { const v = META[j][1], n = Math.min(v.length, Math.floor(v.length * k)), y = 156 + j * 52; T(META[j][0], 1012, y, F(400, 24), K.mut); T(v.slice(0, n), 1186, y, M(600, 24), j === 5 ? K.blue : K.ink); } }
+      if (frz) { const k = cl((c - 7.3) / 0.35); X.save(); X.translate(1452, 452); X.rotate(-0.07); X.scale(1 + (1 - k) * 0.8, 1 + (1 - k) * 0.8); X.globalAlpha = k; R(-170, -30, 340, 60, K.yel); T('SNAPSHOT · solo lectura', 0, 1, F(800, 24), K.ink, 'center'); X.restore(); X.globalAlpha = 1; }
+      st.runs.slice(-2).forEach((r, i) => { const n = st.runs.length - Math.min(2, st.runs.length) + i + 1; X.globalAlpha = cl((t - r) / 0.4); T('ejecución ' + n + ' → 300 ✓', 1012 + i * 330, 536, M(700, 22), K.yel); X.globalAlpha = 1; });
+    }); } };
+})();
+
+/* 6 · JSON */
+(() => { const L = ['{', '  "extracted_at": "2026-09-23T22:00:00Z",', '  "shipments": [', '    {', '      "shipment_id": "S000001",', '      "status": "delivered",', '      "events": [', '        {"type":"dispatched","timestamp":"2026-09-20T12:00Z"},', '        {"type":"in_transit","timestamp":"2026-09-21T08:30Z"},', '        {"type":"delivered","timestamp":"2026-09-22T17:10Z"}', '      ]', '    }', '  ]', '}'];
+  const EV = [['dispatched', '2026-09-20T12:00Z'], ['in_transit', '2026-09-21T08:30Z'], ['delivered', '2026-09-22T17:10Z']], LH2 = 37, Y0 = 34, TX = [990, 1176, 1366], RY = [100, 154, 208];
+  const st = { ph: 0, te: 0, tc: 0, hov: null };
+  const LINEINFO = { 2: 'shipments: una lista (corchetes) con un objeto por despacho.', 6: 'events: una lista anidada adentro de cada despacho. Puede tener cero, uno o muchos eventos.', 7: 'Evento 1 · dispatched: al expandir, se convierte en una fila que repite shipment_id.', 8: 'Evento 2 · in_transit: segunda fila del mismo despacho.', 9: 'Evento 3 · delivered: tercera fila. Es el último evento: el estado actual del despacho.', 4: 'shipment_id: la clave que conecta cada evento con su despacho.' };
+  function jline(s, y) { X.font = M(400, 24); X.textBaseline = 'middle'; X.textAlign = 'left'; let x = 26; const parts = s.split(/("[^"]*")/); for (let i = 0; i < parts.length; i++) { const p = parts[i]; if (!p) continue; let col = '#9AA3AA'; if (p[0] === '"') col = (parts[i + 1] || '').trim()[0] === ':' ? K.lb : '#FFFF8A'; else if (/[\[\]]/.test(p)) col = K.yel; X.fillStyle = col; X.fillText(p, x, y); x += X.measureText(p).width; } }
+  CTL.json = { hover(k) { st.hov = k === null ? null : +k; info('json', k === null ? null : LINEINFO[+k]); }, pin() {},
+    act(a) { const now = performance.now() / 1000; if (a === 'exp') { st.ph = 1; st.te = now; } else if (a === 'last') { if (st.ph < 1) { st.ph = 1; st.te = now - 5; } st.ph = 2; st.tc = now; } else st.ph = 0; setPressed('json', a === 'reset' ? null : a); },
+    frame(t) { paint('json', () => {
+      R(0, 0, 940, 556, '#1C1E1F');
+      const hl = (i, col) => R(8, Y0 + i * LH2 - LH2 / 2 + 2, 924, LH2 - 4, col);
+      if (st.hov !== null) { const h = st.hov; hl(h, 'rgba(255,255,51,0.22)'); if (h === 2) hl(12, 'rgba(255,255,51,0.22)'); if (h === 6) hl(10, 'rgba(169,193,224,0.22)'); }
+      for (let i = 0; i < L.length; i++) jline(L[i], Y0 + i * LH2);
+      T('shipment_id', TX[0], 46, F(700, 24), K.ink); T('type', TX[1], 46, F(700, 24), K.ink); T('timestamp', TX[2], 46, F(700, 24), K.ink); R(TX[0] - 10, 70, 684, 2, K.ink);
+      if (st.ph === 0) { T('La tabla está vacía: el JSON todavía es un árbol.', TX[0], 120, F(400, 26), K.mut); return; }
+      const el = t - st.te, col = st.ph === 2 ? t - st.tc : -1;
+      for (let e = 0; e < 3; e++) { const k = (el - e * 0.9) / 0.9; if (k < 0) continue; const y = RY[e];
+        if (k < 1) { const q = ez(k), sx = 26 + 20 * 14.45, sy = Y0 + (7 + e) * LH2; T(EV[e][0], sx + (TX[1] - sx) * q, sy + (y - sy) * q, M(700, 24), K.blue); continue; }
+        let al = 1; if (col >= 0 && e < 2) al = Math.max(0.22, 1 - col / 0.6); X.globalAlpha = al;
+        if ((col >= 0 && e === 2) || (st.hov === 7 + e)) R(TX[0] - 14, y - 24, 686, 48, 'rgba(255,255,51,0.45)');
+        R(TX[0] - 6, y - 17, 118, 34, 'rgba(255,255,51,0.30)'); T('S000001', TX[0], y, M(400, 24), K.ink); T(EV[e][0], TX[1], y, M(400, 24), K.ink); T(EV[e][1], TX[2], y, M(400, 24), K.ink); R(TX[0] - 10, y + 26, 684, 1, K.line); X.globalAlpha = 1; }
+      if (el > 2.8) { X.globalAlpha = cl((el - 2.8) / 0.4); T('1 despacho  →  3 filas', TX[0], 300, F(700, 36), K.blue); T('el grano cambió: de despacho a evento', TX[0], 346, F(400, 24), K.mut); X.globalAlpha = 1; }
+      if (col > 0.6) { X.globalAlpha = cl((col - 0.6) / 0.4); R(TX[0] - 14, 404, 686, 120, K.blue); T('último evento por despacho', TX[0] + 6, 440, F(700, 26), K.paper); T('S000001 · delivered → 1 fila', TX[0] + 6, 486, M(400, 24), K.yel); X.globalAlpha = 1; }
+    }); } };
+})();
+
+/* 7 · MCP paso a paso con aprobación */
+(() => { const MY = [200, 330, 460], SX = 1120, CX = 540;
+  const SV = [['Servidor de datos', 'mart de ventas · lectura'], ['Servidor documental', 'diccionario y contratos'], ['Servidor logística', 'envuelve una API']];
+  const PH = ['Inicio', 'Descubrir', 'Catálogo', 'Proponer', 'Aprobar', 'Ejecutar', 'Responder'], D = [0, 2.6, 2.6, 2.2, 0, 3.2, 2.6];
+  const INFO = ['El usuario pregunta en lenguaje natural. Todavía no pasó nada: el host no sabe qué herramientas hay.', 'server/discover: cada cliente pregunta al servidor quién es y qué capacidades ofrece.', 'tools/list: el servidor de datos devuelve su catálogo: una tool, un resource y un prompt.',
+    'El modelo lee la pregunta y el catálogo, y propone ventas_por_familia con mes = "2026-08". Proponer no es ejecutar.', 'El host pide permiso. Decidí vos: Permitir o Rechazar.', 'tools/call: el servidor valida el argumento y ejecuta SQL de solo lectura sobre el mart.', 'El resultado vuelve, el modelo responde citando la herramienta y la llamada queda registrada.'];
+  const st = { ph: 0, t0: 0, denied: false };
+  const msgs = document.querySelectorAll('[data-s="mcp"][data-act]');
+  function ui() { const ap = st.ph === 4 && !st.denied; document.querySelectorAll('[data-s="mcp"][data-grp="ap"]').forEach(b => b.hidden = !ap); document.querySelectorAll('[data-s="mcp"][data-act="next"]').forEach(b => { b.hidden = ap; b.disabled = st.ph >= 6 || st.denied; });
+    const lab = document.querySelector('[data-mcp-step]'); if (lab) lab.textContent = 'Paso ' + st.ph + ' de 6 · ' + PH[st.ph]; info('mcp', st.denied ? 'Rechazado: la herramienta no se ejecuta y el modelo responde que no tiene permiso para consultar los datos. Así funciona el control humano.' : INFO[st.ph]); }
+  function pill(x, y, s, bg, fg) { X.font = M(700, 22); const w = X.measureText(s).width + 28; R(x - w / 2, y - 20, w, 40, bg); T(s, x, y + 1, M(700, 22), fg, 'center'); }
+  const msg = (i, k, s, bg, fg) => { if (k <= 0 || k >= 1) return; pill(CX + (SX - CX) * ez(k), MY[i], s, bg, fg); };
+  CTL.mcp = { enter() { ui(); }, act(a) { const now = performance.now() / 1000;
+      if (a === 'next' && st.ph < 6) { st.ph++; st.t0 = now; } else if (a === 'allow') { st.ph = 5; st.t0 = now; } else if (a === 'deny') { st.denied = true; st.t0 = now; } else if (a === 'reset') { st.ph = 0; st.denied = false; st.t0 = now; } ui(); },
+    frame(t) { const lt = t - st.t0, P = st.ph; paint('mcp', () => {
+      R(0, 10, 230, 96, K.ink2, K.ink3, 2); T('Usuario', 24, 44, F(700, 28), K.paper); T('decide al final', 24, 80, F(400, 24), K.mutD);
+      const bt = st.denied ? 'Sin tu permiso no consulté los datos de ventas.' : P >= 6 ? 'Respuesta: lidera Bombas (fuente: ventas_por_familia)' : P >= 3 ? 'propone: ventas_por_familia(mes="2026-08")' : '¿Venta neta por familia en agosto?';
+      const blue = P >= 3 || st.denied; R(262, 10, 830, 96, blue ? K.blue : K.paper); T(bt, 290, 58, blue ? M(600, 24) : F(600, 28), blue ? K.paper : K.ink);
+      R(0, 140, 580, 380, K.ink2, K.ink3, 2); T('Host · app de IA', 24, 174, F(700, 28), K.paper);
+      const think = P === 3 && lt < D[3]; if (think) { X.globalAlpha = 0.35 * (0.5 + 0.5 * Math.sin(t * 10)); circle(170, 345, 92, K.yel); X.globalAlpha = 1; }
+      circle(170, 345, 72, K.blue, K.yel, 3); T('Modelo', 170, 345, F(700, 26), K.paper, 'center');
+      for (let i = 0; i < 3; i++) { R(CX - 170, MY[i] - 32, 170, 64, K.blue); T('cliente ' + 'ABC'[i], CX - 85, MY[i], F(600, 24), K.paper, 'center');
+        line(CX, MY[i], SX, MY[i], 'rgba(169,193,224,0.35)', 3, [4, 10]);
+        const act = (P === 1 && lt < D[1]) || (i === 0 && P === 5 && lt < D[5]); R(SX, MY[i] - 50, 400, 100, K.ink2, act ? K.yel : K.ink3, act ? 4 : 2); T(SV[i][0], SX + 24, MY[i] - 18, F(700, 26), K.paper); T(SV[i][1], SX + 24, MY[i] + 20, F(400, 24), K.mutD); }
+      R(1544, MY[0] - 34, 120, 68, K.blue); T('mart', 1604, MY[0], F(600, 24), K.paper, 'center'); R(1544, MY[2] - 34, 120, 68, K.blue); T('API', 1604, MY[2], F(600, 24), K.paper, 'center');
+      if (P === 1) for (let i = 0; i < 3; i++) { msg(i, lt / 1.3, 'server/discover', K.lb, K.ink); msg(i, 1 - (lt - 1.4) / 1, 'capacidades', K.paper, K.ink); }
+      if (P === 2) { msg(0, lt / 1.1, 'tools/list', K.lb, K.ink); msg(0, 1 - (lt - 1.2) / 1, 'catálogo', K.paper, K.ink); }
+      if (P >= 2) { const a = P === 2 ? cl((lt - 2.1) / 0.4) : 1; const cat = [[SX, 40, 'tool · ventas_por_familia'], [SX, 92, 'resource · diccionario'], [SX + 286, 92, 'prompt · revisar KPI']];
+        cat.forEach(([x, y, s], q) => { X.globalAlpha = cl(a * 3 - q); X.font = F(600, 24); const w = X.measureText(s).width + 28; R(x, y - 20, w, 40, K.blue); T(s, x + 14, y + 1, F(600, 24), K.paper); X.globalAlpha = 1; }); }
+      if (P >= 4) { const wait = P === 4 && !st.denied, deny = st.denied; const r = 26 + (wait ? Math.sin(t * 8) * 4 : 0);
+        X.fillStyle = deny ? K.badD : wait ? K.yel : K.ok; X.beginPath(); X.moveTo(830, MY[0] - r); X.lineTo(830 + r, MY[0]); X.lineTo(830, MY[0] + r); X.lineTo(830 - r, MY[0]); X.fill();
+        T(deny ? '✗' : wait ? '?' : '✓', 830, MY[0] + 1, F(800, 26), wait ? K.ink : K.paper, 'center'); T(deny ? 'rechazado: no se ejecuta' : wait ? '¿permitir?' : 'aprobado por la persona', 830, MY[0] - 52, F(700, 24), deny ? K.badD : wait ? K.yel : K.okD, 'center'); }
+      if (P === 5) { msg(0, lt / 1.1, 'tools/call', K.yel, K.ink); if (lt > 1.1 && lt < 1.7) circle(1520 + 24 * (lt - 1.1) / 0.6, MY[0], 8, K.yel); msg(0, 1 - (lt - 1.8) / 1.2, 'resultado · 4 filas', K.paper, K.ink); }
+      if (P >= 6) { const s = 'registro: tools/call ventas_por_familia · solo lectura · 09:14 · OK'; T(s.slice(0, Math.floor(s.length * cl(lt / 1.4))), 0, 566, M(400, 24), K.mutD); }
+    }); } };
+})();
+
+/* 8 · ETL vs ELT */
+(() => { const COLS = ['#151616', '#8A352F', '#7FA3D1', '#9AA3AA', '#C2B200'], YA = 120, YB = 392;
+  const INFO = { etl: 'ETL: el motor de integración limpia antes de cargar. Al warehouse llega solo lo curado; el original no queda guardado ahí.', elt: 'ELT: todo entra tal cual a raw (queda la copia) y la transformación ocurre adentro del warehouse, con SQL.' };
+  const hp = hoverPin('etl', k => info('etl', k === null ? null : INFO[k])); const clock = { etl: 0, elt: 0 }; let last = 0;
+  function gearD(x, y, r, a, col) { X.save(); X.translate(x, y); X.rotate(a); X.fillStyle = col; for (let i = 0; i < 8; i++) { X.rotate(Math.PI / 4); X.fillRect(-7, -r - 9, 14, 14); } X.beginPath(); X.arc(0, 0, r, 0, 7); X.fill(); X.fillStyle = K.paper; X.beginPath(); X.arc(0, 0, r * 0.38, 0, 7); X.fill(); X.restore(); }
+  function dbD(x, y, col) { X.fillStyle = col; X.beginPath(); X.ellipse(x, y - 26, 34, 11, 0, 0, 7); X.fill(); X.fillRect(x - 34, y - 26, 68, 52); X.beginPath(); X.ellipse(x, y + 26, 34, 11, 0, 0, 7); X.fill(); }
+  function chart(x, y) { R(x - 46, y - 44, 92, 88, K.white, '#B4BBC2', 2); R(x - 28, y + 4, 14, 24, K.blue); R(x - 7, y - 12, 14, 40, K.blue); R(x + 14, y - 26, 14, 54, K.ink); }
+  function shp(k, x, y, s) { X.fillStyle = COLS[k % 5]; X.beginPath(); if (k % 3 === 0) X.arc(x, y, s, 0, 7); else if (k % 3 === 1) { X.moveTo(x, y - s - 2); X.lineTo(x + s + 2, y + s); X.lineTo(x - s - 2, y + s); } else X.rect(x - s, y - s, 2 * s, 2 * s); X.fill(); }
+  function flow(t, y, tidyAt, al) { X.globalAlpha = al; const N = 24, L2 = 1030; for (let i = 0; i < N; i++) { const x = 420 + ((t * 120 + i * (L2 / N)) % L2); if (x > tidyAt) R(x - 9, y - 34 + (i % 3) * 26, 18, 18, K.blue); else shp(i, x, y + Math.sin(t * 2 + i * 1.7) * 20 + ((i * 37) % 30 - 15), 8 + (i % 3) * 2); } X.globalAlpha = 1; }
+  CTL.etl = { hover: hp.hover, pin: hp.pin, frame(t) { const dt = Math.min(0.05, t - last); last = t; const k = hp.active(); if (k) clock[k] += dt; paint('etl', () => {
+    T('ETL', 0, YA - 22, F(800, 64), K.ink); T('transforma antes', 0, YA + 30, F(400, 24), K.mut); T('de cargar', 0, YA + 60, F(400, 24), K.mut);
+    T('ELT', 0, YB - 22, F(800, 64), K.ink); T('carga primero,', 0, YB + 30, F(400, 24), K.mut); T('transforma adentro', 0, YB + 60, F(400, 24), K.mut);
+    R(0, 256, 1664, 2, K.line);
+    R(880, YA - 80, 460, 160, K.pale, K.blue, 3); T('warehouse · curado', 900, YA - 56, F(700, 24), K.blue);
+    R(620, YB - 96, 720, 192, K.pale, K.blue, 3); T('warehouse', 640, YB - 72, F(700, 24), K.blue);
+    R(640, YB - 48, 190, 128, 'rgba(255,255,51,0.55)', K.ink, 2); T('raw', 656, YB - 28, F(700, 24), K.ink);
+    R(1000, YB - 48, 320, 128, 'rgba(31,73,125,0.10)', K.blue, 2); T('mart', 1016, YB - 28, F(700, 24), K.blue);
+    for (let i = 0; i < 12; i++) shp(i + 3, 668 + (i % 6) * 27, YB + 18 + Math.floor(i / 6) * 28, 7);
+    dbD(380, YA, '#62686D'); dbD(380, YB, '#62686D'); T('fuente', 380, YA + 64, F(400, 24), K.mut, 'center'); T('fuente', 380, YB + 64, F(400, 24), K.mut, 'center');
+    flow(clock.etl, YA, 700, k === 'elt' ? 0.25 : 1); flow(clock.elt, YB, 930, k === 'etl' ? 0.25 : 1);
+    gearD(640, YA, 30, clock.etl * 1.4, K.blue); T('transformar', 640, YA + 66, F(700, 24), K.blue, 'center');
+    gearD(915, YB, 26, clock.elt * 1.4, K.blue); T('SQL', 915, YB + 62, F(700, 24), K.blue, 'center');
+    chart(1500, YA); chart(1500, YB); T('consumo', 1500, YA + 66, F(400, 24), K.mut, 'center'); T('consumo', 1500, YB + 66, F(400, 24), K.mut, 'center');
+    T('Ej.: Power Query · Dataflow', 880, YA + 108, F(600, 24), K.ink); T('Ej.: BigQuery + Dataform o dbt · Snowflake · Databricks', 620, YB + 128, F(600, 24), K.ink);
+  }); } };
+})();
+
+/* 9 · Capas y reconciliación */
+(() => { const R4 = { 6: 0, 13: 1, 20: 2, 27: 3 }, Y = 44;
+  const INFO = { raw: 'raw · 5 archivos detectados. Uno se rechaza entero porque trae id_mov en vez de movimiento_id. Los otros 4 aportan 32 filas.', stg: 'staging · se tipan fechas, se limpian textos y se elige la versión vigente de cada movimiento. 4 filas no pasan las reglas.', mart: 'mart · 28 movimientos curados y $1.752.710 de importe, listos para Excel, Power BI o una IA vía MCP.',
+    tray: 'Rechazos: versión anterior de MOV-0012, cantidad negativa en MOV-0025, fecha inválida en MOV-0027 y una fila sin identificador.' };
+  const hp = hoverPin('capas', k => info('capas', k === null ? null : INFO[k])); const st = { run: null };
+  CTL.capas = { hover: hp.hover, pin: hp.pin, act(a) { st.run = a === 'run' ? performance.now() / 1000 : null; setPressed('capas', null); },
+    frame(t) { paint('capas', () => {
+      line(40, Y, 1600, Y, 'rgba(169,193,224,0.3)', 3, [4, 10]); X.strokeStyle = 'rgba(233,135,123,0.6)'; X.lineWidth = 2; X.strokeRect(650, 104, 220, 52);
+      const c = st.run === null ? -1 : t - st.run; let nr = 0, nm = 0, nj = 0, k = 0;
+      for (let i = 0; i < 32; i++) { let x, y, col = K.lb;
+        if (c < 0) { x = 60 + (i % 8) * 22; y = Y - 24 + Math.floor(i / 8) * 14; circle(x, y, 6, col); continue; }
+        const s0 = i * 0.16, p1 = cl((c - s0) / 1.3), p2 = cl((c - s0 - 1.5) / 1.3); nr++;
+        if (i in R4) { const j = R4[i]; if (p2 <= 0) { x = 60 + 712 * ez(p1); y = Y; } else { x = 832 - (832 - (672 + j * 44)) * ez(p2); y = Y + (140 - Y) * ez(p2); col = K.badD; if (p2 >= 1) nj++; } }
+        else { const m = k++, tx = 1186 + (m % 14) * 28, ty = 26 + Math.floor(m / 14) * 36; if (p2 <= 0) { x = 60 + 712 * ez(p1); y = Y; } else { x = 832 + (tx - 832) * ez(p2); y = Y + (ty - Y) * ez(p2); col = p2 >= 1 ? K.yel : K.lb; if (p2 >= 1) nm++; } }
+        circle(x, y, 9, col); }
+      if (c < 0) { T('32 filas en raw, esperando', 262, 130, F(700, 26), K.paper, 'center'); T('rechazos', 890, 130, F(700, 26), K.badD); T('curadas', 1186, 130, F(700, 26), K.yel); return; }
+      T('leídas: ' + nr, 262, 130, F(700, 26), K.paper, 'center'); T('rechazos: ' + nj, 890, 130, F(700, 26), K.badD); T('curadas: ' + nm, 1186, 130, F(700, 26), K.yel);
+      if (nm === 28 && nj === 4) T('32 = 28 + 4 ✓', 1600, 130, F(800, 28), K.okD, 'right');
+    }); } };
+})();
+
+/* 10 · Contrato */
+(() => { const BINS = [['Aceptar', 'registrar versión y continuar', K.blue], ['Detener', 'bloquear la publicación', K.bad], ['Cuarentena', 'aislar y conservar evidencia', K.ink], ['Advertir', 'no reprocesar: idempotencia', K.mut]];
+  const CHK = ['campos', 'tipos', 'grano', 'hash'], CASES = { '1': ['cumple el contrato', 0, -1], '2': ['campo opcional nuevo', 0, -1], '3': ['falta la clave', 1, 0], '4': ['texto donde va un número', 2, 1], '5': ['hash ya procesado', 3, 3] };
+  const BY = [80, 220, 360, 500], GX = 560, GW = 230, FY = 250;
+  const DIM = { completitud: 'Completitud · ¿está lo que la decisión necesita? Ej. Faro Sur: cliente activo sin región.', unicidad: 'Unicidad · ¿la clave identifica una sola observación? Ej.: despacho repetido por reingesta.', validez: 'Validez · ¿el valor pertenece al dominio? Ej.: cantidad negativa.', consistencia: 'Consistencia · ¿los campos relacionados concuerdan? Ej.: entrega anterior al despacho.', integridad: 'Integridad referencial · ¿la referencia encuentra su entidad? Ej.: pago sin pedido.', oportunidad: 'Oportunidad · ¿el dato llega antes de actuar? Ej.: tracking recibido después de prometer la entrega.' };
+  const st = { lote: null, t0: 0, cnt: [0, 0, 0, 0], counted: true };
+  function doc2(x, y, n, col) { X.fillStyle = K.white; X.strokeStyle = col; X.lineWidth = 3; X.beginPath(); X.moveTo(x - 46, y - 60); X.lineTo(x + 22, y - 60); X.lineTo(x + 46, y - 36); X.lineTo(x + 46, y + 60); X.lineTo(x - 46, y + 60); X.closePath(); X.fill(); X.stroke(); for (let i = 0; i < 3; i++) R(x - 30, y - 22 + i * 16, 60, 6, K.line); T('lote ' + n, x, y + 40, F(700, 24), K.ink, 'center'); }
+  CTL.contrato = { hover(k) { info('contrato', k === null ? null : DIM[k]); }, pin() {},
+    act(a) { if (a === 'reset') { st.lote = null; st.cnt = [0, 0, 0, 0]; setPressed('contrato', null); info('contrato', null); return; } st.lote = a; st.t0 = performance.now() / 1000; st.counted = false; setPressed('contrato', a); info('contrato', 'Lote ' + a + ': ' + CASES[a][0] + ' → ' + BINS[CASES[a][1]][0] + ' (' + BINS[CASES[a][1]][1] + ').'); },
+    frame(t) { paint('contrato', () => {
+      X.strokeStyle = K.line; X.lineWidth = 4; X.beginPath(); X.moveTo(0, FY + 78); X.lineTo(GX - 10, FY + 78); X.stroke();
+      const cs = st.lote ? CASES[st.lote] : null, lt = st.lote ? t - st.t0 : 0;
+      if (cs && lt > 2.4 && !st.counted) { st.counted = true; st.cnt[cs[1]]++; }
+      for (let b = 0; b < 4; b++) { const y = BY[b], hot = cs && lt > 2.2 && cs[1] === b; R(1114, y - 60, 544, 120, hot ? BINS[b][2] : K.white, BINS[b][2], 3); T(BINS[b][0], 1142, y - 20, F(700, 30), hot ? K.paper : BINS[b][2]); T(BINS[b][1], 1142, y + 22, F(400, 24), hot ? K.paper : K.mut); if (st.cnt[b]) T('×' + st.cnt[b], 1630, y - 20, F(700, 28), hot ? K.paper : BINS[b][2], 'right'); }
+      R(GX, 30, GW, 450, K.pale, K.blue, 3); T('contrato', GX + GW / 2, 72, F(700, 28), K.blue, 'center');
+      for (let i = 0; i < 4; i++) { const y = 150 + i * 84; T(CHK[i], GX + 26, y, F(400, 24), K.ink); if (cs) { const k = (lt - 0.9 - i * 0.2) / 0.2; if (k > 0) { const bad = cs[2] === i; circle(GX + GW - 36, y, 15, bad ? (cs[1] === 3 ? K.mut : K.bad) : K.ok); T(bad ? (cs[1] === 3 ? '=' : '✗') : '✓', GX + GW - 36, y + 1, F(800, 22), K.paper, 'center'); } } }
+      if (!cs) { if (!FS) T('Elegí un lote abajo para enviarlo al contrato.', 0, 545, F(700, 28), K.mut); return; }
+      let x, y; if (lt < 0.9) { x = -60 + (GX - 80 + 60) * ez(lt / 0.9); y = FY; } else if (lt < 1.7) { x = GX - 80; y = FY; } else { const k = ez(cl((lt - 1.7) / 0.7)); x = GX + GW + 70 + (1040 - (GX + GW + 70)) * k; y = FY + (BY[cs[1]] - FY) * k; }
+      if (lt > 1.7) { X.strokeStyle = 'rgba(31,73,125,0.25)'; X.lineWidth = 3; X.setLineDash([4, 10]); X.beginPath(); X.moveTo(GX + GW, FY); X.bezierCurveTo(GX + GW + 140, FY, 1000, BY[cs[1]], 1110, BY[cs[1]]); X.stroke(); X.setLineDash([]); }
+      if (lt < 2.6) { X.globalAlpha = lt > 2.4 ? cl((2.6 - lt) / 0.2) : 1; doc2(x, y, st.lote, lt > 1.7 ? BINS[cs[1]][2] : K.blue); X.globalAlpha = 1; }
+      T('lote ' + st.lote + ': ' + cs[0], 0, 545, F(700, 30), K.ink);
+    }); } };
+})();
+
+/* 11 · IA: preguntar y controlar */
+(() => { const SQL = ['SELECT transportista,', '  AVG(otif_flag) AS otif', 'FROM eventos_entregas', "WHERE mes = '2026-08'", 'GROUP BY transportista'];
+  const st = { ph: 0, ta: 0, tb: 0 };
+  function ui() { const q = document.querySelector('[data-s="ia"][data-act="ask"]'), c = document.querySelector('[data-s="ia"][data-act="check"]'); if (q) q.disabled = st.ph > 0; if (c) c.disabled = st.ph !== 1; }
+  function badge(y, s, col, fg) { X.font = F(700, 24); const w = X.measureText(s).width + 32; R(36, y - 22, w, 44, col); T(s, 52, y + 1, F(700, 24), fg); }
+  const ty = (s, k) => s.slice(0, Math.floor(s.length * cl(k)));
+  CTL.ia = { enter: ui, act(a) { const now = performance.now() / 1000; if (a === 'ask') { st.ph = 1; st.ta = now; info('ia', 'El agente escribió SQL y lo ejecutó por MCP. El resultado se ve bien… pero todavía nadie lo controló.'); } else if (a === 'check') { st.ph = 2; st.tb = now; info('ia', 'El control de grano detecta el error: la tabla tiene una fila por evento, no por despacho. El agente corrige y los controles pasan.'); } else { st.ph = 0; info('ia', null); } ui(); },
+    frame(t) { paint('ia', (LW, LH) => {
+      R(1, 1, LW - 2, LH - 2, K.ink2, K.ink3, 2); circle(44, 46, 8, K.yel); T('agente de datos · conectado por MCP', 64, 46, F(600, 24), K.mutD);
+      if (st.ph === 0) { R(36, 84, 800, 64, K.ink3); T('Esperando una pregunta…', 64, 117, F(600, 26), K.mutD); return; }
+      const a = t - st.ta; R(36, 84, 800, 64, K.paper); T(ty('¿OTIF de agosto por transportista?', a / 1.1), 64, 117, F(600, 26), K.ink);
+      R(36, 172, 800, 232, '#0E0F0F'); const tot = SQL.join('').length; let used = 0; const b = st.ph === 2 ? t - st.tb : -1;
+      for (let i = 0; i < 5; i++) { const s = SQL[i], y = 210 + i * 40, k = (a - 1.4) * tot / 2.2 - used; used += s.length;
+        if (i === 2 && b >= 0) { if (b < 1.6) { T(s, 64, y, M(400, 24), K.badD); X.font = M(400, 24); R(64, y, X.measureText(s).width, 3, K.badD); } else T(ty('FROM mart_entregas', (b - 1.6) / 0.8), 64, y, M(700, 24), K.okD); continue; }
+        T(s.slice(0, Math.max(0, Math.floor(k))), 64, y, M(400, 24), K.lb); }
+      if (a > 3.8 && b < 0) { badge(440, 'tools/call · ejecutar_sql · solo lectura', K.lb, K.ink); T('resultado recibido · todavía sin controlar', 36, 500, F(700, 24), K.yel); }
+      if (b >= 0) { if (b < 1.6) T('✗ control de grano: 1 fila por evento, no por despacho', 36, 500, F(700, 24), K.badD);
+        else if (b < 2.6) badge(440, 'el agente corrige la consulta', K.yel, K.ink);
+        else { badge(440, 'tools/call · ejecutar_sql · solo lectura', K.lb, K.ink); ['✓ grano: 1 fila por despacho', '✓ conteo del mart = conteo del snapshot', '✓ definición de OTIF del contrato'].forEach((s, i) => { if (b > 3 + i * 0.5) T(s, 36, 500 + i * 44, F(700, 24), K.okD); }); }
+        if (b > 4.8) { const V = [0.82, 0.64, 0.9]; ['Transp. A', 'Transp. B', 'Transp. C'].forEach((l, i) => { const y = 660 + i * 44, k = ez(cl((b - 4.8 - i * 0.2) / 0.8)); T(l, 36, y, F(400, 24), K.mutD); R(180, y - 14, 560 * V[i] * k, 28, i === 1 ? K.yel : K.lb); }); }
+        if (b > 6) T(ty('→ resultado, consulta y controles: a revisión humana', (b - 6) / 1.4), 36, 794, F(700, 24), K.yel); }
+    }); } };
+})();
+
+// bucle de dibujo: solo el slide visible
+function loop(now) { if (motionPaused) { requestAnimationFrame(loop); return; } const t = now / 1000; const sid = slides[cur] && slides[cur].dataset.id; const c = CTL[sid]; if (c && c.frame) c.frame(t); requestAnimationFrame(loop); }
+addEventListener('resize', fit); fit();
+const fromHash = () => slides.findIndex(s => '#' + s.dataset.id === location.hash);
+addEventListener('hashchange', () => { const i = fromHash(); if (i >= 0 && i !== cur) go(i); });
+// al volver de una página de detalle sin hash, retomar el slide de origen
+document.addEventListener('click', e => { const a = e.target.closest('a.detail'); if (a) try { sessionStorage.setItem('u4-from', a.dataset.from); } catch (err) {} }, true);
+let start = fromHash();
+if (start < 0) { try { const f = sessionStorage.getItem('u4-from'); if (f) { start = slides.findIndex(s => s.dataset.id === f); sessionStorage.removeItem('u4-from'); } } catch (e) {} }
+go(start >= 0 ? start : 0);
+requestAnimationFrame(loop);
+
+</script>
+
+<a class="contact-link" href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a></body></html>

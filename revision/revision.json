@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "source_commit": "93b2e84a49755aee56381366a0d2fe44027f3388",
+  "source_commit": "bff7fd91775cce8677a8cbf3aed48ddc27ee65be",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/39630576076",
-  "generated_at_utc": "2026-10-21T15:59:33+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/39681669717",
+  "generated_at_utc": "2026-10-21T21:48:51+00:00",
   "qa_status": "passed",
   "as_of": "2026-10-21",
   "published_units": [
@@ -19,8 +19,8 @@
     "Unidad 5.1 · Python, Pandas y EDA",
     "Unidad 5.2 · Descriptiva, incertidumbre y visualización"
   ],
-  "content_digest": "9061104baa354e13c8baf76d83124b00ef41d0c5ad9c8ea21414712424822065",
-  "file_count": 130,
-  "html_count": 19,
+  "content_digest": "fdf6917d87e7044303f87c2a1a67e3ae9b090723cabd76f36a18fd4728565288",
+  "file_count": 137,
+  "html_count": 24,
   "contact": "analisisdatosutnfrc@gmail.com"
 }

@@ -1,0 +1,333 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Detalle · Llamada a una API</title>
+
+<style>
+:root{--ink:#151616;--ink2:#1E2021;--ink3:#2A2D2F;--paper:#F2F2F2;--mut:#BFC3C4;--yel:#FFFF33;--blue:#1F497D;--pale:#DCE6F1;color-scheme:dark}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:Inter,"Helvetica Neue",Arial,sans-serif;display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;gap:20px;padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--ink3);flex-wrap:wrap}
+.back{color:var(--ink);background:var(--yel);text-decoration:none;font-weight:800;font-size:15px;padding:10px 14px;white-space:nowrap}
+.back:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--yel);outline-offset:3px}
+.ttl{display:flex;flex-direction:column;min-width:0;flex:1}.ttl span{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--yel)}.ttl b{font-size:20px;letter-spacing:-.02em}
+.pos{font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+canvas{width:100%;height:100%;object-fit:contain;display:block;cursor:pointer;max-width:100%}
+.ctrl{border-top:1px solid var(--ink3);padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:10px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;font-weight:700;color:var(--paper);background:transparent;border:1px solid #4A4E51;padding:10px 14px;cursor:pointer}
+button:hover{border-color:var(--paper)}button:disabled{opacity:.35;cursor:default}
+button.primary{background:var(--yel);color:var(--ink);border-color:var(--yel)}
+button[aria-pressed=true]{background:var(--paper);color:var(--ink)}
+.steps{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.steps button{font-size:13px;font-weight:600;white-space:nowrap;padding:8px 10px;color:var(--mut)}
+.steps button[aria-current=step]{background:var(--yel);color:var(--ink);border-color:var(--yel)}
+.others{font-size:13px;color:var(--mut)}.others a{color:var(--paper);margin-left:10px}
+</style><link rel="stylesheet" href="simulaciones.css"></head><body>
+<header class="bar"><span class="utn-mark light" role="img" aria-label="UTN"></span><a id="back" class="back" href="index.html">← Volver a la lectura</a><div class="ttl"><span>Unidad 4 · Explorar en detalle</span><b>Anatomía de una llamada a una API</b></div><span id="pos" class="pos" aria-live="polite"></span></header>
+<main><canvas id="c" role="img" aria-label="Anatomía de una llamada a una API: animación paso a paso. Hacé clic o usá la flecha derecha para avanzar."></canvas></main><p class="simulation-note">Simulación con datos ficticios. No ejecuta consultas ni se conecta a servicios. <a href="#lectura">Leer los pasos</a>.</p>
+<footer class="ctrl"><div class="btns"><button type="button" id="prev">◂ Anterior</button><button type="button" id="replay">Animar este paso</button><button type="button" id="auto" aria-pressed="false">Reproducir todo</button><button type="button" id="next" class="primary">Siguiente ▸</button></div>
+<nav id="steps" class="steps" aria-label="Pasos"></nav><div class="others">Otros detalles:<a href="detalle-mcp.html">MCP e IA</a> <a href="detalle-etl.html">ETL y ELT</a></div></footer>
+<section id="lectura" class="transcript"><h1>Lectura del recorrido</h1><p>Las fechas, identificadores e importes pertenecen al ejemplo ficticio. El código ilustra operaciones; requiere adaptación y controles antes de usarse con una fuente real.</p><h2>Todo empieza en un script</h2><p>Un programa en Python define a dónde vamos (la URL), qué pedimos (los parámetros) y quiénes somos (el token). La biblioteca requests arma y envía el pedido.</p><h2>requests arma un mensaje HTTP</h2><p>La llamada se convierte en un texto con formato estándar: método y ruta con los parámetros, más encabezados (headers). Es un sobre con dirección, remitente y una nota de qué formato aceptamos.</p><h2>Viaja por internet, cifrado</h2><p>Primero el nombre api.farosur.example se traduce a una dirección numérica (DNS, como una agenda de contactos). Después el mensaje viaja cifrado por HTTPS: nadie en el camino puede leer el token ni los datos.</p><h2>El servidor controla antes de responder</h2><p>Cada solicitud pasa por controles. Si alguno falla, la respuesta es un código de error y no se entregan datos. Por eso el código de estado es lo primero que mira nuestro script.</p><h2>Los parámetros se convierten en una consulta</h2><p>Del otro lado hay una base de datos. El servidor traduce los parámetros a una consulta (en este ejemplo, SQL) y obtiene las filas. Nunca vemos esa base: solo lo que la API decide exponer. Ilustrativo: cada proveedor lo implementa a su manera.</p><h2>Las filas se empaquetan como JSON</h2><p>En este ejemplo, la respuesta viaja como texto JSON. El servidor convierte cada fila en un objeto JSON y agrega datos de control: la página actual, el total de páginas y el enlace a la siguiente.</p><h2>La respuesta vuelve y la leemos</h2><p>Hace el viaje inverso. En el script, primero miramos el código de estado: 200 significa éxito. Después r.json() convierte el texto en diccionarios y listas de Python que podemos recorrer.</p><h2>Una respuesta puede venir en páginas</h2><p>Si hay más datos, la respuesta trae el enlace a la siguiente página. El script repite la llamada hasta que no quede ninguna. Si el servidor responde 429 (demasiados pedidos), espera y reintenta.</p><h2>Se guarda: snapshot, metadatos y capa raw</h2><p>El ejemplo guarda los registros reunidos, con fecha y una huella digital (hash). Para preservar la respuesta original, también se conservan los bytes de cada página y sus metadatos. La copia permite repetir el análisis con la misma entrada.</p><h2>Resumen: el viaje completo</h2><p>Script → mensaje HTTP → internet (DNS + HTTPS) → controles → consulta → JSON → respuesta → páginas → snapshot y raw. Cada paso deja algo que se puede revisar.</p><h2>Al aplicar el ejemplo</h2><p>Un 200 confirma el éxito de la solicitud; también hay que validar el contenido. raise_for_status() lanza una excepción para 4xx y 5xx. La paginación mostrada supone páginas numeradas y Retry-After en segundos: una integración real debe acotar reintentos y contemplar el formato que declare el proveedor. El JSON serializado del ejemplo reúne registros; para conservar la respuesta original se guardan además los bytes de cada página y sus metadatos.</p><h2>Solicitud ilustrativa en Python</h2><pre><code># Fuente ficticia; API_TOKEN se obtiene fuera del código.
+import os
+import requests
+r = requests.get(
+    &quot;https://api.farosur.example/v1/despachos&quot;,
+    params={&quot;pagina&quot;: 1},
+    headers={&quot;Authorization&quot;: f&quot;Bearer {os.environ[&#x27;API_TOKEN&#x27;]}&quot;},
+    timeout=30,
+)
+r.raise_for_status()
+datos = r.json()
+# Validar esquema, conteos y paginación antes de analizar.</code></pre><p><a href="index.html">Volver a conceptos y actividades</a> · <a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a></p></section><script>
+// Kit de dibujo compartido (estilo del sitio de la materia).
+const W = 1920, H = 1080;
+let X = null; function useCtx(c) { X = c; }
+const K = {
+  paper: '#F2F2F2', paper2: '#E8EDF2', ink: '#151616', ink2: '#1E2021', ink3: '#2A2D2F', blue: '#1F497D', blueD: '#143254',
+  pale: '#DCE6F1', yel: '#FFFF33', line: '#C9CED3', mut: '#62686D', mutD: '#BFC3C4', ok: '#22644A', okD: '#8FD3AE',
+  bad: '#8A352F', badD: '#E9877B', lb: '#A9C1E0', white: '#FFFFFF'
+};
+const F = (w, s) => `${w} ${s}px Inter, Arial, sans-serif`;
+const M = (w, s) => `${w} ${s}px "JetBrains Mono", "DejaVu Sans Mono", monospace`;
+const cl = k => Math.max(0, Math.min(1, k));
+const ez = k => { k = cl(k); return k * k * (3 - 2 * k); };
+const seg = (t, a, b) => cl((t - a) / (b - a));
+const lerp = (a, b, k) => a + (b - a) * k;
+
+function R(x, y, w, h, f, s, lw) { if (f) { X.fillStyle = f; X.fillRect(x, y, w, h); } if (s) { X.strokeStyle = s; X.lineWidth = lw || 2; X.strokeRect(x + (lw || 2) / 2, y + (lw || 2) / 2, w - (lw || 2), h - (lw || 2)); } }
+function T(s, x, y, font, col, al, base) { X.font = font; X.fillStyle = col; X.textAlign = al || 'left'; X.textBaseline = base || 'middle'; X.fillText(s, x, y); return X.measureText(s).width; }
+function TW(s, font) { X.font = font; return X.measureText(s).width; }
+function wrap(s, x, y, maxW, font, col, lh, al) {
+  X.font = font; const words = s.split(' '); let line = '', yy = y;
+  for (const w of words) { const test = line ? line + ' ' + w : w; if (X.measureText(test).width > maxW && line) { T(line, x, yy, font, col, al, 'top'); line = w; yy += lh; } else line = test; }
+  if (line) T(line, x, yy, font, col, al, 'top'); return yy + lh - y;
+}
+function circle(x, y, r, f, s, lw) { X.beginPath(); X.arc(x, y, r, 0, 7); if (f) { X.fillStyle = f; X.fill(); } if (s) { X.strokeStyle = s; X.lineWidth = lw || 2; X.stroke(); } }
+function line(x1, y1, x2, y2, col, lw, dash) { X.strokeStyle = col; X.lineWidth = lw || 2; X.setLineDash(dash || []); X.beginPath(); X.moveTo(x1, y1); X.lineTo(x2, y2); X.stroke(); X.setLineDash([]); }
+function arrow(x1, y1, x2, y2, col, lw, dash) {
+  line(x1, y1, x2, y2, col, lw || 3, dash); const a = Math.atan2(y2 - y1, x2 - x1), s = 10 + (lw || 3) * 2;
+  X.fillStyle = col; X.beginPath(); X.moveTo(x2, y2); X.lineTo(x2 - s * Math.cos(a - 0.45), y2 - s * Math.sin(a - 0.45)); X.lineTo(x2 - s * Math.cos(a + 0.45), y2 - s * Math.sin(a + 0.45)); X.fill();
+}
+function tag(s, x, y, bg, fg, font, padX, h, al) { font = font || F(800, 24); padX = padX || 14; h = h || 40; const w = TW(s, font) + padX * 2; const x0 = al === 'center' ? x - w / 2 : al === 'right' ? x - w : x; R(x0, y - h / 2, w, h, bg); T(s, x0 + padX, y + 1, font, fg); return w; }
+function label(s, x, y, col) { T(s.toUpperCase(), x, y, F(800, 22), col || K.blue); }
+// Bloques de código con resaltado simple
+const KW = {
+  py: /^(import|from|def|return|if|else|elif|while|for|in|not|and|or|True|False|None|break|continue|with|as|open)$/,
+  sql: /^(SELECT|FROM|WHERE|GROUP|BY|ORDER|LIMIT|OFFSET|JOIN|USING|ON|AS|CREATE|TABLE|VIEW|OR|REPLACE|INSERT|INTO|DISTINCT|COUNT|SUM|CAST|TRIM|UPPER|HAVING|IS|NULL|NOT|AND|DECIMAL|DATE|now|strptime|read_csv|read_json|UNION|ALL|WITH|SCHEMA|VALUES|CASE|WHEN|THEN|END)$/,
+  http: /^(GET|POST|HTTP\/1\.1|Host:|Authorization:|Accept:|Content-Type:|Bearer|OK)$/,
+  json: /^$/
+};
+function codeTokens(s, lang) {
+  const out = []; const re = /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|#.*$|--.*$|\b\d+(?:[.,]\d+)?\b|[A-Za-z_][A-Za-z0-9_.\/:]*|\s+|.)/g; let m;
+  while ((m = re.exec(s))) { const tk = m[0]; let c = '#E6E8EA';
+    if (tk[0] === '#' && lang === 'py' || tk.startsWith('--') && lang === 'sql') c = '#8E969C';
+    else if (tk[0] === '"' || tk[0] === "'") c = lang === 'json' && /^\s*:/.test(s.slice(m.index + tk.length)) ? K.lb : '#FFFF8A';
+    else if (/^\d/.test(tk)) c = '#F2C7A5';
+    else if (KW[lang] && KW[lang].test(tk.replace(/\(.*/, ''))) c = K.lb;
+    out.push([tk, c]); }
+  return out;
+}
+// lines: array de strings; o: {size, lh, typed (n caracteres visibles), hl: {linea:color}, title}
+function code(x, y, w, lines, lang, o) {
+  o = o || {}; const size = o.size || 26, lh = o.lh || size * 1.55, pad = 26, th = o.title ? 46 : 0;
+  const h = o.h || (lines.length * lh + pad * 2 + th);
+  R(x, y, w, h, K.ink); R(x, y, 8, h, K.yel);
+  if (o.title) { R(x + 8, y, w - 8, th, K.ink3); T(o.title, x + 30, y + th / 2, M(600, 22), K.mutD); }
+  X.font = M(400, size); const cw = X.measureText('M').width; let left = o.typed === undefined ? Infinity : o.typed;
+  for (let i = 0; i < lines.length; i++) {
+    const ly = y + th + pad + i * lh + lh / 2;
+    if (o.hl && o.hl[i]) R(x + 8, ly - lh / 2, w - 8, lh, o.hl[i]);
+    if (left <= 0) break;
+    let xx = x + pad + 14; const s = lines[i].slice(0, Math.max(0, left)); left -= lines[i].length + 1;
+    for (const [tk, c] of codeTokens(s, lang)) { T(tk, xx, ly, M(o.bold && o.bold[i] ? 700 : 400, size), (o.dim && o.dim[i]) ? '#6E767C' : c); xx += cw * tk.length; }
+    if (o.cursor && left <= 0 && Math.floor(o.cursor * 2) % 2 === 0) R(xx + 2, ly - size * 0.6, cw * 0.6, size * 1.2, K.yel);
+  }
+  return h;
+}
+function chars(lines) { return lines.reduce((a, l) => a + l.length + 1, 0); }
+// Tabla: cols [{n, w}], rows [[..]], o: {size, rh, head, cell:(r,c)=>({bg,col,txt,font}), rowA:(r)=>alpha, dark}
+function table(x, y, cols, rows, o) {
+  o = o || {}; const size = o.size || 24, rh = o.rh || 46, dark = o.dark;
+  const tw = cols.reduce((a, c) => a + c.w, 0);
+  R(x, y, tw, rh, dark ? K.ink3 : K.ink);
+  let cx = x; for (const c of cols) { T(c.n, cx + 14, y + rh / 2, M(700, size - 2), K.yel); cx += c.w; }
+  for (let r = 0; r < rows.length; r++) {
+    const a = o.rowA ? o.rowA(r) : 1; if (a <= 0) continue; X.globalAlpha *= a; const yy = y + rh * (r + 1);
+    R(x, yy, tw, rh, dark ? (r % 2 ? K.ink2 : '#232628') : (r % 2 ? '#F7F8F9' : K.white)); cx = x;
+    for (let c = 0; c < cols.length; c++) {
+      const st = o.cell ? (o.cell(r, c) || {}) : {}; if (st.bg) R(cx, yy, cols[c].w, rh, st.bg);
+      const v = st.txt !== undefined ? st.txt : rows[r][c];
+      T(v === null ? 'NULL' : String(v), cx + 14, yy + rh / 2, st.font || M(v === null ? 700 : 400, size), st.col || (v === null ? K.bad : (dark ? '#E6E8EA' : K.ink)));
+      if (st.strike) line(cx + 10, yy + rh / 2, cx + cols[c].w - 10, yy + rh / 2, K.bad, 3);
+      cx += cols[c].w;
+    }
+    line(x, yy + rh, x + tw, yy + rh, dark ? K.ink3 : K.line, 1);
+    X.globalAlpha /= a;
+  }
+  return { w: tw, h: rh * (rows.length + 1) };
+}
+function db(x, y, w, h, col, lab) { // cilindro
+  const e = h * 0.14; X.fillStyle = col; X.beginPath(); X.ellipse(x + w / 2, y + e, w / 2, e, 0, 0, 7); X.fill(); X.fillRect(x, y + e, w, h - 2 * e);
+  X.beginPath(); X.ellipse(x + w / 2, y + h - e, w / 2, e, 0, 0, 7); X.fill();
+  X.strokeStyle = 'rgba(255,255,255,0.35)'; X.lineWidth = 2; X.beginPath(); X.ellipse(x + w / 2, y + e, w / 2, e, 0, 0, Math.PI); X.stroke();
+  if (lab) T(lab, x + w / 2, y + h / 2 + e / 2, F(800, 24), K.white, 'center');
+}
+function lock(x, y, s, col) { X.strokeStyle = col; X.lineWidth = s * 0.16; X.beginPath(); X.arc(x, y - s * 0.15, s * 0.32, Math.PI, 0); X.stroke(); R(x - s * 0.45, y - s * 0.15, s * 0.9, s * 0.7, col); }
+function check(x, y, ok, r) { circle(x, y, r || 18, ok ? K.ok : K.bad); T(ok ? '✓' : '✗', x, y + 1, F(800, (r || 18) * 1.2), K.white, 'center'); }
+function gear(x, y, r, a, col) { X.save(); X.translate(x, y); X.rotate(a); X.fillStyle = col; for (let i = 0; i < 8; i++) { X.rotate(Math.PI / 4); X.fillRect(-r * 0.22, -r - r * 0.3, r * 0.44, r * 0.5); } X.beginPath(); X.arc(0, 0, r, 0, 7); X.fill(); X.fillStyle = K.paper; X.beginPath(); X.arc(0, 0, r * 0.38, 0, 7); X.fill(); X.restore(); }
+function doc(x, y, w, h, col, txt) { X.fillStyle = K.white; X.strokeStyle = col; X.lineWidth = 3; X.beginPath(); X.moveTo(x, y); X.lineTo(x + w - 22, y); X.lineTo(x + w, y + 22); X.lineTo(x + w, y + h); X.lineTo(x, y + h); X.closePath(); X.fill(); X.stroke(); if (txt) T(txt, x + w / 2, y + h - 22, M(700, 20), col, 'center'); }
+
+
+// Motor de las páginas de detalle: escenas paso a paso controladas por la persona.
+const C = document.getElementById('c'); C.width = W; C.height = H; useCtx(C.getContext('2d'));
+
+let VIDEO = { title: '', num: '', scenes: [] };
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// slide de origen: viaja en el hash (#paso-N~slide) y se conserva al cambiar de paso
+const FROM = (location.hash.match(/~([a-z]+)$/) || [])[1] || (() => { try { return sessionStorage.getItem('u4-from'); } catch (e) { return null; } })() || '';
+function drawStep(i, lt) {
+  const sc = VIDEO.scenes, s = sc[i], dark = !!s.dark;
+  R(0, 0, W, H, dark ? K.ink : K.paper);
+  if (s.full) { s.draw(lt, s.d); return; }
+
+  T('Análisis de Datos', 112, 46, F(800, 24), dark ? K.paper : K.ink); T('Unidad 4 · ' + VIDEO.num, 330, 46, F(400, 24), dark ? K.mutD : K.mut);
+  T(VIDEO.title.toUpperCase(), W - 64, 46, F(800, 22), dark ? K.yel : K.blue, 'right');
+  line(64, 88, W - 64, 88, dark ? K.ink3 : K.line, 1);
+  X.save(); X.beginPath(); X.rect(0, 90, W, 770); X.clip(); s.draw(lt, s.d); X.restore();
+  R(0, 860, W, 220, K.ink); R(0, 860, W, 6, K.yel);
+  X.globalAlpha = seg(lt, 0, 0.5);
+  if (s.step) tag(s.step, 64, 912, K.yel, K.ink, F(800, 24));
+  T(s.cap[0], s.step ? 64 + TW(s.step, F(800, 24)) + 28 + 24 : 64, 912, F(800, 40), K.paper);
+  wrap(s.cap[1] || '', 64, 950, 1790, F(400, 30), K.mutD, 40);
+  X.globalAlpha = 1;
+  const n = sc.filter(q => q.step).length; let k = 0; const bw = (W - 128 - (n - 1) * 8) / n;
+  for (let j = 0; j < sc.length; j++) { if (!sc[j].step) continue; const x = 64 + k * (bw + 8); R(x, 1052, bw, 8, K.ink3); if (j < i) R(x, 1052, bw, 8, K.yel); else if (j === i) R(x, 1052, bw * Math.min(1, lt / s.d), 8, K.yel); k++; }
+  if (lt < 0.35) { X.globalAlpha = 1 - lt / 0.35; R(0, 90, W, 770, dark ? K.ink : K.paper); X.globalAlpha = 1; }
+}
+function titleCard(lt, d, eyebrow, title1, title2, sub) {
+  R(0, 0, W, H, K.ink); const a = seg(lt, 0.2, 1.0);
+   T('Análisis de Datos', 192, 148, F(800, 30), K.paper); T('Ingeniería Industrial · 2026', 470, 148, F(400, 30), K.mutD);
+  X.globalAlpha = a; R(96, 360, 14, 330, K.yel);
+  T(eyebrow.toUpperCase(), 128, 330, F(800, 28), K.yel);
+  T(title1, 128, 430, F(800, 120), K.paper); T(title2, 128, 570, F(800, 120), K.yel);
+  wrap(sub, 128, 660, 1400, F(400, 38), K.mutD, 52);
+  T('Usá ◂ ▸ o los botones de abajo para avanzar paso a paso.', 128, 860, F(600, 30), K.paper);
+  X.globalAlpha = 1;
+}
+// Controles
+let cur = 0, t0 = performance.now(), auto = false;
+let animate = false;
+const elList = document.getElementById('steps'), elPrev = document.getElementById('prev'), elNext = document.getElementById('next'), elRep = document.getElementById('replay'), elAuto = document.getElementById('auto'), elPos = document.getElementById('pos');
+function stepLabel(s, i) { return s.full ? 'Inicio' : (s.step ? s.step.replace(/^PASO (\d+) DE \d+$/, '$1') + ' · ' + s.cap[0] : s.cap[0]); }
+function go(i, keepAuto) {
+  cur = Math.max(0, Math.min(VIDEO.scenes.length - 1, i)); t0 = performance.now(); if (!keepAuto) setAuto(false);
+  [...elList.children].forEach((b, j) => { b.setAttribute('aria-current', j === cur ? 'step' : 'false'); if (j === cur) b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); });
+  elPrev.disabled = cur === 0; elNext.disabled = cur === VIDEO.scenes.length - 1;
+  const st = VIDEO.scenes[cur].step; elPos.textContent = st ? st.toLowerCase().replace('paso', 'Paso') : (cur === 0 ? 'Inicio' : 'Resumen');
+  const m = st && st.match(/^PASO (\d+)/); try { history.replaceState(null, '', (m ? '#paso-' + m[1] : (cur === 0 ? '#inicio' : '#resumen')) + (FROM ? '~' + FROM : '')); } catch (e) {}
+}
+function setAuto(v) { auto = v; animate = v; elAuto.setAttribute('aria-pressed', v ? 'true' : 'false'); elAuto.textContent = v ? 'Pausar recorrido' : 'Reproducir todo'; }
+function initControls() {
+  VIDEO.scenes.forEach((s, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = stepLabel(s, i); b.addEventListener('click', () => go(i)); elList.appendChild(b); });
+  elPrev.addEventListener('click', () => go(cur - 1)); elNext.addEventListener('click', () => go(cur + 1)); elRep.addEventListener('click', () => { go(cur, true); animate = true; });
+  elAuto.addEventListener('click', () => { if (!auto && cur === VIDEO.scenes.length - 1) go(0); setAuto(!auto); t0 = auto ? t0 : t0; });
+  addEventListener('keydown', e => { if (e.target.closest('button,a,input,summary') || document.activeElement.closest('#lectura')) return; if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(cur + 1); } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); } else if (e.key === 'r' || e.key === 'R') go(cur, true); });
+  C.addEventListener('click', () => go(cur + 1));
+  const h = (location.hash || '').match(/paso-(\d+)/); let start = 0;
+  if (h) { const idx = VIDEO.scenes.findIndex(s => s.step && s.step.startsWith('PASO ' + h[1] + ' ')); if (idx >= 0) start = idx; } else if (location.hash.startsWith('#resumen')) start = VIDEO.scenes.length - 1;
+  go(start);
+  if (FROM) { document.getElementById('back').href = 'recorrido.html#' + FROM; document.querySelectorAll('.others a').forEach(a => { a.href = a.getAttribute('href') + '#inicio~' + FROM; }); }
+  requestAnimationFrame(loop);
+}
+function loop(now) {
+  const s = VIDEO.scenes[cur]; let lt = (now - t0) / 1000; if (RM || !animate) lt = s.d;
+  drawStep(cur, Math.min(lt, s.d));
+  if (auto && !RM && lt > s.d + 1.2) { if (cur < VIDEO.scenes.length - 1) go(cur + 1, true); else setAuto(false); }
+  requestAnimationFrame(loop);
+}
+
+
+function faq(x, y, w, q, a, al) {
+  if (al <= 0) return; X.globalAlpha = al; const h = 138 + Math.ceil(TW(a, F(400, 26)) / (w - 70)) * 34;
+  R(x, y, w, h, K.pale); R(x, y, 8, h, K.blue); T('DUDA', x + 30, y + 26, F(800, 18), K.blue);
+  T(q, x + 30, y + 60, F(800, 28), K.ink); wrap(a, x + 30, y + 82, w - 60, F(400, 26), K.ink, 34);
+  X.globalAlpha = 1;
+}
+function card(x, y, w, n, txt, al, dark) {
+  if (al <= 0) return; X.globalAlpha = al; const h = 30 + Math.ceil(TW(txt, F(400, 27)) / (w - 92)) * 36;
+  R(x, y, w, h, dark ? K.ink2 : K.white); R(x, y, 6, h, K.blue); tag(n, x + 22, y + 34, K.yel, K.ink, F(800, 24), 10, 36);
+  wrap(txt, x + 80, y + 16, w - 100, F(400, 27), dark ? K.paper : K.ink, 36); X.globalAlpha = 1; return h;
+}
+const CODE1 = ['import os, requests', '', 'URL = "https://api.farosur.example/v1/despachos"', 'params = {"desde": "2026-09-01", "pagina": 1}', 'headers = {',
+  '    "Accept": "application/json",', '    "Authorization": f"Bearer {os.environ[\'API_TOKEN\']}",', '}', '', 'r = requests.get(URL, params=params,', '                 headers=headers, timeout=30)'];
+function upto(lines, n) { return chars(lines.slice(0, n)); }
+const ROWS = [['S000101', 'P001', 'entregado', '2026-09-03'], ['S000102', 'P002', 'en_transito', '2026-09-04'], ['S000103', 'P003', 'entregado', '2026-09-04'], ['S000104', 'P004', 'despachado', '2026-09-05']];
+function laptop(x, y, lab, sub, dark) { R(x, y, 300, 190, dark ? K.ink2 : K.white, dark ? K.ink3 : K.line, 2); R(x + 18, y + 18, 264, 120, K.ink); T('>>> requests.get(…)', x + 34, y + 60, M(400, 20), K.okD); R(x - 20, y + 190, 340, 16, dark ? K.ink3 : K.line);
+  T(lab, x + 150, y + 240, F(800, 28), dark ? K.paper : K.ink, 'center'); if (sub) T(sub, x + 150, y + 276, F(400, 24), dark ? K.mutD : K.mut, 'center'); }
+function server(x, y, lab, sub, dark, glow) { for (let i = 0; i < 3; i++) { R(x, y + i * 70, 260, 60, glow ? K.blue : K.blueD); circle(x + 30, y + 30 + i * 70, 7, K.yel); R(x + 60, y + 26 + i * 70, 150, 8, 'rgba(255,255,255,0.35)'); }
+  T(lab, x + 130, y + 250, F(800, 28), dark ? K.paper : K.ink, 'center'); if (sub) T(sub, x + 130, y + 286, M(400, 22), dark ? K.mutD : K.mut, 'center'); }
+function envelope(x, y, w, h, col, lockOn) { R(x, y, w, h, K.white, col, 3); X.strokeStyle = col; X.lineWidth = 3; X.beginPath(); X.moveTo(x, y); X.lineTo(x + w / 2, y + h * 0.55); X.lineTo(x + w, y); X.stroke(); if (lockOn) { R(x + w / 2 - 22, y + h - 40, 44, 34, K.yel); lock(x + w / 2, y + h - 16, 26, K.ink); } }
+const HTTP = ['GET /v1/despachos?desde=2026-09-01&pagina=1 HTTP/1.1', 'Host: api.farosur.example', 'Accept: application/json', 'Authorization: Bearer <token-de-ejemplo>'];
+const LOOP = ['registros, pagina = [], 1', 'while True:', '    params["pagina"] = pagina', '    r = requests.get(URL, params=params,', '                     headers=headers, timeout=30)',
+  '    if r.status_code == 429:      # límite de uso', '        time.sleep(int(r.headers.get("Retry-After", 5)))', '        continue', '    r.raise_for_status()', '    datos = r.json()',
+  '    registros += datos["datos"]', '    if not datos["siguiente"]:', '        break', '    pagina += 1'];
+
+VIDEO = { title: 'Detalle · Llamada a una API', num: 'Explorar en detalle', scenes: [
+{ d: 6, full: true, draw: (t, d) => titleCard(t, d, 'Unidad 4 · Explorar en detalle', 'Anatomía de una', 'llamada a una API', 'Desde la línea de código que la crea hasta el archivo donde se guarda. Ejemplo: la API logística ficticia de Faro Sur.') },
+{ d: 17, step: 'PASO 1 DE 9', cap: ['Todo empieza en un script', 'Un programa en Python define a dónde vamos (la URL), qué pedimos (los parámetros) y quiénes somos (el token). La biblioteca requests arma y envía el pedido.'],
+  draw(t) { const tc = upto(CODE1, 11) * seg(t, 0.5, 9.5); const hl = {};
+    const cs = [[2, 2.6], [3, 4.6], [6, 7.2], [9, 9.6]]; cs.forEach(([l, s], i) => { if (t > s && t < s + 3.5) { hl[l] = 'rgba(255,255,51,0.14)'; if (l === 6) hl[5] = hl[4] = hl[7] = 'rgba(255,255,51,0.14)'; if (l === 9) hl[10] = 'rgba(255,255,51,0.14)'; } });
+    code(64, 130, 1040, CODE1, 'py', { size: 26, typed: tc, hl, title: 'extraer_despachos.py', cursor: t });
+    let y = 130; const txt = ['Dirección: a qué sistema (api.farosur.example) y a qué recurso (/v1/despachos) le pedimos datos.', 'Parámetros: el filtro. Desde qué fecha y qué página de resultados queremos.', 'Identidad: el token se lee de una variable de entorno. Nunca se escribe en el código ni se comparte.', 'La llamada: GET significa “leer”. timeout=30 evita esperar para siempre.'];
+    for (let i = 0; i < 4; i++) { const h = card(1150, y, 706, String(i + 1), txt[i], seg(t, cs[i][1], cs[i][1] + 0.6)); y += (h || 110) + 16; }
+    faq(1150, 640, 706, '¿Qué es una biblioteca?', 'Código que otra persona ya escribió y podemos reutilizar. requests sabe hablar HTTP por nosotros.', seg(t, 12, 12.8)); } },
+{ d: 14, step: 'PASO 2 DE 9', cap: ['requests arma un mensaje HTTP', 'La llamada se convierte en un texto con formato estándar: método y ruta con los parámetros, más encabezados (headers). Es un sobre con dirección, remitente y una nota de qué formato aceptamos.'],
+  draw(t) { code(64, 130, 760, ['URL = ".../v1/despachos"', 'params = {"desde": "2026-09-01",', '          "pagina": 1}', 'headers = {"Accept": "application/json",', '  "Authorization": "Bearer <token>"}', 'requests.get(URL, params=params, headers=headers, timeout=30)'], 'py', { size: 22, title: 'en Python', hl: { 0: t > 2 && t < 5 ? 'rgba(169,193,224,0.25)' : 0, 1: t > 4 && t < 7.5 ? 'rgba(255,255,51,0.2)' : 0, 2: t > 4 && t < 7.5 ? 'rgba(255,255,51,0.2)' : 0, 4: t > 7 && t < 10 ? 'rgba(233,135,123,0.3)' : 0 } });
+    const a = seg(t, 0.8, 2); X.globalAlpha = a; arrow(840, 300, 930, 300, K.blue, 5); X.globalAlpha = 1;
+    X.globalAlpha = a; envelope(960, 130, 896, 330, K.blue, false); X.globalAlpha = 1;
+    if (t > 1.2) code(990, 190, 836, HTTP, 'http', { size: 22, typed: chars(HTTP) * seg(t, 1.2, 3.5), title: 'mensaje HTTP que viaja', hl: { 0: t > 2 && t < 7.5 ? 'rgba(255,255,51,0.2)' : 0, 1: t > 2 && t < 5 ? 'rgba(169,193,224,0.25)' : 0, 3: t > 7 && t < 10 ? 'rgba(233,135,123,0.3)' : 0 } });
+    const notes = [['Método + ruta', 'GET /v1/despachos: la acción y el recurso.', 2], ['Query string', 'Todo lo que va después de ? son los parámetros, separados por &.', 4.5], ['Headers', 'Metadatos: qué formato aceptamos y quiénes somos (el token).', 7]];
+    notes.forEach(([h, b, s], i) => { const al = seg(t, s, s + 0.6); X.globalAlpha = al; R(960 + i * 304, 500, 288, 170, K.white); R(960 + i * 304, 500, 288, 6, K.blue); T(h, 980 + i * 304, 536, F(800, 26), K.blue); wrap(b, 980 + i * 304, 560, 250, F(400, 24), K.ink, 31); X.globalAlpha = 1; });
+    faq(64, 520, 760, '¿Qué es HTTP?', 'El idioma común de la web: el mismo que usa tu navegador para pedir una página. Una API web lo usa para pedir datos.', seg(t, 10, 10.8)); } },
+{ d: 14, step: 'PASO 3 DE 9', cap: ['Viaja por internet, cifrado', 'Primero el nombre api.farosur.example se traduce a una dirección numérica (DNS, como una agenda de contactos). Después el mensaje viaja cifrado por HTTPS: nadie en el camino puede leer el token ni los datos.'], dark: true,
+  draw(t) { laptop(90, 330, 'Tu notebook', 'Colab · Python', true); server(1560, 320, 'Servidor de la API', '203.0.113.10', true, t > 11);
+    const da = seg(t, 0.6, 1.4); X.globalAlpha = da; R(760, 120, 400, 130, K.ink2, K.ink3, 2); T('DNS', 790, 156, F(800, 26), K.yel); T('api.farosur.example', 790, 196, M(400, 22), K.paper); if (t > 3) T('→ 203.0.113.10', 790, 228, M(700, 22), K.okD); X.globalAlpha = 1;
+    if (t > 1 && t < 4.6) { const k = t < 2.8 ? seg(t, 1, 2.8) : 1 - seg(t, 2.8, 4.6); const x = lerp(400, 760, k), y = lerp(380, 250, k); circle(x, y, 10, K.yel); T(t < 2.8 ? '¿dirección?' : '203.0.113.10', x + 16, y - 20, F(700, 22), K.yel); }
+    const hops = [[520, 560], [780, 470], [1040, 600], [1300, 480]]; const pts = [[400, 420], ...hops, [1560, 420]];
+    for (let i = 0; i < pts.length - 1; i++) line(pts[i][0], pts[i][1], pts[i + 1][0], pts[i + 1][1], K.ink3, 4, [6, 10]);
+    hops.forEach(([x, y]) => { circle(x, y, 22, K.ink2, K.lb, 3); T('router', x, y + 44, F(400, 20), K.mutD, 'center'); });
+    const k = seg(t, 5, 11); if (k > 0 && k < 1) { const f = k * (pts.length - 1), i = Math.floor(f), u = ez(f - i); const x = lerp(pts[i][0], pts[i + 1][0], u), y = lerp(pts[i][1], pts[i + 1][1], u);
+      envelope(x - 50, y - 36, 100, 72, K.yel, true); const sc = 'x7#Qa9!kP2v$Lm0'; T(sc.slice(0, 6 + Math.floor(t * 4) % 9), x - 50, y - 60, M(700, 22), K.badD); }
+    if (t > 11) { T('✓ llegó', 1690, 700, F(800, 28), K.okD, 'center'); }
+    faq(90, 668, 760, '¿Qué es internet en este viaje?', 'Una red de redes: el mensaje salta entre equipos (routers) hasta llegar al servidor.', seg(t, 6, 6.8) * (1 - seg(t, 12.6, 13))); } },
+{ d: 15, step: 'PASO 4 DE 9', cap: ['El servidor controla antes de responder', 'Cada solicitud pasa por controles. Si alguno falla, la respuesta es un código de error y no se entregan datos. Por eso el código de estado es lo primero que mira nuestro script.'],
+  draw(t) { envelope(80, 300, 190, 140, K.blue, true); T('solicitud', 175, 480, F(700, 24), K.ink, 'center');
+    const G = [['¿El token es válido?', 'identidad', '401'], ['¿Tiene permiso para este recurso?', 'autorización', '403'], ['¿Superó el límite de pedidos? (37 de 100 por minuto)', 'límite de uso', '429'], ['¿Los parámetros son válidos? (fecha con formato correcto)', 'validación', '400']];
+    G.forEach(([q, k, c], i) => { const y = 140 + i * 128, s = 1.5 + i * 2.2, a = seg(t, s - 0.8, s);
+      X.globalAlpha = 0.25 + 0.75 * a; R(340, y, 1080, 104, K.white); R(340, y, 8, 104, t > s ? K.ok : K.line); T(k.toUpperCase(), 372, y + 30, F(800, 20), K.blue); T(q, 372, y + 68, F(700, 30), K.ink);
+      if (t > s) check(1370, y + 52, true, 24); X.globalAlpha = 1;
+      X.globalAlpha = 0.35 + 0.65 * a; tag('si falla → ' + c, 1450, y + 52, K.ink, K.yel, M(700, 24), 14, 44); X.globalAlpha = 1; });
+    if (t > 10.5) { const a = seg(t, 10.5, 11.2); X.globalAlpha = a; R(340, 668, 1080, 70, K.ok); T('✓ Solicitud aceptada: pasa a buscar los datos', 372, 703, F(800, 30), K.white); X.globalAlpha = 1; }
+    faq(80, 520, 230, '¿Servidor?', 'Una computadora que espera pedidos y responde.', seg(t, 4, 4.8)); } },
+{ d: 17, step: 'PASO 5 DE 9', cap: ['Los parámetros se convierten en una consulta', 'Del otro lado hay una base de datos. El servidor traduce los parámetros a una consulta (en este ejemplo, SQL) y obtiene las filas. Nunca vemos esa base: solo lo que la API decide exponer. Ilustrativo: cada proveedor lo implementa a su manera.'],
+  draw(t) { tag('desde = 2026-09-01', 80, 170, K.yel, K.ink, M(700, 26)); tag('pagina = 1', 80, 230, K.yel, K.ink, M(700, 26)); T('lo que mandamos', 80, 120, F(800, 22), K.blue);
+    const SQ = ['SELECT despacho_id, pedido_id, estado, fecha', 'FROM despachos', "WHERE fecha >= '2026-09-01'", 'ORDER BY despacho_id', 'LIMIT 100 OFFSET 0   -- página 1 = filas 1 a 100'];
+    const k1 = seg(t, 1, 3), k2 = seg(t, 3, 5); code(520, 130, 900, SQ, 'sql', { size: 25, title: 'consulta interna del servidor (no la vemos)', typed: chars(SQ) * seg(t, 0.3, 2.5), hl: { 2: t > 2.8 ? 'rgba(255,255,51,0.18)' : 0, 4: t > 4.8 ? 'rgba(255,255,51,0.18)' : 0 } });
+    if (k1 > 0 && k1 < 1) tag('2026-09-01', lerp(300, 820, ez(k1)), lerp(170, 290, ez(k1)), K.yel, K.ink, M(700, 24));
+    if (k2 > 0 && k2 < 1) tag('pagina 1 → OFFSET 0', lerp(250, 820, ez(k2)), lerp(230, 370, ez(k2)), K.yel, K.ink, M(700, 24));
+    db(1520, 160, 300, 220, K.blue, 'despachos'); T('base del proveedor', 1670, 410, F(400, 24), K.mut, 'center');
+    if (t > 6) { const a = seg(t, 6, 6.6); X.globalAlpha = a; arrow(1600, 430, 1480, 520, K.blue, 4); X.globalAlpha = 1;
+      table(520, 470, [{ n: 'despacho_id', w: 220 }, { n: 'pedido_id', w: 180 }, { n: 'estado', w: 230 }, { n: 'fecha', w: 220 }], ROWS, { size: 24, rh: 50, rowA: r => seg(t, 6.6 + r * 0.5, 7.1 + r * 0.5) });
+      if (t > 9) T('… 100 filas en esta página', 1380, 760, F(700, 26), K.blue, 'left'); }
+    faq(80, 320, 400, '¿Por qué “página”?', 'Para no mandar millones de filas de golpe, la API entrega de a 100.', seg(t, 9.5, 10.3)); } },
+{ d: 16, step: 'PASO 6 DE 9', cap: ['Las filas se empaquetan como JSON', 'En este ejemplo, la respuesta viaja como texto JSON. El servidor convierte cada fila en un objeto JSON y agrega datos de control: la página actual, el total de páginas y el enlace a la siguiente.'],
+  draw(t) { const r = Math.min(3, Math.floor(seg(t, 3, 9) * 4));
+    table(64, 150, [{ n: 'despacho_id', w: 190 }, { n: 'pedido_id', w: 150 }, { n: 'estado', w: 200 }, { n: 'fecha', w: 180 }], ROWS, { size: 22, rh: 48, cell: (i) => (t > 3 && i === r) ? { bg: 'rgba(255,255,51,0.45)' } : null });
+    T('tabla en la base', 64, 120, F(800, 22), K.blue);
+    const J = ['HTTP/1.1 200 OK', 'Content-Type: application/json', '', '{', '  "pagina": 1,', '  "total_paginas": 3,', '  "siguiente": "/v1/despachos?desde=2026-09-01&pagina=2",', '  "datos": [',
+      ...ROWS.map((w, i) => '    {"despacho_id":"' + w[0] + '","pedido_id":"' + w[1] + '","estado":"' + w[2] + '","fecha":"' + w[3] + '"}' + (i < 3 ? ',' : '')), '    … 96 objetos más', '  ]', '}'];
+    const hl = {}; if (t > 3) hl[8 + r] = 'rgba(255,255,51,0.2)'; if (t > 10 && t < 14) { hl[4] = hl[5] = hl[6] = 'rgba(169,193,224,0.22)'; }
+    code(790, 120, 1066, J, 'json', { size: 17, lh: 31, hl, title: 'respuesta: texto JSON', typed: chars(J) * seg(t, 0.5, 3) });
+    if (t > 3) { const yy = 150 + 48 * (r + 1) + 24; arrow(780, yy, 820, 120 + 46 + 26 + (8 + r) * 31 + 15, K.blue, 3); }
+    faq(64, 470, 700, '¿Por qué JSON?', 'Es texto que cualquier lenguaje puede leer: Python, JavaScript, SQL. Llaves { } = un objeto; corchetes [ ] = una lista.', seg(t, 10, 10.8)); } },
+{ d: 14, step: 'PASO 7 DE 9', cap: ['La respuesta vuelve y la leemos', 'Hace el viaje inverso. En el script, primero miramos el código de estado: 200 significa éxito. Después r.json() convierte el texto en diccionarios y listas de Python que podemos recorrer.'],
+  draw(t) { laptop(90, 140, 'Tu notebook', null); server(1590, 130, 'Servidor', null);
+    const k = seg(t, 0.4, 3); if (k < 1) { const x = lerp(1540, 420, ez(k)); envelope(x - 60, 190, 120, 86, K.ok, true); tag('200 OK', x, 160, K.ok, K.white, M(700, 24), 12, 38, 'center'); }
+    line(420, 300, 1540, 300, K.line, 3, [6, 10]);
+    const CC = ['print(r.status_code)         # 200', 'r.raise_for_status()         # lanza una excepción para 4xx y 5xx', 'datos = r.json()             # texto → dict de Python', 'print(datos["pagina"], datos["total_paginas"])', 'print(len(datos["datos"]))'];
+    code(90, 440, 1100, CC, 'py', { size: 24, title: 'en el script', typed: chars(CC) * seg(t, 3, 8) });
+    if (t > 8) { const a = seg(t, 8, 8.6); X.globalAlpha = a; R(1230, 440, 626, 250, K.white); R(1230, 440, 6, 250, K.blue); label('Salida', 1260, 476); T('200', 1260, 530, M(700, 30), K.ok); T('1 3', 1260, 580, M(700, 30), K.ink); T('100', 1260, 630, M(700, 30), K.ink); X.globalAlpha = 1; }
+    if (t > 9.5) { const C2 = [['200', K.ok, K.white], ['400', K.yel, K.ink], ['401', K.yel, K.ink], ['403', K.yel, K.ink], ['404', K.yel, K.ink], ['429', K.yel, K.ink], ['500', K.bad, K.white]]; let x = 90;
+      X.globalAlpha = seg(t, 9.5, 10.2); T('2xx éxito · 4xx revisá tu pedido · 5xx falla del servidor', 90, 752, F(700, 26), K.ink); X.globalAlpha = 1;
+      C2.forEach(([c, b, f], i) => { X.globalAlpha = seg(t, 9.8 + i * 0.15, 10.2 + i * 0.15); x += tag(c, x, 805, b, f, M(700, 26), 16, 44) + 10; X.globalAlpha = 1; }); } } },
+{ d: 18, step: 'PASO 8 DE 9', cap: ['Una respuesta puede venir en páginas', 'Si hay más datos, la respuesta trae el enlace a la siguiente página. El script repite la llamada hasta que no quede ninguna. Si el servidor responde 429 (demasiados pedidos), espera y reintenta.'],
+  draw(t) { const ev = [[0, 2, 100], [1, 5, 429], [2, 7.5, 100], [3, 10.5, 57]]; let cur = 0; for (let i = 0; i < ev.length; i++) if (t > ev[i][1]) cur = i;
+    const hlLine = t < 2 ? 3 : (t > ev[1][1] && t < ev[1][1] + 2.2) ? 6 : (t > 12.5 ? 12 : 10);
+    code(64, 120, 1060, LOOP, 'py', { size: 22, lh: 34, title: 'recorrer todas las páginas', hl: { [hlLine]: 'rgba(255,255,51,0.2)' } });
+    let tot = 0; const xs = 1180;
+    ev.forEach(([n, s, v], i) => { if (t < s) return; const y = 140 + i * 128, a = seg(t, s, s + 0.5); X.globalAlpha = a;
+      if (v === 429) { R(xs, y, 676, 104, '#FAE9E7'); R(xs, y, 8, 104, K.bad); T('página 2 → 429', xs + 30, y + 34, F(800, 28), K.bad); T('esperar 5 s (Retry-After) y reintentar', xs + 30, y + 72, F(400, 24), K.ink); }
+      else { tot += v; const pg = i === 0 ? 1 : i === 2 ? 2 : 3; R(xs, y, 676, 104, K.white); R(xs, y, 8, 104, K.blue); T('página ' + pg + ' → 200', xs + 30, y + 34, F(800, 28), K.ink); T('+' + v + ' registros' + (pg === 3 ? ' · siguiente: null → fin' : ''), xs + 30, y + 72, F(400, 24), K.mut); }
+      X.globalAlpha = 1; });
+    R(xs, 670, 676, 90, K.ink); T('registros acumulados', xs + 30, 715, F(700, 26), K.mutD); T(String(tot), xs + 646, 715, M(700, 40), K.yel, 'right'); } },
+{ d: 19, step: 'PASO 9 DE 9', cap: ['Se guarda: snapshot, metadatos y capa raw', 'El ejemplo guarda los registros reunidos, con fecha y una huella digital (hash). Para preservar la respuesta original, también se conservan los bytes de cada página y sus metadatos. La copia permite repetir el análisis con la misma entrada.'],
+  draw(t) { const S1 = ['texto = json.dumps(registros, ensure_ascii=False)', 'huella = hashlib.sha256(texto.encode()).hexdigest()', 'ruta = f"raw/despachos_{date.today()}.json"', 'with open(ruta, "w") as f:', '    f.write(texto)'];
+    code(64, 120, 900, S1, 'py', { size: 22, title: 'guardar el snapshot', typed: chars(S1) * seg(t, 0.3, 4) });
+    if (t > 4) { const a = seg(t, 4, 4.6); X.globalAlpha = a; doc(1020, 130, 150, 190, K.blue, '.json'); T('despachos_', 1095, 350, M(700, 22), K.ink, 'center'); T('2026-10-20.json', 1095, 378, M(700, 22), K.ink, 'center'); X.globalAlpha = 1; }
+    const MF = [['extraído', '2026-10-20 09:00 UTC'], ['endpoint', '/v1/despachos'], ['parámetros', 'desde=2026-09-01'], ['páginas', '3'], ['registros', '257'], ['sha256', '4be1…09c2']];
+    if (t > 5) { R(1220, 120, 636, 360, K.white); R(1220, 120, 6, 360, K.yel); label('Metadatos del snapshot', 1250, 156);
+      MF.forEach(([k, v], i) => { if (t > 5.3 + i * 0.45) { T(k, 1250, 206 + i * 44, F(400, 26), K.mut); T(v, 1460, 206 + i * 44, M(700, 24), i === 5 ? K.blue : K.ink); } }); }
+    const S2 = ['CREATE TABLE raw_despachos AS', "SELECT *, DATE '2026-10-20' AS _extraido", "FROM read_json('raw/despachos_2026-10-20.json');"];
+    if (t > 9) code(64, 520, 900, S2, 'sql', { size: 24, title: 'cargar en la capa raw (SQL · DuckDB)', typed: chars(S2) * seg(t, 9, 12) });
+    if (t > 12.5) { const a = seg(t, 12.5, 13.2); X.globalAlpha = a; arrow(980, 640, 1180, 640, K.blue, 5); db(1220, 540, 260, 210, K.ink, 'raw'); T('raw_despachos · 257 filas', 1500, 640, F(800, 28), K.ink); X.globalAlpha = 1; } } },
+{ d: 13, cap: ['Resumen: el viaje completo', 'Script → mensaje HTTP → internet (DNS + HTTPS) → controles → consulta → JSON → respuesta → páginas → snapshot y raw. Cada paso deja algo que se puede revisar.'], dark: true,
+  draw(t) { const N = ['Script', 'Mensaje HTTP', 'Internet', 'Controles', 'Consulta', 'JSON', 'Respuesta', 'Páginas', 'Snapshot + raw'];
+    const sub = ['URL · params · token', 'método · ruta · headers', 'DNS · HTTPS', '401 · 403 · 429 · 400', 'SQL del proveedor', 'filas → objetos', 'status 200 · r.json()', 'while + 429', 'hash · metadatos'];
+    N.forEach((n, i) => { const row = i < 5 ? 0 : 1, col = row ? i - 5 : i, x = row ? 160 + col * 400 : 64 + col * 362, y = row ? 470 : 180, a = seg(t, 0.4 + i * 0.6, 1 + i * 0.6);
+      X.globalAlpha = 0.15 + 0.85 * a; R(x, y, 330, 170, a >= 1 ? K.ink2 : K.ink, K.ink3, 2); R(x, y, 330, 8, K.yel); T(String(i + 1).padStart(2, '0'), x + 24, y + 48, M(700, 26), K.yel); T(n, x + 24, y + 96, F(800, 32), K.paper); T(sub[i], x + 24, y + 138, F(400, 22), K.mutD);
+      if (i < 8 && i !== 4) arrow(x + 334, y + 85, x + (row ? 396 : 358), y + 85, K.yel, 3); X.globalAlpha = 1; });
+    X.globalAlpha = seg(t, 6, 6.6); line(1874, 265, 1874, 400, K.yel, 3); line(1874, 400, 325, 400, K.yel, 3); arrow(325, 400, 325, 466, K.yel, 3); X.globalAlpha = 1; } }
+]};
+
+initControls();
+</script></body></html>

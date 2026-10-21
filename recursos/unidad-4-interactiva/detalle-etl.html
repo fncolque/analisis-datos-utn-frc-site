@@ -1,0 +1,305 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Detalle · ETL y ELT</title>
+
+<style>
+:root{--ink:#151616;--ink2:#1E2021;--ink3:#2A2D2F;--paper:#F2F2F2;--mut:#BFC3C4;--yel:#FFFF33;--blue:#1F497D;--pale:#DCE6F1;color-scheme:dark}
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;background:var(--ink);color:var(--paper);font-family:Inter,"Helvetica Neue",Arial,sans-serif;display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;gap:20px;padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-bottom:1px solid var(--ink3);flex-wrap:wrap}
+.back{color:var(--ink);background:var(--yel);text-decoration:none;font-weight:800;font-size:15px;padding:10px 14px;white-space:nowrap}
+.back:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--yel);outline-offset:3px}
+.ttl{display:flex;flex-direction:column;min-width:0;flex:1}.ttl span{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--yel)}.ttl b{font-size:20px;letter-spacing:-.02em}
+.pos{font-size:14px;color:var(--mut);font-variant-numeric:tabular-nums}
+main{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:12px max(16px,env(safe-area-inset-right,0px)) 12px max(16px,env(safe-area-inset-left,0px))}
+canvas{width:100%;height:100%;object-fit:contain;display:block;cursor:pointer;max-width:100%}
+.ctrl{border-top:1px solid var(--ink3);padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:10px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;font-size:15px;font-weight:700;color:var(--paper);background:transparent;border:1px solid #4A4E51;padding:10px 14px;cursor:pointer}
+button:hover{border-color:var(--paper)}button:disabled{opacity:.35;cursor:default}
+button.primary{background:var(--yel);color:var(--ink);border-color:var(--yel)}
+button[aria-pressed=true]{background:var(--paper);color:var(--ink)}
+.steps{display:flex;gap:6px;overflow-x:auto;padding-bottom:4px}
+.steps button{font-size:13px;font-weight:600;white-space:nowrap;padding:8px 10px;color:var(--mut)}
+.steps button[aria-current=step]{background:var(--yel);color:var(--ink);border-color:var(--yel)}
+.others{font-size:13px;color:var(--mut)}.others a{color:var(--paper);margin-left:10px}
+</style><link rel="stylesheet" href="simulaciones.css"></head><body>
+<header class="bar"><span class="utn-mark light" role="img" aria-label="UTN"></span><a id="back" class="back" href="index.html">← Volver a la lectura</a><div class="ttl"><span>Unidad 4 · Explorar en detalle</span><b>ETL y ELT, paso a paso con SQL</b></div><span id="pos" class="pos" aria-live="polite"></span></header>
+<main><canvas id="c" role="img" aria-label="ETL y ELT, paso a paso con SQL: animación paso a paso. Hacé clic o usá la flecha derecha para avanzar."></canvas></main><p class="simulation-note">Simulación con datos ficticios. No ejecuta consultas ni se conecta a servicios. <a href="#lectura">Leer los pasos</a>.</p>
+<footer class="ctrl"><div class="btns"><button type="button" id="prev">◂ Anterior</button><button type="button" id="replay">Animar este paso</button><button type="button" id="auto" aria-pressed="false">Reproducir todo</button><button type="button" id="next" class="primary">Siguiente ▸</button></div>
+<nav id="steps" class="steps" aria-label="Pasos"></nav><div class="others">Otros detalles:<a href="detalle-api.html">Llamada a una API</a> <a href="detalle-mcp.html">MCP e IA</a></div></footer>
+<section id="lectura" class="transcript"><h1>Lectura del recorrido</h1><p>Las fechas, identificadores e importes pertenecen al ejemplo ficticio. El código ilustra operaciones; requiere adaptación y controles antes de usarse con una fuente real.</p><h2>Las fuentes: así llegan los datos</h2><p>Una tabla de pedidos del sistema de ventas (la base transaccional) y un archivo CSV de clientes. Fechas y montos como texto, un pedido repetido, un pedido sin cliente y regiones escritas de tres maneras.</p><h2>Camino 1 · ETL: extraer</h2><p>En ETL, un motor de integración (Power Query, un script o un servicio como Dataflow) se conecta a las fuentes: consulta la base con SQL y lee el CSV.</p><h2>ETL: transformar antes de cargar</h2><p>El motor limpia en memoria: convierte fechas y montos a tipos reales, quita el duplicado, normaliza las regiones y une pedidos con clientes. Ojo: el JOIN descartó a P005 sin avisar.</p><h2>ETL: cargar solo lo curado</h2><p>Al warehouse llega una sola tabla limpia: ventas_curadas, con 6 filas. En esta variante no se guardó una copia de entrada. ETL también permite conservarla antes de transformar; sin esa copia, un cambio de reglas exige otra extracción.</p><h2>Camino 2 · ELT: extraer y cargar tal cual</h2><p>En este ejemplo de ELT se copian los datos autorizados al warehouse, sin limpiar, en una capa raw. Se agregan columnas de control: cuándo se cargó y de dónde vino.</p><h2>ELT: staging, limpiar con SQL dentro del warehouse</h2><p>Una vista de staging convierte fechas y montos, elimina el duplicado exacto y normaliza las regiones. raw no se toca: la limpieza es una consulta que se puede volver a ejecutar.</p><h2>ELT: pruebas de calidad, también en SQL</h2><p>Una prueba es una consulta que debería devolver cero filas. Si devuelve filas, hay un problema y alguien decide qué hacer: corregir, marcar, excluir o escalar.</p><h2>ELT: el mart, listo para decidir</h2><p>El mart une pedidos y clientes, agrupa por región y deja una fila por región con la venta total. Es lo que consumen Power BI, un notebook o un asistente de IA por MCP.</p><h2>Reconciliar: ¿cierran las cuentas?</h2><p>Cada capa explica su cambio de conteo: 8 filas en raw, 7 en staging (1 duplicado) y 6 pedidos aceptados para el mart (1 rechazado sin cliente). En importe: $7.506,50 = $7.196,50 + $310,00.</p><h2>ETL o ELT: cuándo conviene cada uno</h2><p>ETL transforma antes de cargar al destino; ELT transforma dentro de él. Ambos pueden conservar la entrada para reprocesar y necesitan contrato, controles y reconciliación.</p><h2>Control de claves antes del mart</h2><pre><code>-- La prueba devuelve las claves que requieren revisión.
+SELECT pedido_id, COUNT(*) AS cantidad
+FROM staging_pedidos
+GROUP BY pedido_id
+HAVING COUNT(*) &gt; 1 OR pedido_id IS NULL;</code></pre><p><a href="index.html">Volver a conceptos y actividades</a> · <a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a></p></section><script>
+// Kit de dibujo compartido (estilo del sitio de la materia).
+const W = 1920, H = 1080;
+let X = null; function useCtx(c) { X = c; }
+const K = {
+  paper: '#F2F2F2', paper2: '#E8EDF2', ink: '#151616', ink2: '#1E2021', ink3: '#2A2D2F', blue: '#1F497D', blueD: '#143254',
+  pale: '#DCE6F1', yel: '#FFFF33', line: '#C9CED3', mut: '#62686D', mutD: '#BFC3C4', ok: '#22644A', okD: '#8FD3AE',
+  bad: '#8A352F', badD: '#E9877B', lb: '#A9C1E0', white: '#FFFFFF'
+};
+const F = (w, s) => `${w} ${s}px Inter, Arial, sans-serif`;
+const M = (w, s) => `${w} ${s}px "JetBrains Mono", "DejaVu Sans Mono", monospace`;
+const cl = k => Math.max(0, Math.min(1, k));
+const ez = k => { k = cl(k); return k * k * (3 - 2 * k); };
+const seg = (t, a, b) => cl((t - a) / (b - a));
+const lerp = (a, b, k) => a + (b - a) * k;
+
+function R(x, y, w, h, f, s, lw) { if (f) { X.fillStyle = f; X.fillRect(x, y, w, h); } if (s) { X.strokeStyle = s; X.lineWidth = lw || 2; X.strokeRect(x + (lw || 2) / 2, y + (lw || 2) / 2, w - (lw || 2), h - (lw || 2)); } }
+function T(s, x, y, font, col, al, base) { X.font = font; X.fillStyle = col; X.textAlign = al || 'left'; X.textBaseline = base || 'middle'; X.fillText(s, x, y); return X.measureText(s).width; }
+function TW(s, font) { X.font = font; return X.measureText(s).width; }
+function wrap(s, x, y, maxW, font, col, lh, al) {
+  X.font = font; const words = s.split(' '); let line = '', yy = y;
+  for (const w of words) { const test = line ? line + ' ' + w : w; if (X.measureText(test).width > maxW && line) { T(line, x, yy, font, col, al, 'top'); line = w; yy += lh; } else line = test; }
+  if (line) T(line, x, yy, font, col, al, 'top'); return yy + lh - y;
+}
+function circle(x, y, r, f, s, lw) { X.beginPath(); X.arc(x, y, r, 0, 7); if (f) { X.fillStyle = f; X.fill(); } if (s) { X.strokeStyle = s; X.lineWidth = lw || 2; X.stroke(); } }
+function line(x1, y1, x2, y2, col, lw, dash) { X.strokeStyle = col; X.lineWidth = lw || 2; X.setLineDash(dash || []); X.beginPath(); X.moveTo(x1, y1); X.lineTo(x2, y2); X.stroke(); X.setLineDash([]); }
+function arrow(x1, y1, x2, y2, col, lw, dash) {
+  line(x1, y1, x2, y2, col, lw || 3, dash); const a = Math.atan2(y2 - y1, x2 - x1), s = 10 + (lw || 3) * 2;
+  X.fillStyle = col; X.beginPath(); X.moveTo(x2, y2); X.lineTo(x2 - s * Math.cos(a - 0.45), y2 - s * Math.sin(a - 0.45)); X.lineTo(x2 - s * Math.cos(a + 0.45), y2 - s * Math.sin(a + 0.45)); X.fill();
+}
+function tag(s, x, y, bg, fg, font, padX, h, al) { font = font || F(800, 24); padX = padX || 14; h = h || 40; const w = TW(s, font) + padX * 2; const x0 = al === 'center' ? x - w / 2 : al === 'right' ? x - w : x; R(x0, y - h / 2, w, h, bg); T(s, x0 + padX, y + 1, font, fg); return w; }
+function label(s, x, y, col) { T(s.toUpperCase(), x, y, F(800, 22), col || K.blue); }
+// Bloques de código con resaltado simple
+const KW = {
+  py: /^(import|from|def|return|if|else|elif|while|for|in|not|and|or|True|False|None|break|continue|with|as|open)$/,
+  sql: /^(SELECT|FROM|WHERE|GROUP|BY|ORDER|LIMIT|OFFSET|JOIN|USING|ON|AS|CREATE|TABLE|VIEW|OR|REPLACE|INSERT|INTO|DISTINCT|COUNT|SUM|CAST|TRIM|UPPER|HAVING|IS|NULL|NOT|AND|DECIMAL|DATE|now|strptime|read_csv|read_json|UNION|ALL|WITH|SCHEMA|VALUES|CASE|WHEN|THEN|END)$/,
+  http: /^(GET|POST|HTTP\/1\.1|Host:|Authorization:|Accept:|Content-Type:|Bearer|OK)$/,
+  json: /^$/
+};
+function codeTokens(s, lang) {
+  const out = []; const re = /("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*'|#.*$|--.*$|\b\d+(?:[.,]\d+)?\b|[A-Za-z_][A-Za-z0-9_.\/:]*|\s+|.)/g; let m;
+  while ((m = re.exec(s))) { const tk = m[0]; let c = '#E6E8EA';
+    if (tk[0] === '#' && lang === 'py' || tk.startsWith('--') && lang === 'sql') c = '#8E969C';
+    else if (tk[0] === '"' || tk[0] === "'") c = lang === 'json' && /^\s*:/.test(s.slice(m.index + tk.length)) ? K.lb : '#FFFF8A';
+    else if (/^\d/.test(tk)) c = '#F2C7A5';
+    else if (KW[lang] && KW[lang].test(tk.replace(/\(.*/, ''))) c = K.lb;
+    out.push([tk, c]); }
+  return out;
+}
+// lines: array de strings; o: {size, lh, typed (n caracteres visibles), hl: {linea:color}, title}
+function code(x, y, w, lines, lang, o) {
+  o = o || {}; const size = o.size || 26, lh = o.lh || size * 1.55, pad = 26, th = o.title ? 46 : 0;
+  const h = o.h || (lines.length * lh + pad * 2 + th);
+  R(x, y, w, h, K.ink); R(x, y, 8, h, K.yel);
+  if (o.title) { R(x + 8, y, w - 8, th, K.ink3); T(o.title, x + 30, y + th / 2, M(600, 22), K.mutD); }
+  X.font = M(400, size); const cw = X.measureText('M').width; let left = o.typed === undefined ? Infinity : o.typed;
+  for (let i = 0; i < lines.length; i++) {
+    const ly = y + th + pad + i * lh + lh / 2;
+    if (o.hl && o.hl[i]) R(x + 8, ly - lh / 2, w - 8, lh, o.hl[i]);
+    if (left <= 0) break;
+    let xx = x + pad + 14; const s = lines[i].slice(0, Math.max(0, left)); left -= lines[i].length + 1;
+    for (const [tk, c] of codeTokens(s, lang)) { T(tk, xx, ly, M(o.bold && o.bold[i] ? 700 : 400, size), (o.dim && o.dim[i]) ? '#6E767C' : c); xx += cw * tk.length; }
+    if (o.cursor && left <= 0 && Math.floor(o.cursor * 2) % 2 === 0) R(xx + 2, ly - size * 0.6, cw * 0.6, size * 1.2, K.yel);
+  }
+  return h;
+}
+function chars(lines) { return lines.reduce((a, l) => a + l.length + 1, 0); }
+// Tabla: cols [{n, w}], rows [[..]], o: {size, rh, head, cell:(r,c)=>({bg,col,txt,font}), rowA:(r)=>alpha, dark}
+function table(x, y, cols, rows, o) {
+  o = o || {}; const size = o.size || 24, rh = o.rh || 46, dark = o.dark;
+  const tw = cols.reduce((a, c) => a + c.w, 0);
+  R(x, y, tw, rh, dark ? K.ink3 : K.ink);
+  let cx = x; for (const c of cols) { T(c.n, cx + 14, y + rh / 2, M(700, size - 2), K.yel); cx += c.w; }
+  for (let r = 0; r < rows.length; r++) {
+    const a = o.rowA ? o.rowA(r) : 1; if (a <= 0) continue; X.globalAlpha *= a; const yy = y + rh * (r + 1);
+    R(x, yy, tw, rh, dark ? (r % 2 ? K.ink2 : '#232628') : (r % 2 ? '#F7F8F9' : K.white)); cx = x;
+    for (let c = 0; c < cols.length; c++) {
+      const st = o.cell ? (o.cell(r, c) || {}) : {}; if (st.bg) R(cx, yy, cols[c].w, rh, st.bg);
+      const v = st.txt !== undefined ? st.txt : rows[r][c];
+      T(v === null ? 'NULL' : String(v), cx + 14, yy + rh / 2, st.font || M(v === null ? 700 : 400, size), st.col || (v === null ? K.bad : (dark ? '#E6E8EA' : K.ink)));
+      if (st.strike) line(cx + 10, yy + rh / 2, cx + cols[c].w - 10, yy + rh / 2, K.bad, 3);
+      cx += cols[c].w;
+    }
+    line(x, yy + rh, x + tw, yy + rh, dark ? K.ink3 : K.line, 1);
+    X.globalAlpha /= a;
+  }
+  return { w: tw, h: rh * (rows.length + 1) };
+}
+function db(x, y, w, h, col, lab) { // cilindro
+  const e = h * 0.14; X.fillStyle = col; X.beginPath(); X.ellipse(x + w / 2, y + e, w / 2, e, 0, 0, 7); X.fill(); X.fillRect(x, y + e, w, h - 2 * e);
+  X.beginPath(); X.ellipse(x + w / 2, y + h - e, w / 2, e, 0, 0, 7); X.fill();
+  X.strokeStyle = 'rgba(255,255,255,0.35)'; X.lineWidth = 2; X.beginPath(); X.ellipse(x + w / 2, y + e, w / 2, e, 0, 0, Math.PI); X.stroke();
+  if (lab) T(lab, x + w / 2, y + h / 2 + e / 2, F(800, 24), K.white, 'center');
+}
+function lock(x, y, s, col) { X.strokeStyle = col; X.lineWidth = s * 0.16; X.beginPath(); X.arc(x, y - s * 0.15, s * 0.32, Math.PI, 0); X.stroke(); R(x - s * 0.45, y - s * 0.15, s * 0.9, s * 0.7, col); }
+function check(x, y, ok, r) { circle(x, y, r || 18, ok ? K.ok : K.bad); T(ok ? '✓' : '✗', x, y + 1, F(800, (r || 18) * 1.2), K.white, 'center'); }
+function gear(x, y, r, a, col) { X.save(); X.translate(x, y); X.rotate(a); X.fillStyle = col; for (let i = 0; i < 8; i++) { X.rotate(Math.PI / 4); X.fillRect(-r * 0.22, -r - r * 0.3, r * 0.44, r * 0.5); } X.beginPath(); X.arc(0, 0, r, 0, 7); X.fill(); X.fillStyle = K.paper; X.beginPath(); X.arc(0, 0, r * 0.38, 0, 7); X.fill(); X.restore(); }
+function doc(x, y, w, h, col, txt) { X.fillStyle = K.white; X.strokeStyle = col; X.lineWidth = 3; X.beginPath(); X.moveTo(x, y); X.lineTo(x + w - 22, y); X.lineTo(x + w, y + 22); X.lineTo(x + w, y + h); X.lineTo(x, y + h); X.closePath(); X.fill(); X.stroke(); if (txt) T(txt, x + w / 2, y + h - 22, M(700, 20), col, 'center'); }
+
+
+// Motor de las páginas de detalle: escenas paso a paso controladas por la persona.
+const C = document.getElementById('c'); C.width = W; C.height = H; useCtx(C.getContext('2d'));
+
+let VIDEO = { title: '', num: '', scenes: [] };
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// slide de origen: viaja en el hash (#paso-N~slide) y se conserva al cambiar de paso
+const FROM = (location.hash.match(/~([a-z]+)$/) || [])[1] || (() => { try { return sessionStorage.getItem('u4-from'); } catch (e) { return null; } })() || '';
+function drawStep(i, lt) {
+  const sc = VIDEO.scenes, s = sc[i], dark = !!s.dark;
+  R(0, 0, W, H, dark ? K.ink : K.paper);
+  if (s.full) { s.draw(lt, s.d); return; }
+
+  T('Análisis de Datos', 112, 46, F(800, 24), dark ? K.paper : K.ink); T('Unidad 4 · ' + VIDEO.num, 330, 46, F(400, 24), dark ? K.mutD : K.mut);
+  T(VIDEO.title.toUpperCase(), W - 64, 46, F(800, 22), dark ? K.yel : K.blue, 'right');
+  line(64, 88, W - 64, 88, dark ? K.ink3 : K.line, 1);
+  X.save(); X.beginPath(); X.rect(0, 90, W, 770); X.clip(); s.draw(lt, s.d); X.restore();
+  R(0, 860, W, 220, K.ink); R(0, 860, W, 6, K.yel);
+  X.globalAlpha = seg(lt, 0, 0.5);
+  if (s.step) tag(s.step, 64, 912, K.yel, K.ink, F(800, 24));
+  T(s.cap[0], s.step ? 64 + TW(s.step, F(800, 24)) + 28 + 24 : 64, 912, F(800, 40), K.paper);
+  wrap(s.cap[1] || '', 64, 950, 1790, F(400, 30), K.mutD, 40);
+  X.globalAlpha = 1;
+  const n = sc.filter(q => q.step).length; let k = 0; const bw = (W - 128 - (n - 1) * 8) / n;
+  for (let j = 0; j < sc.length; j++) { if (!sc[j].step) continue; const x = 64 + k * (bw + 8); R(x, 1052, bw, 8, K.ink3); if (j < i) R(x, 1052, bw, 8, K.yel); else if (j === i) R(x, 1052, bw * Math.min(1, lt / s.d), 8, K.yel); k++; }
+  if (lt < 0.35) { X.globalAlpha = 1 - lt / 0.35; R(0, 90, W, 770, dark ? K.ink : K.paper); X.globalAlpha = 1; }
+}
+function titleCard(lt, d, eyebrow, title1, title2, sub) {
+  R(0, 0, W, H, K.ink); const a = seg(lt, 0.2, 1.0);
+   T('Análisis de Datos', 192, 148, F(800, 30), K.paper); T('Ingeniería Industrial · 2026', 470, 148, F(400, 30), K.mutD);
+  X.globalAlpha = a; R(96, 360, 14, 330, K.yel);
+  T(eyebrow.toUpperCase(), 128, 330, F(800, 28), K.yel);
+  T(title1, 128, 430, F(800, 120), K.paper); T(title2, 128, 570, F(800, 120), K.yel);
+  wrap(sub, 128, 660, 1400, F(400, 38), K.mutD, 52);
+  T('Usá ◂ ▸ o los botones de abajo para avanzar paso a paso.', 128, 860, F(600, 30), K.paper);
+  X.globalAlpha = 1;
+}
+// Controles
+let cur = 0, t0 = performance.now(), auto = false;
+let animate = false;
+const elList = document.getElementById('steps'), elPrev = document.getElementById('prev'), elNext = document.getElementById('next'), elRep = document.getElementById('replay'), elAuto = document.getElementById('auto'), elPos = document.getElementById('pos');
+function stepLabel(s, i) { return s.full ? 'Inicio' : (s.step ? s.step.replace(/^PASO (\d+) DE \d+$/, '$1') + ' · ' + s.cap[0] : s.cap[0]); }
+function go(i, keepAuto) {
+  cur = Math.max(0, Math.min(VIDEO.scenes.length - 1, i)); t0 = performance.now(); if (!keepAuto) setAuto(false);
+  [...elList.children].forEach((b, j) => { b.setAttribute('aria-current', j === cur ? 'step' : 'false'); if (j === cur) b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); });
+  elPrev.disabled = cur === 0; elNext.disabled = cur === VIDEO.scenes.length - 1;
+  const st = VIDEO.scenes[cur].step; elPos.textContent = st ? st.toLowerCase().replace('paso', 'Paso') : (cur === 0 ? 'Inicio' : 'Resumen');
+  const m = st && st.match(/^PASO (\d+)/); try { history.replaceState(null, '', (m ? '#paso-' + m[1] : (cur === 0 ? '#inicio' : '#resumen')) + (FROM ? '~' + FROM : '')); } catch (e) {}
+}
+function setAuto(v) { auto = v; animate = v; elAuto.setAttribute('aria-pressed', v ? 'true' : 'false'); elAuto.textContent = v ? 'Pausar recorrido' : 'Reproducir todo'; }
+function initControls() {
+  VIDEO.scenes.forEach((s, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = stepLabel(s, i); b.addEventListener('click', () => go(i)); elList.appendChild(b); });
+  elPrev.addEventListener('click', () => go(cur - 1)); elNext.addEventListener('click', () => go(cur + 1)); elRep.addEventListener('click', () => { go(cur, true); animate = true; });
+  elAuto.addEventListener('click', () => { if (!auto && cur === VIDEO.scenes.length - 1) go(0); setAuto(!auto); t0 = auto ? t0 : t0; });
+  addEventListener('keydown', e => { if (e.target.closest('button,a,input,summary') || document.activeElement.closest('#lectura')) return; if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); go(cur + 1); } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); go(cur - 1); } else if (e.key === 'r' || e.key === 'R') go(cur, true); });
+  C.addEventListener('click', () => go(cur + 1));
+  const h = (location.hash || '').match(/paso-(\d+)/); let start = 0;
+  if (h) { const idx = VIDEO.scenes.findIndex(s => s.step && s.step.startsWith('PASO ' + h[1] + ' ')); if (idx >= 0) start = idx; } else if (location.hash.startsWith('#resumen')) start = VIDEO.scenes.length - 1;
+  go(start);
+  if (FROM) { document.getElementById('back').href = 'recorrido.html#' + FROM; document.querySelectorAll('.others a').forEach(a => { a.href = a.getAttribute('href') + '#inicio~' + FROM; }); }
+  requestAnimationFrame(loop);
+}
+function loop(now) {
+  const s = VIDEO.scenes[cur]; let lt = (now - t0) / 1000; if (RM || !animate) lt = s.d;
+  drawStep(cur, Math.min(lt, s.d));
+  if (auto && !RM && lt > s.d + 1.2) { if (cur < VIDEO.scenes.length - 1) go(cur + 1, true); else setAuto(false); }
+  requestAnimationFrame(loop);
+}
+
+
+function faq(x, y, w, q, a, al) {
+  if (al <= 0) return; X.globalAlpha = al; const h = 138 + Math.ceil(TW(a, F(400, 26)) / (w - 70)) * 34;
+  R(x, y, w, h, K.pale); R(x, y, 8, h, K.blue); T('DUDA', x + 30, y + 26, F(800, 18), K.blue);
+  T(q, x + 30, y + 60, F(800, 28), K.ink); wrap(a, x + 30, y + 82, w - 60, F(400, 26), K.ink, 34); X.globalAlpha = 1;
+}
+function note(x, y, w, h, title, body, col, al) { if (al <= 0) return; X.globalAlpha = al; R(x, y, w, h, K.white); R(x, y, 8, h, col || K.blue); T(title, x + 28, y + 36, F(800, 28), col || K.blue); wrap(body, x + 28, y + 60, w - 50, F(400, 25), K.ink, 33); X.globalAlpha = 1; }
+const PED = [['P001', 'CLI-01', '05/09/2026', '1.250,50'], ['P002', 'CLI-02', '06/09/2026', '980,00'], ['P003', 'CLI-01', '06/09/2026', '2.100,00'], ['P003', 'CLI-01', '06/09/2026', '2.100,00'], ['P004', 'CLI-03', '07/09/2026', '450,75'], ['P005', null, '08/09/2026', '310,00'], ['P006', 'CLI-02', '09/09/2026', '1.775,25'], ['P007', 'CLI-03', '10/09/2026', '640,00']];
+const CLI = [['CLI-01', 'Metalúrgica Norte', "'cordoba '"], ['CLI-02', 'Agro Sur SA', "'Santa Fe '"], ['CLI-03', 'Talleres Centro', "'CORDOBA'"]];
+const STG = [['P001', 'CLI-01', '2026-09-05', '1250.50'], ['P002', 'CLI-02', '2026-09-06', '980.00'], ['P003', 'CLI-01', '2026-09-06', '2100.00'], ['P003', 'CLI-01', '2026-09-06', '2100.00'], ['P004', 'CLI-03', '2026-09-07', '450.75'], ['P005', null, '2026-09-08', '310.00'], ['P006', 'CLI-02', '2026-09-09', '1775.25'], ['P007', 'CLI-03', '2026-09-10', '640.00']];
+const OUT = [['P001', '2026-09-05', '1250.50', 'CORDOBA'], ['P002', '2026-09-06', '980.00', 'SANTA FE'], ['P003', '2026-09-06', '2100.00', 'CORDOBA'], ['P004', '2026-09-07', '450.75', 'CORDOBA'], ['P006', '2026-09-09', '1775.25', 'SANTA FE'], ['P007', '2026-09-10', '640.00', 'CORDOBA']];
+const PC = [{ n: 'pedido_id', w: 150 }, { n: 'cliente_id', w: 160 }, { n: 'fecha', w: 190 }, { n: 'monto', w: 170 }];
+const CC = [{ n: 'cliente_id', w: 160 }, { n: 'nombre', w: 270 }, { n: 'region', w: 190 }];
+const YH = 'rgba(255,255,51,0.55)', RH = 'rgba(138,53,47,0.16)';
+function wh(x, y, w, h, lab, dark) { R(x, y, w, h, dark ? K.ink2 : K.pale, K.blue, 3); T(lab, x + 22, y + 32, F(800, 24), K.blue); }
+function lanes(active) { const L = [['Fuentes', 64], ['Motor de integración', 560], ['Warehouse', 1220]]; L.forEach(([s, x], i) => T(s.toUpperCase(), x, 120, F(800, 22), i === active ? K.blue : K.mut)); }
+VIDEO = { title: 'Detalle · ETL y ELT con SQL', num: 'Explorar en detalle', scenes: [
+{ d: 6, full: true, draw: (t, d) => titleCard(t, d, 'Unidad 4 · Explorar en detalle', 'ETL y ELT,', 'paso a paso con SQL', 'Dos fuentes de Faro Sur, los mismos datos sucios y dos caminos para volverlos confiables.') },
+{ d: 19, step: 'PASO 1 DE 10', cap: ['Las fuentes: así llegan los datos', 'Una tabla de pedidos del sistema de ventas (la base transaccional) y un archivo CSV de clientes. Fechas y montos como texto, un pedido repetido, un pedido sin cliente y regiones escritas de tres maneras.'],
+  draw(t) { db(64, 120, 110, 90, K.blueD, ''); T('ERP · tabla pedidos', 190, 165, F(800, 28), K.ink); T('base transaccional', 190, 198, F(400, 22), K.mut);
+    const pr = (r, c) => { const s = [];
+      if (t > 3 && t < 9 && c === 2) return { bg: YH }; if (t > 5 && t < 9 && c === 3) return { bg: YH };
+      if (t > 9 && (r === 2 || r === 3)) return { bg: RH }; if (t > 11 && r === 5 && c === 1) return { bg: RH }; return null; };
+    table(64, 240, PC, PED, { size: 22, rh: 50, cell: pr });
+    doc(900, 112, 80, 100, K.blue, 'csv'); T('clientes.csv', 1000, 150, F(800, 28), K.ink); T('archivo recibido por mail', 1000, 184, F(400, 22), K.mut);
+    table(900, 240, CC, CLI, { size: 22, rh: 50, cell: (r, c) => t > 13 && c === 2 ? { bg: YH } : null });
+    const P = [[3, 'fecha y monto llegan como texto', '“05/09/2026”, “1.250,50”'], [9, 'P003 aparece dos veces', 'duplicado exacto'], [11, 'P005 no tiene cliente', 'cliente_id = NULL'], [13, 'región escrita de tres formas', 'espacios y mayúsculas distintas']];
+    P.forEach(([s, h, b], i) => { const a = seg(t, s, s + 0.6); if (a <= 0) return; X.globalAlpha = a; const y = 470 + i * 92; R(900, y, 956, 80, K.white); R(900, y, 8, 80, i === 0 || i === 3 ? K.yel : K.bad); T(h, 930, y + 28, F(800, 26), K.ink); T(b, 930, y + 58, M(400, 22), K.mut); X.globalAlpha = 1; }); } },
+{ d: 14, step: 'PASO 2 DE 10', cap: ['Camino 1 · ETL: extraer', 'En ETL, un motor de integración (Power Query, un script o un servicio como Dataflow) se conecta a las fuentes: consulta la base con SQL y lee el CSV.'],
+  draw(t) { lanes(1); db(64, 160, 150, 120, K.blueD, 'ERP'); doc(90, 330, 100, 125, K.blue, 'csv');
+    R(560, 150, 560, 320, K.white, K.ink, 2); gear(840, 250, 50, t * 1.2, K.blue); T('motor de integración', 840, 350, F(800, 28), K.ink, 'center'); T('fuera del warehouse', 840, 386, F(400, 24), K.mut, 'center');
+    wh(1220, 150, 636, 320, 'warehouse', false); T('todavía vacío', 1538, 320, F(400, 28), K.mut, 'center');
+    const E = ['-- extraer de la base de origen', 'SELECT pedido_id, cliente_id, fecha, monto', 'FROM pedidos;', '', '-- leer el archivo', "SELECT * FROM read_csv('clientes.csv');"];
+    code(64, 500, 1050, E, 'sql', { size: 22, typed: chars(E) * seg(t, 0.5, 4), title: 'en el motor de integración' });
+    for (let i = 0; i < 8; i++) { const k = seg(t, 4.5 + i * 0.25, 5.5 + i * 0.25); if (k > 0 && k < 1) R(lerp(220, 600, ez(k)), 210 + (i % 4) * 14, 40, 10, K.blue); }
+    for (let i = 0; i < 3; i++) { const k = seg(t, 6 + i * 0.3, 7 + i * 0.3); if (k > 0 && k < 1) R(lerp(200, 600, ez(k)), 380 + i * 14, 40, 10, K.lb); }
+    if (t > 8) { X.globalAlpha = seg(t, 8, 8.6); tag('8 pedidos + 3 clientes en memoria', 840, 430, K.yel, K.ink, F(800, 24), 14, 44, 'center'); X.globalAlpha = 1; } } },
+{ d: 20, step: 'PASO 3 DE 10', cap: ['ETL: transformar antes de cargar', 'El motor limpia en memoria: convierte fechas y montos a tipos reales, quita el duplicado, normaliza las regiones y une pedidos con clientes. Ojo: el JOIN descartó a P005 sin avisar.'],
+  draw(t) { const S = ['SELECT DISTINCT p.pedido_id,', "  strptime(p.fecha, '%d/%m/%Y')::DATE AS fecha,", "  CAST(REPLACE(REPLACE(p.monto, '.', ''), ',', '.')", '       AS DECIMAL(12,2)) AS monto,', '  UPPER(TRIM(c.region)) AS region', 'FROM pedidos p', 'JOIN clientes c USING (cliente_id);'];
+    const hl = {}; if (t > 4 && t < 6) hl[1] = 'rgba(255,255,51,0.2)'; if (t > 6 && t < 8) { hl[2] = hl[3] = 'rgba(255,255,51,0.2)'; } if (t > 8 && t < 10) hl[0] = 'rgba(255,255,51,0.2)'; if (t > 10 && t < 12) hl[4] = 'rgba(255,255,51,0.2)'; if (t > 12 && t < 15) { hl[5] = hl[6] = 'rgba(255,255,51,0.2)'; }
+    code(64, 120, 960, S, 'sql', { size: 23, typed: chars(S) * seg(t, 0.3, 3.8), title: 'transformación en el motor (SQL)', hl });
+    const notes = [[4, 'texto → fecha'], [6, 'texto → número'], [8, 'DISTINCT quita el duplicado'], [10, 'TRIM + UPPER unifica regiones'], [12, 'JOIN agrega la región']];
+    notes.forEach(([s, n], i) => { if (t > s) tag(n, 64 + (i % 3) * 330, 520 + Math.floor(i / 3) * 56, K.ink, K.yel, F(800, 22), 12, 44); });
+    if (t > 13) table(1060, 120, [{ n: 'pedido_id', w: 150 }, { n: 'fecha', w: 190 }, { n: 'monto', w: 150 }, { n: 'region', w: 160 }], OUT, { size: 22, rh: 48, rowA: r => seg(t, 13 + r * 0.25, 13.5 + r * 0.25) });
+    if (t > 15.5) note(1060, 480, 796, 200, '¿Y P005?', 'No tiene cliente, así que el JOIN lo dejó afuera. No hay error ni aviso: simplemente desaparece. Resultado: 6 filas.', K.bad, seg(t, 15.5, 16.2)); } },
+{ d: 15, step: 'PASO 4 DE 10', cap: ['ETL: cargar solo lo curado', 'Al warehouse llega una sola tabla limpia: ventas_curadas, con 6 filas. En esta variante no se guardó una copia de entrada. ETL también permite conservarla antes de transformar; sin esa copia, un cambio de reglas exige otra extracción.'],
+  draw(t) { lanes(2); R(560, 150, 560, 520, K.white, K.ink, 2); gear(840, 270, 50, t * 1.2, K.blue); T('motor de integración', 840, 370, F(800, 28), K.ink, 'center');
+    wh(1220, 150, 636, 520, 'warehouse', false);
+    const L = ['CREATE TABLE ventas_curadas AS', 'SELECT … ;  -- paso 3'];
+    code(64, 300, 470, L, 'sql', { size: 20, title: 'cargar', typed: chars(L) * seg(t, 0.3, 2.5) });
+    for (let i = 0; i < 6; i++) { const k = seg(t, 2.5 + i * 0.2, 3.7 + i * 0.2); if (k > 0 && k < 1) R(lerp(1000, 1260, ez(k)), 250 + i * 14, 40, 10, K.blue); }
+    if (t > 4) table(1250, 210, [{ n: 'pedido_id', w: 140 }, { n: 'fecha', w: 180 }, { n: 'monto', w: 130 }, { n: 'region', w: 130 }], OUT, { size: 19, rh: 40, rowA: r => seg(t, 4 + r * 0.15, 4.4 + r * 0.15) });
+    if (t > 5.5) T('ventas_curadas · 6 filas', 1250, 520, F(800, 26), K.blue);
+    const Q = ['¿Dónde quedó P005?', '¿Y el pedido duplicado?', '¿Cómo era el dato original?']; Q.forEach((q, i) => { if (t > 7 + i * 1.2) { X.globalAlpha = seg(t, 7 + i * 1.2, 7.6 + i * 1.2); tag(q, 64, 560 + i * 56, K.bad, K.white, F(800, 24), 14, 44); X.globalAlpha = 1; } });
+    if (t > 11) note(560, 690, 1296, 110, 'En el warehouse no queda rastro', 'Para responder esas preguntas hay que volver a la fuente, si todavía tiene esos datos.', K.bad, seg(t, 11, 11.6)); } },
+{ d: 16, step: 'PASO 5 DE 10', cap: ['Camino 2 · ELT: extraer y cargar tal cual', 'En este ejemplo de ELT se copian los datos autorizados al warehouse, sin limpiar, en una capa raw. Se agregan columnas de control: cuándo se cargó y de dónde vino.'],
+  draw(t) { const S = ['CREATE TABLE raw.pedidos AS', "SELECT *, now() AS _cargado, 'erp' AS _origen", 'FROM erp.pedidos;', '', 'CREATE TABLE raw.clientes AS', "SELECT * FROM read_csv('clientes.csv', all_varchar = true);"];
+    code(64, 120, 1000, S, 'sql', { size: 22, typed: chars(S) * seg(t, 0.3, 4.5), title: 'extraer y cargar (dentro del warehouse)' });
+    wh(1100, 120, 756, 640, 'warehouse', false); R(1124, 170, 708, 570, 'rgba(255,255,51,0.25)', K.ink, 2); T('capa raw', 1146, 204, F(800, 26), K.ink);
+    if (t > 5) { X.globalAlpha = seg(t, 5, 5.8); table(1146, 230, [{ n: 'pedido_id', w: 120 }, { n: 'fecha', w: 160 }, { n: 'monto', w: 140 }, { n: '_origen', w: 120 }], PED.map(r => [r[0], r[2], r[3], 'erp']), { size: 18, rh: 34 }); T('raw.pedidos · 8 filas', 1146, 560, F(800, 24), K.ink); X.globalAlpha = 1; }
+    if (t > 7) { X.globalAlpha = seg(t, 7, 7.8); table(1146, 600, [{ n: 'cliente_id', w: 140 }, { n: 'region', w: 170 }], CLI.map(r => [r[0], r[2]]), { size: 18, rh: 30 }); T('raw.clientes · 3', 1480, 650, F(800, 24), K.ink); X.globalAlpha = 1; }
+    note(64, 430, 1000, 140, 'raw no se corrige', 'Es la copia fiel de lo que llegó. Si algo sale mal más adelante, siempre se puede volver acá.', K.blue, seg(t, 8.5, 9.1));
+    faq(64, 600, 1000, '¿Por qué all_varchar?', 'Para guardar todo como texto, tal como llegó, sin que el lector “adivine” los tipos.', seg(t, 11, 11.7)); } },
+{ d: 23, step: 'PASO 6 DE 10', cap: ['ELT: staging, limpiar con SQL dentro del warehouse', 'Una vista de staging convierte fechas y montos, elimina el duplicado exacto y normaliza las regiones. raw no se toca: la limpieza es una consulta que se puede volver a ejecutar.'],
+  draw(t) { const S = ['CREATE VIEW stg_pedidos AS', 'SELECT DISTINCT pedido_id, cliente_id,', "  strptime(fecha, '%d/%m/%Y')::DATE AS fecha,", "  CAST(REPLACE(REPLACE(monto, '.', ''), ',', '.')", '       AS DECIMAL(12,2)) AS monto', 'FROM raw.pedidos;', '', 'CREATE VIEW stg_clientes AS', 'SELECT cliente_id, nombre,', '  UPPER(TRIM(region)) AS region', 'FROM raw.clientes;'];
+    const hl = {}; if (t > 3 && t < 6) hl[2] = 'rgba(255,255,51,0.2)'; if (t > 6 && t < 9) { hl[3] = hl[4] = 'rgba(255,255,51,0.2)'; } if (t > 9 && t < 13) hl[1] = 'rgba(255,255,51,0.2)'; if (t > 14 && t < 18) hl[9] = 'rgba(255,255,51,0.2)';
+    code(64, 120, 900, S, 'sql', { size: 22, lh: 32, typed: chars(S) * seg(t, 0.3, 3), title: 'staging (vistas sobre raw)', hl });
+    const fF = t > 4, fM = t > 7, dd = t > 10.5; const rows = []; PED.forEach((r, i) => { if (dd && i === 3) return; rows.push([r[0], r[1], fF ? STG[i][2] : r[2], fM ? STG[i][3] : r[3], i]); });
+    table(1000, 120, PC.map(c => ({ n: c.n, w: c.w - 6 })), rows.map(r => r.slice(0, 4)), { size: 21, rh: 44, cell: (ri, c) => { const i = rows[ri][4]; if (c === 2 && t > 4 && t < 6) return { bg: YH }; if (c === 3 && t > 7 && t < 9) return { bg: YH }; if (!dd && t > 9.5 && i === 3) return { bg: RH, strike: true }; return null; } });
+    T(dd ? 'stg_pedidos · 7 filas' : 'raw.pedidos → stg_pedidos', 1000, 120 + 44 * (rows.length + 1) + 28, F(800, 24), K.blue);
+    if (t > 14) table(1000, 600, [{ n: 'cliente_id', w: 160 }, { n: 'region', w: 190 }], CLI.map((r, i) => [r[0], t > 15.5 ? ['CORDOBA', 'SANTA FE', 'CORDOBA'][i] : r[2]]), { size: 21, rh: 40, cell: (r, c) => c === 1 && t > 15.5 && t < 18 ? { bg: YH } : null });
+    if (t > 18) { X.globalAlpha = seg(t, 18, 18.6); tag('2 regiones, escritas igual', 1370, 680, K.yel, K.ink, F(800, 22), 12, 42); X.globalAlpha = 1; } } },
+{ d: 19, step: 'PASO 7 DE 10', cap: ['ELT: pruebas de calidad, también en SQL', 'Una prueba es una consulta que debería devolver cero filas. Si devuelve filas, hay un problema y alguien decide qué hacer: corregir, marcar, excluir o escalar.'],
+  draw(t) { const A = ['-- Prueba 1: ¿pedidos duplicados?', 'SELECT pedido_id, COUNT(*) FROM stg_pedidos', 'GROUP BY pedido_id HAVING COUNT(*) > 1;'];
+    code(64, 120, 1000, A, 'sql', { size: 23, typed: chars(A) * seg(t, 0.3, 2.5) });
+    if (t > 3) { X.globalAlpha = seg(t, 3, 3.5); R(1100, 130, 756, 150, K.white); R(1100, 130, 8, 150, K.ok); T('0 filas', 1130, 180, M(700, 34), K.ok); T('✓ no hay duplicados: DISTINCT funcionó', 1130, 230, F(600, 26), K.ink); X.globalAlpha = 1; }
+    const B = ['-- Prueba 2: ¿pedidos sin cliente?', 'SELECT * FROM stg_pedidos', 'WHERE cliente_id IS NULL;'];
+    if (t > 5) code(64, 330, 1000, B, 'sql', { size: 23, typed: chars(B) * seg(t, 5, 7) });
+    if (t > 7.5) { X.globalAlpha = seg(t, 7.5, 8); R(1100, 340, 756, 150, '#FAE9E7'); R(1100, 340, 8, 150, K.bad); T('1 fila ✗', 1130, 386, M(700, 34), K.bad); T('P005 · NULL · 2026-09-08 · 310.00', 1130, 440, M(400, 24), K.ink); X.globalAlpha = 1; }
+    if (t > 10) note(64, 560, 1792, 170, 'Decisión documentada', 'Excluir P005 del mart, registrarlo en una tabla de rechazos con el motivo (“sin cliente”) y avisar al responsable de ventas para que lo corrija en el origen. A diferencia del ETL del paso 3, ahora el problema es visible.', K.blue, seg(t, 10, 10.7)); } },
+{ d: 17, step: 'PASO 8 DE 10', cap: ['ELT: el mart, listo para decidir', 'El mart une pedidos y clientes, agrupa por región y deja una fila por región con la venta total. Es lo que consumen Power BI, un notebook o un asistente de IA por MCP.'],
+  draw(t) { const S = ['CREATE TABLE mart_ventas_region AS', 'SELECT c.region,', '       COUNT(*)     AS pedidos,', '       SUM(p.monto) AS venta', 'FROM stg_pedidos p', 'JOIN stg_clientes c USING (cliente_id)', 'GROUP BY c.region;'];
+    code(64, 120, 900, S, 'sql', { size: 24, typed: chars(S) * seg(t, 0.3, 4), title: 'mart (capa para consumo)', hl: { 6: t > 4.5 && t < 7 ? 'rgba(255,255,51,0.2)' : 0, 5: t > 7 && t < 9 ? 'rgba(255,255,51,0.2)' : 0 } });
+    if (t > 5) table(1020, 140, [{ n: 'region', w: 230 }, { n: 'pedidos', w: 160 }, { n: 'venta', w: 220 }], [['CORDOBA', 4, '4441.25'], ['SANTA FE', 2, '2755.25']], { size: 26, rh: 56, rowA: r => seg(t, 5 + r * 0.4, 5.5 + r * 0.4) });
+    if (t > 6.5) { [['CORDOBA', 4441.25], ['SANTA FE', 2755.25]].forEach(([n, v], i) => { const k = ez(seg(t, 6.5 + i * 0.3, 7.6 + i * 0.3)); T(n, 1020, 380 + i * 80, F(800, 24), K.ink); R(1020, 396 + i * 80, 740 * v / 4441.25 * k, 34, i ? K.lb : K.blue); }); }
+    if (t > 9) { X.globalAlpha = seg(t, 9, 9.6); T('Grano del mart: una fila por región', 1020, 580, F(800, 28), K.blue); X.globalAlpha = 1; }
+    if (t > 10.5) { X.globalAlpha = seg(t, 10.5, 11.1); ['Power BI', 'Notebook', 'IA vía MCP'].forEach((s, i) => tag(s, 1020 + i * 260, 650, K.ink, K.yel, F(800, 24), 16, 50)); X.globalAlpha = 1; } } },
+{ d: 18, step: 'PASO 9 DE 10', cap: ['Reconciliar: ¿cierran las cuentas?', 'Cada capa explica su cambio de conteo: 8 filas en raw, 7 en staging (1 duplicado) y 6 pedidos aceptados para el mart (1 rechazado sin cliente). En importe: $7.506,50 = $7.196,50 + $310,00.'],
+  draw(t) { const C = [['raw.pedidos', '8 filas', '—'], ['stg_pedidos', '7 filas', '−1 duplicado exacto (P003)'], ['mart', '6 pedidos', '−1 sin cliente (P005) → rechazos']];
+    C.forEach(([n, v, d], i) => { const x = 64 + i * 610, a = seg(t, 0.4 + i * 1.5, 1 + i * 1.5); X.globalAlpha = a; R(x, 140, 560, 240, i === 2 ? K.blue : K.white, i === 2 ? null : K.line, 2); T(n, x + 30, 190, M(700, 28), i === 2 ? K.yel : K.blue); T(v, x + 30, 270, F(800, 64), i === 2 ? K.white : K.ink); T(d, x + 30, 340, F(400, 24), i === 2 ? K.pale : K.mut);
+      if (i < 2) arrow(x + 566, 260, x + 606, 260, K.ink, 4); X.globalAlpha = 1; });
+    const S = ['SELECT (SELECT SUM(monto) FROM stg_pedidos)      AS total_stg,', '       (SELECT SUM(venta) FROM mart_ventas_region) AS total_mart;'];
+    if (t > 5) code(64, 420, 1200, S, 'sql', { size: 23, typed: chars(S) * seg(t, 5, 7.5), title: 'control de reconciliación' });
+    if (t > 8) { X.globalAlpha = seg(t, 8, 8.6); R(1300, 420, 556, 160, K.ink); T('total_stg   7506.50', 1330, 470, M(700, 28), K.paper); T('total_mart  7196.50', 1330, 520, M(700, 28), K.paper); X.globalAlpha = 1; }
+    if (t > 10) { X.globalAlpha = seg(t, 10, 10.6); R(64, 640, 1792, 110, K.ok); T('7506.50  =  7196.50  +  310.00 (P005, en rechazos)   ✓ cierra', 960, 695, M(700, 34), K.white, 'center'); X.globalAlpha = 1; } } },
+{ d: 18, step: 'PASO 10 DE 10', cap: ['ETL o ELT: cuándo conviene cada uno', 'ETL transforma antes de cargar al destino; ELT transforma dentro de él. Ambos pueden conservar la entrada para reprocesar y necesitan contrato, controles y reconciliación.'], dark: true,
+  draw(t) { const col = (x, h, sub, rows, tools, a) => { X.globalAlpha = a; R(x, 120, 880, 640, K.ink2, K.ink3, 2); R(x, 120, 880, 10, K.yel); T(h, x + 36, 190, F(800, 56), K.paper); T(sub, x + 36, 240, F(400, 26), K.mutD);
+      rows.forEach((r, i) => { R(x + 36, 294 + i * 78, 12, 12, K.yel); wrap(r, x + 66, 284 + i * 78, 780, F(400, 27), K.paper, 34); }); T('Ej.: ' + tools, x + 36, 720, F(700, 24), K.lb); X.globalAlpha = 1; };
+    col(64, 'ETL', 'transforma antes de cargar', ['Al warehouse llega solo lo curado.', 'Sirve si hay datos sensibles que no deben entrar crudos.', 'Regla nueva = volver a extraer de la fuente.', 'Riesgo: errores silenciosos (como P005).'], 'Power Query · Dataflow · scripts', seg(t, 0.3, 1));
+    col(976, 'ELT', 'carga primero, transforma adentro', ['raw conserva la copia fiel de lo recibido.', 'Staging, pruebas y mart: todo en SQL versionado.', 'Regla nueva = re-ejecutar desde raw.', 'Ejecutar dos veces da lo mismo (idempotencia).'], 'BigQuery + Dataform o dbt · Snowflake · Databricks', seg(t, 1.5, 2.2)); } }
+]};
+
+initControls();
+</script></body></html>

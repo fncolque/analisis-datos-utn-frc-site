@@ -566,13 +566,14 @@
         "base": "Elaboración propia para la asignatura."
       },
       "imagen": {
-        "archivo": "box-plot.svg",
-        "alt": "Esquema de un boxplot con mínimo, cuartiles, mediana, máximo y rango intercuartílico identificados.",
-        "epigrafe": "El boxplot resume posición y dispersión mediante cuartiles. Sus marcas permiten comparar distribuciones sin confundir un valor aislado con el comportamiento del conjunto.",
-        "autor": "Roman Tworkowski y Szombara88",
-        "licencia": "Dominio público",
-        "url": "https://commons.wikimedia.org/wiki/File:Box_plot.svg",
-        "after_heading": "como-leer-un-boxplot"
+        "archivo": "boxplot-componentes-es.svg",
+        "alt": "Boxplot en español: Q1 30, mediana 40, Q3 50 y RIC 20. Límites de referencia 0 y 80, bigotes en los valores observados 10 y 70 y un valor atípico en 90.",
+        "epigrafe": "El rango intercuartílico (RIC o IQR) es Q3 − Q1. Los bigotes llegan a los valores observados más extremos dentro de los límites de 1,5 × RIC; pueden diferir del mínimo y del máximo del conjunto. Ejemplo esquemático.",
+        "autor": "Elaboración propia para la asignatura",
+        "licencia": "Diagrama original en español",
+        "url": "https://www.itl.nist.gov/div898/handbook/eda/section3/boxplot.htm",
+        "after_heading": "como-leer-un-boxplot",
+        "ampliable": true
       },
       "recursos": [
         {
