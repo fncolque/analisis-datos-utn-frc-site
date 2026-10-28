@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Power BI y modelo semántico. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Power BI y modelo semántico · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 6 · CAPÍTULO 1</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 6 · CAPÍTULO 1</span></div>
+        <h1 id="reading-title">Power BI y modelo semántico</h1>
+        <p class="hero-lede">Power BI reúne la preparación de datos, el modelo semántico y la experiencia de lectura de un reporte. El capítulo explica qué responsabilidad pertenece a cada capa, cómo se comparten definiciones mediante relaciones y medidas, y qué controles permiten reconciliar el resultado con los marts de origen.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Cómo entregamos una versión compartida y controlable de la decisión?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_E_v1.0_estudiantes.zip" download>Descargar Paquete E <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u06-power-bi-modelo-semantico">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u06-power-bi-modelo-semantico">El modelo semántico conecta datos y consumo</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u06-modelo-semantico.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u06-modelo-semantico.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u06-modelo-semantico.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u06-modelo-semantico.svg?v=20260825b" alt="Flujo desde marts curados a Power Query, modelo semántico, reporte y decisión, con reconciliación desde un notebook." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>Power Query prepara la carga; las relaciones y medidas fijan significado; el reporte organiza la decisión.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#separar-preparacion-significado-y-comunicacion">Separar preparación, significado y comunicación</a><a href="#organizar-el-modelo-como-un-esquema-estrella">Organizar el modelo como un esquema estrella</a><a href="#verificar-una-relacion-antes-de-crearla">Verificar una relación antes de crearla</a><a href="#comprender-la-direccion-de-filtro">Comprender la dirección de filtro</a><a href="#distinguir-una-columna-calculada-de-una-medida">Distinguir una columna calculada de una medida</a><a href="#el-contexto-de-filtro-cambia-el-resultado">El contexto de filtro cambia el resultado</a><a href="#medidas-dax-iniciales">Medidas DAX iniciales</a><a href="#nombres-y-formatos-forman-parte-del-significado">Nombres y formatos forman parte del significado</a><a href="#una-pagina-debe-responder-una-pregunta">Una página debe responder una pregunta</a><a href="#elegir-visuales-dentro-de-power-bi">Elegir visuales dentro de Power BI</a><a href="#reconciliar-el-modelo-con-los-marts">Reconciliar el modelo con los marts</a><a href="#acceso-a-power-bi-desktop-desde-distintos-equipos">Acceso a Power BI Desktop desde distintos equipos</a><a href="#revisar-sugerencias-de-ia-en-bi">Revisar sugerencias de IA en BI</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a><a href="#alcance-de-la-unidad">Alcance de la unidad</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="separar-preparacion-significado-y-comunicacion">Separar preparación, significado y comunicación</h2>
+<p>Un proyecto de Power BI combina tres capas con responsabilidades distintas. Power Query conecta fuentes y prepara las tablas que ingresan al modelo. El modelo semántico define relaciones, medidas, nombres y formatos compartidos. El reporte organiza visuales y filtros para una audiencia.</p>
+<p>Separar estas capas facilita revisar el resultado. Una regla que limpia un tipo pertenece a la preparación; una fórmula que calcula margen pertenece al modelo; un color que señala una meta pertenece al reporte. Mezclar las tres decisiones en pasos aislados vuelve difícil localizar un error y reutilizar una métrica.</p>
+<p>En esta unidad Power Query recibe marts que ya atravesaron el pipeline. Puede ajustar nombres, tipos o carga, pero no debe reconstruir silenciosamente reglas que deberían vivir en staging o en el mart. La pregunta de control es: ¿esta transformación prepara el consumo o redefine el negocio?</p>
+<h3 id="caso-aplicado-una-carpeta-recurrente">Caso aplicado: una carpeta recurrente</h3>
+<p>Power Query también puede aplicar la misma secuencia sobre una carpeta. El caso complementario detecta cinco archivos, verifica el esquema, combina los cuatro válidos y conserva el nombre de origen. Las reglas separan la tabla curada del registro de rechazos antes de cargar el resultado.</p>
+<p>Al actualizar, la consulta vuelve a leer los archivos disponibles. La reconciliación confirma 32 filas recibidas en archivos válidos, cuatro registros rechazados y 28 movimientos curados. El modelo semántico consume la tabla curada, mientras que el registro de calidad permanece disponible para explicar qué quedó fuera.</p>
+<h2 id="organizar-el-modelo-como-un-esquema-estrella">Organizar el modelo como un esquema estrella</h2>
+<p>Un esquema estrella coloca una tabla de hechos en el centro y la conecta con dimensiones. La tabla de hechos conserva observaciones medibles en un grano estable, como una fila por línea de pedido. Las dimensiones describen clientes, productos, fechas o regiones mediante claves únicas.</p>
+<figure class="sourced-visual sourced-visual-inline">
+      <a class="sourced-visual-link" href="../assets/images/esquema-estrella-es.svg" target="_blank" rel="noopener" aria-label="Abrir la ilustración en tamaño completo"><img src="../assets/images/esquema-estrella-es.svg" alt="Esquema estrella en español: una tabla de hechos de líneas de venta con cantidad e importe, conectada muchos a uno con dimensiones fecha, cliente, producto y sucursal." width="1536" height="1024" loading="lazy" decoding="async"></a>
+
+      <figcaption>
+        <span>La tabla de hechos declara su grano. Cada dimensión tiene una clave única que describe muchas filas de hechos. Las relaciones se leen como uno a muchos desde la dimensión.</span>
+        <small>Fuente: <a href="https://learn.microsoft.com/es-es/power-bi/guidance/star-schema" target="_blank" rel="noopener noreferrer">Elaboración propia para la asignatura</a> · Diagrama original en español</small>
+      </figcaption>
+    </figure>
+
+<p>Las relaciones suelen ir de una dimensión hacia la tabla de hechos con cardinalidad uno a muchos. Al filtrar una región, la dimensión identifica las claves correspondientes y el filtro llega a las filas de hechos. Las medidas suman, cuentan o calculan ratios sobre esa población.</p>
+<p>Esta estructura reduce ambigüedad y favorece medidas reutilizables. También mejora la lectura: una dimensión responde “por qué atributo segmentamos” y el hecho responde “qué ocurrió y cuánto”. La ventaja depende de que el grano y las claves se hayan declarado antes.</p>
+<h2 id="verificar-una-relacion-antes-de-crearla">Verificar una relación antes de crearla</h2>
+<p>El lado “uno” necesita una clave única. El lado “muchos” puede repetirla en cada observación relacionada. Ambos campos deben tener tipos compatibles y las claves de hechos deberían encontrar su dimensión, salvo excepciones documentadas.</p>
+<p>Antes de aceptar una relación comprobamos unicidad, nulos, claves huérfanas y cardinalidad esperada. La autodetección de Power BI puede sugerir un vínculo por nombres o valores, pero no conoce el contrato del negocio. La revisión confirma que customer_id conecta la dimensión de clientes con pedidos y que la dirección de filtro coincide con el uso previsto.</p>
+<p>Una relación incorrecta puede ocultar filas o producir resultados ambiguos. El control se realiza con conteos y medidas conocidas antes de diseñar visuales. La <a href="https://learn.microsoft.com/power-bi/transform-model/desktop-create-and-manage-relationships" target="_blank" rel="noopener noreferrer">documentación oficial de relaciones</a> ofrece las opciones disponibles; el modelo del caso determina cuál corresponde.</p>
+<h2 id="comprender-la-direccion-de-filtro">Comprender la dirección de filtro</h2>
+<p>La dirección simple desde dimensión hacia hecho suele ofrecer el comportamiento más predecible. Un filtro de producto afecta las ventas relacionadas y no modifica automáticamente otras dimensiones. El recorrido puede explicarse de forma directa.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u06-capas-power-bi-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u06-capas-power-bi-title">Las tres capas de un proyecto de Power BI</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿En qué capa conviene corregir un tipo, una relación, una medida o una codificación visual?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u06-star-schema.webp')">
+        <div class="atlas-board atlas-lanes"><section class="atlas-lane">
+              <header><span>CAPA 1</span><h4>Power Query</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:4"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Responsabilidad</h5>
+      <div class="atlas-card-copy"><p>Conectar, tipar, limpiar y combinar.</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Producto</h5>
+      <div class="atlas-card-copy"><p>Tablas listas para cargar.</p></div>
+
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"></div>
+      <h5>Error típico</h5>
+      <div class="atlas-card-copy"><p>fecha como texto o duplicado en origen.</p></div>
+
+    </article><article class="atlas-card is-success is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Revisar</h5>
+      <div class="atlas-card-copy"><p>pasos aplicados y consulta fuente.</p></div>
+
+    </article></div>
+            </section><section class="atlas-lane">
+              <header><span>CAPA 2</span><h4>Modelo semántico</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:4"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Responsabilidad</h5>
+      <div class="atlas-card-copy"><p>Relaciones, dimensiones y medidas.</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Producto</h5>
+      <div class="atlas-card-copy"><p>Definiciones reutilizables.</p></div>
+
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"></div>
+      <h5>Error típico</h5>
+      <div class="atlas-card-copy"><p>cardinalidad ambigua o DAX incorrecto.</p></div>
+
+    </article><article class="atlas-card is-success is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Revisar</h5>
+      <div class="atlas-card-copy"><p>grano, dirección de filtro y medida.</p></div>
+
+    </article></div>
+            </section><section class="atlas-lane">
+              <header><span>CAPA 3</span><h4>Reporte</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:4"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Responsabilidad</h5>
+      <div class="atlas-card-copy"><p>Visuales, filtros y recorrido.</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Producto</h5>
+      <div class="atlas-card-copy"><p>Página para decidir.</p></div>
+
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"></div>
+      <h5>Error típico</h5>
+      <div class="atlas-card-copy"><p>escala o color que induce una lectura.</p></div>
+
+    </article><article class="atlas-card is-success is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Revisar</h5>
+      <div class="atlas-card-copy"><p>pregunta, audiencia y codificación.</p></div>
+
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u06-capas-power-bi.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Cada capa tiene una responsabilidad distinta. Resolver el problema en su origen evita trasladar tipos incorrectos al modelo, relaciones ambiguas a DAX o definiciones inconsistentes a cada visual.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>Power Query conecta fuentes y aplica transformaciones reproducibles sobre tablas.</p></li><li><span>02</span><p>El modelo semántico organiza relaciones, dimensiones y medidas reutilizables.</p></li><li><span>03</span><p>El reporte presenta visuales, segmentadores y navegación para una audiencia.</p></li><li><span>04</span><p>Un error se diagnostica en la primera capa donde aparece: tipo, cardinalidad, DAX o codificación visual.</p></li></ol>
+        <small>Fuentes técnicas: <a href="https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query" target="_blank" rel="noopener noreferrer">Microsoft Learn · ¿Qué es Power Query?</a>.</small>
+      </figcaption>
+    </figure>
+
+<p>La dirección bidireccional permite que el filtro viaje en ambos sentidos. Puede resolver escenarios específicos, pero también crear rutas ambiguas o propagar selecciones inesperadas. Activarla para “hacer que un gráfico funcione” puede esconder un problema de modelado.</p>
+<p>Cuando el análisis necesita un comportamiento especial, primero se formula la pregunta y se revisan las relaciones. La elección queda documentada y se prueba con valores conocidos.</p>
+<h2 id="distinguir-una-columna-calculada-de-una-medida">Distinguir una columna calculada de una medida</h2>
+<p>Una columna calculada se evalúa para cada fila cuando se procesa el modelo y su resultado se almacena. Sirve para clasificaciones, etiquetas o claves derivadas que luego participan en relaciones o filtros. Aumenta el tamaño del modelo porque conserva un valor por observación.</p>
+<p>Una medida se evalúa cuando un visual la solicita. El resultado cambia según filtros, segmentadores y relaciones. “Ventas Netas USD” puede mostrar el total general, una región o un mes con la misma fórmula porque el contexto selecciona filas diferentes.</p>
+<p>La elección depende del propósito. Una banda de demora estable por pedido puede expresarse como columna; un margen porcentual que debe responder a filtros conviene como medida. La <a href="https://learn.microsoft.com/power-bi/transform-model/desktop-measures" target="_blank" rel="noopener noreferrer">guía oficial de medidas</a> muestra cómo se crean y utilizan.</p>
+<h2 id="el-contexto-de-filtro-cambia-el-resultado">El contexto de filtro cambia el resultado</h2>
+<p>El contexto de filtro reúne las selecciones activas en el visual, la página y el reporte, además de las relaciones del modelo. Una barra por región evalúa la medida una vez para cada región. Una tarjeta sin ese eje evalúa el total de la población visible.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u06-contexto-filtro-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u06-contexto-filtro-title">Cómo se evalúa una medida dentro del contexto de filtro</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Por qué una misma fórmula devuelve resultados distintos en cada visual?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u06-measure-context.webp')">
+        <div class="atlas-board atlas-compare" style="--atlas-cols:2"><section class="atlas-compare-group">
+              <header><h4>MEDIDA · SE EVALÚA AL CONSULTAR</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">filas visibles</span></div>
+      <h5>Contexto</h5>
+      <div class="atlas-card-copy"><p>Segmentadores de región y familia filtran dimensiones y hechos.</p></div>
+      <div class="atlas-code-lines"><code>[Ventas] = SUM(fact_ventas[importe])</code></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">misma fórmula</span></div>
+      <h5>Tres consultas</h5>
+      <div class="atlas-card-copy"><p>Sin filtro → total general</p><p>Región = Patagonia → subtotal</p><p>Familia = Bombas → subtotal</p></div>
+      <div class="atlas-stats"><span>resultado distinto</span></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">contexto combinado</span></div>
+      <h5>Intersección</h5>
+      <div class="atlas-card-copy"><p>Patagonia + Bombas conserva solo filas que cumplen ambos filtros.</p></div>
+
+    </article></div>
+            </section><section class="atlas-compare-group">
+              <header><h4>COLUMNA CALCULADA · SE ALMACENA POR FILA</h4></header>
+              <div><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">actualización</span></div>
+      <h5>Cálculo</h5>
+      <div class="atlas-card-copy"><p>importe = cantidad × precio</p></div>
+      <div class="atlas-code-lines"><code>fact_ventas[importe]</code></div>
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">grano de hecho</span></div>
+      <h5>Persistencia</h5>
+      <div class="atlas-card-copy"><p>Cada fila conserva su resultado hasta la próxima actualización.</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"><span class="atlas-card-tag">consulta</span></div>
+      <h5>Uso</h5>
+      <div class="atlas-card-copy"><p>La medida agrega la columna dentro del contexto actual.</p></div>
+      <div class="atlas-stats"><span>columna → medida → visual</span></div>
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u06-contexto-filtro.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>La medida conserva una definición y se evalúa sobre las filas visibles en cada contexto. Una columna calculada se obtiene por fila durante la actualización y queda almacenada en el modelo.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>Los segmentadores establecen filtros sobre dimensiones como región y familia.</p></li><li><span>02</span><p>Las relaciones llevan esos filtros hasta las filas correspondientes de fact_ventas.</p></li><li><span>03</span><p>[Ventas] = SUM(fact_ventas[importe]) se vuelve a evaluar para total, Patagonia y Bombas.</p></li><li><span>04</span><p>La columna calculada guarda un valor por fila; la medida responde a la consulta del visual.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>Esto explica por qué una fórmula sencilla puede producir muchos resultados. También obliga a revisar denominadores. Si OTIF se calcula sobre pedidos elegibles, el filtro debe afectar numerador y denominador de manera coherente. Un filtro de transportista puede excluir pedidos sin asignación y cambiar la población.</p>
+<p>Para depurar una medida conviene construir una tabla temporal con dimensiones y componentes del cálculo. Ver numerador, denominador y conteos ayuda a identificar qué filtro llega a cada parte.</p>
+<h2 id="medidas-dax-iniciales">Medidas DAX iniciales</h2>
+<p>DAX expresa cálculos sobre el modelo semántico. Las primeras medidas pueden escribirse de forma directa:</p>
+<pre><code class="language-DAX">Ventas Netas USD =
+SUM ( mart_ventas[net_sales_usd] )</code></pre>
+<pre><code class="language-DAX">Margen Bruto USD =
+SUM ( mart_ventas[gross_margin_usd] )</code></pre>
+<pre><code class="language-DAX">Margen % =
+DIVIDE ( [Margen Bruto USD], [Ventas Netas USD] )</code></pre>
+<pre><code class="language-DAX">Pedidos =
+DISTINCTCOUNT ( mart_ventas[order_id] )</code></pre>
+<p>SUM agrega una columna aditiva dentro del contexto. DISTINCTCOUNT reconoce que order_id puede repetirse en varias líneas. DIVIDE controla el caso en que el denominador sea cero y hace visible que el porcentaje se calcula como ratio de totales.</p>
+<p>OTIF requiere mayor cuidado:</p>
+<pre><code class="language-DAX">OTIF % =
+DIVIDE (
+    CALCULATE (
+        DISTINCTCOUNT ( mart_entregas[order_id] ),
+        mart_entregas[otif_flag] = 1
+    ),
+    DISTINCTCOUNT ( mart_entregas[order_id] )
+)</code></pre>
+<p>CALCULATE agrega la condición del numerador. La medida solo es válida si mart_entregas tiene el grano y la elegibilidad declarados. Si existen varias filas por pedido, el conteo distinto evita repetirlos, pero todavía debemos comprobar qué pedidos integran el denominador.</p>
+<h2 id="nombres-y-formatos-forman-parte-del-significado">Nombres y formatos forman parte del significado</h2>
+<p>Un modelo orientado a usuarios utiliza nombres legibles, unidades y formatos coherentes. “Margen %” comunica mejor que “gm_pct_v2”; una descripción puede indicar fuente y definición. Las claves técnicas que no deben usarse se ocultan y las medidas se organizan en carpetas.</p>
+<p>El formato visual no corrige una fórmula. Mostrar 0,823 como 82,3 % ayuda a leer, pero el valor debe haberse calculado con el denominador correcto. Monedas y fechas también necesitan unidades y contexto.</p>
+<p>Estas decisiones reducen la distancia entre la tabla técnica y la pregunta. Una persona que explora el modelo puede elegir campos autorizados sin reconstruir la lógica desde cada visual.</p>
+<h2 id="una-pagina-debe-responder-una-pregunta">Una página debe responder una pregunta</h2>
+<p>La página comienza con un título que expresa la decisión o el hallazgo. Un KPI principal muestra valor y referencia. Una comparación revela dónde se concentra la diferencia; un desglose explica qué segmento merece atención; los filtros necesarios permiten explorar sin cambiar la definición.</p>
+<p>La recomendación o alerta aparece cerca de la evidencia que la sostiene. Fuente y actualización permanecen visibles. Si la audiencia necesita detalle, una tabla secundaria o una página de respaldo puede ofrecerlo.</p>
+<p>Un mosaico de visuales obliga a descubrir el argumento por cuenta propia. Diseñar una jerarquía permite leer primero la situación, luego la comparación y finalmente la acción.</p>
+<h2 id="elegir-visuales-dentro-de-power-bi">Elegir visuales dentro de Power BI</h2>
+<p>Las reglas de selección visual se mantienen dentro de la herramienta. Las barras comparan categorías, las líneas muestran secuencias temporales y una dispersión explora relaciones. La interacción aporta valor cuando responde una pregunta secundaria y conserva la población.</p>
+<p>Antes de agregar un visual conviene formular qué tarea cumple. Si otra figura ya responde la misma pregunta, puede quitarse. Menos elementos bien explicados facilitan controlar filtros y detectar contradicciones.</p>
+<h2 id="reconciliar-el-modelo-con-los-marts">Reconciliar el modelo con los marts</h2>
+<p>La carga se valida con filas importadas, claves distintas, rango de fechas y totales. Ventas, margen y pedidos se comparan con el mart o con el notebook de control. OTIF se revisa mediante numerador y denominador.</p>
+<p>Una visual puede parecer coherente y aun así ocultar una relación inactiva o un filtro inesperado. La reconciliación utiliza valores conocidos antes de analizar segmentos. Si el total coincide y una región difiere, el diagnóstico se concentra en relaciones, categorías o filtros.</p>
+<p>El registro de control conserva fecha, versión de fuente y valores comparados. Así otro estudiante puede repetir la verificación después de actualizar.</p>
+<h2 id="acceso-a-power-bi-desktop-desde-distintos-equipos">Acceso a Power BI Desktop desde distintos equipos</h2>
+<p>La documentación vigente de Microsoft indica que <a href="https://learn.microsoft.com/es-es/power-bi/fundamentals/desktop-get-the-desktop" target="_blank" rel="noopener noreferrer">Power BI Desktop requiere Windows</a>. Una persona que utiliza macOS puede revisar fuentes, modelo, fórmulas y narrativa, y necesita acceso a un equipo Windows para abrir o modificar el archivo PBIX con Desktop.</p>
+<p>La práctica puede resolverse individualmente o en equipo. Cuando se comparte un dispositivo, cada integrante conserva una copia de los datos y debe poder explicar las relaciones, las medidas y los controles. La organización del trabajo debe evitar que el sistema operativo convierta la parte técnica en una caja negra para quien no ejecutó el archivo.</p>
+<h2 id="revisar-sugerencias-de-ia-en-bi">Revisar sugerencias de IA en BI</h2>
+<p>Un asistente puede proponer DAX, recomendar un visual o resumir una página. La revisión comprueba nombres de tablas y columnas, contexto de filtro, denominador, dirección de relaciones y seguridad de los datos.</p>
+<p>Una medida puede ser sintácticamente válida y responder otra pregunta. Por ejemplo, promediar porcentajes por fila produce un resultado distinto del ratio entre sumas. El control debe comparar componentes con una consulta o notebook conocido.</p>
+<p>La versión final registra qué sugerencia se utilizó y qué prueba la validó. El modelo semántico queda bajo responsabilidad de la persona o equipo que lo publica.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Qué transformaciones corresponden a Power Query y cuáles deberían llegar resueltas?</li><li>¿Qué condición debe cumplir la clave del lado “uno”?</li><li>¿Por qué una medida cambia cuando se filtra una región?</li><li>¿Cuándo conviene crear una columna calculada?</li><li>¿Cómo se validan numerador y denominador de OTIF?</li><li>¿Qué visual puede retirarse sin perder evidencia?</li><li>¿Cómo se documenta una relación bidireccional si fuera necesaria?</li></ol>
+<h2 id="alcance-de-la-unidad">Alcance de la unidad</h2>
+<p>La unidad cubre importación, tipos, esquema estrella, relaciones simples, medidas, contexto de filtro, página de decisión y reconciliación. DAX avanzado, seguridad por filas, actualización incremental, gateways, Fabric y administración del servicio quedan como extensiones posteriores.</p>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo el modelo semántico mantiene definiciones comunes</h2></div>
+      <div class="applied-prose"><p>Las dimensiones de fecha, cliente y producto filtran hechos con relaciones uno a muchos. Las medidas de venta, margen, pedidos y OTIF se evalúan dentro del contexto que establece cada visual.</p><p>El notebook de control compara filas, claves y totales con el modelo. Fuente, momento de actualización y supuestos acompañan la página para que otra persona pueda interpretar su vigencia.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">6.1</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Construir un modelo semántico y una página de decisión</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>El Paquete E contiene marts de ventas, entregas e inventario con sus dimensiones. La práctica crea relaciones, entre tres y cinco medidas, una página orientada a una decisión y un control de totales que permite comparar el modelo con las fuentes curadas.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_E_v1.0_estudiantes.zip" download>Descargar Paquete E <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u06-power-bi-modelo-semantico">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u06-power-bi-modelo-semantico">Modelo semántico y reportes en Power BI</h2></div>
+        <p>La documentación oficial organiza el aprendizaje desde el modelo estrella y las relaciones hasta medidas DAX y diseño de reportes.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Ruta gratuita</span><small>Inglés y traducciones</small></div>
+          <h3><a href="https://learn.microsoft.com/training/paths/model-data-power-bi/" target="_blank" rel="noopener noreferrer">Model data with Power BI</a></h3>
+          <p>Módulos sobre relaciones, DAX, contexto de filtro y optimización del modelo.</p>
+          <footer><span>Microsoft Learn</span><small>Ruta autoguiada</small><a href="https://learn.microsoft.com/training/paths/model-data-power-bi/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Model data with Power BI">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Guía oficial</span><small>Inglés y traducciones</small></div>
+          <h3><a href="https://learn.microsoft.com/power-bi/guidance/star-schema" target="_blank" rel="noopener noreferrer">Understand star schema and the importance for Power BI</a></h3>
+          <p>Explica hechos, dimensiones, relaciones y grano para modelos semánticos.</p>
+          <footer><span>Microsoft Learn</span><small>Lectura · 25 min</small><a href="https://learn.microsoft.com/power-bi/guidance/star-schema" target="_blank" rel="noopener noreferrer" aria-label="Abrir Understand star schema and the importance for Power BI">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Referencia</span><small>Inglés y traducciones</small></div>
+          <h3><a href="https://learn.microsoft.com/dax/dax-overview" target="_blank" rel="noopener noreferrer">DAX overview</a></h3>
+          <p>Referencia conceptual de sintaxis, funciones y contexto en Data Analysis Expressions.</p>
+          <footer><span>Microsoft Learn</span><small>Consulta técnica</small><a href="https://learn.microsoft.com/dax/dax-overview" target="_blank" rel="noopener noreferrer" aria-label="Abrir DAX overview">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+    <section class="resources section-pad" aria-labelledby="project-resources-u06-power-bi-modelo-semantico">
+      <div class="section-heading"><div class="section-kicker">Transferencia al proyecto</div><h2 id="project-resources-u06-power-bi-modelo-semantico">Reutilizar una tabla curada</h2></div>
+      <div class="resource-list"><a href="../downloads/Faro_Sur_Laboratorio_PQ_PBI_v1.0_estudiantes.zip" download data-release-key="u06-power-bi-modelo-semantico"><span class="resource-type">ZIP</span><span><b>Laboratorio Power Query y Power BI</b><small>Datos de Faro Sur para anexar, limpiar, combinar y modelar</small></span><i aria-hidden="true">↓</i></a><a href="../recursos/caso-archivos-recurrentes.html" data-release-key="u04-etl-elt-contratos"><span class="resource-type">HTML</span><span><b>Caso aplicado · Archivos recurrentes</b><small>Power Query como capa de preparación para Excel o Power BI</small></span><i aria-hidden="true">→</i></a></div>
+    </section>
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u05-storytelling-hito2.html"><span>ANTERIOR</span><b>Unidad 5 · Storytelling e Hito 2</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Unidad 6 · Integración y trade-offs</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

@@ -1,6 +1,6 @@
 {
-  "as_of": "2026-10-27",
-  "generated_at_utc": "2026-10-28T00:21:33+00:00",
+  "as_of": "2026-10-28",
+  "generated_at_utc": "2026-10-28T00:24:57+00:00",
   "timezone": "America/Argentina/Buenos_Aires",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
@@ -13,7 +13,9 @@
     "Unidad 4.2 · Formatos, contratos y ETL/ELT",
     "Unidad 4.3 · Calidad, trazabilidad y privacidad",
     "Unidad 5.1 · Python, Pandas y EDA",
-    "Unidad 5.2 · Descriptiva, incertidumbre y visualización"
+    "Unidad 5.2 · Descriptiva, incertidumbre y visualización",
+    "Unidad 5.3 · Storytelling e Hito 2",
+    "Unidad 6.1 · Power BI y modelo semántico"
   ],
   "contact": "analisisdatosutnfrc@gmail.com"
 }

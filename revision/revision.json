@@ -2,10 +2,10 @@
   "schema_version": 1,
   "source_commit": "da3dcc7ebfea91466f9e156ddb066bb5a137ae84",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/40608160860",
-  "generated_at_utc": "2026-10-28T00:21:34+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/40608527623",
+  "generated_at_utc": "2026-10-28T00:24:58+00:00",
   "qa_status": "passed",
-  "as_of": "2026-10-27",
+  "as_of": "2026-10-28",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
     "Unidad 1 · Laboratorio inicial de Faro Sur",
@@ -17,10 +17,12 @@
     "Unidad 4.2 · Formatos, contratos y ETL/ELT",
     "Unidad 4.3 · Calidad, trazabilidad y privacidad",
     "Unidad 5.1 · Python, Pandas y EDA",
-    "Unidad 5.2 · Descriptiva, incertidumbre y visualización"
+    "Unidad 5.2 · Descriptiva, incertidumbre y visualización",
+    "Unidad 5.3 · Storytelling e Hito 2",
+    "Unidad 6.1 · Power BI y modelo semántico"
   ],
-  "content_digest": "714b4c15028a35d7ae2ef130e6b81a9ae38c632074d239d794da6e93e7ee7c86",
-  "file_count": 137,
-  "html_count": 24,
+  "content_digest": "e1614a69f067e92578409149b823a193e36f6fa3d9ce515f4316770dbcf63be1",
+  "file_count": 156,
+  "html_count": 26,
   "contact": "analisisdatosutnfrc@gmail.com"
 }

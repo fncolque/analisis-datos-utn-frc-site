@@ -1,0 +1,6 @@
+flowchart LR
+    A["Marts<br/>curados"] --> B["Power Query:<br/>tipos y carga"]
+    B --> C["Modelo semántico:<br/>relaciones + medidas"]
+    C --> D["Reporte:<br/>visual + filtros"]
+    D --> E["Decisión"]
+    V["Notebook<br/>de control"] -. "reconciliación" .-> C

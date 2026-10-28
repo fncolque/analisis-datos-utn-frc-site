@@ -2602,6 +2602,353 @@
           ]
         }
       }
+    ],
+    "u05-storytelling-hito2": [
+      {
+        "page": "u05-storytelling-hito2",
+        "unit": "C12",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u05-storyboard-hallazgos.svg",
+        "base_generada": "theory/u05-storyboard-hallazgos-base.webp",
+        "base_provisoria": "u05-story-evidence.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Un storyboard que puede comprenderse leyendo los títulos",
+        "pregunta_lectura": "¿Qué debe aportar cada escena para conducir desde la decisión hasta una recomendación acotada?",
+        "alt": "Cinco escenas de Faro Sur conectan decisión, contexto, tensión, evidencia, recomendación y límite; cada una declara pregunta, evidencia y un título redactado como hallazgo, con análisis secundarios en respaldo.",
+        "epigrafe": "Los títulos forman una secuencia argumental. Cada escena responde una pregunta, muestra la evidencia mínima y prepara la transición hacia la acción o hacia el límite declarado.",
+        "after_heading": "un-storyboard-de-cinco-escenas",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La primera escena nombra la decisión y la audiencia.",
+          "El contexto fija período y cobertura; la tensión identifica dónde aparece la diferencia.",
+          "La evidencia compara magnitud y población antes de proponer una acción.",
+          "La última escena declara recomendación, responsable, seguimiento y límite; el detalle queda en respaldo."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Five editorial storyboard frames connected in a deliberate narrative arc: decision, context, tension, evidence and bounded recommendation, with a secondary supporting-analysis rail beneath.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "flow",
+          "columns": 5,
+          "cards": [
+            {
+              "title": "Revisaremos descuentos por familia",
+              "body": [
+                "Pregunta: ¿qué decisión debe tomar Comercial?"
+              ],
+              "accent": "blue",
+              "tag": "01 · decisión",
+              "step": 1
+            },
+            {
+              "title": "El margen promedio oculta diferencias",
+              "body": [
+                "Evidencia: período, cobertura y punto de referencia."
+              ],
+              "accent": "blue",
+              "tag": "02 · contexto",
+              "step": 2
+            },
+            {
+              "title": "Bombas concentra la caída observada",
+              "body": [
+                "Evidencia: comparación por familia y volumen."
+              ],
+              "accent": "blue",
+              "tag": "03 · tensión",
+              "step": 3
+            },
+            {
+              "title": "El descuento explica parte de la brecha",
+              "body": [
+                "Evidencia: relación, casos y control de mezcla."
+              ],
+              "accent": "blue",
+              "tag": "04 · explicación",
+              "step": 4
+            },
+            {
+              "title": "Probar un umbral y medir el resultado",
+              "body": [
+                "Acción: piloto, responsable y métrica posterior.",
+                "Límite: asociación observada, no causalidad demostrada."
+              ],
+              "accent": "blue",
+              "tag": "05 · recomendación",
+              "step": 5,
+              "stats": [
+                "respaldo: detalle y controles"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "archivo": "u05-story-hierarchy.webp",
+        "titulo": "La jerarquía visual dirige la atención",
+        "alt": "Comparación entre una página con muchos gráficos de igual peso y otra con un hallazgo dominante, una comparación de apoyo y una acción claramente destacada.",
+        "epigrafe": "Una página explicativa establece un recorrido de lectura. El contraste se reserva para el hallazgo y para la evidencia que permite comprobarlo.",
+        "after_heading": "seleccionar-y-descartar-con-criterio",
+        "lectura": [
+          "Los elementos con el mismo peso compiten por atención.",
+          "El hallazgo principal necesita una posición dominante.",
+          "Los gráficos secundarios responden preguntas de apoyo.",
+          "El acento visual señala el recorrido y la acción esperada."
+        ],
+        "tipo": "ilustracion-generada",
+        "version_revision": "conservada-2026-08-24"
+      }
+    ],
+    "u06-power-bi-modelo-semantico": [
+      {
+        "page": "u06-power-bi-modelo-semantico",
+        "unit": "C13",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u06-capas-power-bi.svg",
+        "base_generada": "theory/u06-capas-power-bi-base.webp",
+        "base_provisoria": "u06-star-schema.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Las tres capas de un proyecto de Power BI",
+        "pregunta_lectura": "¿En qué capa conviene corregir un tipo, una relación, una medida o una codificación visual?",
+        "alt": "Tres carriles muestran Power Query para preparar tablas, el modelo semántico para relaciones y medidas DAX, y el reporte para visuales y filtros; cada uno incluye un error típico y el lugar de revisión.",
+        "epigrafe": "Cada capa tiene una responsabilidad distinta. Resolver el problema en su origen evita trasladar tipos incorrectos al modelo, relaciones ambiguas a DAX o definiciones inconsistentes a cada visual.",
+        "after_heading": "comprender-la-direccion-de-filtro",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "Power Query conecta fuentes y aplica transformaciones reproducibles sobre tablas.",
+          "El modelo semántico organiza relaciones, dimensiones y medidas reutilizables.",
+          "El reporte presenta visuales, segmentadores y navegación para una audiencia.",
+          "Un error se diagnostica en la primera capa donde aparece: tipo, cardinalidad, DAX o codificación visual."
+        ],
+        "fuentes": [
+          {
+            "label": "Microsoft Learn · ¿Qué es Power Query?",
+            "url": "https://learn.microsoft.com/en-us/power-query/power-query-what-is-power-query"
+          }
+        ],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: Three stacked Power BI responsibility layers: query preparation, semantic relationships and measures, and report visuals; each layer includes a clear inspection point and contained error marker.",
+        "version_revision": "1.0",
+        "svg_height": 1200,
+        "estructura": {
+          "layout": "lanes",
+          "lanes": [
+            {
+              "label": "CAPA 1",
+              "title": "Power Query",
+              "cards": [
+                {
+                  "title": "Responsabilidad",
+                  "body": [
+                    "Conectar, tipar, limpiar y combinar."
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Producto",
+                  "body": [
+                    "Tablas listas para cargar."
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Error típico",
+                  "body": [
+                    "fecha como texto o duplicado en origen."
+                  ],
+                  "accent": "danger"
+                },
+                {
+                  "title": "Revisar",
+                  "body": [
+                    "pasos aplicados y consulta fuente."
+                  ],
+                  "accent": "success"
+                }
+              ]
+            },
+            {
+              "label": "CAPA 2",
+              "title": "Modelo semántico",
+              "cards": [
+                {
+                  "title": "Responsabilidad",
+                  "body": [
+                    "Relaciones, dimensiones y medidas."
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Producto",
+                  "body": [
+                    "Definiciones reutilizables."
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Error típico",
+                  "body": [
+                    "cardinalidad ambigua o DAX incorrecto."
+                  ],
+                  "accent": "danger"
+                },
+                {
+                  "title": "Revisar",
+                  "body": [
+                    "grano, dirección de filtro y medida."
+                  ],
+                  "accent": "success"
+                }
+              ]
+            },
+            {
+              "label": "CAPA 3",
+              "title": "Reporte",
+              "cards": [
+                {
+                  "title": "Responsabilidad",
+                  "body": [
+                    "Visuales, filtros y recorrido."
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Producto",
+                  "body": [
+                    "Página para decidir."
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Error típico",
+                  "body": [
+                    "escala o color que induce una lectura."
+                  ],
+                  "accent": "danger"
+                },
+                {
+                  "title": "Revisar",
+                  "body": [
+                    "pregunta, audiencia y codificación."
+                  ],
+                  "accent": "success"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u06-power-bi-modelo-semantico",
+        "unit": "C13",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u06-contexto-filtro.svg",
+        "base_generada": "theory/u06-contexto-filtro-base.webp",
+        "base_provisoria": "u06-measure-context.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Cómo se evalúa una medida dentro del contexto de filtro",
+        "pregunta_lectura": "¿Por qué una misma fórmula devuelve resultados distintos en cada visual?",
+        "alt": "Dos columnas muestran segmentadores y dimensiones filtrando fact_ventas antes de evaluar una medida, con resultados para total general, Patagonia y Bombas, y comparan medida con columna calculada.",
+        "epigrafe": "La medida conserva una definición y se evalúa sobre las filas visibles en cada contexto. Una columna calculada se obtiene por fila durante la actualización y queda almacenada en el modelo.",
+        "after_heading": "el-contexto-de-filtro-cambia-el-resultado",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "Los segmentadores establecen filtros sobre dimensiones como región y familia.",
+          "Las relaciones llevan esos filtros hasta las filas correspondientes de fact_ventas.",
+          "[Ventas] = SUM(fact_ventas[importe]) se vuelve a evaluar para total, Patagonia y Bombas.",
+          "La columna calculada guarda un valor por fila; la medida responde a la consulta del visual."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A semantic model filter path where slicer tokens move through dimensions into a fact table and one measure engine returns several context-specific result cards; contrast with row-stored calculated values.",
+        "version_revision": "1.0",
+        "svg_height": 1150,
+        "estructura": {
+          "layout": "compare",
+          "groups": [
+            {
+              "title": "MEDIDA · SE EVALÚA AL CONSULTAR",
+              "cards": [
+                {
+                  "title": "Contexto",
+                  "body": [
+                    "Segmentadores de región y familia filtran dimensiones y hechos."
+                  ],
+                  "accent": "blue",
+                  "tag": "filas visibles",
+                  "code": [
+                    "[Ventas] = SUM(fact_ventas[importe])"
+                  ]
+                },
+                {
+                  "title": "Tres consultas",
+                  "body": [
+                    "Sin filtro → total general",
+                    "Región = Patagonia → subtotal",
+                    "Familia = Bombas → subtotal"
+                  ],
+                  "accent": "blue",
+                  "tag": "misma fórmula",
+                  "stats": [
+                    "resultado distinto"
+                  ]
+                },
+                {
+                  "title": "Intersección",
+                  "body": [
+                    "Patagonia + Bombas conserva solo filas que cumplen ambos filtros."
+                  ],
+                  "accent": "blue",
+                  "tag": "contexto combinado"
+                }
+              ]
+            },
+            {
+              "title": "COLUMNA CALCULADA · SE ALMACENA POR FILA",
+              "cards": [
+                {
+                  "title": "Cálculo",
+                  "body": [
+                    "importe = cantidad × precio"
+                  ],
+                  "accent": "blue",
+                  "tag": "actualización",
+                  "code": [
+                    "fact_ventas[importe]"
+                  ]
+                },
+                {
+                  "title": "Persistencia",
+                  "body": [
+                    "Cada fila conserva su resultado hasta la próxima actualización."
+                  ],
+                  "accent": "blue",
+                  "tag": "grano de hecho"
+                },
+                {
+                  "title": "Uso",
+                  "body": [
+                    "La medida agrega la columna dentro del contexto actual."
+                  ],
+                  "accent": "blue",
+                  "tag": "consulta",
+                  "stats": [
+                    "columna → medida → visual"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      }
     ]
   }
 }

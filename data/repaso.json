@@ -44,6 +44,14 @@
     {
       "id": "u05-descriptiva-incertidumbre-visualizacion",
       "label": "Unidad 5.2 · Descriptiva, incertidumbre y visualización"
+    },
+    {
+      "id": "u05-storytelling-hito2",
+      "label": "Unidad 5.3 · Storytelling e Hito 2"
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico",
+      "label": "Unidad 6.1 · Power BI y modelo semántico"
     }
   ],
   "questions": [
@@ -6866,6 +6874,1246 @@
         "path": "unidades/u05-descriptiva-incertidumbre-visualizacion.html#como-detectar-un-grafico-enganoso",
         "label": "Cómo detectar un gráfico engañoso"
       }
+    },
+    {
+      "id": "u05-storytelling-hito2-01",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Comunicar significa preparar una decisión",
+      "difficulty": "basica",
+      "prompt": "¿Qué pregunta orienta la selección de contenido de una comunicación analítica?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Qué debe poder decidir la audiencia al terminar."
+        },
+        {
+          "id": "b",
+          "text": "Qué herramienta permite mostrar más funciones."
+        },
+        {
+          "id": "c",
+          "text": "Cómo incluir cada resultado producido durante la exploración."
+        },
+        {
+          "id": "d",
+          "text": "Qué visualización admite más variables al mismo tiempo."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La finalidad de la comunicación determina qué evidencia y detalle son pertinentes.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#comunicar-significa-preparar-una-decision",
+        "label": "Comunicar significa preparar una decisión"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-02",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Construir contexto y tensión",
+      "difficulty": "basica",
+      "prompt": "¿Qué comparación introduce una tensión útil para decidir?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El número de diapositivas frente al de autores."
+        },
+        {
+          "id": "b",
+          "text": "El resultado observado frente a una meta relevante."
+        },
+        {
+          "id": "c",
+          "text": "Dos nombres de archivos."
+        },
+        {
+          "id": "d",
+          "text": "La marca de dos computadoras."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Una tensión muestra una diferencia que merece atención en relación con un objetivo.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#construir-contexto-y-tension",
+        "label": "Construir contexto y tensión"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-03",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Elegir evidencia suficiente",
+      "difficulty": "basica",
+      "prompt": "¿Qué permite verificar una cifra presentada?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo un formato porcentual."
+        },
+        {
+          "id": "b",
+          "text": "El nombre del programa de gráficos."
+        },
+        {
+          "id": "c",
+          "text": "Su fuente, definición y control."
+        },
+        {
+          "id": "d",
+          "text": "Solo un título contundente."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La evidencia debe poder rastrearse y comprobarse.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#elegir-evidencia-suficiente",
+        "label": "Elegir evidencia suficiente"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-04",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Redactar una recomendación operable",
+      "difficulty": "basica",
+      "prompt": "¿Qué componente vuelve ejecutable una recomendación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una lista de herramientas disponibles."
+        },
+        {
+          "id": "b",
+          "text": "Una frase genérica de mejora."
+        },
+        {
+          "id": "c",
+          "text": "Un gráfico sin interpretación."
+        },
+        {
+          "id": "d",
+          "text": "Una acción con responsable y alcance."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La audiencia necesita saber quién hará qué y sobre qué población o proceso.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#redactar-una-recomendacion-operable",
+        "label": "Redactar una recomendación operable"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-05",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Escribir títulos que expresen el hallazgo",
+      "difficulty": "basica",
+      "prompt": "¿Qué título expresa una observación y puede contrastarse con un gráfico?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Patagonia tiene la mayor demora mediana del período analizado."
+        },
+        {
+          "id": "b",
+          "text": "Gráfico número 3."
+        },
+        {
+          "id": "c",
+          "text": "Resultados varios."
+        },
+        {
+          "id": "d",
+          "text": "Power BI y Python."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Un título de hallazgo comunica la lectura que la evidencia posterior debe sostener.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#escribir-titulos-que-expresen-el-hallazgo",
+        "label": "Escribir títulos que expresen el hallazgo"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-06",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Comunicar significa preparar una decisión",
+      "difficulty": "basica",
+      "prompt": "¿Dónde puede conservarse el detalle técnico de respaldo que interrumpe la narración principal?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dentro del título de cada gráfico."
+        },
+        {
+          "id": "b",
+          "text": "En un dossier enlazado con las afirmaciones."
+        },
+        {
+          "id": "c",
+          "text": "Fuera de todo registro."
+        },
+        {
+          "id": "d",
+          "text": "Solo en la memoria de quien expone."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El respaldo permite revisar el análisis sin sobrecargar el recorrido principal.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#comunicar-significa-preparar-una-decision",
+        "label": "Comunicar significa preparar una decisión"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-07",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Diseñar para una audiencia concreta",
+      "difficulty": "intermedia",
+      "prompt": "La dirección compara impacto y riesgo; el equipo analítico revisa SQL. ¿Cómo adaptar la comunicación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Ocultar cualquier limitación a dirección."
+        },
+        {
+          "id": "b",
+          "text": "Mostrar siempre todo el código primero."
+        },
+        {
+          "id": "c",
+          "text": "Cambiar el nivel de detalle conservando definiciones y controles relevantes."
+        },
+        {
+          "id": "d",
+          "text": "Cambiar las cifras según la audiencia."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La audiencia modifica la presentación, manteniendo el significado y la evidencia.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#disenar-para-una-audiencia-concreta",
+        "label": "Diseñar para una audiencia concreta"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-08",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Elegir evidencia suficiente",
+      "difficulty": "intermedia",
+      "prompt": "Se informa OTIF de 82 % sin referencia. ¿Qué agregado ayuda a interpretarlo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La cantidad de pedidos, sin aclarar elegibilidad ni período."
+        },
+        {
+          "id": "b",
+          "text": "El porcentaje de otra empresa con una definición diferente."
+        },
+        {
+          "id": "c",
+          "text": "El valor acumulado histórico, sin distinguir su cobertura temporal."
+        },
+        {
+          "id": "d",
+          "text": "Meta o comparación equivalente, junto con población y período."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una referencia permite juzgar dirección y magnitud del desempeño.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#elegir-evidencia-suficiente",
+        "label": "Elegir evidencia suficiente"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-09",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Seleccionar y descartar con criterio",
+      "difficulty": "intermedia",
+      "prompt": "Dos gráficos comunican el mismo hallazgo con los mismos datos. ¿Qué decisión editorial es razonable?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Conservar el más útil y trasladar el otro al respaldo si aporta detalle."
+        },
+        {
+          "id": "b",
+          "text": "Mantener ambos para demostrar cantidad de trabajo."
+        },
+        {
+          "id": "c",
+          "text": "Duplicar también las tablas de origen."
+        },
+        {
+          "id": "d",
+          "text": "Eliminar el control del hallazgo."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Cada visual debe aportar una comparación o evidencia necesaria.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#seleccionar-y-descartar-con-criterio",
+        "label": "Seleccionar y descartar con criterio"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-10",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Redactar una recomendación operable",
+      "difficulty": "intermedia",
+      "prompt": "¿Qué completa la propuesta 'seguir monitoreando la demora'?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un gráfico actualizado, sin definir qué cambio requiere actuar."
+        },
+        {
+          "id": "b",
+          "text": "Indicador, umbral, responsable y respuesta ante el cambio."
+        },
+        {
+          "id": "c",
+          "text": "Una frecuencia de actualización, sin asignar quién revisa el resultado."
+        },
+        {
+          "id": "d",
+          "text": "Una alerta ante cualquier variación, sin umbral ni respuesta definida."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Monitorear requiere condiciones que indiquen cuándo y cómo actuar.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#redactar-una-recomendacion-operable",
+        "label": "Redactar una recomendación operable"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-11",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Declarar un límite con su consecuencia",
+      "difficulty": "intermedia",
+      "prompt": "El análisis observa pedidos registrados y excluye demanda no atendida. ¿Qué alcance corresponde a su recomendación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La preferencia de todos los clientes posibles."
+        },
+        {
+          "id": "b",
+          "text": "La causa exacta de cada venta perdida."
+        },
+        {
+          "id": "c",
+          "text": "El desempeño de la operación observada, con esa cobertura explícita."
+        },
+        {
+          "id": "d",
+          "text": "Toda la demanda potencial del mercado."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La cobertura de la fuente delimita qué población puede sostener la recomendación.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#declarar-un-limite-con-su-consecuencia",
+        "label": "Declarar un límite con su consecuencia"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-12",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Un storyboard de cinco escenas",
+      "difficulty": "intermedia",
+      "prompt": "¿Qué debería conocer la audiencia antes de evaluar una recomendación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Todas las transformaciones en el orden en que se implementaron."
+        },
+        {
+          "id": "b",
+          "text": "Cada resultado exploratorio, aunque no incida en la decisión."
+        },
+        {
+          "id": "c",
+          "text": "La arquitectura de la herramienta, antes de definir el problema."
+        },
+        {
+          "id": "d",
+          "text": "La decisión y la evidencia que sustenta la alternativa."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La secuencia prepara el contexto y los criterios para juzgar la propuesta.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#un-storyboard-de-cinco-escenas",
+        "label": "Un storyboard de cinco escenas"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-13",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Distribuir la participación sin fragmentar el argumento",
+      "difficulty": "intermedia",
+      "prompt": "Un equipo expone una parte de SQL y otra de Power BI sin conectar resultados. ¿Qué mejora la continuidad?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Organizar las intervenciones alrededor de decisión, evidencia y recomendación."
+        },
+        {
+          "id": "b",
+          "text": "Añadir una herramienta diferente por persona."
+        },
+        {
+          "id": "c",
+          "text": "Repetir el contexto completo en cada parte."
+        },
+        {
+          "id": "d",
+          "text": "Quitar toda referencia entre secciones."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Las herramientas deben vincularse dentro del argumento y del recorrido de evidencia.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#distribuir-la-participacion-sin-fragmentar-el-argumento",
+        "label": "Distribuir la participación sin fragmentar el argumento"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-14",
+      "unit": "u05-storytelling-hito2",
+      "topic": "La credibilidad se construye a lo largo del recorrido",
+      "difficulty": "intermedia",
+      "prompt": "Durante una revisión preguntan de dónde sale una cifra. ¿Qué respuesta aporta respaldo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cambiar de tema hacia el diseño."
+        },
+        {
+          "id": "b",
+          "text": "Mostrar fuente, cálculo y control que la sostienen."
+        },
+        {
+          "id": "c",
+          "text": "Decir que el gráfico parece razonable."
+        },
+        {
+          "id": "d",
+          "text": "Responder que la IA la validó."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La trazabilidad permite explicar el dato en lugar de pedir confianza sin evidencia.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#la-credibilidad-se-construye-a-lo-largo-del-recorrido",
+        "label": "La credibilidad se construye a lo largo del recorrido"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-15",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Usar inteligencia artificial durante la edición",
+      "difficulty": "avanzada",
+      "prompt": "La IA cambia 'se asocia con' por 'provoca' para hacer más firme el título. ¿Qué debe revisarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Si la asociación es grande, tomando su magnitud como prueba de causa."
+        },
+        {
+          "id": "b",
+          "text": "Si el patrón se repite, sin considerar posibles factores de confusión."
+        },
+        {
+          "id": "c",
+          "text": "Si el diseño del análisis permite esa afirmación causal."
+        },
+        {
+          "id": "d",
+          "text": "Si la audiencia prefiere una afirmación firme, sin revisar el diseño."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Una edición no debe aumentar la certeza más allá de lo demostrado.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#usar-inteligencia-artificial-durante-la-edicion",
+        "label": "Usar inteligencia artificial durante la edición"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-16",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Redactar una recomendación operable",
+      "difficulty": "avanzada",
+      "prompt": "La fuente detecta demoras, pero no distingue entre inventario y transporte como causa. ¿Qué acción es defendible?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Cambiar todo el transporte por una causa demostrada."
+        },
+        {
+          "id": "b",
+          "text": "Eliminar el segmento del reporte."
+        },
+        {
+          "id": "c",
+          "text": "Afirmar que ambas causas tienen igual peso."
+        },
+        {
+          "id": "d",
+          "text": "Una prueba acotada o captura adicional que permita contrastar esas hipótesis."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Cuando faltan causas verificadas, la recomendación puede reducir incertidumbre mediante una comprobación.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#redactar-una-recomendacion-operable",
+        "label": "Redactar una recomendación operable"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-17",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Elegir evidencia suficiente",
+      "difficulty": "avanzada",
+      "prompt": "Una comparación regional usa períodos diferentes sin advertirlo. ¿Qué falla debe corregirse antes de recomendar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La comparabilidad de la evidencia."
+        },
+        {
+          "id": "b",
+          "text": "La cantidad de decimales para mostrar las diferencias."
+        },
+        {
+          "id": "c",
+          "text": "El orden descendente de las regiones en el ranking."
+        },
+        {
+          "id": "d",
+          "text": "El uso de porcentajes, suponiendo que elimina la diferencia de períodos."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La comparación necesita poblaciones, unidades y períodos compatibles o diferencias explícitas.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#elegir-evidencia-suficiente",
+        "label": "Elegir evidencia suficiente"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-18",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Declarar un límite con su consecuencia",
+      "difficulty": "avanzada",
+      "prompt": "La alternativa deja de ser conveniente si el costo duplica la estimación. ¿Cómo incorporar ese límite?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar todo cálculo de costo."
+        },
+        {
+          "id": "b",
+          "text": "Declarar la condición de revisión y comprobar sensibilidad del beneficio."
+        },
+        {
+          "id": "c",
+          "text": "Ocultar el escenario para no debilitar la propuesta."
+        },
+        {
+          "id": "d",
+          "text": "Presentar el costo inicial como certeza."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Una condición concreta informa cuándo debe reevaluarse la elección.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#declarar-un-limite-con-su-consecuencia",
+        "label": "Declarar un límite con su consecuencia"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-19",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Escribir títulos que expresen el hallazgo",
+      "difficulty": "avanzada",
+      "prompt": "Al leer solo los títulos aparece una lista: SQL, Python, Power BI. ¿Qué problema revela?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que toda cifra está equivocada."
+        },
+        {
+          "id": "b",
+          "text": "Que los títulos son demasiado específicos."
+        },
+        {
+          "id": "c",
+          "text": "La secuencia todavía no comunica el argumento de decisión."
+        },
+        {
+          "id": "d",
+          "text": "Que necesariamente faltan herramientas."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Los títulos deben permitir reconstruir la relación entre problema, evidencia y acción.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#escribir-titulos-que-expresen-el-hallazgo",
+        "label": "Escribir títulos que expresen el hallazgo"
+      }
+    },
+    {
+      "id": "u05-storytelling-hito2-20",
+      "unit": "u05-storytelling-hito2",
+      "topic": "Usar inteligencia artificial durante la edición",
+      "difficulty": "avanzada",
+      "prompt": "Una síntesis automática elimina el supuesto que sostiene la recomendación. ¿Qué corrección corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aceptar la síntesis porque es más breve."
+        },
+        {
+          "id": "b",
+          "text": "Mover la cifra a un gráfico sin etiquetas."
+        },
+        {
+          "id": "c",
+          "text": "Reemplazar el supuesto por una certeza inventada."
+        },
+        {
+          "id": "d",
+          "text": "Reincorporar el supuesto y su efecto sobre la conclusión."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La concisión no debe quitar condiciones que cambian la decisión.",
+      "reference": {
+        "path": "unidades/u05-storytelling-hito2.html#usar-inteligencia-artificial-durante-la-edicion",
+        "label": "Usar inteligencia artificial durante la edición"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-01",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Separar preparación, significado y comunicación",
+      "difficulty": "basica",
+      "prompt": "¿Qué componente de Power BI conecta fuentes y prepara las tablas?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Power Query."
+        },
+        {
+          "id": "b",
+          "text": "El título del reporte."
+        },
+        {
+          "id": "c",
+          "text": "Un segmentador por sí solo."
+        },
+        {
+          "id": "d",
+          "text": "El formato porcentual."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Power Query prepara las entradas; el modelo semántico organiza relaciones y medidas.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#separar-preparacion-significado-y-comunicacion",
+        "label": "Separar preparación, significado y comunicación"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-02",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Organizar el modelo como un esquema estrella",
+      "difficulty": "basica",
+      "prompt": "¿Qué aporta una dimensión dentro del esquema estrella?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un reemplazo del control de claves."
+        },
+        {
+          "id": "b",
+          "text": "Atributos para filtrar y agrupar los hechos."
+        },
+        {
+          "id": "c",
+          "text": "Todas las fórmulas de cada visual obligatoriamente."
+        },
+        {
+          "id": "d",
+          "text": "Una copia de cada transacción por usuario."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Las dimensiones describen el contexto de las observaciones medibles.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#organizar-el-modelo-como-un-esquema-estrella",
+        "label": "Organizar el modelo como un esquema estrella"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-03",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Verificar una relación antes de crearla",
+      "difficulty": "basica",
+      "prompt": "¿Qué condición debe cumplir la clave del lado uno de una relación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Tener formato de moneda."
+        },
+        {
+          "id": "b",
+          "text": "Ser siempre texto con espacios."
+        },
+        {
+          "id": "c",
+          "text": "Ser única dentro de esa tabla."
+        },
+        {
+          "id": "d",
+          "text": "Repetirse tantas veces como ventas haya."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La unicidad sostiene la cardinalidad uno a muchos esperada.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#verificar-una-relacion-antes-de-crearla",
+        "label": "Verificar una relación antes de crearla"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-04",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Distinguir una columna calculada de una medida",
+      "difficulty": "basica",
+      "prompt": "¿Qué cálculo se evalúa según los filtros activos de un visual?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un nombre de archivo."
+        },
+        {
+          "id": "b",
+          "text": "Una columna de texto importada sin cambios."
+        },
+        {
+          "id": "c",
+          "text": "Una imagen estática."
+        },
+        {
+          "id": "d",
+          "text": "Una medida."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Las medidas se calculan en el contexto de filtro del visual.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#distinguir-una-columna-calculada-de-una-medida",
+        "label": "Distinguir una columna calculada de una medida"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-05",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Medidas DAX iniciales",
+      "difficulty": "basica",
+      "prompt": "¿Qué función DAX cuenta identificadores de pedido distintos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "DISTINCTCOUNT."
+        },
+        {
+          "id": "b",
+          "text": "SUM."
+        },
+        {
+          "id": "c",
+          "text": "MIN."
+        },
+        {
+          "id": "d",
+          "text": "COUNTROWS aplicado al hecho de líneas sin deduplicar."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "DISTINCTCOUNT reconoce que un pedido puede aparecer en varias líneas.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#medidas-dax-iniciales",
+        "label": "Medidas DAX iniciales"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-06",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Nombres y formatos forman parte del significado",
+      "difficulty": "basica",
+      "prompt": "El valor 0,823 se muestra como 82,3 %. ¿Qué cambia al aplicar ese formato?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La fuente original."
+        },
+        {
+          "id": "b",
+          "text": "Su presentación."
+        },
+        {
+          "id": "c",
+          "text": "El denominador de la fórmula."
+        },
+        {
+          "id": "d",
+          "text": "La cantidad de pedidos elegibles."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El formato facilita lectura y no modifica la definición ni valida el cálculo.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#nombres-y-formatos-forman-parte-del-significado",
+        "label": "Nombres y formatos forman parte del significado"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-07",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "El contexto de filtro cambia el resultado",
+      "difficulty": "intermedia",
+      "prompt": "La misma medida Ventas Netas USD muestra importes distintos por región. ¿Por qué?",
+      "options": [
+        {
+          "id": "a",
+          "text": "SUM deja de sumar en un gráfico."
+        },
+        {
+          "id": "b",
+          "text": "El formato monetario modifica las filas."
+        },
+        {
+          "id": "c",
+          "text": "Cada región establece una población diferente mediante filtros."
+        },
+        {
+          "id": "d",
+          "text": "Power BI cambia la fórmula al azar."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La fórmula se evalúa sobre las filas visibles en cada contexto.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#el-contexto-de-filtro-cambia-el-resultado",
+        "label": "El contexto de filtro cambia el resultado"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-08",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Medidas DAX iniciales",
+      "difficulty": "intermedia",
+      "prompt": "¿Qué expresión de margen porcentual respeta los importes agregados?",
+      "options": [
+        {
+          "id": "a",
+          "text": "SUM de todos los porcentajes de línea."
+        },
+        {
+          "id": "b",
+          "text": "COUNT de márgenes dividido por COUNT de ventas."
+        },
+        {
+          "id": "c",
+          "text": "El promedio simple de porcentajes como regla universal."
+        },
+        {
+          "id": "d",
+          "text": "DIVIDE([Margen Bruto USD], [Ventas Netas USD])."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La medida usa el ratio entre totales calculados en el contexto actual.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#medidas-dax-iniciales",
+        "label": "Medidas DAX iniciales"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-09",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Distinguir una columna calculada de una medida",
+      "difficulty": "intermedia",
+      "prompt": "Se necesita una banda de demora estable por pedido para usarla como categoría. ¿Qué opción puede corresponder?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una columna calculada o preparada al grano del pedido."
+        },
+        {
+          "id": "b",
+          "text": "Solo el título del visual."
+        },
+        {
+          "id": "c",
+          "text": "Una medida que cambie arbitrariamente por filtro."
+        },
+        {
+          "id": "d",
+          "text": "Un formato de fecha."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Una clasificación por fila puede almacenarse y utilizarse como categoría o filtro.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#distinguir-una-columna-calculada-de-una-medida",
+        "label": "Distinguir una columna calculada de una medida"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-10",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Comprender la dirección de filtro",
+      "difficulty": "intermedia",
+      "prompt": "En una estrella simple, ¿qué dirección suele facilitar un comportamiento predecible?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Sin ninguna relación entre tablas."
+        },
+        {
+          "id": "b",
+          "text": "De la dimensión hacia la tabla de hechos."
+        },
+        {
+          "id": "c",
+          "text": "Bidireccional en todas las relaciones por defecto."
+        },
+        {
+          "id": "d",
+          "text": "Desde cada visual hacia los archivos originales."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La propagación simple permite explicar cómo una selección delimita las filas de hechos.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#comprender-la-direccion-de-filtro",
+        "label": "Comprender la dirección de filtro"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-11",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Reconciliar el modelo con los marts",
+      "difficulty": "intermedia",
+      "prompt": "¿Con qué referencia conviene comparar las ventas importadas en Power BI?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Con la cantidad de gráficos creados."
+        },
+        {
+          "id": "b",
+          "text": "Con una estimación visual de las barras."
+        },
+        {
+          "id": "c",
+          "text": "Con los totales del mart o notebook de control equivalente."
+        },
+        {
+          "id": "d",
+          "text": "Con el tamaño del PBIX."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La reconciliación verifica la carga y las medidas sobre una fuente y población conocidas.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#reconciliar-el-modelo-con-los-marts",
+        "label": "Reconciliar el modelo con los marts"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-12",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Una página debe responder una pregunta",
+      "difficulty": "intermedia",
+      "prompt": "Una página incluye seis gráficos y ninguno cambia la decisión. ¿Qué criterio ayuda a reorganizarla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Agregar segmentadores hasta cubrir todas las columnas del modelo."
+        },
+        {
+          "id": "b",
+          "text": "Dedicar el mismo espacio a cada métrica disponible."
+        },
+        {
+          "id": "c",
+          "text": "Mantener cada visual porque representa trabajo ya realizado."
+        },
+        {
+          "id": "d",
+          "text": "Una pregunta principal y visuales que aporten evidencia para responderla."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La jerarquía del reporte debe ayudar a comparar evidencia y actuar.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#una-pagina-debe-responder-una-pregunta",
+        "label": "Una página debe responder una pregunta"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-13",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Caso aplicado: una carpeta recurrente",
+      "difficulty": "intermedia",
+      "prompt": "Power Query combina archivos de una carpeta. ¿Qué control necesita la actualización?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reconciliar archivos, filas recibidas, rechazos y tabla curada."
+        },
+        {
+          "id": "b",
+          "text": "Solo comprobar que el botón terminó."
+        },
+        {
+          "id": "c",
+          "text": "Eliminar el nombre de origen."
+        },
+        {
+          "id": "d",
+          "text": "Asumir que cada archivo tiene el mismo esquema."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La actualización vuelve a ejecutar reglas sobre entradas que pueden haber cambiado.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#caso-aplicado-una-carpeta-recurrente",
+        "label": "Caso aplicado: una carpeta recurrente"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-14",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Separar preparación, significado y comunicación",
+      "difficulty": "intermedia",
+      "prompt": "Un mart ya define OTIF y alguien cambia silenciosamente la elegibilidad en Power Query. ¿Qué debe revisarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La orientación de la página."
+        },
+        {
+          "id": "b",
+          "text": "La redefinición de negocio y su coherencia con el contrato del mart."
+        },
+        {
+          "id": "c",
+          "text": "Solo el nombre de la consulta."
+        },
+        {
+          "id": "d",
+          "text": "La resolución del monitor."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La preparación de consumo no debe alterar sin acuerdo una definición compartida.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#separar-preparacion-significado-y-comunicacion",
+        "label": "Separar preparación, significado y comunicación"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-15",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Verificar una relación antes de crearla",
+      "difficulty": "avanzada",
+      "prompt": "Power BI autodetecta una relación por columnas con nombres parecidos. ¿Qué falta antes de aceptarla?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Aplicar formato porcentual a ambas claves."
+        },
+        {
+          "id": "b",
+          "text": "Ocultar las tablas."
+        },
+        {
+          "id": "c",
+          "text": "Verificar significado, tipos, unicidad, referencias y cardinalidad."
+        },
+        {
+          "id": "d",
+          "text": "Dar por demostrada la relación por su nombre."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La herramienta observa datos y nombres, pero el contrato del negocio requiere validación humana.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#verificar-una-relacion-antes-de-crearla",
+        "label": "Verificar una relación antes de crearla"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-16",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Comprender la dirección de filtro",
+      "difficulty": "avanzada",
+      "prompt": "Se habilita filtro bidireccional para corregir un visual sin revisar el modelo. ¿Qué riesgo introduce?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La eliminación automática de todas las medidas."
+        },
+        {
+          "id": "b",
+          "text": "La conversión obligatoria de claves en texto."
+        },
+        {
+          "id": "c",
+          "text": "La garantía de que todos los totales coincidan."
+        },
+        {
+          "id": "d",
+          "text": "Rutas ambiguas y propagación de filtros inesperada."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "El comportamiento especial de filtrado necesita una necesidad y pruebas con resultados conocidos.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#comprender-la-direccion-de-filtro",
+        "label": "Comprender la dirección de filtro"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-17",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "El contexto de filtro cambia el resultado",
+      "difficulty": "avanzada",
+      "prompt": "OTIF cambia al seleccionar un transportista. ¿Qué debe comprobarse además del numerador?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Qué pedidos quedaron en el denominador y si conserva la elegibilidad acordada."
+        },
+        {
+          "id": "b",
+          "text": "Que el porcentaje permanezca igual al total general, sin revisar la selección."
+        },
+        {
+          "id": "c",
+          "text": "Que el denominador sea siempre el total de pedidos de toda la empresa."
+        },
+        {
+          "id": "d",
+          "text": "Que numerador y denominador tengan el mismo valor."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Los filtros pueden modificar la población elegible y excluir pedidos sin asignación.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#el-contexto-de-filtro-cambia-el-resultado",
+        "label": "El contexto de filtro cambia el resultado"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-18",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Reconciliar el modelo con los marts",
+      "difficulty": "avanzada",
+      "prompt": "El total de ventas coincide con el mart, pero una región difiere. ¿Dónde concentrar el diagnóstico?",
+      "options": [
+        {
+          "id": "a",
+          "text": "En reducir el número de visuales sin medir."
+        },
+        {
+          "id": "b",
+          "text": "Relaciones, categorías y filtros de esa segmentación."
+        },
+        {
+          "id": "c",
+          "text": "Únicamente en el formato de moneda."
+        },
+        {
+          "id": "d",
+          "text": "En reinstalar siempre Power BI."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La igualdad global no garantiza que las asignaciones por dimensión sean correctas.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#reconciliar-el-modelo-con-los-marts",
+        "label": "Reconciliar el modelo con los marts"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-19",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Medidas DAX iniciales",
+      "difficulty": "avanzada",
+      "prompt": "Un mart tiene varias filas por pedido y se usa DISTINCTCOUNT para OTIF. ¿Qué sigue pendiente?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Promediar directamente identificadores."
+        },
+        {
+          "id": "b",
+          "text": "Eliminar el control del denominador."
+        },
+        {
+          "id": "c",
+          "text": "Comprobar que bandera y elegibilidad describen correctamente cada pedido."
+        },
+        {
+          "id": "d",
+          "text": "Suponer que todo pedido con una fila cumplida es OTIF."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El conteo distinto evita repetición, pero no resuelve una definición inconsistente entre filas del pedido.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#medidas-dax-iniciales",
+        "label": "Medidas DAX iniciales"
+      }
+    },
+    {
+      "id": "u06-power-bi-modelo-semantico-20",
+      "unit": "u06-power-bi-modelo-semantico",
+      "topic": "Revisar sugerencias de IA en BI",
+      "difficulty": "avanzada",
+      "prompt": "Una medida DAX generada por IA es válida pero usa otra tabla como denominador. ¿Qué demuestra la validación sintáctica?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que el KPI es correcto necesariamente."
+        },
+        {
+          "id": "b",
+          "text": "Que el denominador equivale al mart."
+        },
+        {
+          "id": "c",
+          "text": "Que no hay filtros activos."
+        },
+        {
+          "id": "d",
+          "text": "Que la expresión se puede evaluar, sin probar que responda al KPI acordado."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La revisión semántica debe contrastar componentes, grano y contexto con una referencia.",
+      "reference": {
+        "path": "unidades/u06-power-bi-modelo-semantico.html#revisar-sugerencias-de-ia-en-bi",
+        "label": "Revisar sugerencias de IA en BI"
+      }
     }
   ],
   "presets": [
@@ -6895,5 +8143,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "5fb6b8e88ed05944"
+  "version": "64760b38dbb4c8f1"
 }

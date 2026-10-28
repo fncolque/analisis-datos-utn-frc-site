@@ -604,6 +604,98 @@
           "descripcion": "Ejemplos breves para separar asociación, causalidad y variables de confusión."
         }
       ]
+    },
+    "u05-storytelling-hito2": {
+      "titulo": "Narrativas analíticas orientadas a una decisión",
+      "introduccion": "Los recursos abordan diseño explicativo, títulos con mensaje y comunicación de evidencia para una audiencia ejecutiva.",
+      "diagrama": {
+        "archivo": "u05-storytelling.svg",
+        "fuente": "u05-storytelling.mmd",
+        "alt": "Storyboard de cinco escenas: decisión, tensión, evidencia, recomendación y límite.",
+        "titulo": "Cinco escenas organizan la defensa",
+        "epigrafe": "La audiencia define el mensaje; cada escena agrega una pieza necesaria para decidir.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Sitio y ejemplos",
+          "titulo": "Storytelling with Data",
+          "institucion": "Cole Nussbaumer Knaflic",
+          "url": "https://www.storytellingwithdata.com/",
+          "idioma": "Inglés",
+          "dedicacion": "Exploración por ejemplo",
+          "descripcion": "Casos de edición de gráficos y uso de foco visual en comunicaciones analíticas."
+        },
+        {
+          "tipo": "Guía web",
+          "titulo": "Data visualization catalogue",
+          "institucion": "Severino Ribecca",
+          "url": "https://datavizcatalogue.com/",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta por tarea",
+          "descripcion": "Catálogo de gráficos organizado por función, con descripción y usos habituales."
+        },
+        {
+          "tipo": "Charla",
+          "titulo": "The beauty of data visualization",
+          "institucion": "TED · David McCandless",
+          "url": "https://www.ted.com/talks/david_mccandless_the_beauty_of_data_visualization",
+          "idioma": "Subtítulos en español",
+          "dedicacion": "18 min",
+          "descripcion": "Ejemplos de forma, contexto y comparación para descubrir patrones en conjuntos complejos."
+        }
+      ]
+    },
+    "u06-power-bi-modelo-semantico": {
+      "titulo": "Modelo semántico y reportes en Power BI",
+      "introduccion": "La documentación oficial organiza el aprendizaje desde el modelo estrella y las relaciones hasta medidas DAX y diseño de reportes.",
+      "diagrama": {
+        "archivo": "u06-modelo-semantico.svg",
+        "fuente": "u06-modelo-semantico.mmd",
+        "alt": "Flujo desde marts curados a Power Query, modelo semántico, reporte y decisión, con reconciliación desde un notebook.",
+        "titulo": "El modelo semántico conecta datos y consumo",
+        "epigrafe": "Power Query prepara la carga; las relaciones y medidas fijan significado; el reporte organiza la decisión.",
+        "base": "Elaboración propia a partir del Paquete E de Faro Sur."
+      },
+      "imagen": {
+        "archivo": "esquema-estrella-es.svg",
+        "alt": "Esquema estrella en español: una tabla de hechos de líneas de venta con cantidad e importe, conectada muchos a uno con dimensiones fecha, cliente, producto y sucursal.",
+        "epigrafe": "La tabla de hechos declara su grano. Cada dimensión tiene una clave única que describe muchas filas de hechos. Las relaciones se leen como uno a muchos desde la dimensión.",
+        "autor": "Elaboración propia para la asignatura",
+        "licencia": "Diagrama original en español",
+        "url": "https://learn.microsoft.com/es-es/power-bi/guidance/star-schema",
+        "after_heading": "organizar-el-modelo-como-un-esquema-estrella",
+        "ampliable": true
+      },
+      "recursos": [
+        {
+          "tipo": "Ruta gratuita",
+          "titulo": "Model data with Power BI",
+          "institucion": "Microsoft Learn",
+          "url": "https://learn.microsoft.com/training/paths/model-data-power-bi/",
+          "idioma": "Inglés y traducciones",
+          "dedicacion": "Ruta autoguiada",
+          "descripcion": "Módulos sobre relaciones, DAX, contexto de filtro y optimización del modelo."
+        },
+        {
+          "tipo": "Guía oficial",
+          "titulo": "Understand star schema and the importance for Power BI",
+          "institucion": "Microsoft Learn",
+          "url": "https://learn.microsoft.com/power-bi/guidance/star-schema",
+          "idioma": "Inglés y traducciones",
+          "dedicacion": "Lectura · 25 min",
+          "descripcion": "Explica hechos, dimensiones, relaciones y grano para modelos semánticos."
+        },
+        {
+          "tipo": "Referencia",
+          "titulo": "DAX overview",
+          "institucion": "Microsoft Learn",
+          "url": "https://learn.microsoft.com/dax/dax-overview",
+          "idioma": "Inglés y traducciones",
+          "dedicacion": "Consulta técnica",
+          "descripcion": "Referencia conceptual de sintaxis, funciones y contexto en Data Analysis Expressions."
+        }
+      ]
     }
   }
 }
