@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "source_commit": "da3dcc7ebfea91466f9e156ddb066bb5a137ae84",
+  "source_commit": "0244c4bca1db715ccfdebf1a0650d84e158ab3cd",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/41889408739",
-  "generated_at_utc": "2026-11-04T18:41:06+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/41900844748",
+  "generated_at_utc": "2026-11-04T19:51:32+00:00",
   "qa_status": "passed",
   "as_of": "2026-11-04",
   "published_units": [
@@ -21,8 +21,8 @@
     "Unidad 5.3 · Storytelling e Hito 2",
     "Unidad 6.1 · Power BI y modelo semántico"
   ],
-  "content_digest": "2a3ed3cd64b511bc83916770404305d6090fbaf9ca014649c61faa4417abc52b",
-  "file_count": 156,
-  "html_count": 26,
+  "content_digest": "206c4cba04d6c195c8131f0a7fdfea9770f74a1db419d12ce399c1d2b0e21718",
+  "file_count": 161,
+  "html_count": 27,
   "contact": "analisisdatosutnfrc@gmail.com"
 }

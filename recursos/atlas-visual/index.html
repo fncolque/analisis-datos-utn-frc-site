@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f2f2f2">
+  <meta name="description" content="Un árbol de decisión para elegir visualizaciones, interpretar sus marcas y construirlas en Power BI.">
+  <title>Atlas de visualización · Power BI · UTN FRC</title>
+  <link rel="stylesheet" href="atlas.css">
+  <script src="datos.js" defer></script>
+  <script src="graficos.js" defer></script>
+  <script src="atlas.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#arbol">Saltar al árbol</a>
+  <header class="masthead">
+    <a class="brand" href="../../index.html"><i aria-hidden="true"></i><span>Análisis de Datos<small>UTN · Facultad Regional Córdoba</small></span></a>
+    <nav aria-label="Navegación del atlas"><a href="#arbol">Árbol de decisión</a><a href="#laboratorio">Laboratorio</a><a class="back" href="../../unidades/u06-power-bi-modelo-semantico.html" aria-label="Volver a Power BI"><span><span class="back-prefix">Volver a </span>Power BI</span><span aria-hidden="true">↗</span></a></nav>
+  </header>
+  <main>
+    <section class="hero wrap" id="arbol" aria-labelledby="titulo">
+      <div class="intro">
+        <p class="eyeline"><span class="dash"></span> Unidad 6.1 <span class="slash">/</span> Power BI</p>
+        <h1 id="titulo">Atlas de<br><span>visualización</span></h1>
+        <p class="lede">¿Qué querés mostrar con tus datos?</p>
+        <p class="intro-copy">Elegí una intención en el árbol y probá el gráfico con las ventas del laboratorio de Faro Sur.</p>
+        <div class="intro-actions">
+          <a class="back" href="../../downloads/Faro_Sur_Laboratorio_PQ_PBI_v1.0_estudiantes.zip" download>Descargar datos del laboratorio (ZIP) <span aria-hidden="true">↓</span></a>
+          <a class="lab-link" href="#laboratorio"><span aria-hidden="true">↳</span> Experimentar con los datos</a>
+        </div>
+      </div>
+      <div class="plate" aria-labelledby="plate-label">
+        <div class="plate-meta"><span id="plate-label">FIG. 01 &nbsp;/&nbsp; Árbol de decisión</span><span class="registration" aria-hidden="true">⊕</span></div>
+        <div class="root"><span class="root-mark" aria-hidden="true"></span> Quiero…</div>
+        <div id="branches" class="branches" aria-label="Intenciones de análisis"></div>
+        <div class="plate-end"><span>Seleccioná una rama</span><span aria-hidden="true">01 — 06</span></div>
+      </div>
+    </section>
+    <noscript><p class="wrap notice">Activá JavaScript para recorrer el árbol y usar el laboratorio. También podés consultar la <a href="../../unidades/u06-power-bi-modelo-semantico.html#elegir-visuales-dentro-de-power-bi">guía de selección del capítulo</a>.</p></noscript>
+    <section class="route wrap" id="recorrido" aria-labelledby="route-title">
+      <div class="section-line"><span class="label"><b>01</b> Guía de selección</span><a href="#arbol">Cambiar de rama ↑</a></div>
+      <div class="workbench">
+        <div class="route-side">
+          <p class="eyeline" id="route-id"></p>
+          <h2 id="route-title" tabindex="-1"></h2>
+          <p id="route-question"></p>
+          <div class="forks" id="scenarios" aria-label="Opciones de esta rama"></div>
+        </div>
+        <article class="sheet" id="ficha" aria-labelledby="chart-name">
+          <div class="sheet-head"><p class="eyeline" id="sheet-id"></p><h3 id="chart-name" tabindex="-1"></h3><p id="reason"></p></div>
+          <figure class="example">
+            <div class="plot-caption"><span id="plot-title"></span><a href="#fuente">Faro Sur · T1 2025</a></div>
+            <div id="plot"></div><figcaption id="reading"></figcaption>
+          </figure>
+          <div class="recipe">
+            <div><h4>Armalo en Power BI</h4><p id="build"></p><details id="formula" hidden><summary id="formula-label"></summary><pre><code id="formula-code"></code></pre></details></div>
+            <div><h4>Qué puede engañar</h4><p id="pitfall"></p></div>
+          </div>
+          <p class="explore"><span>Probá esto</span><span id="experiment"></span></p>
+        </article>
+      </div>
+    </section>
+    <section class="lab" id="laboratorio" aria-labelledby="lab-title">
+      <div class="wrap">
+        <div class="section-line"><span class="label"><b>02</b> Laboratorio</span><span class="lab-legend">Experimento de lectura</span></div>
+        <div class="lab-layout">
+          <div><p class="eyeline">Laboratorio Power Query y Power BI</p><h2 id="lab-title">¿Qué canal<br><span>vende más?</span></h2>
+            <p>Ordená los canales por ventas netas. Después dividí las ventas de cada canal por sus pedidos y compará el nuevo orden.</p>
+            <div id="metric" class="segmented" role="group" aria-label="Medida para ordenar canales">
+              <button type="button" data-metric="ventas" aria-pressed="true">Ventas netas</button><button type="button" data-metric="ticket" aria-pressed="false">Ticket promedio</button>
+            </div>
+            <details><summary>Ver los datos del experimento</summary>
+              <table><caption>Ventas del T1 por canal</caption><thead><tr><th scope="col">Canal</th><th scope="col">Ventas (USD)</th><th scope="col">Pedidos</th></tr></thead><tbody id="lab-rows"></tbody></table>
+            </details>
+          </div>
+          <figure class="lab-figure"><div class="plot-caption"><span id="lab-chart-title"></span><small>Fig. 02</small></div><div id="lab-plot"></div><figcaption aria-live="polite" id="lab-reading"></figcaption></figure>
+        </div>
+      </div>
+    </section>
+    <section class="transfer wrap" id="fuente" aria-labelledby="transfer-title">
+      <p class="eyeline"><span class="dash"></span> Archivos y preparación</p>
+      <h2 id="transfer-title">Reproducí el gráfico.</h2>
+      <p>Usá el ZIP del Laboratorio Power Query y Power BI. Anexá los tres CSV de <code>ventas_mensuales</code> en la consulta <code>Ventas</code> y dejá abril en <code>extras</code>. El control del trimestre es de 58 líneas, 30 pedidos y 105.520,35 USD de ventas netas.</p>
+      <details><summary>Preparar los campos y las medidas</summary>
+        <ol>
+          <li>En <code>Ventas[channel]</code>, reemplazá «portal b2b» por «Portal B2B». Creá la columna <code>net_sales_usd</code> con <code>[quantity] * [unit_price_usd] * (1 - [discount_pct] / 100)</code>.</li>
+          <li>Relacioná <code>Ventas</code> con <code>Clientes</code> de <code>customers.csv</code> por <code>customer_id</code>, y con <code>Productos</code> de la hoja <code>productos</code> por <code>product_id</code>. La hoja <code>regiones</code> se relaciona con <code>Clientes</code> por <code>region</code>. Mantené las líneas sin coincidencia.</li>
+          <li>Relacioná <code>Calendario[Date]</code> con <code>Ventas[order_date]</code>. Ordená <code>Calendario[Mes]</code> por <code>Mes número</code>.</li>
+        </ol>
+        <pre><code>Ventas netas = SUM(Ventas[net_sales_usd])
+Pedidos = DISTINCTCOUNT(Ventas[order_id])
+Ticket promedio = DIVIDE([Ventas netas], [Pedidos])
+Objetivo T1 = SUM(Regiones[target_q1_usd])</code></pre>
+      </details>
+      <details><summary>Preparar ciudad y provincia para los mapas</summary><p>En <code>contactos_clientes.csv</code>, quitá la fila vacía y el duplicado. Dividí <code>ciudad_provincia</code> por « - » en <code>ciudad</code> y <code>provincia</code>. Combiná esas dos columnas con <code>Clientes</code> por <code>customer_id</code>. Deben quedar 12 clientes en 8 provincias. Para geocodificar, agregá el país Argentina.</p></details>
+      <a class="back" href="../../downloads/Faro_Sur_Laboratorio_PQ_PBI_v1.0_estudiantes.zip" download>Descargar los archivos del laboratorio <span aria-hidden="true">↓</span></a>
+    </section>
+  </main>
+  <footer class="wrap"><span>UTN FRC &nbsp;/&nbsp; Ingeniería Industrial</span><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas de la materia</a><a href="https://learn.microsoft.com/es-es/power-bi/visuals/power-bi-visualizations-overview">Referencia de visuales · Microsoft Learn ↗</a><a href="#arbol">Volver al árbol ↑</a></footer>
+</body>
+</html>
