@@ -2,10 +2,10 @@
   "schema_version": 1,
   "source_commit": "da3dcc7ebfea91466f9e156ddb066bb5a137ae84",
   "source_ref": "main",
-  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/40733226918",
-  "generated_at_utc": "2026-10-28T17:11:53+00:00",
+  "run_url": "https://github.com/fncolque/analisis-datos-utn-frc/actions/runs/41889408739",
+  "generated_at_utc": "2026-11-04T18:41:06+00:00",
   "qa_status": "passed",
-  "as_of": "2026-10-28",
+  "as_of": "2026-11-04",
   "published_units": [
     "Unidad 1 · Decisiones, datos e IA",
     "Unidad 1 · Laboratorio inicial de Faro Sur",
@@ -21,7 +21,7 @@
     "Unidad 5.3 · Storytelling e Hito 2",
     "Unidad 6.1 · Power BI y modelo semántico"
   ],
-  "content_digest": "952311b3f2e3e32ea70420ecff6f983aa73c6ce6341f512c0afe43c0be99cba4",
+  "content_digest": "2a3ed3cd64b511bc83916770404305d6090fbaf9ca014649c61faa4417abc52b",
   "file_count": 156,
   "html_count": 26,
   "contact": "analisisdatosutnfrc@gmail.com"
