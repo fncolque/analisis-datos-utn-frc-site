@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1400" viewBox="0 0 1600 1400" role="img" aria-labelledby="title desc">
+<title id="title">Cómo responde el pipeline cuando falla una etapa</title>
+<desc id="desc">Siete paneles describen fuente tardía, esquema cambiado, credencial vencida, reejecución duplicada, join multiplicador, reporte desactualizado y trazabilidad inversa, indicando señal, impacto, recuperación y responsable.</desc>
+<defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M40 0H0V40" fill="none" stroke="#9aabb9" stroke-width="1" opacity=".32"/></pattern><marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="10" markerHeight="10" orient="auto-start-reverse"><path d="M0,0 L12,6 L0,12 z" fill="#1f497d"/></marker></defs>
+<style>.atlas-step{outline:none;cursor:pointer}.atlas-step .card-bg{transition:stroke .16s ease,filter .16s ease}.atlas-step:hover .card-bg,.atlas-step:focus .card-bg{stroke:#ffff33;stroke-width:7px}</style>
+<rect x="0" y="0" width="1600" height="1400" fill="#f7f2e8"/>
+<image href="../../images/generated/u06-tradeoff-balance.webp" x="0" y="0" width="1600" height="1400" opacity="0.055" preserveAspectRatio="xMidYMid slice"/>
+<rect x="0" y="0" width="1600" height="1400" fill="url(#grid)" opacity=".36"/>
+<rect x="52" y="38" width="250" height="42" rx="21" fill="#143254"/>
+<text x="177.0" y="66.0" fill="#ffffff" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="850" text-anchor="middle" letter-spacing="1">ATLAS TEÓRICO · C14</text>
+<text x="52.0" y="118.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="850" text-anchor="start">¿Qué señal permite detectar el problema y cuál es la recuperación mínima</text>
+<text x="52.0" y="153.7" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="34" font-weight="850" text-anchor="start">segura?</text>
+<g>
+<rect class="card-bg" x="52.0" y="190.0" width="737.0" height="265.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="190.0" width="10" height="265.5" rx="5" fill="#8d2f23"/>
+<rect x="80.0" y="212.0" width="115.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">INGESTIÓN</text>
+<text x="82.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Fuente tardía</text>
+<text x="82.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Señal: SLA vencido · Impacto: período incompleto</text>
+<text x="82.0" y="342.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Recuperación: retener última publicación y reintentar ·</text>
+<text x="82.0" y="366.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">Responsable: origen</text>
+</g>
+<g>
+<rect class="card-bg" x="811.0" y="190.0" width="737.0" height="265.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="190.0" width="10" height="265.5" rx="5" fill="#8d2f23"/>
+<rect x="839.0" y="212.0" width="105.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="853.0" y="236.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CONTRATO</text>
+<text x="841.0" y="276.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Esquema cambiado</text>
+<text x="841.0" y="313.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Señal: contrato inválido · Impacto: columnas rotas</text>
+<text x="841.0" y="342.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Recuperación: cuarentena y nueva versión · Responsable:</text>
+<text x="841.0" y="366.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">datos</text>
+</g>
+<g>
+<rect class="card-bg" x="52.0" y="477.5" width="737.0" height="265.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="477.5" width="10" height="265.5" rx="5" fill="#8d2f23"/>
+<rect x="80.0" y="499.5" width="85.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="523.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">ACCESO</text>
+<text x="82.0" y="563.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Credencial vencida</text>
+<text x="82.0" y="600.6" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Señal: 401/403 · Impacto: extracción detenida</text>
+<text x="82.0" y="630.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Recuperación: rotar secreto y reanudar · Responsable:</text>
+<text x="82.0" y="654.4" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">plataforma</text>
+</g>
+<g>
+<rect class="card-bg" x="811.0" y="477.5" width="737.0" height="265.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="477.5" width="10" height="265.5" rx="5" fill="#8d2f23"/>
+<rect x="839.0" y="499.5" width="82.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="853.0" y="523.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CARGA</text>
+<text x="841.0" y="563.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Reejecución duplicada</text>
+<text x="841.0" y="600.6" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Señal: hash ya procesado · Impacto: filas repetidas</text>
+<text x="841.0" y="630.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Recuperación: clave idempotente y rollback · Responsable:</text>
+<text x="841.0" y="654.4" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">pipeline</text>
+</g>
+<g>
+<rect class="card-bg" x="52.0" y="765.0" width="737.0" height="265.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="765.0" width="10" height="265.5" rx="5" fill="#8d2f23"/>
+<rect x="80.0" y="787.0" width="165.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="811.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">TRANSFORMACIÓN</text>
+<text x="82.0" y="851.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">JOIN multiplicador</text>
+<text x="82.0" y="888.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Señal: filas y suma aumentan · Impacto: KPI inflado</text>
+<text x="82.0" y="917.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Recuperación: validar cardinalidad y recomputar ·</text>
+<text x="82.0" y="941.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">Responsable: modelo</text>
+</g>
+<g>
+<rect class="card-bg" x="811.0" y="765.0" width="737.0" height="265.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="811.0" y="765.0" width="10" height="265.5" rx="5" fill="#8d2f23"/>
+<rect x="839.0" y="787.0" width="95.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="853.0" y="811.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">CONSUMO</text>
+<text x="841.0" y="851.0" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Reporte desactualizado</text>
+<text x="841.0" y="888.1" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Señal: timestamp anterior al mart · Impacto: decisión con</text>
+<text x="841.0" y="912.5" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">datos viejos</text>
+<text x="841.0" y="941.9" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Recuperación: refrescar y verificar conteos · Responsable:</text>
+<text x="841.0" y="966.3" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">BI</text>
+</g>
+<g>
+<rect class="card-bg" x="52.0" y="1052.5" width="737.0" height="265.5" rx="18" fill="#ffffff" stroke="#9aabb9" stroke-width="2"/>
+<rect x="52.0" y="1052.5" width="10" height="265.5" rx="5" fill="#245a44"/>
+<rect x="80.0" y="1074.5" width="135.0" height="34" rx="17" fill="#dce6f1"/>
+<text x="94.0" y="1098.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="800" text-anchor="start" letter-spacing="0.8">DIAGNÓSTICO</text>
+<text x="82.0" y="1138.5" fill="#143254" font-family="'Segoe UI', Arial, sans-serif" font-size="26" font-weight="800" text-anchor="start">Trazabilidad inversa</text>
+<text x="82.0" y="1175.6" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• KPI → visual → medida → mart → transformación → snapshot →</text>
+<text x="82.0" y="1200.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">registro</text>
+<text x="82.0" y="1229.4" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="20" font-weight="500" text-anchor="start">• Reabrir solo productos descendentes afectados.</text>
+<rect x="80.0" y="1245.0" width="214.0" height="32" rx="4" fill="#ffff33"/>
+<text x="92.0" y="1267.0" fill="#151616" font-family="'Segoe UI', Arial, sans-serif" font-size="15" font-weight="850" text-anchor="start">evidencia por etapa</text>
+</g>
+<line x1="52" y1="1352" x2="1548" y2="1352" stroke="#9aabb9" stroke-width="2"/>
+<text x="52.0" y="1382.0" fill="#1f497d" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="700" text-anchor="start">Análisis de Datos · UTN FRC · lectura guiada</text>
+<text x="1548.0" y="1382.0" fill="#4b5966" font-family="'Segoe UI', Arial, sans-serif" font-size="17" font-weight="600" text-anchor="end">Abrir a tamaño completo para revisar rótulos y relaciones</text>
+</svg>

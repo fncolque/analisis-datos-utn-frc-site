@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Integración del pipeline y trade-offs. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Integración del pipeline y trade-offs · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">UNIDAD 6 · CAPÍTULO 2</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>UNIDAD 6 · CAPÍTULO 2</span></div>
+        <h1 id="reading-title">Integración del pipeline y trade-offs</h1>
+        <p class="hero-lede">Integrar un pipeline significa explicar cómo se conectan sus entradas, salidas, controles y responsables desde la fuente hasta la decisión. El capítulo enseña a recorrer esa cadena en ambos sentidos y a documentar cada trade-off mediante el beneficio buscado, el costo aceptado y la condición que obligaría a revisar la elección.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Podemos recorrer el sistema, explicar sus diferencias y defender cada elección?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Faro_Sur_Paquete_E_v1.0_estudiantes.zip" download>Descargar Paquete E <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-u06-integracion-tradeoffs">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-u06-integracion-tradeoffs">El pipeline se recorre hacia adelante y hacia atrás</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/u06-integracion-tradeoffs.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/u06-integracion-tradeoffs.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/u06-integracion-tradeoffs.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/u06-integracion-tradeoffs.svg?v=20260825b" alt="Pipeline desde fuente hasta decisión con un recorrido inverso de trazabilidad." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>La producción explica cómo llega el dato. La trazabilidad permite seguir un KPI hasta el registro fuente.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#integrar-significa-conectar-decisiones-entre-componentes">Integrar significa conectar decisiones entre componentes</a><a href="#recorrer-el-pipeline-en-ambas-direcciones">Recorrer el pipeline en ambas direcciones</a><a href="#reconciliar-diferencias-entre-etapas">Reconciliar diferencias entre etapas</a><a href="#formular-un-trade-off-completo">Formular un trade-off completo</a><a href="#comparar-alternativas-frecuentes">Comparar alternativas frecuentes</a><a href="#disenar-la-operacion-antes-de-automatizar">Diseñar la operación antes de automatizar</a><a href="#anticipar-puntos-de-falla">Anticipar puntos de falla</a><a href="#mostrar-evidencia-tecnica-que-pueda-explicarse">Mostrar evidencia técnica que pueda explicarse</a><a href="#incorporar-el-costo-en-la-decision">Incorporar el costo en la decisión</a><a href="#organizar-el-video-final-alrededor-de-la-evidencia">Organizar el video final alrededor de la evidencia</a><a href="#preparar-la-defensa-como-una-revision-del-sistema">Preparar la defensa como una revisión del sistema</a><a href="#preguntas-de-control">Preguntas de control</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="integrar-significa-conectar-decisiones-entre-componentes">Integrar significa conectar decisiones entre componentes</h2>
+<p>Un pipeline integrado permite explicar qué decisión orienta el trabajo, qué datos la alimentan y cómo cada etapa transforma la evidencia. La integración aparece en las interfaces: una fuente entrega una respuesta con contrato; una capa recibe registros y produce otra tabla; un modelo semántico publica medidas que un reporte utiliza.</p>
+<p>Cada conexión necesita entrada, salida, control y responsable. Si un archivo llega tarde, el sistema debe mostrar qué producto queda desactualizado. Si una regla cambia el grano, el conteo esperado debe acompañar la transformación. Estas relaciones convierten un conjunto de herramientas en un sistema que puede operarse y revisarse.</p>
+<p>El diagrama de arquitectura ofrece una vista general. La evidencia ejecutada muestra uno o dos tramos con datos reales. Ambos niveles se necesitan para comprender lo que existe y lo que todavía se propone.</p>
+<h2 id="recorrer-el-pipeline-en-ambas-direcciones">Recorrer el pipeline en ambas direcciones</h2>
+<p>El recorrido hacia adelante sigue la creación del producto: fuente, captura, raw, staging, mart, modelo, visual y decisión. En cada paso preguntamos qué se recibe, qué se modifica y qué control habilita avanzar.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u06-pipeline-gcp-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u06-pipeline-gcp-title">Pipeline completo de datos con herramientas de GCP</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué responsabilidad cumple cada servicio y qué controles atraviesan todo el recorrido?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u06-pipeline-two-directions.webp')">
+        <div class="atlas-board atlas-lanes"><section class="atlas-lane">
+              <header><span>RECORRIDO DE DATOS</span><h4>Del sistema fuente al consumo</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:5"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">entrada</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Fuentes</h5>
+      <div class="atlas-card-copy"><p>ERP, Excel, API</p><p>eventos operacionales</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">captura</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Ingestión</h5>
+      <div class="atlas-card-copy"><p>Cloud Storage: archivos</p><p>Pub/Sub: eventos</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">preparación</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Procesamiento</h5>
+      <div class="atlas-card-copy"><p>Dataflow para batch y streaming</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">modelo</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Warehouse</h5>
+      <div class="atlas-card-copy"><p>BigQuery: raw → staging → marts</p><p>Dataform: SQL y pruebas</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">decisión</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Consumo</h5>
+      <div class="atlas-card-copy"><p>Power BI por conector BigQuery</p><p>Looker como alternativa GCP</p></div>
+
+    </article></div>
+            </section><section class="atlas-lane">
+              <header><span>OPERACIÓN TRANSVERSAL</span><h4>Controles que sostienen el servicio</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:5"><article class="atlas-card is-blue" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">cuándo</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>Orquestación</h5>
+      <div class="atlas-card-copy"><p>Cloud Composer agenda y coordina dependencias.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="7" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">quién</span><span class="atlas-step-number" aria-hidden="true">07</span></div>
+      <h5>Acceso</h5>
+      <div class="atlas-card-copy"><p>IAM limita identidades, roles y permisos.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="8" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">qué</span><span class="atlas-step-number" aria-hidden="true">08</span></div>
+      <h5>Conocimiento</h5>
+      <div class="atlas-card-copy"><p>Knowledge Catalog documenta activos y linaje.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="9" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">señal</span><span class="atlas-step-number" aria-hidden="true">09</span></div>
+      <h5>Observabilidad</h5>
+      <div class="atlas-card-copy"><p>Logging y Monitoring registran señales y alertas.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="10" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">cuánto</span><span class="atlas-step-number" aria-hidden="true">10</span></div>
+      <h5>Costo</h5>
+      <div class="atlas-card-copy"><p>Presupuestos y etiquetas atribuyen consumo.</p></div>
+
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u06-pipeline-gcp.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Las herramientas son ejemplos concretos de responsabilidades. El carril superior produce datos analíticos; el inferior coordina, autoriza, documenta, observa y controla el costo.</p>
+        <div class="atlas-controls" aria-label="Pasos de lectura"><button type="button" data-atlas-control="1" aria-pressed="false"><span>01</span>Separá la entrada batch de la entrada por eventos antes de elegir el servicio de ingestión.</button><button type="button" data-atlas-control="2" aria-pressed="false"><span>02</span>Dataflow procesa ambos modos y BigQuery conserva capas raw, staging y marts.</button><button type="button" data-atlas-control="3" aria-pressed="false"><span>03</span>Dataform transforma y prueba SQL dentro del warehouse; Composer coordina dependencias.</button><button type="button" data-atlas-control="4" aria-pressed="false"><span>04</span>IAM, catálogo, registros, monitoreo y presupuestos acompañan el flujo completo.</button></div>
+        <small>Fuentes técnicas: <a href="https://docs.cloud.google.com/shell/docs/cloud-shell-tutorials/deploystack/etl-pipeline" target="_blank" rel="noopener noreferrer">Google Cloud · Deploy an ETL pipeline</a>, <a href="https://docs.cloud.google.com/dataflow/docs/overview" target="_blank" rel="noopener noreferrer">Google Cloud · Dataflow overview</a>, <a href="https://docs.cloud.google.com/dataform/docs/overview" target="_blank" rel="noopener noreferrer">Google Cloud · Dataform overview</a>, <a href="https://docs.cloud.google.com/dataplex/docs/catalog-overview" target="_blank" rel="noopener noreferrer">Google Cloud · Knowledge Catalog</a>, <a href="https://learn.microsoft.com/en-us/power-query/connectors/google-bigquery" target="_blank" rel="noopener noreferrer">Microsoft Learn · Conector de Google BigQuery</a>.</small>
+      </figcaption>
+    </figure>
+
+<p>El recorrido hacia atrás comienza en una afirmación. Desde el KPI buscamos la medida, el campo, el mart, la transformación y el registro fuente. Si un reporte indica 82 % de OTIF, deberíamos localizar numerador, denominador, elegibilidad, fecha prometida y eventos de entrega que sostienen el valor.</p>
+<p>La capacidad de recorrer hacia atrás revela trazabilidad. También ayuda a responder cambios. Si el negocio modifica la definición de “a tiempo”, podemos identificar qué tablas, medidas y visuales dependen de esa regla antes de implementarla.</p>
+<h2 id="reconciliar-diferencias-entre-etapas">Reconciliar diferencias entre etapas</h2>
+<p>La reconciliación compara filas, claves, totales, fechas, unidades, categorías, filtros y versiones. Una diferencia puede ser esperada por un cambio de grano, resultar de una regla, surgir del redondeo, revelar un defecto o permanecer sin explicación.</p>
+<p>Supongamos que staging contiene 900 líneas de pedido y el mart una fila por pedido. La reducción es esperada si el control muestra cuántos pedidos distintos existían y cómo se agregaron las cantidades. Una disminución sin relación con una transformación declarada exige detener el recorrido y localizar la primera etapa donde aparece.</p>
+<p>Cada diferencia se clasifica y se explica con evidencia. La categoría “desconocida” puede existir durante el diagnóstico, pero impide publicar una conclusión que dependa de ese resultado.</p>
+<h2 id="formular-un-trade-off-completo">Formular un trade-off completo</h2>
+<p>Una decisión de arquitectura compara alternativas bajo condiciones. Puede redactarse con esta estructura: “Elegimos A frente a B para obtener un beneficio, aceptamos un costo o riesgo, revisaremos la elección cuando cambie una condición y la controlamos mediante un mecanismo”.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-u06-respuesta-fallas-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-u06-respuesta-fallas-title">Cómo responde el pipeline cuando falla una etapa</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué señal permite detectar el problema y cuál es la recuperación mínima segura?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/u06-tradeoff-balance.webp')">
+        <div class="atlas-board atlas-grid" style="--atlas-cols:2"><article class="atlas-card is-danger">
+      <div class="atlas-card-top"><span class="atlas-card-tag">ingestión</span></div>
+      <h5>Fuente tardía</h5>
+      <div class="atlas-card-copy"><p>Señal: SLA vencido · Impacto: período incompleto</p><p>Recuperación: retener última publicación y reintentar · Responsable: origen</p></div>
+
+    </article><article class="atlas-card is-danger is-row-end">
+      <div class="atlas-card-top"><span class="atlas-card-tag">contrato</span></div>
+      <h5>Esquema cambiado</h5>
+      <div class="atlas-card-copy"><p>Señal: contrato inválido · Impacto: columnas rotas</p><p>Recuperación: cuarentena y nueva versión · Responsable: datos</p></div>
+
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"><span class="atlas-card-tag">acceso</span></div>
+      <h5>Credencial vencida</h5>
+      <div class="atlas-card-copy"><p>Señal: 401/403 · Impacto: extracción detenida</p><p>Recuperación: rotar secreto y reanudar · Responsable: plataforma</p></div>
+
+    </article><article class="atlas-card is-danger is-row-end">
+      <div class="atlas-card-top"><span class="atlas-card-tag">carga</span></div>
+      <h5>Reejecución duplicada</h5>
+      <div class="atlas-card-copy"><p>Señal: hash ya procesado · Impacto: filas repetidas</p><p>Recuperación: clave idempotente y rollback · Responsable: pipeline</p></div>
+
+    </article><article class="atlas-card is-danger">
+      <div class="atlas-card-top"><span class="atlas-card-tag">transformación</span></div>
+      <h5>JOIN multiplicador</h5>
+      <div class="atlas-card-copy"><p>Señal: filas y suma aumentan · Impacto: KPI inflado</p><p>Recuperación: validar cardinalidad y recomputar · Responsable: modelo</p></div>
+
+    </article><article class="atlas-card is-danger is-row-end">
+      <div class="atlas-card-top"><span class="atlas-card-tag">consumo</span></div>
+      <h5>Reporte desactualizado</h5>
+      <div class="atlas-card-copy"><p>Señal: timestamp anterior al mart · Impacto: decisión con datos viejos</p><p>Recuperación: refrescar y verificar conteos · Responsable: BI</p></div>
+
+    </article><article class="atlas-card is-success">
+      <div class="atlas-card-top"><span class="atlas-card-tag">diagnóstico</span></div>
+      <h5>Trazabilidad inversa</h5>
+      <div class="atlas-card-copy"><p>KPI → visual → medida → mart → transformación → snapshot → registro</p><p>Reabrir solo productos descendentes afectados.</p></div>
+      <div class="atlas-stats"><span>evidencia por etapa</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/u06-respuesta-fallas.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>Una falla operable tiene una señal observable, un impacto delimitado, una recuperación ensayada y una persona responsable. La trazabilidad inversa permite comenzar en el KPI y volver al registro fuente.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>La señal debe aparecer antes de que la diferencia llegue al reporte.</p></li><li><span>02</span><p>La recuperación evita ocultar datos incompletos, duplicar cargas o publicar totales incorrectos.</p></li><li><span>03</span><p>Cada respuesta asigna un responsable y conserva la evidencia de la reejecución.</p></li><li><span>04</span><p>El recorrido inverso vuelve desde el KPI hasta mart, transformación, snapshot y fuente.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>Este formato obliga a evitar preferencias abstractas por herramientas. Guardar archivos puede ser adecuado para una práctica acotada; una base puede justificarse cuando concurrencia, integridad y acceso compartido superan la capacidad del archivo. La decisión se evalúa con el problema actual y con señales que indiquen cuándo deja de servir.</p>
+<p>El control completa el trade-off. Elegir un proceso batch por costo y simplicidad requiere observar la latencia y alertar si los datos llegan después de la decisión.</p>
+<h2 id="comparar-alternativas-frecuentes">Comparar alternativas frecuentes</h2>
+<p>Archivo y base resuelven almacenamiento con capacidades diferentes. El archivo facilita intercambio y puesta en marcha, mientras que una base agrega integridad, concurrencia y permisos a cambio de operación y costo. Batch concentra el procesamiento en momentos definidos; una frecuencia menor de latencia permite reaccionar antes y aumenta las superficies que deben monitorearse.</p>
+<p>ETL controla qué se carga al transformar previamente. ELT conserva una copia cercana a la fuente y favorece reprocesos. SQL expresa transformaciones tabulares cerca de los datos; Python agrega flexibilidad para archivos, APIs y análisis. Una combinación puede ser adecuada si los límites y controles entre ambos lenguajes quedan visibles.</p>
+<div class="theory-table" tabindex="0"><table><thead><tr>
+<th>Elección</th>
+<th>Beneficio buscado</th>
+<th>Costo o riesgo</th>
+<th>Señal para revisarla</th>
+</tr></thead><tbody>
+<tr><td>archivo</td><td>simplicidad e intercambio</td><td>versiones y concurrencia</td><td>varias personas editan o aumenta la frecuencia</td></tr>
+<tr><td>base</td><td>integridad y acceso compartido</td><td>operación, permisos y costo</td><td>el uso sigue siendo pequeño y aislado</td></tr>
+<tr><td>batch</td><td>ejecución simple y predecible</td><td>mayor latencia</td><td>la decisión necesita datos más recientes</td></tr>
+<tr><td>ELT</td><td>reproceso y flexibilidad</td><td>raw sensible o sucio</td><td>el entorno no puede gobernar esa zona</td></tr>
+<tr><td>SQL</td><td>transformación declarativa</td><td>menor flexibilidad fuera de tablas</td><td>crecen tareas de archivos o modelos</td></tr>
+<tr><td>servicio SaaS</td><td>velocidad de adopción</td><td>dependencia, licencia y límites</td><td>cambia el costo total o el contrato del proveedor</td></tr>
+</tbody></table></div>
+<h3 id="herramientas-microsoft-en-el-caso-recurrente">Herramientas Microsoft en el caso recurrente</h3>
+<p>Power Query constituye el núcleo reproducible del ejercicio porque combina, tipa y limpia archivos con un contrato estable. La elección debe revisarse cuando el volumen, el esquema o la lógica dejan de ser manejables dentro de la consulta.</p>
+<p>Power Automate puede guardar adjuntos, iniciar procesos y notificar resultados. Su adopción depende de conectores, licencias, permisos y gobierno del flujo. Power Apps puede reemplazar un intercambio de archivos por formularios con validaciones, pero exige un modelo de datos y una operación sostenida.</p>
+<p>Office Scripts automatiza acciones de Excel en la web y puede integrarse con flujos. VBA mantiene tareas locales o libros heredados. Ambas opciones merecen una evaluación de seguridad, mantenimiento y dependencia del archivo. El ejercicio las compara como extensiones posibles; no presupone que todas deban implementarse.</p>
+<h3 id="cloud-local-autoservicio-y-gobierno">Cloud, local, autoservicio y gobierno</h3>
+<p>Los servicios de nube aportan elasticidad y componentes administrados. Una solución local puede ofrecer control y costos más predecibles en ciertos escenarios. La escala de Faro Sur admite una arquitectura pequeña, siempre que la decisión explicite acceso, respaldo y recuperación.</p>
+<p>El autoservicio acelera preguntas de usuarios cercanos al negocio. El gobierno conserva definiciones y productos certificados. Una organización puede habilitar exploración sobre marts autorizados y reservar la publicación de KPI para medidas revisadas.</p>
+<h2 id="disenar-la-operacion-antes-de-automatizar">Diseñar la operación antes de automatizar</h2>
+<p>Un pipeline necesita un responsable de ejecución, una frecuencia, una señal de éxito y una respuesta al fallo. También requiere política de reintento, retención, permisos y costo. Estas decisiones pueden documentarse aunque el prototipo no implemente toda la infraestructura.</p>
+<p>Para el caso recurrente, una operación mínima registra los archivos recibidos, la hora de actualización, los rechazos y la versión de la consulta. Si un archivo cambia de esquema, el proceso conserva la evidencia y notifica al responsable. Reintentar sin conocer la causa podría duplicar datos o repetir un rechazo.</p>
+<p>La operación proporcional evita diseñar una plataforma mayor que el problema. Al mismo tiempo, deja claras las condiciones que exigirían ampliar monitoreo, almacenamiento o automatización.</p>
+<h2 id="anticipar-puntos-de-falla">Anticipar puntos de falla</h2>
+<p>La fuente puede llegar tarde, cambiar esquema o quedar inaccesible. Una credencial puede vencer. La reejecución puede duplicar datos; un join puede multiplicar filas; una regla puede quedar obsoleta; una medida puede contradecir el mart; un reporte puede mostrar una versión anterior.</p>
+<p>Para cada punto de falla se describen detección, impacto, recuperación y responsable. Un cambio de esquema se detecta al comparar campos con el contrato, detiene la tabla afectada, conserva el archivo y abre una revisión. Un reporte desactualizado se identifica mediante marca de actualización y conduce a ejecutar o investigar el pipeline.</p>
+<p>Esta anticipación convierte los controles en respuestas. La lista de riesgos sirve para priorizar qué implementar en el prototipo y qué dejar documentado como límite.</p>
+<h2 id="mostrar-evidencia-tecnica-que-pueda-explicarse">Mostrar evidencia técnica que pueda explicarse</h2>
+<p>El proyecto debe ejecutar al menos un tramo significativo. Puede ser una consulta con reconciliación, un notebook con transformación y control, un test de calidad, un modelo semántico o una visual conectada al mart. La evidencia elegida debe representar la lógica central.</p>
+<p>El resto de la arquitectura puede diseñarse con supuestos claros. Una demostración inestable o copiada sin comprensión aporta menos que un flujo pequeño cuya entrada, salida y falla pueden explicarse. La persona o equipo debería anticipar el resultado antes de ejecutar.</p>
+<p>Las capturas y salidas guardadas incluyen versión de fuente, código y conteos. Así la demostración sigue siendo revisable aunque un servicio externo no esté disponible.</p>
+<h2 id="incorporar-el-costo-en-la-decision">Incorporar el costo en la decisión</h2>
+<p>El costo total incluye desarrollo, licencias, infraestructura, almacenamiento, cómputo, transferencia, soporte, capacitación y mantenimiento. También existe costo de oportunidad: el tiempo invertido en una solución compleja podría retrasar una decisión más valiosa.</p>
+<p>Los servicios variables requieren observar consumo. Una consulta que lee columnas innecesarias, copias redundantes o transferencias entre regiones puede generar cargos crecientes. Presupuestos y alertas deben acompañar la elasticidad.</p>
+<p>El costo de mantener una solución manual también importa. Si consolidar archivos consume varias horas y produce errores frecuentes, una automatización simple puede recuperar capacidad. El trade-off compara ambas situaciones bajo un volumen y frecuencia declarados.</p>
+<h2 id="organizar-el-video-final-alrededor-de-la-evidencia">Organizar el video final alrededor de la evidencia</h2>
+<p>El video puede seguir el circuito de decisión: problema y audiencia, arquitectura, fuentes y grano, pipeline y controles, evidencia, recomendación, trade-offs, límites y contribuciones. Cada parte responde una pregunta y conduce a la siguiente.</p>
+<p>El código aparece cuando demuestra una regla o un control. Recorrer líneas sin vincularlas con la decisión dificulta la lectura. Una tabla de entrada, la transformación y el conteo de salida suelen explicar mejor el tramo.</p>
+<p>Cuando participan varias personas, las transiciones deben conservar el argumento común. Cada integrante identifica su aporte y puede conectar esa parte con el KPI y la recomendación.</p>
+<h2 id="preparar-la-defensa-como-una-revision-del-sistema">Preparar la defensa como una revisión del sistema</h2>
+<p>La defensa puede preguntar por qué se eligió una métrica, qué duplicaría un join, cómo se trataron faltantes o qué condición cambiaría la arquitectura. También puede explorar qué demuestra el análisis y qué permanece como hipótesis.</p>
+<p>Responder comienza por ubicar la pregunta en el pipeline. El equipo muestra la definición, el control o el trade-off relevante. Si la evidencia no alcanza, declara el límite y propone la comprobación necesaria.</p>
+<p>La participación de IA se explica mediante tarea, salida, validación y corrección. La responsabilidad permanece en quienes diseñaron y publican el trabajo.</p>
+<h2 id="preguntas-de-control">Preguntas de control</h2>
+<ol class="theory-list"><li>¿Puede rastrearse el KPI principal hasta un registro fuente?</li><li>¿Qué diferencias de conteo son esperadas entre etapas?</li><li>¿Cuál es el punto de falla con mayor impacto?</li><li>¿Qué componente podría eliminarse sin afectar la decisión?</li><li>¿Qué condición obliga a revisar el trade-off principal?</li><li>¿Qué tramo se mostrará como evidencia ejecutada?</li><li>¿Quién recibe la alerta y cómo recupera el proceso?</li></ol>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo rastrear OTIF desde la fuente hasta el reporte</h2></div>
+      <div class="applied-prose"><p>Hacia adelante, eventos y pedidos atraviesan captura, capas, mart, modelo y visual. Hacia atrás, el indicador rastrea medida, campos, reglas y registros. El cambio de grano entre eventos, despachos y pedidos queda documentado.</p><p>La matriz clasifica cada diferencia como cambio de grano, regla, redondeo, defecto o pendiente. Los trade-offs de arquitectura incluyen una condición que haría revisar la elección y un control operativo.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">6.2</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Reconciliar el pipeline completo y ensayar su defensa</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>La actividad rastrea un KPI desde el reporte hasta la fuente, clasifica diferencias y documenta cuatro trade-offs. Quien realiza la práctica identifica puntos de falla y prepara la evidencia que utilizará para explicar el pipeline durante la defensa.</p>
+        <a class="button button-dark" href="../downloads/Faro_Sur_Paquete_E_v1.0_estudiantes.zip" download>Descargar Paquete E <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-u06-integracion-tradeoffs">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-u06-integracion-tradeoffs">Integración, operación y decisiones de arquitectura</h2></div>
+        <p>Los materiales ofrecen marcos para documentar trade-offs, evaluar arquitectura y pensar operación y costo de un pipeline.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Repositorio</span><small>Inglés</small></div>
+          <h3><a href="https://github.com/joelparkerhenderson/architecture-decision-record" target="_blank" rel="noopener noreferrer">Architecture Decision Records</a></h3>
+          <p>Plantillas y ejemplos para registrar contexto, decisión, alternativas y consecuencias.</p>
+          <footer><span>Joel Parker Henderson</span><small>Consulta · 20 min</small><a href="https://github.com/joelparkerhenderson/architecture-decision-record" target="_blank" rel="noopener noreferrer" aria-label="Abrir Architecture Decision Records">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Marco de arquitectura</span><small>Inglés</small></div>
+          <h3><a href="https://cloud.google.com/architecture/framework" target="_blank" rel="noopener noreferrer">Google Cloud Well-Architected Framework</a></h3>
+          <p>Preguntas para revisar operación, seguridad, confiabilidad, costo y rendimiento.</p>
+          <footer><span>Google Cloud</span><small>Consulta por pilar</small><a href="https://cloud.google.com/architecture/framework" target="_blank" rel="noopener noreferrer" aria-label="Abrir Google Cloud Well-Architected Framework">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Guía oficial</span><small>Inglés</small></div>
+          <h3><a href="https://www.finops.org/framework/" target="_blank" rel="noopener noreferrer">FinOps Framework</a></h3>
+          <p>Marco para conectar costo cloud, responsabilidad y decisiones de valor.</p>
+          <footer><span>FinOps Foundation</span><small>Exploración · 25 min</small><a href="https://www.finops.org/framework/" target="_blank" rel="noopener noreferrer" aria-label="Abrir FinOps Framework">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+    <section class="resources section-pad" aria-labelledby="project-resources-u06-integracion-tradeoffs">
+      <div class="section-heading"><div class="section-kicker">Transferencia al proyecto</div><h2 id="project-resources-u06-integracion-tradeoffs">Preparar la defensa</h2></div>
+      <div class="resource-list"><a href="../recursos/caso-archivos-recurrentes.html" data-release-key="u04-etl-elt-contratos"><span class="resource-type">HTML</span><span><b>Caso aplicado · Automatización proporcional</b><small>Power Query, Power Automate, Power Apps, Office Scripts y VBA</small></span><i aria-hidden="true">→</i></a><a href="../downloads/Requisitos del video y dossier final.md" download><span class="resource-type">MD</span><span><b>Requisitos del video y dossier</b><small>Contenido, formato y accesos</small></span><i aria-hidden="true">↓</i></a><a href="../downloads/Registro de contribuciones.md" download><span class="resource-type">MD</span><span><b>Registro de contribuciones</b><small>Responsabilidades y participación</small></span><i aria-hidden="true">↓</i></a></div>
+    </section>
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u06-power-bi-modelo-semantico.html"><span>ANTERIOR</span><b>Unidad 6 · Power BI y modelo semántico</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Proyecto · Clínica y corrección</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

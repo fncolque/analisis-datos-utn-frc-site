@@ -52,6 +52,10 @@
     {
       "id": "u06-power-bi-modelo-semantico",
       "label": "Unidad 6.1 · Power BI y modelo semántico"
+    },
+    {
+      "id": "u06-integracion-tradeoffs",
+      "label": "Unidad 6.2 · Integración y trade-offs"
     }
   ],
   "questions": [
@@ -8114,6 +8118,626 @@
         "path": "unidades/u06-power-bi-modelo-semantico.html#revisar-sugerencias-de-ia-en-bi",
         "label": "Revisar sugerencias de IA en BI"
       }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-01",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Integrar significa conectar decisiones entre componentes",
+      "difficulty": "basica",
+      "prompt": "¿Qué debe estar definido en una conexión entre etapas del pipeline?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Entrada, salida, control y responsable."
+        },
+        {
+          "id": "b",
+          "text": "Solo el formato del archivo que recibe la etapa siguiente."
+        },
+        {
+          "id": "c",
+          "text": "Solo la herramienta que ejecutará cada transformación."
+        },
+        {
+          "id": "d",
+          "text": "Solo el total esperado al finalizar todo el proceso."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La interfaz entre componentes necesita condiciones que permitan operar y revisar el flujo.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#integrar-significa-conectar-decisiones-entre-componentes",
+        "label": "Integrar significa conectar decisiones entre componentes"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-02",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Recorrer el pipeline en ambas direcciones",
+      "difficulty": "basica",
+      "prompt": "¿Qué significa recorrer un KPI hacia atrás?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Volver a dibujar el gráfico."
+        },
+        {
+          "id": "b",
+          "text": "Rastrearlo hasta sus medidas, transformaciones y registros fuente."
+        },
+        {
+          "id": "c",
+          "text": "Ordenar fechas de mayor a menor."
+        },
+        {
+          "id": "d",
+          "text": "Borrar versiones anteriores."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El recorrido inverso verifica qué evidencia sostiene la cifra.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#recorrer-el-pipeline-en-ambas-direcciones",
+        "label": "Recorrer el pipeline en ambas direcciones"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-03",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Formular un trade-off completo",
+      "difficulty": "basica",
+      "prompt": "¿Qué expresa un trade-off de arquitectura?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una lista de todas las tecnologías conocidas."
+        },
+        {
+          "id": "b",
+          "text": "Una garantía de ausencia de riesgos."
+        },
+        {
+          "id": "c",
+          "text": "Una elección entre alternativas con beneficios y costos bajo condiciones."
+        },
+        {
+          "id": "d",
+          "text": "Una preferencia de marca sin contexto."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La decisión debe explicar qué se obtiene y qué se acepta al elegir.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#formular-un-trade-off-completo",
+        "label": "Formular un trade-off completo"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-04",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Diseñar la operación antes de automatizar",
+      "difficulty": "basica",
+      "prompt": "¿Qué necesita una alerta de falla para resultar operable?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un registro del error, sin asignar quién debe atenderlo."
+        },
+        {
+          "id": "b",
+          "text": "Reintentos indefinidos, sin identificar cuándo deben detenerse."
+        },
+        {
+          "id": "c",
+          "text": "Una notificación general, sin indicar el procedimiento a seguir."
+        },
+        {
+          "id": "d",
+          "text": "Un responsable y una acción de recuperación."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Detectar un incidente necesita conducir a una respuesta concreta.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#disenar-la-operacion-antes-de-automatizar",
+        "label": "Diseñar la operación antes de automatizar"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-05",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Incorporar el costo en la decisión",
+      "difficulty": "basica",
+      "prompt": "¿Qué debe incluir el costo total de una solución?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Desarrollo, uso y mantenimiento, además de licencias e infraestructura."
+        },
+        {
+          "id": "b",
+          "text": "Únicamente el precio inicial de la licencia."
+        },
+        {
+          "id": "c",
+          "text": "Solo el tiempo de ejecución."
+        },
+        {
+          "id": "d",
+          "text": "Solo el tamaño del archivo."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La comparación debe contemplar recursos técnicos y esfuerzo durante el uso.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#incorporar-el-costo-en-la-decision",
+        "label": "Incorporar el costo en la decisión"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-06",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Mostrar evidencia técnica que pueda explicarse",
+      "difficulty": "basica",
+      "prompt": "¿Qué demuestra una ejecución controlada de un tramo del pipeline?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que todas las causas de negocio están probadas."
+        },
+        {
+          "id": "b",
+          "text": "Cómo se transforma una entrada y qué controles verifica su salida."
+        },
+        {
+          "id": "c",
+          "text": "Que toda la arquitectura dibujada funciona en producción."
+        },
+        {
+          "id": "d",
+          "text": "Que nunca habrá fallas futuras."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La evidencia ejecutada tiene un alcance concreto que debe distinguirse del diseño propuesto.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#mostrar-evidencia-tecnica-que-pueda-explicarse",
+        "label": "Mostrar evidencia técnica que pueda explicarse"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-07",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Reconciliar diferencias entre etapas",
+      "difficulty": "intermedia",
+      "prompt": "Staging tiene 900 líneas y el mart 426 pedidos. ¿Cuándo puede ser correcta esa reducción?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nunca, porque todas las etapas deben tener igual cantidad."
+        },
+        {
+          "id": "b",
+          "text": "Cuando ambas etapas se ejecutan con la misma herramienta."
+        },
+        {
+          "id": "c",
+          "text": "Cuando una agregación declarada y sus controles justifican el cambio de grano."
+        },
+        {
+          "id": "d",
+          "text": "Solo si se eliminan 474 errores."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Los conteos pueden cambiar legítimamente al pasar de líneas a pedidos.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#reconciliar-diferencias-entre-etapas",
+        "label": "Reconciliar diferencias entre etapas"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-08",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Comparar alternativas frecuentes",
+      "difficulty": "intermedia",
+      "prompt": "Varias personas editan un archivo a la vez y se pierden versiones. ¿Qué requisito puede justificar una base de datos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Guardar todas las versiones con el mismo nombre."
+        },
+        {
+          "id": "b",
+          "text": "Dar permisos de escritura a cada persona sin controlar conflictos."
+        },
+        {
+          "id": "c",
+          "text": "Suponer que la última escritura contiene todos los cambios anteriores."
+        },
+        {
+          "id": "d",
+          "text": "Concurrencia e integridad bajo acceso compartido."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una base agrega mecanismos para coordinar acceso y reglas de integridad.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#comparar-alternativas-frecuentes",
+        "label": "Comparar alternativas frecuentes"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-09",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Formular un trade-off completo",
+      "difficulty": "intermedia",
+      "prompt": "Se elige batch diario para una revisión semanal. ¿Qué condición puede exigir revisarlo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Que la decisión pase a requerir información en minutos."
+        },
+        {
+          "id": "b",
+          "text": "Que se cambie la herramienta de visualización, con la misma necesidad de datos."
+        },
+        {
+          "id": "c",
+          "text": "Que los archivos se compriman, manteniendo igual tiempo de disponibilidad."
+        },
+        {
+          "id": "d",
+          "text": "Que se automatice el envío del reporte semanal sin cambiar su uso."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La latencia elegida debe seguir satisfaciendo la necesidad de decisión.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#formular-un-trade-off-completo",
+        "label": "Formular un trade-off completo"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-10",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Anticipar puntos de falla",
+      "difficulty": "intermedia",
+      "prompt": "El proveedor cambia el esquema y falta una columna obligatoria. ¿Qué respuesta protege el reporte?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Borrar todo el histórico."
+        },
+        {
+          "id": "b",
+          "text": "Detectar el incumplimiento, conservar la entrada y detener el producto afectado."
+        },
+        {
+          "id": "c",
+          "text": "Publicar columnas vacías como si fueran válidas."
+        },
+        {
+          "id": "d",
+          "text": "Ignorar el control para no demorar."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La respuesta debe impedir que una ruptura conocida se propague silenciosamente al consumo.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#anticipar-puntos-de-falla",
+        "label": "Anticipar puntos de falla"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-11",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Cloud, local, autoservicio y gobierno",
+      "difficulty": "intermedia",
+      "prompt": "¿Cómo puede habilitarse autoservicio conservando definiciones comunes?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Prohibir cualquier filtro en los reportes."
+        },
+        {
+          "id": "b",
+          "text": "Duplicar fórmulas independientes por persona."
+        },
+        {
+          "id": "c",
+          "text": "Permitir explorar marts autorizados y usar medidas revisadas para KPI publicados."
+        },
+        {
+          "id": "d",
+          "text": "Dar escritura sin límites sobre todas las fuentes."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La autonomía puede apoyarse en productos gobernados y definiciones compartidas.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#cloud-local-autoservicio-y-gobierno",
+        "label": "Cloud, local, autoservicio y gobierno"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-12",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Herramientas Microsoft en el caso recurrente",
+      "difficulty": "intermedia",
+      "prompt": "La mayor tarea manual es guardar adjuntos e iniciar la actualización. ¿Qué capacidad puede automatizar esa frontera?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un nuevo gráfico de barras."
+        },
+        {
+          "id": "b",
+          "text": "Una medida DAX de suma."
+        },
+        {
+          "id": "c",
+          "text": "Un cambio de familia de fuente."
+        },
+        {
+          "id": "d",
+          "text": "Un flujo como Power Automate, con permisos y condiciones definidos."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Automatizar la recepción y el inicio del proceso atiende una necesidad distinta de transformar los datos.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#herramientas-microsoft-en-el-caso-recurrente",
+        "label": "Herramientas Microsoft en el caso recurrente"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-13",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Herramientas Microsoft en el caso recurrente",
+      "difficulty": "intermedia",
+      "prompt": "Los archivos llegan con errores porque la captura necesita campos obligatorios y catálogos. ¿Qué cambio puede atacar el origen?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una aplicación de captura validada, con modelo y operación definidos."
+        },
+        {
+          "id": "b",
+          "text": "Corregir manualmente cada archivo después de recibirlo."
+        },
+        {
+          "id": "c",
+          "text": "Reemplazar cada categoría desconocida por la más frecuente."
+        },
+        {
+          "id": "d",
+          "text": "Aceptar todos los valores como texto para evitar errores de lectura."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Una interfaz de captura puede controlar antes de guardar, si sus permisos y mantenimiento están resueltos.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#herramientas-microsoft-en-el-caso-recurrente",
+        "label": "Herramientas Microsoft en el caso recurrente"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-14",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Incorporar el costo en la decisión",
+      "difficulty": "intermedia",
+      "prompt": "Una consulta semanal lee columnas y años innecesarios en un servicio cobrado por uso. ¿Qué conviene evaluar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Eliminar toda medición de costos."
+        },
+        {
+          "id": "b",
+          "text": "Restringir la lectura a lo requerido y controlar consumo."
+        },
+        {
+          "id": "c",
+          "text": "Duplicar el histórico para cada consulta."
+        },
+        {
+          "id": "d",
+          "text": "Agregar más regiones de almacenamiento sin motivo."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El diseño de consultas y transferencias influye en el costo variable.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#incorporar-el-costo-en-la-decision",
+        "label": "Incorporar el costo en la decisión"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-15",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Reconciliar diferencias entre etapas",
+      "difficulty": "avanzada",
+      "prompt": "El mart coincide con SQL, pero el reporte duplica ventas. ¿Dónde comenzar la investigación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "En editar a mano el total mostrado."
+        },
+        {
+          "id": "b",
+          "text": "En redondear la diferencia."
+        },
+        {
+          "id": "c",
+          "text": "En la carga, relaciones y medidas del reporte."
+        },
+        {
+          "id": "d",
+          "text": "En reemplazar la fuente que ya reconcilia."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Comparar etapas consecutivas localiza la primera frontera que introduce la discrepancia.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#reconciliar-diferencias-entre-etapas",
+        "label": "Reconciliar diferencias entre etapas"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-16",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Formular un trade-off completo",
+      "difficulty": "avanzada",
+      "prompt": "'Elegimos cloud porque escala' no indica volumen, costo ni condición de revisión. ¿Qué falta?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nombrar más productos de nube."
+        },
+        {
+          "id": "b",
+          "text": "Afirmar que cloud siempre es más barato."
+        },
+        {
+          "id": "c",
+          "text": "Eliminar todas las alternativas del documento."
+        },
+        {
+          "id": "d",
+          "text": "Relacionar la elección con requisitos concretos y controles."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Un trade-off necesita contexto, costo aceptado y señales para reevaluarlo.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#formular-un-trade-off-completo",
+        "label": "Formular un trade-off completo"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-17",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Diseñar la operación antes de automatizar",
+      "difficulty": "avanzada",
+      "prompt": "Un proceso falla después de cargar parte del lote. ¿Qué debe permitir la recuperación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reejecutar sin duplicar y reconocer qué datos quedaron confirmados."
+        },
+        {
+          "id": "b",
+          "text": "Anexar siempre todo el lote otra vez."
+        },
+        {
+          "id": "c",
+          "text": "Ocultar el error si existe algún resultado."
+        },
+        {
+          "id": "d",
+          "text": "Reemplazar todas las claves por nuevas."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La recuperación necesita una estrategia idempotente y evidencia de lo procesado.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#disenar-la-operacion-antes-de-automatizar",
+        "label": "Diseñar la operación antes de automatizar"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-18",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Mostrar evidencia técnica que pueda explicarse",
+      "difficulty": "avanzada",
+      "prompt": "Un diagrama incluye monitoreo que todavía no se implementó. ¿Cómo presentarlo en una revisión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Como sustituto de una ejecución."
+        },
+        {
+          "id": "b",
+          "text": "Como parte diseñada, con su límite y consecuencia operativa."
+        },
+        {
+          "id": "c",
+          "text": "Como capacidad demostrada por estar dibujada."
+        },
+        {
+          "id": "d",
+          "text": "Como prueba de que no habrá incidentes."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Diseño e implementación deben distinguirse para evaluar qué riesgos siguen sin cubrirse.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#mostrar-evidencia-tecnica-que-pueda-explicarse",
+        "label": "Mostrar evidencia técnica que pueda explicarse"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-19",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Recorrer el pipeline en ambas direcciones",
+      "difficulty": "avanzada",
+      "prompt": "Se cambia la definición de 'a tiempo'. ¿Qué revisión previa identifica el alcance del cambio?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Editar manualmente el porcentaje final."
+        },
+        {
+          "id": "b",
+          "text": "Reemplazar todas las fechas por hoy."
+        },
+        {
+          "id": "c",
+          "text": "Rastrear tablas, medidas y visuales que dependen de la regla."
+        },
+        {
+          "id": "d",
+          "text": "Cambiar solo el título de OTIF."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Las dependencias permiten adaptar la definición de forma coherente entre consumidores.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#recorrer-el-pipeline-en-ambas-direcciones",
+        "label": "Recorrer el pipeline en ambas direcciones"
+      }
+    },
+    {
+      "id": "u06-integracion-tradeoffs-20",
+      "unit": "u06-integracion-tradeoffs",
+      "topic": "Preparar la defensa como una revisión del sistema",
+      "difficulty": "avanzada",
+      "prompt": "Una pregunta de revisión excede la evidencia disponible. ¿Qué respuesta conserva rigor?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Improvisar una certeza para cerrar la duda."
+        },
+        {
+          "id": "b",
+          "text": "Mostrar una herramienta distinta."
+        },
+        {
+          "id": "c",
+          "text": "Omitir la fuente para evitar preguntas."
+        },
+        {
+          "id": "d",
+          "text": "Declarar el límite y proponer la comprobación necesaria."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La defensa debe ubicar lo demostrado y el trabajo que permitiría ampliar su alcance.",
+      "reference": {
+        "path": "unidades/u06-integracion-tradeoffs.html#preparar-la-defensa-como-una-revision-del-sistema",
+        "label": "Preparar la defensa como una revisión del sistema"
+      }
     }
   ],
   "presets": [
@@ -8143,5 +8767,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "64760b38dbb4c8f1"
+  "version": "776cf7f81ba0ca84"
 }

@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-04",
+  "actualizado": "2026-11-11",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -694,6 +694,47 @@
           "idioma": "Inglés y traducciones",
           "dedicacion": "Consulta técnica",
           "descripcion": "Referencia conceptual de sintaxis, funciones y contexto en Data Analysis Expressions."
+        }
+      ]
+    },
+    "u06-integracion-tradeoffs": {
+      "titulo": "Integración, operación y decisiones de arquitectura",
+      "introduccion": "Los materiales ofrecen marcos para documentar trade-offs, evaluar arquitectura y pensar operación y costo de un pipeline.",
+      "diagrama": {
+        "archivo": "u06-integracion-tradeoffs.svg",
+        "fuente": "u06-integracion-tradeoffs.mmd",
+        "alt": "Pipeline desde fuente hasta decisión con un recorrido inverso de trazabilidad.",
+        "titulo": "El pipeline se recorre hacia adelante y hacia atrás",
+        "epigrafe": "La producción explica cómo llega el dato. La trazabilidad permite seguir un KPI hasta el registro fuente.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Repositorio",
+          "titulo": "Architecture Decision Records",
+          "institucion": "Joel Parker Henderson",
+          "url": "https://github.com/joelparkerhenderson/architecture-decision-record",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta · 20 min",
+          "descripcion": "Plantillas y ejemplos para registrar contexto, decisión, alternativas y consecuencias."
+        },
+        {
+          "tipo": "Marco de arquitectura",
+          "titulo": "Google Cloud Well-Architected Framework",
+          "institucion": "Google Cloud",
+          "url": "https://cloud.google.com/architecture/framework",
+          "idioma": "Inglés",
+          "dedicacion": "Consulta por pilar",
+          "descripcion": "Preguntas para revisar operación, seguridad, confiabilidad, costo y rendimiento."
+        },
+        {
+          "tipo": "Guía oficial",
+          "titulo": "FinOps Framework",
+          "institucion": "FinOps Foundation",
+          "url": "https://www.finops.org/framework/",
+          "idioma": "Inglés",
+          "dedicacion": "Exploración · 25 min",
+          "descripcion": "Marco para conectar costo cloud, responsabilidad y decisiones de valor."
         }
       ]
     }

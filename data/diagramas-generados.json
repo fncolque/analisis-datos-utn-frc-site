@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-11-04",
+  "actualizado": "2026-11-11",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -2944,6 +2944,268 @@
                     "columna → medida → visual"
                   ]
                 }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "u06-integracion-tradeoffs": [
+      {
+        "page": "u06-integracion-tradeoffs",
+        "unit": "C14",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u06-pipeline-gcp.svg",
+        "base_generada": "theory/u06-pipeline-gcp-base.webp",
+        "base_provisoria": "u06-pipeline-two-directions.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Pipeline completo de datos con herramientas de GCP",
+        "pregunta_lectura": "¿Qué responsabilidad cumple cada servicio y qué controles atraviesan todo el recorrido?",
+        "alt": "Dos carriles muestran un pipeline desde ERP, Excel, API y eventos hacia Cloud Storage y Pub/Sub, Dataflow, BigQuery, Dataform, Power BI y Looker, junto con Composer, IAM, Knowledge Catalog, observabilidad y presupuestos.",
+        "epigrafe": "Las herramientas son ejemplos concretos de responsabilidades. El carril superior produce datos analíticos; el inferior coordina, autoriza, documenta, observa y controla el costo.",
+        "after_heading": "recorrer-el-pipeline-en-ambas-direcciones",
+        "interactivo": true,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "Separá la entrada batch de la entrada por eventos antes de elegir el servicio de ingestión.",
+          "Dataflow procesa ambos modos y BigQuery conserva capas raw, staging y marts.",
+          "Dataform transforma y prueba SQL dentro del warehouse; Composer coordina dependencias.",
+          "IAM, catálogo, registros, monitoreo y presupuestos acompañan el flujo completo."
+        ],
+        "fuentes": [
+          {
+            "label": "Google Cloud · Deploy an ETL pipeline",
+            "url": "https://docs.cloud.google.com/shell/docs/cloud-shell-tutorials/deploystack/etl-pipeline"
+          },
+          {
+            "label": "Google Cloud · Dataflow overview",
+            "url": "https://docs.cloud.google.com/dataflow/docs/overview"
+          },
+          {
+            "label": "Google Cloud · Dataform overview",
+            "url": "https://docs.cloud.google.com/dataform/docs/overview"
+          },
+          {
+            "label": "Google Cloud · Knowledge Catalog",
+            "url": "https://docs.cloud.google.com/dataplex/docs/catalog-overview"
+          },
+          {
+            "label": "Microsoft Learn · Conector de Google BigQuery",
+            "url": "https://learn.microsoft.com/en-us/power-query/connectors/google-bigquery"
+          }
+        ],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A complete cloud data pipeline as five connected textless stations, with distinct file and event entrances, batch and streaming motion, warehouse layers, analytics consumption, plus a parallel governance and observability rail.",
+        "version_revision": "1.0",
+        "svg_height": 1000,
+        "estructura": {
+          "layout": "lanes",
+          "lanes": [
+            {
+              "label": "RECORRIDO DE DATOS",
+              "title": "Del sistema fuente al consumo",
+              "cards": [
+                {
+                  "title": "Fuentes",
+                  "body": [
+                    "ERP, Excel, API",
+                    "eventos operacionales"
+                  ],
+                  "accent": "blue",
+                  "tag": "entrada",
+                  "step": 1
+                },
+                {
+                  "title": "Ingestión",
+                  "body": [
+                    "Cloud Storage: archivos",
+                    "Pub/Sub: eventos"
+                  ],
+                  "accent": "blue",
+                  "tag": "captura",
+                  "step": 2
+                },
+                {
+                  "title": "Procesamiento",
+                  "body": [
+                    "Dataflow para batch y streaming"
+                  ],
+                  "accent": "blue",
+                  "tag": "preparación",
+                  "step": 3
+                },
+                {
+                  "title": "Warehouse",
+                  "body": [
+                    "BigQuery: raw → staging → marts",
+                    "Dataform: SQL y pruebas"
+                  ],
+                  "accent": "blue",
+                  "tag": "modelo",
+                  "step": 4
+                },
+                {
+                  "title": "Consumo",
+                  "body": [
+                    "Power BI por conector BigQuery",
+                    "Looker como alternativa GCP"
+                  ],
+                  "accent": "blue",
+                  "tag": "decisión",
+                  "step": 5
+                }
+              ]
+            },
+            {
+              "label": "OPERACIÓN TRANSVERSAL",
+              "title": "Controles que sostienen el servicio",
+              "cards": [
+                {
+                  "title": "Orquestación",
+                  "body": [
+                    "Cloud Composer agenda y coordina dependencias."
+                  ],
+                  "accent": "blue",
+                  "tag": "cuándo",
+                  "step": 6
+                },
+                {
+                  "title": "Acceso",
+                  "body": [
+                    "IAM limita identidades, roles y permisos."
+                  ],
+                  "accent": "blue",
+                  "tag": "quién",
+                  "step": 7
+                },
+                {
+                  "title": "Conocimiento",
+                  "body": [
+                    "Knowledge Catalog documenta activos y linaje."
+                  ],
+                  "accent": "blue",
+                  "tag": "qué",
+                  "step": 8
+                },
+                {
+                  "title": "Observabilidad",
+                  "body": [
+                    "Logging y Monitoring registran señales y alertas."
+                  ],
+                  "accent": "blue",
+                  "tag": "señal",
+                  "step": 9
+                },
+                {
+                  "title": "Costo",
+                  "body": [
+                    "Presupuestos y etiquetas atribuyen consumo."
+                  ],
+                  "accent": "blue",
+                  "tag": "cuánto",
+                  "step": 10
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "page": "u06-integracion-tradeoffs",
+        "unit": "C14",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/u06-respuesta-fallas.svg",
+        "base_generada": "theory/u06-respuesta-fallas-base.webp",
+        "base_provisoria": "u06-tradeoff-balance.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Cómo responde el pipeline cuando falla una etapa",
+        "pregunta_lectura": "¿Qué señal permite detectar el problema y cuál es la recuperación mínima segura?",
+        "alt": "Siete paneles describen fuente tardía, esquema cambiado, credencial vencida, reejecución duplicada, join multiplicador, reporte desactualizado y trazabilidad inversa, indicando señal, impacto, recuperación y responsable.",
+        "epigrafe": "Una falla operable tiene una señal observable, un impacto delimitado, una recuperación ensayada y una persona responsable. La trazabilidad inversa permite comenzar en el KPI y volver al registro fuente.",
+        "after_heading": "formular-un-trade-off-completo",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "La señal debe aparecer antes de que la diferencia llegue al reporte.",
+          "La recuperación evita ocultar datos incompletos, duplicar cargas o publicar totales incorrectos.",
+          "Cada respuesta asigna un responsable y conserva la evidencia de la reejecución.",
+          "El recorrido inverso vuelve desde el KPI hasta mart, transformación, snapshot y fuente."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A fault-response atlas across a data pipeline: six distinct failure signals with contained blast radii and recovery paths, plus a reverse trace from dashboard back to source record.",
+        "version_revision": "1.0",
+        "svg_height": 1400,
+        "estructura": {
+          "layout": "grid",
+          "columns": 2,
+          "cards": [
+            {
+              "title": "Fuente tardía",
+              "body": [
+                "Señal: SLA vencido · Impacto: período incompleto",
+                "Recuperación: retener última publicación y reintentar · Responsable: origen"
+              ],
+              "accent": "danger",
+              "tag": "ingestión"
+            },
+            {
+              "title": "Esquema cambiado",
+              "body": [
+                "Señal: contrato inválido · Impacto: columnas rotas",
+                "Recuperación: cuarentena y nueva versión · Responsable: datos"
+              ],
+              "accent": "danger",
+              "tag": "contrato"
+            },
+            {
+              "title": "Credencial vencida",
+              "body": [
+                "Señal: 401/403 · Impacto: extracción detenida",
+                "Recuperación: rotar secreto y reanudar · Responsable: plataforma"
+              ],
+              "accent": "danger",
+              "tag": "acceso"
+            },
+            {
+              "title": "Reejecución duplicada",
+              "body": [
+                "Señal: hash ya procesado · Impacto: filas repetidas",
+                "Recuperación: clave idempotente y rollback · Responsable: pipeline"
+              ],
+              "accent": "danger",
+              "tag": "carga"
+            },
+            {
+              "title": "JOIN multiplicador",
+              "body": [
+                "Señal: filas y suma aumentan · Impacto: KPI inflado",
+                "Recuperación: validar cardinalidad y recomputar · Responsable: modelo"
+              ],
+              "accent": "danger",
+              "tag": "transformación"
+            },
+            {
+              "title": "Reporte desactualizado",
+              "body": [
+                "Señal: timestamp anterior al mart · Impacto: decisión con datos viejos",
+                "Recuperación: refrescar y verificar conteos · Responsable: BI"
+              ],
+              "accent": "danger",
+              "tag": "consumo"
+            },
+            {
+              "title": "Trazabilidad inversa",
+              "body": [
+                "KPI → visual → medida → mart → transformación → snapshot → registro",
+                "Reabrir solo productos descendentes afectados."
+              ],
+              "accent": "success",
+              "tag": "diagnóstico",
+              "stats": [
+                "evidencia por etapa"
               ]
             }
           ]
