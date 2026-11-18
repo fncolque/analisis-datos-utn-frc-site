@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-11-11",
+  "actualizado": "2026-11-18",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -3210,6 +3210,132 @@
             }
           ]
         }
+      }
+    ],
+    "proyecto-clinica-final": [
+      {
+        "page": "proyecto-clinica-final",
+        "unit": "C15",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/project-arbol-inconsistencia.svg",
+        "base_generada": "theory/project-arbol-inconsistencia-base.webp",
+        "base_provisoria": "project-diagnostic-tree.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Árbol para encontrar la primera inconsistencia",
+        "pregunta_lectura": "¿Cuál es la primera capa donde el resultado deja de coincidir con su control?",
+        "alt": "Un recorrido comienza con un síntoma en Power BI y revisa decisión y KPI, medida, mart, transformación, join, grano y fuente; cada etapa indica un conteo o total para comparar y limita la reejecución.",
+        "epigrafe": "La primera inconsistencia explica los síntomas posteriores. La corrección se aplica allí y vuelve a ejecutar únicamente los controles y productos que dependen de esa capa.",
+        "after_heading": "diagnosticar-desde-la-primera-inconsistencia",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "Comenzá por declarar el síntoma y el resultado esperado.",
+          "Compará definición y contexto del KPI antes de modificar una fórmula.",
+          "Seguí totales y conteos desde el reporte hacia mart, transformación, JOIN, grano y fuente.",
+          "Corregí la primera diferencia y reabrí solo los descendientes afectados."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A diagnostic decision path moving backward from a dashboard symptom through measure, mart, transformation, join, grain and source, stopping at the first failed checkpoint and reopening only downstream artifacts.",
+        "version_revision": "1.0",
+        "svg_height": 1200,
+        "estructura": {
+          "layout": "flow",
+          "columns": 4,
+          "cards": [
+            {
+              "title": "Síntoma en Power BI",
+              "body": [
+                "Una tarjeta difiere del valor esperado."
+              ],
+              "accent": "blue",
+              "tag": "observar",
+              "step": 1
+            },
+            {
+              "title": "Decisión y KPI",
+              "body": [
+                "¿Fórmula, población, período y unidad coinciden?"
+              ],
+              "accent": "blue",
+              "tag": "definir",
+              "step": 2
+            },
+            {
+              "title": "Medida",
+              "body": [
+                "Comparar DAX con un cálculo controlado."
+              ],
+              "accent": "blue",
+              "tag": "calcular",
+              "step": 3
+            },
+            {
+              "title": "Mart",
+              "body": [
+                "COUNT filas, DISTINCT claves y SUM importe."
+              ],
+              "accent": "blue",
+              "tag": "producto",
+              "step": 4
+            },
+            {
+              "title": "Transformación",
+              "body": [
+                "Revisar filtros, derivaciones y reglas."
+              ],
+              "accent": "blue",
+              "tag": "pasos",
+              "step": 5
+            },
+            {
+              "title": "JOIN",
+              "body": [
+                "Comparar filas y totales antes/después."
+              ],
+              "accent": "blue",
+              "tag": "cardinalidad",
+              "step": 6
+            },
+            {
+              "title": "Grano y fuente",
+              "body": [
+                "Confirmar qué representa una fila y qué snapshot ingresó."
+              ],
+              "accent": "blue",
+              "tag": "origen",
+              "step": 7
+            },
+            {
+              "title": "Corrección acotada",
+              "body": [
+                "Reejecutar controles, mart, modelo y reporte afectados."
+              ],
+              "accent": "success",
+              "tag": "cerrar",
+              "step": 8,
+              "stats": [
+                "evidencia nueva"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "archivo": "project-review-loop.webp",
+        "titulo": "La revisión entre pares produce una nueva ejecución",
+        "alt": "Un equipo presenta su cadena de evidencia, otro equipo prueba supuestos y controles, y los hallazgos regresan como una cola priorizada que conduce a una versión corregida.",
+        "epigrafe": "La devolución útil identifica evidencia, impacto y una corrección verificable. La versión corregida se vuelve a ejecutar antes de cerrar el hallazgo.",
+        "after_heading": "convertir-la-revision-en-un-plan-de-correccion",
+        "lectura": [
+          "El equipo revisor observa la cadena completa de evidencia.",
+          "Cada hallazgo se vincula con un control o una definición.",
+          "Las correcciones se ordenan por impacto y dependencia.",
+          "La nueva ejecución demuestra si el problema quedó resuelto."
+        ],
+        "tipo": "ilustracion-generada",
+        "version_revision": "conservada-2026-08-24"
       }
     ]
   }

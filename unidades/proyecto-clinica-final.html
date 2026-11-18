@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Diagnóstico y corrección final. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Diagnóstico y corrección final · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">PROYECTO · CLÍNICA</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>PROYECTO · CLÍNICA</span></div>
+        <h1 id="reading-title">Diagnóstico y corrección final</h1>
+        <p class="hero-lede">La clínica final revisa el proyecto siguiendo el orden del razonamiento, desde la decisión y el grano hasta la evidencia y la comunicación. El árbol de diagnóstico permite localizar la primera inconsistencia, comprender qué piezas afecta y convertirla en una corrección observable con una persona responsable.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué corrección aumenta más la coherencia de cada proyecto?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Checklist de entrega final.md" download>Descargar checklist final <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-proyecto-clinica-final">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-proyecto-clinica-final">La revisión sigue el orden del razonamiento</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/proyecto-clinica.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/proyecto-clinica.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-standard">
+        <a href="../assets/diagrams/proyecto-clinica.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/proyecto-clinica.svg?v=20260825b" alt="Árbol de diagnóstico del proyecto desde decisión y grano hasta evidencia, visual, trade-offs y ensayo." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>La primera inconsistencia determina la corrección prioritaria del equipo.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#diagnosticar-desde-la-primera-inconsistencia">Diagnosticar desde la primera inconsistencia</a><a href="#comprobar-la-decision-y-el-kpi">Comprobar la decisión y el KPI</a><a href="#revisar-grano-claves-y-poblacion">Revisar grano, claves y población</a><a href="#localizar-la-primera-diferencia-de-reconciliacion">Localizar la primera diferencia de reconciliación</a><a href="#evaluar-si-la-evidencia-sostiene-la-conclusion">Evaluar si la evidencia sostiene la conclusión</a><a href="#comprobar-que-la-comunicacion-conduce-a-una-accion">Comprobar que la comunicación conduce a una acción</a><a href="#revisar-trade-offs-operacion-y-limites">Revisar trade-offs, operación y límites</a><a href="#verificar-comprension-y-contribuciones">Verificar comprensión y contribuciones</a><a href="#convertir-la-revision-en-un-plan-de-correccion">Convertir la revisión en un plan de corrección</a><a href="#preguntas-de-revision">Preguntas de revisión</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="diagnosticar-desde-la-primera-inconsistencia">Diagnosticar desde la primera inconsistencia</h2>
+<p>La clínica final reúne los principios trabajados durante el recorrido y los utiliza como un método de revisión. Un problema visible en el reporte puede haberse originado mucho antes: una decisión ambigua produce un KPI débil; un grano sin declarar permite joins que multiplican filas; una transformación sin control genera una cifra difícil de defender.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-project-arbol-inconsistencia-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-project-arbol-inconsistencia-title">Árbol para encontrar la primera inconsistencia</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Cuál es la primera capa donde el resultado deja de coincidir con su control?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/project-diagnostic-tree.webp')">
+        <div class="atlas-board atlas-flow" style="--atlas-cols:4"><article class="atlas-card is-blue" data-step="1" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">observar</span><span class="atlas-step-number" aria-hidden="true">01</span></div>
+      <h5>Síntoma en Power BI</h5>
+      <div class="atlas-card-copy"><p>Una tarjeta difiere del valor esperado.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="2" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">definir</span><span class="atlas-step-number" aria-hidden="true">02</span></div>
+      <h5>Decisión y KPI</h5>
+      <div class="atlas-card-copy"><p>¿Fórmula, población, período y unidad coinciden?</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="3" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">calcular</span><span class="atlas-step-number" aria-hidden="true">03</span></div>
+      <h5>Medida</h5>
+      <div class="atlas-card-copy"><p>Comparar DAX con un cálculo controlado.</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end" data-step="4" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">producto</span><span class="atlas-step-number" aria-hidden="true">04</span></div>
+      <h5>Mart</h5>
+      <div class="atlas-card-copy"><p>COUNT filas, DISTINCT claves y SUM importe.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="5" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">pasos</span><span class="atlas-step-number" aria-hidden="true">05</span></div>
+      <h5>Transformación</h5>
+      <div class="atlas-card-copy"><p>Revisar filtros, derivaciones y reglas.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="6" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">cardinalidad</span><span class="atlas-step-number" aria-hidden="true">06</span></div>
+      <h5>JOIN</h5>
+      <div class="atlas-card-copy"><p>Comparar filas y totales antes/después.</p></div>
+
+    </article><article class="atlas-card is-blue" data-step="7" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">origen</span><span class="atlas-step-number" aria-hidden="true">07</span></div>
+      <h5>Grano y fuente</h5>
+      <div class="atlas-card-copy"><p>Confirmar qué representa una fila y qué snapshot ingresó.</p></div>
+
+    </article><article class="atlas-card is-success is-row-end" data-step="8" tabindex="0">
+      <div class="atlas-card-top"><span class="atlas-card-tag">cerrar</span><span class="atlas-step-number" aria-hidden="true">08</span></div>
+      <h5>Corrección acotada</h5>
+      <div class="atlas-card-copy"><p>Reejecutar controles, mart, modelo y reporte afectados.</p></div>
+      <div class="atlas-stats"><span>evidencia nueva</span></div>
+    </article></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/project-arbol-inconsistencia.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>La primera inconsistencia explica los síntomas posteriores. La corrección se aplica allí y vuelve a ejecutar únicamente los controles y productos que dependen de esa capa.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>Comenzá por declarar el síntoma y el resultado esperado.</p></li><li><span>02</span><p>Compará definición y contexto del KPI antes de modificar una fórmula.</p></li><li><span>03</span><p>Seguí totales y conteos desde el reporte hacia mart, transformación, JOIN, grano y fuente.</p></li><li><span>04</span><p>Corregí la primera diferencia y reabrí solo los descendientes afectados.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>La revisión sigue el orden del razonamiento. Primero se comprueba la decisión y luego se avanza por grano, fuentes, transformaciones, reconciliación, interpretación y comunicación. Corregir la primera inconsistencia evita pulir componentes que dependen de una base todavía inestable.</p>
+<p>El diagnóstico deja una lista breve de hallazgos con evidencia, impacto y siguiente acción. La prioridad surge de cuánto cambia la conclusión o bloquea la trazabilidad, no de cuán visible resulta el defecto.</p>
+<h2 id="comprobar-la-decision-y-el-kpi">Comprobar la decisión y el KPI</h2>
+<p>Una decisión clara identifica audiencia, alternativa y acción posible. “Analizar ventas” describe un tema; “decidir si ajustar la promesa de entrega en Patagonia” establece una elección que la evidencia puede orientar.</p>
+<p>El KPI necesita definición, población, período y regla de cálculo. También requiere una referencia, como una meta o comparación, para saber qué resultado merece acción. Si distintos integrantes explican el indicador con denominadores diferentes, la revisión debe detenerse y acordar la definición.</p>
+<p>La pregunta de diagnóstico es: ¿qué cambiaría concretamente si el KPI sube, baja o permanece igual? Si ninguna acción depende de la respuesta, el indicador puede ser informativo, pero todavía no orienta la decisión principal.</p>
+<h2 id="revisar-grano-claves-y-poblacion">Revisar grano, claves y población</h2>
+<p>El grano declara qué representa una fila en cada tabla. Una línea de pedido, un pedido y un cliente permiten operaciones diferentes. Cuando se unen tablas, las claves y cardinalidades determinan si la población se conserva o se multiplica.</p>
+<p>La revisión toma una muestra conocida y cuenta filas y claves antes y después de cada join. También comprueba valores nulos, filtros y fechas. Una diferencia puede ser esperada por el cambio de grano, pero debe explicarse mediante la transformación.</p>
+<p>Si el equipo no puede completar la frase “una fila representa…”, el cálculo posterior carece de contrato. La corrección consiste en volver al modelo, identificar claves y ajustar agregaciones antes de revisar visuales.</p>
+<h2 id="localizar-la-primera-diferencia-de-reconciliacion">Localizar la primera diferencia de reconciliación</h2>
+<p>Reconciliar significa comparar una salida con una referencia independiente. Se comienza por conteos de filas y claves, continúa con totales aditivos y termina con ratios. Numerador y denominador se revisan por separado.</p>
+<p>Cuando aparece una diferencia, el diagnóstico compara etapas consecutivas. Si raw coincide con la fuente y staging difiere, la búsqueda se concentra en tipos, filtros o deduplicación. Si el mart coincide con el notebook y Power BI no, se revisan relaciones, contexto de filtro y medidas.</p>
+<p>La categoría “diferencia desconocida” señala trabajo pendiente. La conclusión que depende de ese valor debe esperar o reducir su alcance hasta que exista una explicación verificable.</p>
+<h2 id="evaluar-si-la-evidencia-sostiene-la-conclusion">Evaluar si la evidencia sostiene la conclusión</h2>
+<p>Una conclusión debe corresponder con la población y el tipo de análisis. Una asociación observada permite describir un patrón y formular hipótesis; una afirmación causal exige un diseño adicional. Una muestra parcial restringe el alcance.</p>
+<p>La revisión busca comparaciones adecuadas, distribución, faltantes y sensibilidad a supuestos. También identifica resultados que contradicen el mensaje. Retirar evidencia incómoda debilita la defensa; explicar por qué no modifica la recomendación muestra criterio.</p>
+<p>Una prueba útil consiste en formular qué dato haría cambiar de opinión. Si ninguna observación posible modifica la conclusión, el análisis se ha convertido en una justificación y necesita volver a la pregunta.</p>
+<h2 id="comprobar-que-la-comunicacion-conduce-a-una-accion">Comprobar que la comunicación conduce a una acción</h2>
+<p>El título principal debe expresar la observación y el visual debe permitir verificarla. Ejes, unidades, denominadores y fuente permanecen visibles. Cada gráfico ocupa un lugar porque aporta una comparación necesaria.</p>
+<p>El recorrido puede leerse mediante sus títulos: decisión, tensión, evidencia, recomendación y límite. Si los títulos forman una lista de herramientas o etapas de trabajo, el argumento todavía necesita reorganización.</p>
+<p>La recomendación identifica responsable, alcance y condición de revisión. Una audiencia debería saber qué hacer después y qué riesgo acepta. El material de respaldo conserva el detalle necesario para responder preguntas sin interrumpir la secuencia.</p>
+<h2 id="revisar-trade-offs-operacion-y-limites">Revisar trade-offs, operación y límites</h2>
+<p>Un trade-off completo compara alternativas, beneficio, costo, condición de revisión y control. “Elegimos cloud porque escala” queda incompleto si la escala del caso no está cuantificada. La elección necesita una necesidad concreta y una señal que permita revisarla.</p>
+<p>La operación identifica quién ejecuta, cómo se detecta una falla y cómo se recupera el proceso. El prototipo puede dejar componentes sin implementar, pero debe declararlos como límites. Esa distinción evita presentar un diseño como si ya funcionara en producción.</p>
+<p>Los costos y permisos también forman parte de la arquitectura. Una solución técnicamente posible puede resultar desproporcionada para la frecuencia, el volumen o el riesgo del caso.</p>
+<h2 id="verificar-comprension-y-contribuciones">Verificar comprensión y contribuciones</h2>
+<p>La actividad puede resolverse individualmente o en equipo. En un trabajo individual, la persona debe conectar todas las etapas del sistema. En equipo, cada integrante conserva responsabilidad sobre un tramo y comprende cómo ese tramo afecta el KPI y la recomendación.</p>
+<p>El registro de contribuciones documenta tareas, revisión cruzada y decisiones compartidas. Dividir por herramientas no garantiza integración; explicar interfaces y controles entre partes muestra que el trabajo forma un sistema.</p>
+<p>La participación de inteligencia artificial se revisa con el mismo criterio. Se identifica la tarea, la salida recibida, la prueba ejecutada y la corrección humana. Una respuesta aceptada sin validación constituye un punto de riesgo.</p>
+<h2 id="convertir-la-revision-en-un-plan-de-correccion">Convertir la revisión en un plan de corrección</h2>
+<p>Cada hallazgo se redacta con cuatro componentes: evidencia observada, impacto, corrección propuesta y responsable. “El total difiere” resulta insuficiente; “Power BI muestra 2 % más ventas que el mart porque la relación de productos duplica claves; corregir dimensión y reconciliar” permite actuar.</p>
+<figure class="generated-diagram" aria-labelledby="generated-project-review-loop-title">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-project-review-loop-title">La revisión entre pares produce una nueva ejecución</h3>
+      </div>
+      <div class="generated-diagram-media">
+        <img src="../assets/images/generated/project-review-loop.webp?v=20260825b" alt="Un equipo presenta su cadena de evidencia, otro equipo prueba supuestos y controles, y los hallazgos regresan como una cola priorizada que conduce a una versión corregida." width="1536" height="1024" loading="lazy" decoding="async">
+      </div>
+      <figcaption>
+        <p>La devolución útil identifica evidencia, impacto y una corrección verificable. La versión corregida se vuelve a ejecutar antes de cerrar el hallazgo.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>El equipo revisor observa la cadena completa de evidencia.</p></li><li><span>02</span><p>Cada hallazgo se vincula con un control o una definición.</p></li><li><span>03</span><p>Las correcciones se ordenan por impacto y dependencia.</p></li><li><span>04</span><p>La nueva ejecución demuestra si el problema quedó resuelto.</p></li></ol>
+        <small>Ilustración generada con OpenAI Images.</small>
+      </figcaption>
+    </figure>
+
+<p>Las correcciones se ordenan por dependencia. Primero se estabilizan definición, fuente y grano. Después se reparan transformaciones y medidas. Al final se ajustan títulos, visuales y transiciones. Esta secuencia reduce retrabajo.</p>
+<p>La versión corregida vuelve a ejecutar los controles afectados. Cerrar un hallazgo exige una evidencia nueva, no solamente una modificación del archivo.</p>
+<h2 id="preguntas-de-revision">Preguntas de revisión</h2>
+<ol class="theory-list"><li>¿Qué decisión orienta el producto y quién la toma?</li><li>¿Qué representa una fila en cada tabla principal?</li><li>¿En qué etapa aparece la primera diferencia de conteo?</li><li>¿Qué resultado depende de un supuesto sin probar?</li><li>¿Qué parte de la evidencia contradice o limita la conclusión?</li><li>¿Qué acción debería tomar la audiencia?</li><li>¿Qué condición haría cambiar la arquitectura o la recomendación?</li><li>¿Qué control demuestra que la corrección funcionó?</li></ol>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Por qué conviene corregir primero la inconsistencia de origen</h2></div>
+      <div class="applied-prose"><p>Una definición de KPI incompleta afecta medidas, visuales y recomendación. Un resultado sin reconciliación requiere localizar la primera etapa con diferencia. La clínica prioriza esas correcciones antes de la terminación estética.</p><p>El semáforo se apoya en pruebas: total coincidente, enlace accesible, permiso confirmado y escena ensayada. Cada pendiente tiene una persona responsable y un estado de cierre.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">P.1</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Revisar el proyecto con la rúbrica y probar su defensa</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>La revisión puede hacerse de manera individual o en equipo y recorre decisión, grano, permisos, transformación, controles, evidencia, visual y trade-offs. La salida asigna una corrección obligatoria y una mejora opcional.</p>
+        <a class="button button-dark" href="../downloads/Checklist de entrega final.md" download>Descargar checklist final <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-proyecto-clinica-final">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-proyecto-clinica-final">Herramientas para revisar y cerrar el proyecto</h2></div>
+        <p>La clínica utiliza la rúbrica y un árbol de diagnóstico para localizar la primera inconsistencia y convertirla en una corrección asignada.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Plantilla</span><small>Español</small></div>
+          <h3><a href="../downloads/Checklist de entrega final.md" target="_blank" rel="noopener noreferrer">Checklist de entrega final</a></h3>
+          <p>Control de accesos, artefactos, participación, permisos y consistencia antes de entregar.</p>
+          <footer><span>Análisis de Datos · UTN FRC</span><small>15 min</small><a href="../downloads/Checklist de entrega final.md" target="_blank" rel="noopener noreferrer" aria-label="Abrir Checklist de entrega final">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Plantilla</span><small>Español</small></div>
+          <h3><a href="../downloads/Rúbrica del proyecto final.md" target="_blank" rel="noopener noreferrer">Rúbrica del proyecto final</a></h3>
+          <p>Criterios para revisar decisión, arquitectura, calidad, evidencia, interpretación y comunicación.</p>
+          <footer><span>Análisis de Datos · UTN FRC</span><small>20 min</small><a href="../downloads/Rúbrica del proyecto final.md" target="_blank" rel="noopener noreferrer" aria-label="Abrir Rúbrica del proyecto final">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+    <section class="resources section-pad" aria-labelledby="project-resources-proyecto-clinica-final">
+      <div class="section-heading"><div class="section-kicker">Transferencia al proyecto</div><h2 id="project-resources-proyecto-clinica-final">Cerrar los controles de entrega</h2></div>
+      <div class="resource-list"><a href="../downloads/Rúbrica del proyecto final.md" download><span class="resource-type">MD</span><span><b>Rúbrica del proyecto final</b><small>Dimensiones y niveles de revisión</small></span><i aria-hidden="true">↓</i></a><a href="../downloads/Requisitos del video y dossier final.md" download><span class="resource-type">MD</span><span><b>Requisitos del video y dossier</b><small>Control de formato y accesos</small></span><i aria-hidden="true">↓</i></a></div>
+    </section>
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="u06-integracion-tradeoffs.html"><span>ANTERIOR</span><b>Unidad 6 · Integración y trade-offs</b></a>
+      <a href="../proximamente.html" aria-label="Contenido disponible próximamente" class="is-release-locked"><span>SIGUIENTE</span><b>Proyecto · Entrega y transferencia</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

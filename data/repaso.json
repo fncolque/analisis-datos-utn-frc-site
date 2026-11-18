@@ -56,6 +56,10 @@
     {
       "id": "u06-integracion-tradeoffs",
       "label": "Unidad 6.2 · Integración y trade-offs"
+    },
+    {
+      "id": "proyecto-clinica-final",
+      "label": "Proyecto · Clínica y corrección final"
     }
   ],
   "questions": [
@@ -8738,6 +8742,316 @@
         "path": "unidades/u06-integracion-tradeoffs.html#preparar-la-defensa-como-una-revision-del-sistema",
         "label": "Preparar la defensa como una revisión del sistema"
       }
+    },
+    {
+      "id": "proyecto-clinica-final-01",
+      "unit": "proyecto-clinica-final",
+      "topic": "Diagnosticar desde la primera inconsistencia",
+      "difficulty": "basica",
+      "prompt": "Un reporte presenta un KPI cuya definición aún es ambigua. ¿Qué se corrige primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La decisión y la definición del indicador."
+        },
+        {
+          "id": "b",
+          "text": "Aumentar la cantidad de decimales del resultado."
+        },
+        {
+          "id": "c",
+          "text": "Automatizar la actualización con la definición actual."
+        },
+        {
+          "id": "d",
+          "text": "Agregar segmentaciones al tablero antes de acordar la fórmula."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Las etapas posteriores dependen de una definición estable; corregir primero la base reduce retrabajo.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#diagnosticar-desde-la-primera-inconsistencia",
+        "label": "Diagnosticar desde la primera inconsistencia"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-02",
+      "unit": "proyecto-clinica-final",
+      "topic": "Revisar grano, claves y población",
+      "difficulty": "basica",
+      "prompt": "¿Qué frase debe poder completarse para cada tabla antes de revisar una suma?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El archivo fue creado con…"
+        },
+        {
+          "id": "b",
+          "text": "Una fila representa…"
+        },
+        {
+          "id": "c",
+          "text": "La tabla tiene actualmente esta cantidad de columnas…"
+        },
+        {
+          "id": "d",
+          "text": "El reporte final agrupa por…"
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "El grano determina qué se puede contar, sumar y relacionar.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#revisar-grano-claves-y-poblacion",
+        "label": "Revisar grano, claves y población"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-03",
+      "unit": "proyecto-clinica-final",
+      "topic": "Convertir la revisión en un plan de corrección",
+      "difficulty": "basica",
+      "prompt": "¿Qué información vuelve accionable un hallazgo de revisión?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Solo la frase 'está mal'."
+        },
+        {
+          "id": "b",
+          "text": "Solo el nombre de la herramienta."
+        },
+        {
+          "id": "c",
+          "text": "Evidencia, impacto, corrección y responsable."
+        },
+        {
+          "id": "d",
+          "text": "Solo una calificación numérica."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "Un hallazgo debe permitir localizar el problema y comprobar su reparación.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#convertir-la-revision-en-un-plan-de-correccion",
+        "label": "Convertir la revisión en un plan de corrección"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-04",
+      "unit": "proyecto-clinica-final",
+      "topic": "Localizar la primera diferencia de reconciliación",
+      "difficulty": "intermedia",
+      "prompt": "La fuente y raw coinciden; staging pierde registros sin regla documentada. ¿Qué etapa se investiga primero?",
+      "options": [
+        {
+          "id": "a",
+          "text": "El estilo de los gráficos."
+        },
+        {
+          "id": "b",
+          "text": "La recomendación comercial únicamente."
+        },
+        {
+          "id": "c",
+          "text": "La compresión del video."
+        },
+        {
+          "id": "d",
+          "text": "La transformación de raw a staging."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La primera diferencia delimita la transformación que requiere diagnóstico.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#localizar-la-primera-diferencia-de-reconciliacion",
+        "label": "Localizar la primera diferencia de reconciliación"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-05",
+      "unit": "proyecto-clinica-final",
+      "topic": "Comprobar la decisión y el KPI",
+      "difficulty": "intermedia",
+      "prompt": "Dos integrantes usan denominadores distintos para el mismo KPI. ¿Qué acción corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Acordar población y definición antes de continuar las comparaciones."
+        },
+        {
+          "id": "b",
+          "text": "Promediar los dos porcentajes."
+        },
+        {
+          "id": "c",
+          "text": "Elegir el número más favorable."
+        },
+        {
+          "id": "d",
+          "text": "Publicar ambos con el mismo nombre."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Un indicador compartido necesita una única definición explícita para el uso acordado.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#comprobar-la-decision-y-el-kpi",
+        "label": "Comprobar la decisión y el KPI"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-06",
+      "unit": "proyecto-clinica-final",
+      "topic": "Evaluar si la evidencia sostiene la conclusión",
+      "difficulty": "intermedia",
+      "prompt": "Aparece un resultado que contradice el mensaje principal. ¿Cómo debe abordarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dejarlo fuera sin registrar el criterio."
+        },
+        {
+          "id": "b",
+          "text": "Evaluar su efecto sobre la conclusión y explicarlo."
+        },
+        {
+          "id": "c",
+          "text": "Retirarlo porque debilita el relato."
+        },
+        {
+          "id": "d",
+          "text": "Cambiar sus etiquetas."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "La revisión debe buscar evidencia que pueda modificar el razonamiento.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#evaluar-si-la-evidencia-sostiene-la-conclusion",
+        "label": "Evaluar si la evidencia sostiene la conclusión"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-07",
+      "unit": "proyecto-clinica-final",
+      "topic": "Comprobar que la comunicación conduce a una acción",
+      "difficulty": "intermedia",
+      "prompt": "La audiencia entiende el hallazgo, pero no sabe qué hacer después. ¿Qué falta precisar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Un formato de video distinto."
+        },
+        {
+          "id": "b",
+          "text": "El número de líneas de SQL."
+        },
+        {
+          "id": "c",
+          "text": "Acción, responsable, alcance y condición de revisión."
+        },
+        {
+          "id": "d",
+          "text": "Más tablas de detalle por defecto."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La recomendación conecta el hallazgo con una respuesta operativa.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#comprobar-que-la-comunicacion-conduce-a-una-accion",
+        "label": "Comprobar que la comunicación conduce a una acción"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-08",
+      "unit": "proyecto-clinica-final",
+      "topic": "Revisar trade-offs, operación y límites",
+      "difficulty": "avanzada",
+      "prompt": "Un pipeline local se presenta como productivo aunque no tiene recuperación ni responsables de incidentes. ¿Qué debe corregirse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Programar su ejecución y dar por cubierta la recuperación."
+        },
+        {
+          "id": "b",
+          "text": "Moverlo a la nube y asumir que ya tiene responsables operativos."
+        },
+        {
+          "id": "c",
+          "text": "Dar por cubierta la operación porque una ejecución pasó."
+        },
+        {
+          "id": "d",
+          "text": "Declarar la capacidad real y los requisitos operativos pendientes."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "Una ejecución de prototipo no demuestra continuidad operacional ni recuperación.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#revisar-trade-offs-operacion-y-limites",
+        "label": "Revisar trade-offs, operación y límites"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-09",
+      "unit": "proyecto-clinica-final",
+      "topic": "Convertir la revisión en un plan de corrección",
+      "difficulty": "avanzada",
+      "prompt": "Se modificó el join señalado en una revisión. ¿Qué permite cerrar el hallazgo?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Reejecutar controles afectados y demostrar reconciliación."
+        },
+        {
+          "id": "b",
+          "text": "El hecho de haber guardado el archivo."
+        },
+        {
+          "id": "c",
+          "text": "Cambiar el comentario a resuelto."
+        },
+        {
+          "id": "d",
+          "text": "Quitar la consulta de control."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El cierre requiere evidencia nueva del comportamiento corregido.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#convertir-la-revision-en-un-plan-de-correccion",
+        "label": "Convertir la revisión en un plan de corrección"
+      }
+    },
+    {
+      "id": "proyecto-clinica-final-10",
+      "unit": "proyecto-clinica-final",
+      "topic": "Evaluar si la evidencia sostiene la conclusión",
+      "difficulty": "avanzada",
+      "prompt": "El equipo afirma que ninguna evidencia posible cambiaría su recomendación. ¿Qué problema debe revisar?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La cantidad de filas, como garantía suficiente de la recomendación."
+        },
+        {
+          "id": "b",
+          "text": "La apertura a contrastar la hipótesis y revisar la conclusión."
+        },
+        {
+          "id": "c",
+          "text": "La estabilidad de la conclusión, tomada como evidencia de exactitud."
+        },
+        {
+          "id": "d",
+          "text": "La consistencia del relato, como sustituto de contrastar los supuestos."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Un análisis contrastable identifica qué observaciones podrían modificar su conclusión.",
+      "reference": {
+        "path": "unidades/proyecto-clinica-final.html#evaluar-si-la-evidencia-sostiene-la-conclusion",
+        "label": "Evaluar si la evidencia sostiene la conclusión"
+      }
     }
   ],
   "presets": [
@@ -8767,5 +9081,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "776cf7f81ba0ca84"
+  "version": "19f5a2b2914d6fd4"
 }

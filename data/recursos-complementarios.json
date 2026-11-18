@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-11",
+  "actualizado": "2026-11-18",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -735,6 +735,38 @@
           "idioma": "Inglés",
           "dedicacion": "Exploración · 25 min",
           "descripcion": "Marco para conectar costo cloud, responsabilidad y decisiones de valor."
+        }
+      ]
+    },
+    "proyecto-clinica-final": {
+      "titulo": "Herramientas para revisar y cerrar el proyecto",
+      "introduccion": "La clínica utiliza la rúbrica y un árbol de diagnóstico para localizar la primera inconsistencia y convertirla en una corrección asignada.",
+      "diagrama": {
+        "archivo": "proyecto-clinica.svg",
+        "fuente": "proyecto-clinica.mmd",
+        "alt": "Árbol de diagnóstico del proyecto desde decisión y grano hasta evidencia, visual, trade-offs y ensayo.",
+        "titulo": "La revisión sigue el orden del razonamiento",
+        "epigrafe": "La primera inconsistencia determina la corrección prioritaria del equipo.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Plantilla",
+          "titulo": "Checklist de entrega final",
+          "institucion": "Análisis de Datos · UTN FRC",
+          "url": "../downloads/Checklist de entrega final.md",
+          "idioma": "Español",
+          "dedicacion": "15 min",
+          "descripcion": "Control de accesos, artefactos, participación, permisos y consistencia antes de entregar."
+        },
+        {
+          "tipo": "Plantilla",
+          "titulo": "Rúbrica del proyecto final",
+          "institucion": "Análisis de Datos · UTN FRC",
+          "url": "../downloads/Rúbrica del proyecto final.md",
+          "idioma": "Español",
+          "dedicacion": "20 min",
+          "descripcion": "Criterios para revisar decisión, arquitectura, calidad, evidencia, interpretación y comunicación."
         }
       ]
     }

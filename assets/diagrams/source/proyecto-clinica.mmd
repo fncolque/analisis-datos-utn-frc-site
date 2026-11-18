@@ -1,0 +1,11 @@
+flowchart TD
+    A["Decisión y KPI"] --> B{"¿Grano declarado?"}
+    B -- "sí" --> C{"¿Resultado reconciliado?"}
+    B -- "revisar" --> X["Corregir modelo y joins"]
+    C -- "sí" --> D{"¿Evidencia sostiene la conclusión?"}
+    C -- "revisar" --> Y["Localizar primera diferencia"]
+    D -- "sí" --> E{"¿Visual y trade-offs son defendibles?"}
+    D -- "revisar" --> Z["Ajustar certeza o comparación"]
+    E -- "sí" --> F["Ensayar entrega"]
+    E -- "revisar" --> W["Editar visual o alternativa"]
+
