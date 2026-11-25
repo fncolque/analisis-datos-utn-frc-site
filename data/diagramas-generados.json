@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "actualizado": "2026-11-18",
+  "actualizado": "2026-11-25",
   "modo_generacion": "SVG y HTML determinísticos sobre bases editoriales sin texto preparadas para gpt-image-2 mediante el CLI oficial.",
   "sistema_visual": "Atlas técnico editorial: fondo marfil, retícula tenue, azul profundo, azul UTN, blanco, grises funcionales y amarillo como acento.",
   "prompt_base": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements.",
@@ -3333,6 +3333,138 @@
           "Cada hallazgo se vincula con un control o una definición.",
           "Las correcciones se ordenan por impacto y dependencia.",
           "La nueva ejecución demuestra si el problema quedó resuelto."
+        ],
+        "tipo": "ilustracion-generada",
+        "version_revision": "conservada-2026-08-24"
+      }
+    ],
+    "proyecto-cierre-entrega": [
+      {
+        "page": "proyecto-cierre-entrega",
+        "unit": "C16",
+        "tipo": "hibrido-svg-html",
+        "archivo": "theory/project-entrega-reabrible.svg",
+        "base_generada": "theory/project-entrega-reabrible-base.webp",
+        "base_provisoria": "project-deliverable-map.webp",
+        "estado_base": "pendiente-gpt-image-2",
+        "modelo_base": "gpt-image-2",
+        "titulo": "Mapa de una entrega que otra persona puede reabrir",
+        "pregunta_lectura": "¿Qué artefactos permiten reconstruir la evidencia y qué trabajo falta para operar en producción?",
+        "alt": "Dos carriles conectan README, snapshot, diccionario, SQL, notebook, controles, modelo semántico, reporte, recomendación y registro de decisiones, y separan prototipo de automatización, monitoreo, permisos, recuperación y gobierno.",
+        "epigrafe": "El paquete académico permite identificar archivos, repetir cálculos y revisar la decisión. La frontera de producción agrega operación continua, observabilidad, acceso, recuperación y gobierno.",
+        "after_heading": "el-proyecto-recorre-un-circuito-completo-de-evidencia",
+        "interactivo": false,
+        "mostrar_base": false,
+        "alt_base": "",
+        "lectura": [
+          "README, snapshot y diccionario permiten localizar y comprender la fuente.",
+          "SQL, notebook y controles reconstruyen transformaciones y resultados esperados.",
+          "Modelo semántico, reporte, recomendación y registro conservan la salida y sus decisiones.",
+          "Producción exige automatización, monitoreo, permisos, recuperación y gobierno además del prototipo."
+        ],
+        "fuentes": [],
+        "prompt": "Use case: scientific-educational. Asset type: textless editorial base for a university course diagram. Create a landscape 3:2 visual component system on an ivory background with a very faint technical grid. Use deep navy linework, UTN blue, white, functional gray and very sparse yellow accents. Modern editorial vector-like illustration, uniform line weights, contained geometric forms, generous whitespace and unambiguous visual flow. The final labels, arrows, tables and code will be added later as deterministic SVG and HTML. Do not render words, letters, numbers, logos, watermarks, fake interface text, purple gradients, neon glow, photorealism, tiny details, clutter or cropped elements. Conceptual focus: A handoff package map connecting documentation, source snapshot, dictionary, code, controls, semantic model, report and decision record, separated by a clear boundary from production operations and governance.",
+        "version_revision": "1.0",
+        "svg_height": 1100,
+        "estructura": {
+          "layout": "lanes",
+          "lanes": [
+            {
+              "label": "PAQUETE REABRIBLE",
+              "title": "Evidencia del prototipo",
+              "cards": [
+                {
+                  "title": "Orientación",
+                  "body": [
+                    "README + estructura de carpetas"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Datos",
+                  "body": [
+                    "snapshot + hash + diccionario"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Código",
+                  "body": [
+                    "SQL + notebook + entorno"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Control",
+                  "body": [
+                    "resultados esperados + reconciliación"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Consumo",
+                  "body": [
+                    "modelo + reporte + recomendación + decisiones"
+                  ],
+                  "accent": "blue"
+                }
+              ]
+            },
+            {
+              "label": "FRONTERA DE PRODUCCIÓN",
+              "title": "Capacidades adicionales",
+              "cards": [
+                {
+                  "title": "Automatización",
+                  "body": [
+                    "agenda, dependencias e idempotencia"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Monitoreo",
+                  "body": [
+                    "señales, alertas y SLA"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Permisos",
+                  "body": [
+                    "identidades y mínimo acceso"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Recuperación",
+                  "body": [
+                    "reintentos, rollback y respaldo"
+                  ],
+                  "accent": "blue"
+                },
+                {
+                  "title": "Gobierno",
+                  "body": [
+                    "propiedad, linaje, costo y cambios"
+                  ],
+                  "accent": "blue"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "archivo": "project-reproducible-handoff.webp",
+        "titulo": "Otra persona debe poder reabrir y verificar el análisis",
+        "alt": "Un paquete organizado con fuente, entorno, código, controles, reporte y registro de decisión pasa a otra persona, que reconstruye el proceso y compara resultados.",
+        "epigrafe": "La entrega está completa cuando alguien ajeno al desarrollo puede identificar los archivos, ejecutar el recorrido y comprobar las salidas esperadas.",
+        "after_heading": "preparar-una-entrega-que-pueda-abrirse-y-revisarse",
+        "lectura": [
+          "El paquete identifica versiones y dependencias.",
+          "La secuencia de ejecución queda documentada.",
+          "Los controles ofrecen resultados esperados para comparar.",
+          "La persona receptora puede reconstruir la decisión desde la fuente."
         ],
         "tipo": "ilustracion-generada",
         "version_revision": "conservada-2026-08-24"

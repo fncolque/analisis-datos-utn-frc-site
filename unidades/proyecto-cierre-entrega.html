@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Entrega, síntesis y transferencia. Material teórico de Análisis de Datos 2026, UTN FRC.">
+  <meta name="theme-color" content="#151616">
+  <title>Entrega, síntesis y transferencia · Análisis de Datos 2026</title>
+  <link rel="stylesheet" href="../assets/styles.css?v=20260825b">
+  <script src="../assets/app.js?v=20260825b" defer></script>
+</head>
+<body data-page="reading">
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
+  <header class="site-header" data-header>
+    <a class="brand" href="../index.html" aria-label="Inicio: Análisis de Datos 2026">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-copy"><b>Análisis de Datos</b><small>Ingeniería Industrial · 2026</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" data-nav-toggle>
+      <span></span><span></span><span></span><span class="sr-only">Abrir navegación</span>
+    </button>
+    <nav class="main-nav" id="main-nav" aria-label="Navegación principal" data-nav>
+      <a href="../index.html">Inicio</a>
+      <a class="is-current" href="#lectura">PROYECTO · CIERRE</a>
+      <a href="#desarrollo">Desarrollo</a>
+      <a href="#aplicacion">Faro Sur</a>
+      <a href="#practica">Práctica</a>
+      <a href="#ampliar">Para ampliar</a>
+    </nav>
+  </header>
+  <main id="contenido">
+    <section class="reading-hero" id="lectura" aria-labelledby="reading-title">
+      <div>
+        <a class="breadcrumb" href="../index.html#recorrido"><span aria-hidden="true">←</span> Volver al mapa de unidades</a>
+        <div class="eyebrow"><span>PROYECTO · CIERRE</span></div>
+        <h1 id="reading-title">Entrega, síntesis y transferencia</h1>
+        <p class="hero-lede">La entrega final reconstruye el recorrido completo para que otra persona pueda comprender cómo se obtuvo cada conclusión. El capítulo organiza la verificación de artefactos, permisos y contribuciones, y propone una retrospectiva que relaciona los errores encontrados con los controles que podrían prevenirlos.</p>
+        <p class="reading-question"><span>Pregunta guía</span>¿Qué demuestra el proyecto y qué queda preparado para seguir aprendiendo?</p>
+      </div>
+      <div class="reading-hero-side">
+        <div class="reading-download" aria-label="Material para la práctica">
+      <div><span>Material de trabajo</span><p>Descargalo antes de comenzar para tener a mano los datos, consignas y archivos que acompañan este capítulo.</p></div>
+      <a class="button button-primary" href="../downloads/Requisitos del video y dossier final.md" download>Descargar requisitos de entrega <span aria-hidden="true">↓</span></a>
+    </div>
+        <div class="reading-hero-map" aria-label="Relación entre concepto, caso y evidencia">
+          <span>concepto</span><i>→</i><span>caso</span><i>→</i><span>control</span><i>→</i><span>evidencia</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="visual-explainer section-pad" aria-labelledby="visual-proyecto-cierre-entrega">
+      <div class="visual-explainer-heading">
+        <div><div class="section-kicker">Mapa visual</div><h2 id="visual-proyecto-cierre-entrega">El proyecto cierra el circuito de evidencia</h2></div>
+        <div class="visual-actions">
+          <a href="../assets/diagrams/proyecto-cierre.svg?v=20260825b" target="_blank" rel="noopener">Abrir SVG <span aria-hidden="true">↗</span></a>
+          <a href="../assets/diagrams/source/proyecto-cierre.mmd" download>Fuente Mermaid <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <figure class="diagram-frame diagram-wide">
+        <a href="../assets/diagrams/proyecto-cierre.svg?v=20260825b" target="_blank" rel="noopener" aria-label="Abrir el diagrama en tamaño completo">
+          <img src="../assets/diagrams/proyecto-cierre.svg?v=20260825b" alt="Recorrido completo desde decisión y KPI hasta acción y aprendizaje, con asistencia de IA verificada." loading="lazy" decoding="async">
+        </a>
+        <figcaption><span>Cada etapa puede explicarse, rastrearse y vincularse con una responsabilidad.</span></figcaption>
+      </figure>
+    </section>
+
+    <div class="reading-shell section-pad" id="desarrollo">
+      <aside class="reading-aside" aria-label="Índice del capítulo">
+        <span>EN ESTE CAPÍTULO</span>
+        <nav><a href="#el-proyecto-recorre-un-circuito-completo-de-evidencia">El proyecto recorre un circuito completo de evidencia</a><a href="#que-competencia-muestra-la-entrega">Qué competencia muestra la entrega</a><a href="#reconocer-la-frontera-entre-prototipo-y-produccion">Reconocer la frontera entre prototipo y producción</a><a href="#utilizar-la-retrospectiva-para-aprender-del-proceso">Utilizar la retrospectiva para aprender del proceso</a><a href="#transferir-el-metodo-a-problemas-profesionales">Transferir el método a problemas profesionales</a><a href="#continuidades-para-una-formacion-posterior">Continuidades para una formación posterior</a><a href="#preparar-una-entrega-que-pueda-abrirse-y-revisarse">Preparar una entrega que pueda abrirse y revisarse</a><a href="#cerrar-el-circuito-con-accion-y-aprendizaje">Cerrar el circuito con acción y aprendizaje</a><a href="#preguntas-de-comprobacion">Preguntas de comprobación</a></nav>
+      </aside>
+      <article class="theory-copy">
+        <h2 id="el-proyecto-recorre-un-circuito-completo-de-evidencia">El proyecto recorre un circuito completo de evidencia</h2>
+<p>El cierre permite observar el trabajo como un sistema. Una decisión origina una pregunta; el KPI convierte esa pregunta en una regla medible; las fuentes y el grano delimitan qué puede observarse. La arquitectura organiza captura, almacenamiento y transformación. Los controles sostienen la calidad antes de que SQL, Python o Power BI produzcan una interpretación.</p>
+<figure class="generated-diagram atlas-diagram" aria-labelledby="generated-project-entrega-reabrible-title" data-atlas-diagram data-base-status="provisional">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-project-entrega-reabrible-title">Mapa de una entrega que otra persona puede reabrir</h3>
+      </div>
+      <p class="atlas-question"><span>Pregunta de lectura</span>¿Qué artefactos permiten reconstruir la evidencia y qué trabajo falta para operar en producción?</p>
+
+      <div class="atlas-visual" style="--atlas-base:url('../assets/images/generated/project-deliverable-map.webp')">
+        <div class="atlas-board atlas-lanes"><section class="atlas-lane">
+              <header><span>PAQUETE REABRIBLE</span><h4>Evidencia del prototipo</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:5"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Orientación</h5>
+      <div class="atlas-card-copy"><p>README + estructura de carpetas</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Datos</h5>
+      <div class="atlas-card-copy"><p>snapshot + hash + diccionario</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Código</h5>
+      <div class="atlas-card-copy"><p>SQL + notebook + entorno</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Control</h5>
+      <div class="atlas-card-copy"><p>resultados esperados + reconciliación</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Consumo</h5>
+      <div class="atlas-card-copy"><p>modelo + reporte + recomendación + decisiones</p></div>
+
+    </article></div>
+            </section><section class="atlas-lane">
+              <header><span>FRONTERA DE PRODUCCIÓN</span><h4>Capacidades adicionales</h4></header>
+              <div class="atlas-lane-cards" style="--atlas-cols:5"><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Automatización</h5>
+      <div class="atlas-card-copy"><p>agenda, dependencias e idempotencia</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Monitoreo</h5>
+      <div class="atlas-card-copy"><p>señales, alertas y SLA</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Permisos</h5>
+      <div class="atlas-card-copy"><p>identidades y mínimo acceso</p></div>
+
+    </article><article class="atlas-card is-blue">
+      <div class="atlas-card-top"></div>
+      <h5>Recuperación</h5>
+      <div class="atlas-card-copy"><p>reintentos, rollback y respaldo</p></div>
+
+    </article><article class="atlas-card is-blue is-row-end">
+      <div class="atlas-card-top"></div>
+      <h5>Gobierno</h5>
+      <div class="atlas-card-copy"><p>propiedad, linaje, costo y cambios</p></div>
+
+    </article></div>
+            </section></div>
+      </div>
+      <div class="atlas-actions"><a href="../assets/diagrams/theory/project-entrega-reabrible.svg" target="_blank" rel="noopener">Abrir SVG a tamaño completo <span aria-hidden="true">↗</span></a></div>
+      <figcaption>
+        <p>El paquete académico permite identificar archivos, repetir cálculos y revisar la decisión. La frontera de producción agrega operación continua, observabilidad, acceso, recuperación y gobierno.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>README, snapshot y diccionario permiten localizar y comprender la fuente.</p></li><li><span>02</span><p>SQL, notebook y controles reconstruyen transformaciones y resultados esperados.</p></li><li><span>03</span><p>Modelo semántico, reporte, recomendación y registro conservan la salida y sus decisiones.</p></li><li><span>04</span><p>Producción exige automatización, monitoreo, permisos, recuperación y gobierno además del prototipo.</p></li></ol>
+
+      </figcaption>
+    </figure>
+
+<p>El recorrido puede representarse así:</p>
+<pre><code class="language-text">decisión
+→ KPI
+→ fuentes y grano
+→ arquitectura
+→ captura
+→ raw, staging y mart
+→ calidad, linaje y trazabilidad
+→ SQL y Python
+→ modelo semántico
+→ visualización
+→ recomendación
+→ acción y aprendizaje</code></pre>
+<p>Las flechas también se recorren hacia atrás. Una recomendación debe conducir al visual que la respalda, la medida que lo calcula, el mart, la transformación y el registro fuente. Esa trazabilidad permite revisar el resultado y actualizarlo cuando cambia una definición.</p>
+<p>La inteligencia artificial puede asistir en varias etapas, desde explicar código hasta proponer títulos. Cada aporte conserva una prueba y una decisión humana registrada.</p>
+<h2 id="que-competencia-muestra-la-entrega">Qué competencia muestra la entrega</h2>
+<p>La entrega demuestra la capacidad de formular una decisión, representar una parte del negocio y construir evidencia que pueda revisarse. La persona o equipo consulta y transforma datos, aplica controles, interpreta resultados y comunica una recomendación con límites.</p>
+<p>Estas acciones se conectan. Formular sin modelar produce una pregunta difícil de medir; consultar sin conocer el grano puede duplicar resultados; visualizar sin reconciliar puede comunicar una cifra errónea. La competencia aparece en la coordinación entre etapas y en la capacidad de explicar las decisiones tomadas.</p>
+<p>La colaboración con roles técnicos también forma parte del resultado. Un analista debe describir qué necesita de una fuente, qué contrato recibe y qué salida entrega. Esa claridad permite trabajar con ingeniería, operaciones, finanzas o dirección sin depender de que todos utilicen la misma herramienta.</p>
+<h2 id="reconocer-la-frontera-entre-prototipo-y-produccion">Reconocer la frontera entre prototipo y producción</h2>
+<p>El proyecto representa una solución analítica acotada. Una implementación productiva requiere operación continua, observabilidad, seguridad avanzada, escalabilidad, automatización y gobierno institucional. También puede incorporar experimentación causal o modelos predictivos cuando la decisión los justifica.</p>
+<p>Declarar estos límites ayuda a evaluar el prototipo con precisión. Si la captura es manual, el equipo explica cómo se conservaron versiones y qué componente podría automatizarla. Si el reporte se actualiza localmente, señala qué permisos, gateway o publicación serían necesarios en otro entorno.</p>
+<p>El límite se acompaña con una consecuencia. “No implementamos monitoreo” debe indicar qué fallas podrían pasar inadvertidas y qué señal mínima se conservaría. Así la arquitectura futura se apoya en riesgos observables.</p>
+<h2 id="utilizar-la-retrospectiva-para-aprender-del-proceso">Utilizar la retrospectiva para aprender del proceso</h2>
+<p>La retrospectiva reconstruye cómo cambió el razonamiento. Puede comenzar con el supuesto inicial y compararlo con la evidencia final. Un error de join, un denominador mal definido o una visual poco clara muestran qué control faltaba y cómo podría prevenirse.</p>
+<p>También conviene identificar qué actividad produjo valor y cuál agregó complejidad sin mejorar la decisión. Una herramienta novedosa puede haber demandado tiempo sin cambiar la evidencia; una tabla de control sencilla puede haber evitado una conclusión incorrecta. Esa comparación orienta trabajos futuros.</p>
+<p>Cuando participan varias personas, el registro distingue contribuciones y revisiones cruzadas. En un trabajo individual, la retrospectiva muestra qué partes necesitaron apoyo. En ambos casos se describe dónde ayudó la IA, dónde generó trabajo adicional y qué validación permitió aceptar o rechazar su salida.</p>
+<h2 id="transferir-el-metodo-a-problemas-profesionales">Transferir el método a problemas profesionales</h2>
+<p>El circuito puede adaptarse a operaciones, supply chain, finanzas, calidad, mantenimiento, consultoría, producto o transformación digital. Cambian las fuentes y métricas, pero permanecen preguntas similares: qué decisión se toma, qué representa una fila, qué control protege el resultado y quién actúa.</p>
+<p>En mantenimiento, una orden de trabajo puede ser la unidad de análisis y una falla repetida la señal que orienta prioridad. En calidad, el denominador de defectos debe corresponder con unidades inspeccionadas. En supply chain, el nivel de servicio necesita elegibilidad, promesa y entrega. Cada dominio agrega reglas propias sobre la misma estructura de razonamiento.</p>
+<p>La transferencia empieza con un caso pequeño y una evidencia reproducible. La escala y las herramientas se eligen después de conocer frecuencia, volumen, sensibilidad y usuarios.</p>
+<h2 id="continuidades-para-una-formacion-posterior">Continuidades para una formación posterior</h2>
+<p>La materia deja abiertas líneas de profundización. Inferencia, experimentación y causalidad permiten estimar efectos y generalizar bajo supuestos. Machine learning agrega predicción y evaluación fuera de muestra. Analytics Engineering, warehouses avanzados y orquestación desarrollan operación y transformación a mayor escala.</p>
+<p>Streaming introduce eventos continuos y menor latencia. Seguridad, gobierno y FinOps amplían el control de acceso y costo. DAX avanzado, Fabric y observabilidad profundizan el consumo y la operación en ecosistemas específicos. Agentes, recuperación aumentada y MCP agregan nuevas interfaces para sistemas con inteligencia artificial.</p>
+<p>Estas extensiones se comprenden mejor cuando conservan las preguntas del recorrido: qué decisión habilitan, qué evidencia utilizan, cómo se controlan y cuándo su costo se justifica.</p>
+<h2 id="preparar-una-entrega-que-pueda-abrirse-y-revisarse">Preparar una entrega que pueda abrirse y revisarse</h2>
+<p>Cada archivo debe tener un nombre comprensible, una versión y una ruta de acceso probada. Los notebooks se ejecutan desde una sesión limpia; las consultas incluyen su fuente; el modelo conserva relaciones y medidas; el dossier enlaza evidencia; el video permite leer los resultados que menciona.</p>
+<figure class="generated-diagram" aria-labelledby="generated-project-reproducible-handoff-title">
+      <div class="generated-diagram-heading">
+        <span>Diagrama explicativo</span>
+        <h3 id="generated-project-reproducible-handoff-title">Otra persona debe poder reabrir y verificar el análisis</h3>
+      </div>
+      <div class="generated-diagram-media">
+        <img src="../assets/images/generated/project-reproducible-handoff.webp?v=20260825b" alt="Un paquete organizado con fuente, entorno, código, controles, reporte y registro de decisión pasa a otra persona, que reconstruye el proceso y compara resultados." width="1536" height="1024" loading="lazy" decoding="async">
+      </div>
+      <figcaption>
+        <p>La entrega está completa cuando alguien ajeno al desarrollo puede identificar los archivos, ejecutar el recorrido y comprobar las salidas esperadas.</p>
+        <ol class="generated-diagram-reading"><li><span>01</span><p>El paquete identifica versiones y dependencias.</p></li><li><span>02</span><p>La secuencia de ejecución queda documentada.</p></li><li><span>03</span><p>Los controles ofrecen resultados esperados para comparar.</p></li><li><span>04</span><p>La persona receptora puede reconstruir la decisión desde la fuente.</p></li></ol>
+        <small>Ilustración generada con OpenAI Images.</small>
+      </figcaption>
+    </figure>
+
+<p>Los controles finales comprueban conteos, claves, métricas y actualización. Los enlaces se abren con los permisos de la persona que evaluará. Los datos sensibles quedan fuera de espacios públicos y los secretos no aparecen dentro de código compartido.</p>
+<p>Una entrega reproducible también explica cómo comenzar. Un README o bloque inicial indica qué archivo abrir, qué entrada utilizar y qué salida esperar. Esa orientación reduce dependencia de una explicación oral.</p>
+<h2 id="cerrar-el-circuito-con-accion-y-aprendizaje">Cerrar el circuito con acción y aprendizaje</h2>
+<p>La capacidad de decisión se sostiene cuando las definiciones permanecen explícitas, la evidencia puede rastrearse y los resultados alimentan una acción. Después de actuar, la organización observa el efecto y revisa supuestos, reglas y prioridades.</p>
+<p>El análisis no termina al publicar un gráfico. Una recomendación establece responsable, condición de revisión e indicador de seguimiento. Si el resultado esperado no aparece, el circuito vuelve a la pregunta y busca qué parte del modelo debe cambiar.</p>
+<p>El cierre del proyecto consiste en dejar ese recorrido legible para otra persona. La acción propuesta, la evidencia, los límites y los controles deberían poder comprenderse sin reconstruir conversaciones previas.</p>
+<h2 id="preguntas-de-comprobacion">Preguntas de comprobación</h2>
+<ol class="theory-list"><li>¿Puede recorrerse la recomendación hasta un registro fuente?</li><li>¿Qué parte del prototipo requeriría operación adicional en producción?</li><li>¿Qué error cambió más el razonamiento y qué control lo prevendría?</li><li>¿Qué componente podría simplificarse en una versión futura?</li><li>¿Qué continuidad formativa responde a una necesidad concreta del caso?</li><li>¿Qué debe hacer la audiencia después de recibir la entrega?</li><li>¿Qué evidencia permitiría saber si la acción produjo el resultado esperado?</li></ol>
+      </article>
+    </div>
+
+    <section class="applied-reading section-dark" id="aplicacion" aria-labelledby="applied-title">
+      <div><div class="section-kicker">Aplicación al caso</div><h2 id="applied-title">Cómo explicar el circuito completo durante la defensa</h2></div>
+      <div class="applied-prose"><p>El KPI se rastrea hacia las fuentes y cada transformación conserva un control. El video muestra evidencia legible, los trade-offs del diseño y una recomendación cuyo alcance está declarado.</p><p>La retrospectiva conecta el proyecto con operaciones, finanzas, calidad, supply chain y roles de datos. Las extensiones técnicas quedan ubicadas en la correlativa y en rutas de especialización.</p></div>
+    </section>
+
+    <section class="practice-reading section-pad" id="practica" aria-labelledby="practice-title">
+      <div class="practice-number" aria-hidden="true">P.2</div>
+      <div>
+        <div class="section-kicker">Práctica vinculada</div>
+        <h2 id="practice-title">Completar la verificación final y la retrospectiva</h2>
+        <p class="practice-mode"><strong>Forma de trabajo.</strong> La actividad puede resolverse individualmente o en equipo. En ambos casos, cada estudiante debe poder explicar la fuente utilizada, el cambio realizado y el control aplicado.</p>
+        <p>Cada estudiante o equipo confirma video, dossier, anexos, declaración de IA y derechos de uso; cuando corresponde, también revisa el registro de contribuciones. La retrospectiva identifica un supuesto que cambió, un error y el control que permitiría evitarlo.</p>
+        <a class="button button-dark" href="../downloads/Requisitos del video y dossier final.md" download>Descargar requisitos de entrega <span aria-hidden="true">↓</span></a>
+      </div>
+    </section>
+
+    <section class="further-reading section-pad" id="ampliar" aria-labelledby="further-proyecto-cierre-entrega">
+      <div class="section-heading split-heading">
+        <div><div class="section-kicker">Material complementario · opcional</div><h2 id="further-proyecto-cierre-entrega">Entrega, retrospectiva y continuidad</h2></div>
+        <p>Los recursos apoyan la verificación final, el registro de contribuciones y la retrospectiva del proceso analítico.</p>
+      </div>
+      <div class="learning-resource-grid"><article class="learning-resource is-featured">
+          <div class="learning-resource-meta"><span>Plantilla</span><small>Español</small></div>
+          <h3><a href="../downloads/Requisitos del video y dossier final.md" target="_blank" rel="noopener noreferrer">Requisitos del video y dossier</a></h3>
+          <p>Formato, contenido y controles de acceso de los entregables finales.</p>
+          <footer><span>Análisis de Datos · UTN FRC</span><small>15 min</small><a href="../downloads/Requisitos del video y dossier final.md" target="_blank" rel="noopener noreferrer" aria-label="Abrir Requisitos del video y dossier">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article><article class="learning-resource">
+          <div class="learning-resource-meta"><span>Plantilla</span><small>Español</small></div>
+          <h3><a href="../downloads/Registro de contribuciones.md" target="_blank" rel="noopener noreferrer">Registro de contribuciones</a></h3>
+          <p>Registro de responsabilidades, aportes y comprensión compartida del sistema.</p>
+          <footer><span>Análisis de Datos · UTN FRC</span><small>10 min</small><a href="../downloads/Registro de contribuciones.md" target="_blank" rel="noopener noreferrer" aria-label="Abrir Registro de contribuciones">Abrir <span aria-hidden="true">↗</span></a></footer>
+        </article></div>
+      <p class="resource-selection-note">Selección revisada el 9 de agosto de 2026. Los sitios externos pueden modificar su contenido o sus condiciones de acceso.</p>
+    </section>
+
+    <section class="resources section-pad" aria-labelledby="project-resources-proyecto-cierre-entrega">
+      <div class="section-heading"><div class="section-kicker">Transferencia al proyecto</div><h2 id="project-resources-proyecto-cierre-entrega">Entregar y conservar la evidencia</h2></div>
+      <div class="resource-list"><a href="../downloads/Registro de contribuciones.md" download><span class="resource-type">MD</span><span><b>Registro de contribuciones</b><small>Aportes y comprensión compartida</small></span><i aria-hidden="true">↓</i></a><a href="../downloads/Checklist de entrega final.md" download><span class="resource-type">MD</span><span><b>Checklist de entrega final</b><small>Verificación de accesos y archivos</small></span><i aria-hidden="true">↓</i></a></div>
+    </section>
+
+    <nav class="module-nav" aria-label="Navegación entre capítulos">
+      <a href="proyecto-clinica-final.html"><span>ANTERIOR</span><b>Proyecto · Clínica y corrección</b></a>
+      <a href="../index.html#recorrido"><span>SIGUIENTE</span><b>Volver al mapa de unidades</b></a>
+    </nav>
+  </main>
+  <footer class="site-footer">
+    <div><span class="brand-mark" aria-hidden="true"></span><p><b>Análisis de Datos · 2026</b><br>Ingeniería Industrial · UTN FRC</p></div>
+    <p><span>Facundo Nicolás Colque</span><br><a href="mailto:analisisdatosutnfrc@gmail.com">Consultas</a> · <a href="../creditos.html">Créditos visuales</a> · <a href="../index.html">Inicio</a></p>
+  </footer>
+  <div class="scroll-progress" aria-hidden="true" data-scroll-progress></div>
+</body>
+</html>

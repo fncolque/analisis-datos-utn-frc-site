@@ -60,6 +60,10 @@
     {
       "id": "proyecto-clinica-final",
       "label": "Proyecto · Clínica y corrección final"
+    },
+    {
+      "id": "proyecto-cierre-entrega",
+      "label": "Proyecto · Entrega y transferencia"
     }
   ],
   "questions": [
@@ -9052,6 +9056,316 @@
         "path": "unidades/proyecto-clinica-final.html#evaluar-si-la-evidencia-sostiene-la-conclusion",
         "label": "Evaluar si la evidencia sostiene la conclusión"
       }
+    },
+    {
+      "id": "proyecto-cierre-entrega-01",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "El proyecto recorre un circuito completo de evidencia",
+      "difficulty": "basica",
+      "prompt": "¿Qué conexión debe poder seguirse desde una recomendación?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La evidencia que la respalda hasta los registros fuente."
+        },
+        {
+          "id": "b",
+          "text": "Solo el nombre del autor del gráfico."
+        },
+        {
+          "id": "c",
+          "text": "Solo la carpeta de imágenes."
+        },
+        {
+          "id": "d",
+          "text": "La lista de programas instalados."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La recomendación debe estar enlazada con medidas, transformaciones y fuentes verificables.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#el-proyecto-recorre-un-circuito-completo-de-evidencia",
+        "label": "El proyecto recorre un circuito completo de evidencia"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-02",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Preparar una entrega que pueda abrirse y revisarse",
+      "difficulty": "basica",
+      "prompt": "¿Qué información inicial facilita reabrir un análisis?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Una captura del escritorio."
+        },
+        {
+          "id": "b",
+          "text": "Qué archivo ejecutar, qué entrada usar y qué salida esperar."
+        },
+        {
+          "id": "c",
+          "text": "Solo el nombre de la materia."
+        },
+        {
+          "id": "d",
+          "text": "Solo la cantidad de participantes."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Las instrucciones de inicio reducen dependencia de explicaciones orales.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#preparar-una-entrega-que-pueda-abrirse-y-revisarse",
+        "label": "Preparar una entrega que pueda abrirse y revisarse"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-03",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Cerrar el circuito con acción y aprendizaje",
+      "difficulty": "basica",
+      "prompt": "¿Qué sucede después de aplicar una recomendación analítica?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Se elimina la definición del KPI."
+        },
+        {
+          "id": "b",
+          "text": "Se dejan de registrar datos."
+        },
+        {
+          "id": "c",
+          "text": "Se observa el resultado y se revisan supuestos y decisiones."
+        },
+        {
+          "id": "d",
+          "text": "Se considera demostrado cualquier efecto esperado."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "El aprendizaje compara lo esperado con lo observado después de actuar.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#cerrar-el-circuito-con-accion-y-aprendizaje",
+        "label": "Cerrar el circuito con acción y aprendizaje"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-04",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Utilizar la retrospectiva para aprender del proceso",
+      "difficulty": "intermedia",
+      "prompt": "Una retrospectiva identifica un join que duplicó importes. ¿Qué aprendizaje es transferible?",
+      "options": [
+        {
+          "id": "a",
+          "text": "La conveniencia de usar SUM(DISTINCT importe) en todas las consultas."
+        },
+        {
+          "id": "b",
+          "text": "La necesidad de reemplazar todos los LEFT JOIN por INNER JOIN."
+        },
+        {
+          "id": "c",
+          "text": "La regla de eliminar filas repetidas al final sin revisar su grano."
+        },
+        {
+          "id": "d",
+          "text": "El control de cardinalidad y reconciliación que habría detectado el error."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La retrospectiva relaciona el error con un control preventivo y una mejora del proceso.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#utilizar-la-retrospectiva-para-aprender-del-proceso",
+        "label": "Utilizar la retrospectiva para aprender del proceso"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-05",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Transferir el método a problemas profesionales",
+      "difficulty": "intermedia",
+      "prompt": "Al pasar de ventas a mantenimiento, ¿qué debe redefinirse para aplicar el mismo método?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Decisión, unidad de análisis, fuentes y reglas del nuevo dominio."
+        },
+        {
+          "id": "b",
+          "text": "Solo el título del informe."
+        },
+        {
+          "id": "c",
+          "text": "Únicamente la extensión del archivo."
+        },
+        {
+          "id": "d",
+          "text": "Nada: todos los KPI se copian sin cambios."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "El circuito de evidencia se conserva, pero cada dominio define observaciones y métricas propias.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#transferir-el-metodo-a-problemas-profesionales",
+        "label": "Transferir el método a problemas profesionales"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-06",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Reconocer la frontera entre prototipo y producción",
+      "difficulty": "intermedia",
+      "prompt": "La captura del prototipo es manual. ¿Cómo comunicar ese límite?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Asumir que manual implica datos inválidos."
+        },
+        {
+          "id": "b",
+          "text": "Explicar cómo se conservaron versiones y qué riesgo o trabajo deja pendiente."
+        },
+        {
+          "id": "c",
+          "text": "Decir que la captura ya está automatizada."
+        },
+        {
+          "id": "d",
+          "text": "Ocultar quién ejecutó las cargas."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Un límite preciso distingue lo que funciona de las condiciones necesarias para operarlo de otra manera.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#reconocer-la-frontera-entre-prototipo-y-produccion",
+        "label": "Reconocer la frontera entre prototipo y producción"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-07",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Preparar una entrega que pueda abrirse y revisarse",
+      "difficulty": "intermedia",
+      "prompt": "Un notebook muestra resultados guardados. ¿Qué prueba demuestra que otra persona puede reconstruirlos?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Volver a abrir el notebook conservando las salidas guardadas."
+        },
+        {
+          "id": "b",
+          "text": "Reejecutar solo la última celda con la sesión previa."
+        },
+        {
+          "id": "c",
+          "text": "Ejecutarlo desde una sesión limpia con las entradas documentadas."
+        },
+        {
+          "id": "d",
+          "text": "Comparar capturas de resultados sin ejecutar el código."
+        }
+      ],
+      "correctOptionId": "c",
+      "explanation": "La reproducibilidad exige reconstruir el estado a partir de instrucciones e insumos explícitos.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#preparar-una-entrega-que-pueda-abrirse-y-revisarse",
+        "label": "Preparar una entrega que pueda abrirse y revisarse"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-08",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Utilizar la retrospectiva para aprender del proceso",
+      "difficulty": "avanzada",
+      "prompt": "Una herramienta nueva consumió tiempo y no cambió la evidencia ni la decisión. ¿Qué revisión corresponde?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Mantenerla siempre por ser novedosa."
+        },
+        {
+          "id": "b",
+          "text": "Borrar los controles que demandaron tiempo."
+        },
+        {
+          "id": "c",
+          "text": "Agregar otras herramientas para compensar."
+        },
+        {
+          "id": "d",
+          "text": "Evaluar si su complejidad se justifica y qué podría simplificarse."
+        }
+      ],
+      "correctOptionId": "d",
+      "explanation": "La retrospectiva compara el valor obtenido con el esfuerzo y las dependencias introducidas.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#utilizar-la-retrospectiva-para-aprender-del-proceso",
+        "label": "Utilizar la retrospectiva para aprender del proceso"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-09",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Qué competencia muestra la entrega",
+      "difficulty": "avanzada",
+      "prompt": "Un reporte atractivo contiene una cifra que nadie puede reconciliar. ¿Qué capacidad sigue sin demostrarse?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Construir y explicar evidencia verificable entre etapas."
+        },
+        {
+          "id": "b",
+          "text": "Presentar un indicador con una cantidad fija de decimales."
+        },
+        {
+          "id": "c",
+          "text": "Producir una visualización que responda al filtro seleccionado."
+        },
+        {
+          "id": "d",
+          "text": "Actualizar automáticamente los datos sin errores de ejecución."
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "La calidad del resultado incluye la conexión entre definición, cálculo, control y comunicación.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#que-competencia-muestra-la-entrega",
+        "label": "Qué competencia muestra la entrega"
+      }
+    },
+    {
+      "id": "proyecto-cierre-entrega-10",
+      "unit": "proyecto-cierre-entrega",
+      "topic": "Cerrar el circuito con acción y aprendizaje",
+      "difficulty": "avanzada",
+      "prompt": "La acción propuesta se aplicó, pero el resultado esperado no apareció. ¿Qué respuesta mantiene el circuito de aprendizaje?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Dejar de medir el indicador."
+        },
+        {
+          "id": "b",
+          "text": "Revisar ejecución, supuestos y evidencia, y ajustar la pregunta o intervención."
+        },
+        {
+          "id": "c",
+          "text": "Declarar éxito porque se publicó el tablero."
+        },
+        {
+          "id": "d",
+          "text": "Cambiar retroactivamente la meta sin registro."
+        }
+      ],
+      "correctOptionId": "b",
+      "explanation": "Observar un resultado distinto permite revisar el modelo y la decisión con nueva evidencia.",
+      "reference": {
+        "path": "unidades/proyecto-cierre-entrega.html#cerrar-el-circuito-con-accion-y-aprendizaje",
+        "label": "Cerrar el circuito con acción y aprendizaje"
+      }
     }
   ],
   "presets": [
@@ -9081,5 +9395,5 @@
       "contentHash": "845da9f495750f11f271ef6a080fb45c02b0ef6b140f85d1dc8b4513ca88d67b"
     }
   ],
-  "version": "19f5a2b2914d6fd4"
+  "version": "b79557767c99be0a"
 }

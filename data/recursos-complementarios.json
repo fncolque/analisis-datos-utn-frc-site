@@ -1,5 +1,5 @@
 {
-  "actualizado": "2026-11-18",
+  "actualizado": "2026-11-25",
   "nota": "Los recursos son optativos. Cada selección indica la dedicación esperada y el motivo de lectura.",
   "paginas": {
     "u01-decisiones-datos-ia": {
@@ -767,6 +767,38 @@
           "idioma": "Español",
           "dedicacion": "20 min",
           "descripcion": "Criterios para revisar decisión, arquitectura, calidad, evidencia, interpretación y comunicación."
+        }
+      ]
+    },
+    "proyecto-cierre-entrega": {
+      "titulo": "Entrega, retrospectiva y continuidad",
+      "introduccion": "Los recursos apoyan la verificación final, el registro de contribuciones y la retrospectiva del proceso analítico.",
+      "diagrama": {
+        "archivo": "proyecto-cierre.svg",
+        "fuente": "proyecto-cierre.mmd",
+        "alt": "Recorrido completo desde decisión y KPI hasta acción y aprendizaje, con asistencia de IA verificada.",
+        "titulo": "El proyecto cierra el circuito de evidencia",
+        "epigrafe": "Cada etapa puede explicarse, rastrearse y vincularse con una responsabilidad.",
+        "base": "Elaboración propia para la asignatura."
+      },
+      "recursos": [
+        {
+          "tipo": "Plantilla",
+          "titulo": "Requisitos del video y dossier",
+          "institucion": "Análisis de Datos · UTN FRC",
+          "url": "../downloads/Requisitos del video y dossier final.md",
+          "idioma": "Español",
+          "dedicacion": "15 min",
+          "descripcion": "Formato, contenido y controles de acceso de los entregables finales."
+        },
+        {
+          "tipo": "Plantilla",
+          "titulo": "Registro de contribuciones",
+          "institucion": "Análisis de Datos · UTN FRC",
+          "url": "../downloads/Registro de contribuciones.md",
+          "idioma": "Español",
+          "dedicacion": "10 min",
+          "descripcion": "Registro de responsabilidades, aportes y comprensión compartida del sistema."
         }
       ]
     }
